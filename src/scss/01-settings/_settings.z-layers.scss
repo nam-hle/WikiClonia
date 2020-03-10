@@ -15,3 +15,7 @@ $layer-value: 0;
   $layer-value: $layer-value + 1000;
   $z-layers: map_merge($z-layers, ($layer-name: $layer-value));
 }
+
+$z-layer-menu: 4000;
+$z-image-wrapper: 1000;
+$z-text-wrapper: 2000;

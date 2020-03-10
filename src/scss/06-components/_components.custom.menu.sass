@@ -1,0 +1,33 @@
+/* ==========================================================================
+   #CUSTOM WEBSITE
+   ========================================================================== */
+
+.menu
+  display: grid
+  grid-template-areas: "logo-btn . setting-btn" ". . ."
+  grid-template-rows: max-content 1fr
+  grid-template-columns: min-content 1fr min-content
+  align-items: center
+
+  position: fixed
+  z-index: $z-layer-menu
+  width: 100%
+  height: 100vh
+  padding: $spacing-px $spacing-py
+
+  &__logo-btn
+    grid-area: logo-btn
+    // font-size: 1.3em
+    // letter-spacing: 0.1em
+
+  &__setting-btn
+    grid-area: setting-btn
+    display: flex
+    font-size: 2em
+    font-weight: 300
+    color: lighten($color-brown, 0.7)
+
+
+
+
+

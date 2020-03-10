@@ -1,8 +1,5 @@
 a {
-  @include basic-transition(color);
-  @include on-event {
-    color: $color-dark;
-  }
-
-  color: $color-primary;
+  cursor: pointer;
+  text-decoration: none;
+  color: $color-brown;
 }

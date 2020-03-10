@@ -2,7 +2,23 @@
    #TYPOGRAPHY-VARIABLES
    ========================================================================== */
 
-$font-body: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue',
+@font-face {
+ font-family: titleFont;
+ src: url('./fonts/Tiempos%20Text%20Test/tiempos-text-test-regular.woff');
+}
+
+@font-face {
+ font-family: textFont;
+ src: url('./fonts/Nunito_Sans/NunitoSans-Regular.ttf');
+}
+
+@font-face {
+ font-family: quoteFont;
+ src: url('./fonts/PlayfairDisplay/PlayfairDisplay-Italic.woff2');
+}
+
+
+$font-body: 'textFont', 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue',
   sans-serif;
 $base-font-size: 16px;
 $letter-spacing: 0.1em;

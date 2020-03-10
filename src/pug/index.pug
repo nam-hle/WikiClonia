@@ -1,11 +1,43 @@
-//- h1
-//-   | Hello World!
-//- h2
-//-   | Nam
 head
-  <!--build:css ./main.min.css-->
   <link rel="stylesheet" href="./main.css"/>
-  <!--endbuild-->
 body
-  h1
-    | ABC
+  .menu
+    a(href="#").menu__logo-btn
+      | PANTHEONE
+    button.menu__setting-btn
+      .setting-btn__vbar-1
+        | &#124;
+      .setting-btn__vbar-1
+        | &#124;
+  .hero
+    .content
+      .designed
+        .designed__image-wrapper
+          img(src="./images/content__designed.jpg", alt="").designed__image
+        .designed__text-wrapper
+          .content__title.designed__title
+            | Designed To Be Seen &amp; Felt
+          .content__description.designed__description
+            | Immerse yourself in sound. Visually striking, the Pantheone I speaker is as ingenious as it is beautiful, filling a space with perfect acoustics whilst simultaneously co-existing with its surroundings.
+      .harmony
+        .harmony__image-wrapper
+          img(src="./images/harmony.jpg", alt="").harmony__image
+        .harmony__text-wrapper
+          .content__title.harmony__title
+            | Harmony In Every Line &amp; Curve
+          .content__description.harmony__description
+            | Driven to design a state-of-the-art sound system that is aesthetically arresting without compromising on quality or performance, the Pantheone I speakers is at home in an art gallery or in the personal spaces of those who appreciate flawless function.
+      .quote
+        .quote__image-wrapper
+          img(src="./images/quote.jpg", alt="").quote__image
+        .quote__text-wrapper
+          .content__description.quote__description
+            | Our products are designed by a team who share an uncompromising commitment to hand-crafted quality, design and engineering that breathes music into any living space. Made to be enjoyed by those who share a passion for minimalist aesthetic that is both functional and appealing.
+
+
+
+
+
+
+
+
