@@ -18,6 +18,9 @@
 @import '02-tools/tools.on-event';
 @import '02-tools/tools.placeholder';
 @import '02-tools/tools.spacing';
+@import '02-tools/tool.center';
+@import '02-tools/tools.mq-sass';
+
 
 // 03. Generic
 @import '../../node_modules/normalize.css/normalize';
@@ -29,7 +32,8 @@
 @import '04-elements/elements.html';
 @import '04-elements/elements.links';
 @import '04-elements/elements.paragraph';
-@import "04-elements/elements.custom.button";
+@import '04-elements/elements.strong';
+@import '04-elements/elements.break';
 
 // 05. Objects
 @import '05-objects/objects.container';
@@ -39,9 +43,12 @@
 // 06. Components
 @import '06-components/components.alert';
 @import '06-components/components.button';
-@import "06-components/components.custom.menu";
-@import "06-components/components.custom.content.sass";
-@import "06-components/components.custom.content-block.sass";
+@import '06-components/_components.typography';
+@import "06-components/components.main-layout";
+@import "06-components/components.menu";
+@import "06-components/components.welcome";
+@import "06-components/components.entries-layout";
+
 // 99. Utilities
 @import '99-utilities/utilities.clearfix';
 @import '99-utilities/utilities.text';

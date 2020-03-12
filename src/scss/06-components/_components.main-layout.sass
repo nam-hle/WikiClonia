@@ -1,0 +1,72 @@
+
+
+
+.container
+  display: grid
+  grid-template-columns: repeat(12, 1fr)
+  grid-template-rows: 3vw 4vw 4vw repeat(60, max-content)
+
+  margin: 0 20%
+
+  background-color: #D4D4D4
+
+  > *
+    border: 1px solid blue
+
+.logo
+  grid-column: 1 / span 2
+  grid-row: 1 / span 3
+.menu
+  grid-column: 3 / -1
+  grid-row: 2
+.welcome
+  grid-column: 7 / -1
+  grid-row: 4 / span 6
+.entries
+  grid-column: 1 / 7
+  grid-row: 5 / span 15
+.gallery
+  grid-column: 7 / -1
+  grid-row: 11 / span 6
+
+// Md
+.container
+  @include mq($from: wide, $until: hd)
+    margin: 3vw 5%
+    .welcome
+      grid-column: 3 / -3
+      grid-row: 4 / span 10
+    .entries
+      grid-column: 1 / -1
+      grid-row: 15 / span 10
+    .recent-entries
+      grid-column: 9 / -1
+      grid-row: 15 / span 10
+    .gallery
+      grid-column: 1 / -1
+      grid-row: 26 / span 10
+
+// Sm
+.container
+  @include mq($until: wide)
+    margin: 2vw 5%
+    grid-template-rows: 20vw 20vw repeat(60, 40px)
+    grid-row-gap: 20px
+    .logo
+      grid-column: 5 / span 4
+      grid-row: 1 / span 1
+    .menu
+      grid-column: 1 / -1
+      grid-row: 2
+    .welcome, .entries, .gallery
+      grid-column: 1 / -1
+    .welcome
+      grid-row: 3 / span 10
+    .entries
+      grid-row: 13 / span 10
+    .gallery
+      grid-row: 23 / span 10
+
+
+
+

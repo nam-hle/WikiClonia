@@ -1,0 +1,29 @@
+.welcome
+  display: grid
+  grid-template-rows: repeat(2, max-content)
+  &__image
+    width: 100%
+  &__text
+    padding-right: 30%
+    margin-top: -20px
+    background-color: $color-bg-content
+  &__title, &__desc
+    padding: 1% 0 1% 4%
+  &__title
+    font-family: $font-title
+    font-size: calc(60px - 1vw)
+    color: $color-title
+    background-color: $color-bg-title
+
+
+
+.welcome
+  @include until-wide
+    &__text
+      width: 100%
+      padding: 0
+    &__title
+      padding-right: 20%
+      line-height: 1
+
+

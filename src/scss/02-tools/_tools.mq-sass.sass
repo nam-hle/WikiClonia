@@ -1,5 +1,11 @@
-// @mixin for-wide
-//   @media (min-width: $bkp-wide)
-//     @content;
+@mixin from-wide
+  @include mq($from: wide, $until: hd)
+    @content
 
+@mixin until-wide
+  @include mq($until: wide)
+    @content
 
+@mixin until-hd
+  @include mq($until: hd)
+    @content

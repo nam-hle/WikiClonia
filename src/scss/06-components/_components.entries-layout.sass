@@ -1,0 +1,19 @@
+.entries
+  display: grid
+  grid-template-columns: repeat(12, 1fr)
+  grid-template-rows: repeat(2, fill)
+  &__main, &__recent
+    grid-column: 1 / -1
+  &__main
+    background-color: #34C8F1
+
+  &__recent
+    background-color: #DB79F2
+  @include mq($from: wide, $until: hd)
+    &__main
+      grid-column: 1 / span 8
+    &__recent
+      grid-column: 9 / -1
+  @include mq($until: wide)
+
+
