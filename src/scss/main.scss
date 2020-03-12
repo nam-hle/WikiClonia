@@ -43,11 +43,11 @@
 // 06. Components
 @import '06-components/components.alert';
 @import '06-components/components.button';
-@import '06-components/_components.typography';
+@import '06-components/components.typography';
 @import "06-components/components.main-layout";
 @import "06-components/components.menu";
 @import "06-components/components.welcome";
-@import "06-components/components.entries-layout";
+@import "06-components/components.entries";
 
 // 99. Utilities
 @import '99-utilities/utilities.clearfix';
