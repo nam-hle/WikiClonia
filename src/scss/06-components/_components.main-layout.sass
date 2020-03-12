@@ -1,12 +1,12 @@
 .container
   display: grid
   grid-template-columns: repeat(12, 1fr)
-  grid-template-rows: 3vw 4vw 4vw repeat(60, max-content)
+  grid-template-rows: 3vw 4vw 4vw 3vw repeat(60, max-content)
 
   margin: 0 20%
 
   background-color: #D4D4D4
-
+  grid-column-gap: 1vw
   > *
     border: 1px solid blue
 
@@ -16,12 +16,15 @@
 .menu
   grid-column: 3 / -1
   grid-row: 2
+
 .welcome
   grid-column: 7 / -1
-  grid-row: 4 / span 6
+  grid-row: 4
+
 .entries
   grid-column: 1 / 7
-  grid-row: 5 / span 15
+  grid-row: 6
+
 .gallery
   grid-column: 7 / -1
   grid-row: 11 / span 6

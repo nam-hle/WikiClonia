@@ -1,11 +1,14 @@
+.box-shadow-up
+  -webkit-box-shadow: 10px -10px 0px 0px rgba($color-bg-menu, 0.2)
+  -moz-box-shadow: 10px -10px 0px 0px rgba($color-bg-menu, 0.2)
+  box-shadow: 10px -10px 0px 0px rgba($color-bg-menu, 0.2)
+
+
 
 .menu
   display: grid
   grid-template-columns: repeat(6, max-content)
   background-color: $color-bg-menu
-  -webkit-box-shadow: 10px -10px 0px 0px rgba($color-bg-menu, 0.2)
-  -moz-box-shadow: 10px -10px 0px 0px rgba($color-bg-menu, 0.2)
-  box-shadow: 10px -10px 0px 0px rgba($color-bg-menu, 0.2)
   &__item
     @include center-all
     color: $color-menu

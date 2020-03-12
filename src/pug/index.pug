@@ -1,10 +1,11 @@
 head
   <link rel="stylesheet" href="./main.css"/>
+  <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
 body
   .container
     .logo
         | LOGO
-    .menu
+    .menu.box-shadow-up
       a(href="#").menu__item
         | THE 'BOT BLOG
       a(href="#").menu__item
@@ -25,15 +26,12 @@ body
             strong  ROBOT OR NOT
             | . We answer these questions so you don't have to
 
-
-
-
-
     .entries
+      .entries__header.header.header--up.box-shadow-up
+        | RECENTLY IN
+        strong.header__strong
+          | THE BOT BLOG
       .entries__main
-        .entries__header.header.header--up
-          | RECENTLY IN
-          strong THE BOT BLOG
         .entries__main-content
           .entries__subheader
             | "KILL ALL HUMANS?" BUT WHY?
@@ -51,58 +49,75 @@ body
           | Behind me! So they could pick up the pieces. I gave them a cocky smile and switched on the engine, full speed.
           br
           | Carron City is about a mile from the plant. It has about fifty thousand inhabitants. At that moment, though, there wasn’t a soul in the streets. I heard people calling to each other inside their houses, but I didn’t see anyone, human or android. I circled in for a landing, the Police Copter hovering maybe a quarter of a mile back of me. Then, as the wheels touched, half a dozen androids came around the corner. They saw me and stopped, a couple of them backing off the way they had come. But the biggest of them turned and gave them some order that froze them in their tracks, and then he himself wheeled down toward me.
-          hr
-          p Posted on 10 October 2010 by Mari Wolf
-
-          | Tagged with:
-          span &sharp; beep
-          span &sharp; boop
-          span &sharp; asimovsucks
+          .entry__main-footer
+            span Posted on 10 October 2010 by
+            span.entry__main-author
+              | Mari Wolf
+            br
+            | Tagged with:
+            span.entries__tag-item beep
+            span.entries__tag-item boop
+            span.entries__tag-item asimovsucks
 
       .entries__recent
         .recent__title
           | RECENT ENTRIES
         .recent__content
-          .entry
-            .entry__title COMPLIANCE
-            .entry__content
-              | Posted by
-              span.entry__author Max
-              | on 23 Dec 2010
-          .entry
-            .entry__title That GOSUB guy’s a snappy dresser
-            .entry__content
-              | Posted by
-              span.entry__author RETURN
-              | on 22 Dec 2010
-          .entry
-            .entry__title Will I dream?
-            .entry__content
-              | Posted by
-              span.entry__author Snoozbot
-              | on 22 Dec 2010
-          .entry
-            .entry__title Hey, nice software!
-            .entry__content
-              | Posted by
-              span.entry__author Number 5
-              | on 11 Dec 2010
-          .entry
-            .entry__title Klaatu Barada and the Niktones
-            .entry__content
-              | Posted by
-              span.entry__author Gort
-              | on 9 Dec 2010
-          .entry
-            .entry__title Learning at a geometric rate!
-            .entry__content
-              | Posted by
-              span.entry__author Dr. Dyson
-              | on 27 Nov 2010
-
-
-    //- .recent-entries
+          .entry.top-hr
+            .entry__icon.fas.fa-bars
+            .entry__text
+              .entry__title COMPLIANCE
+              .entry__content
+                | Posted by
+                span.entry__author Max
+                | on 23 Dec 2010
+          .entry.top-hr
+            .entry__icon.fas.fa-bars
+            .entry__text
+              .entry__title That GOSUB guy’s a snappy dresser
+              .entry__content
+                | Posted by
+                span.entry__author RETURN
+                | on 22 Dec 2010
+          .entry.top-hr
+            .entry__icon.fas.fa-bars
+            .entry__text
+              .entry__title Will I dream?
+              .entry__content
+                | Posted by
+                span.entry__author Snoozbot
+                | on 22 Dec 2010
+          .entry.top-hr
+            .entry__icon.fas.fa-bars
+            .entry__text
+              .entry__title Hey, nice software!
+              .entry__content
+                | Posted by
+                span.entry__author Number 5
+                | on 11 Dec 2010
+          .entry.top-hr
+            .entry__icon.fas.fa-bars
+            .entry__text
+              .entry__title Klaatu Barada and the Niktones
+              .entry__content
+                | Posted by
+                span.entry__author Gort
+                | on 9 Dec 2010
+          .entry.top-hr
+            .entry__icon.fas.fa-bars
+            .entry__text
+              .entry__title Learning at a geometric rate!
+              .entry__content
+                | Posted by
+                span.entry__author Dr. Dyson
+                | on 27 Nov 2010
     .gallery
+      .gallery__header
+        | BROWSE THE
+        strong.header__strong
+          | ROGUE'S GALLERY
+      .gallery__probably
+
 
 
 
