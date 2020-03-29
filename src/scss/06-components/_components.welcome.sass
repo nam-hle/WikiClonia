@@ -1,29 +1,42 @@
-.welcome
+.app
+  display: flex
+  flex-direction: column
+  border: 1px solid #D1D5DA
+  width: 80%
+  margin: 0 auto
+  height: auto
+  justify-content: center
+  align-items: center
+
+
+.issue
   display: grid
-  grid-template-rows: repeat(2, max-content)
-  &__image
-    width: 100%
-  &__text
-    padding-right: 30%
-    margin-top: -20px
-    background-color: $color-bg-content
-  &__title, &__desc
-    padding: 1% 0 1% 4%
-  &__title
-    font-family: $font-title
-    font-size: calc(60px - 1vw)
-    color: $color-title
-    background-color: $color-bg-title
+  grid-template-columns: 30px 1fr 30px
+  color: black
+  font-weight: 600
+  border-top: 1px solid #D1D5DA
+  padding: 5px 0
+  line-height: 1.75
+  &:hover
+    background-color: #F6F8FA
+  .icon
+    margin: 5px 0 0 10px
 
+  .header
+    padding-right: 20%
+    grid-column: 2
+    .title
+      font-size: 16px
+    .label
+      font-size: 12px
+      padding: 0 5px
+      display: inline-block
+      margin: 0 4px
+  .info
+    grid-column: 2
+    font-size: 12px
+    color: $color-grey
+    font-weight: 500
 
-
-.welcome
-  @include until-wide
-    &__text
-      width: 100%
-      padding: 0
-    &__title
-      padding-right: 20%
-      line-height: 1
 
 

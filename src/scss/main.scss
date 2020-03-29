@@ -35,6 +35,7 @@
 @import '04-elements/elements.strong';
 @import '04-elements/elements.break';
 @import '04-elements/elements.ul-li';
+@import '04-elements/elements.button';
 
 // 05. Objects
 @import '05-objects/objects.container';
@@ -49,10 +50,10 @@
 @import "06-components/components.menu";
 @import "06-components/components.welcome";
 @import "06-components/components.entries";
+@import "06-components/components.gallery";
+@import "06-components/components.HNButton";
 
 // 99. Utilities
 @import '99-utilities/utilities.clearfix';
 @import '99-utilities/utilities.text';
 @import '99-utilities/utilities.visibility';
-
-
