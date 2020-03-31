@@ -2,11 +2,9 @@
   display: flex
   flex-direction: column
   border: 1px solid #D1D5DA
-  width: 80%
+  width: 60%
   margin: 0 auto
   height: auto
-  // justify-content: center
-  // align-items: center
 
 
 .issue
@@ -30,16 +28,58 @@
       color: black
       &:hover
         color: #0066D6
-    .label
-      font-size: 12px
-      padding: 0 5px
-      display: inline-block
-      margin: 0 4px
   .info
     grid-column: 2
     font-size: 12px
     color: $color-grey
     font-weight: 500
 
+
+.label
+  font-size: 12px
+  padding: 0 8px
+  margin: 0 4px
+  display: inline-block
+
+.issue
+  &__title
+    color: black
+    display: inline
+    font-weight: bold
+
+.issue__tooltip
+  display: inline-block
+  line-height: 1.5
+  color: $color-grey
+  font-size: 14px
+  &-header
+    font-size: 12px
+  &-title
+    color: black
+  &-body
+    font-weight: 400
+
+
+.submenu
+  display: grid
+  grid-template-columns: 30px auto
+  align-items: center
+  justify-content: center
+  &__checkbox
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+  &__title
+    font-size: 12px
+    color: #586069
+
+.submenu-header
+  background-color: #F6F8FA
+  font-size: 12px
+  padding: 8px
+  padding-left: 16px
+  font-weight: 700
+  color: #24292E
 
 

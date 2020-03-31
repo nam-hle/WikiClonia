@@ -1,16 +1,15 @@
 import React from "react";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+
+import Label from "./../Label/index.jsx";
+import IssueTooltip from "./../IssueTooltip/index.jsx";
+
 dayjs.extend(relativeTime);
 
-const Issue = ({ number, title, labels, created_at, user }) => {
-  const Label = ({ name, color }) => {
-    return (
-      <span className="label" style={{ backgroundColor: `#${color}` }}>
-        {" " + name + " "}
-      </span>
-    );
-  };
+console.log(2);
+/* eslint babel/camelcase: "off" */
+const Issue = ({ number, title, labels, created_at, user, body }) => {
   return (
     <div className="issue">
       <div className="icon">
@@ -29,16 +28,15 @@ const Issue = ({ number, title, labels, created_at, user }) => {
           ></path>
         </svg>
       </div>
-      <div className="header">
-        <a href="#" className="title">
-          {title}
-        </a>
+
+      <div className="header" style={{ display: "inline" }}>
+        <IssueTooltip {...{ created_at, number, body, labels, title }} />
         {labels.map((label, index) => (
           <Label key={index} name={label.name} color={label.color} />
         ))}
       </div>
       <div className="info">
-        &#9839;{number} opened{" "}
+        {`#${number}`} opened{" "}
         {dayjs()
           .from(dayjs(created_at))
           .replace(" in", "")}{" "}
