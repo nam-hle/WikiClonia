@@ -6,7 +6,7 @@ import SimpleMenu from "./../MenuDropdown/index.jsx";
 import { LabelMenu } from "./../LabelMenuDropdown/index.jsx";
 
 const authorization = new Headers({
-  Authorization: "token bd171785f57e7294e2c9df7725f4aa047c244a5a"
+  Authorization: "token bd171785f57e7294e2c9df7725f4aa047c244a5a",
 });
 
 const range = (_from, _to) =>
@@ -34,7 +34,7 @@ const PaginationButtonGroup = ({ currentPage, maxPage, onClick }) => {
       return [
         ...range(minPage, minPage + 1),
         0,
-        ...range(curPage - 2, maxPage)
+        ...range(curPage - 2, maxPage),
       ];
 
     return [
@@ -42,7 +42,7 @@ const PaginationButtonGroup = ({ currentPage, maxPage, onClick }) => {
       0,
       ...range(curPage - 2, curPage + 2),
       0,
-      ...range(maxPage - 1, maxPage)
+      ...range(maxPage - 1, maxPage),
     ];
   };
 
@@ -110,20 +110,20 @@ const App = () => {
     fetch(
       BASE_URL +
         `&page=${currentPage}` +
-        (attrSort == "" ? "&q=" : `&sort=${sort}&direction=${direction}`),
-      { headers: authorization }
+        (attrSort == "" ? "&q=" : `&sort=${sort}&direction=${direction}`)
+      // { headers: authorization }
     )
-      .then(response => {
+      .then((response) => {
         let links = parse(response.headers.get("Link"));
         if (links.last && maxPage != +links.last.page)
           setMaxPage(+links.last.page);
         return response.json();
       })
-      .then(_data => setData(_data))
-      .catch(error => console.error(error));
+      .then((_data) => setData(_data))
+      .catch((error) => console.error(error));
   }, [currentPage, attrSort]);
 
-  const handlePaginationButtonClick = page => {
+  const handlePaginationButtonClick = (page) => {
     if (page == "prev") {
       setCurrentPage(currentPage - 1);
     } else if (page == "next") {
@@ -133,7 +133,7 @@ const App = () => {
     }
   };
 
-  const handleSortButtonClick = attr =>
+  const handleSortButtonClick = (attr) =>
     setAttrSort(attrSort == attr ? "" : attr);
 
   return (
@@ -143,9 +143,9 @@ const App = () => {
       <PaginationButtonGroup
         maxPage={maxPage}
         currentPage={currentPage}
-        onClick={page => handlePaginationButtonClick(page)}
+        onClick={(page) => handlePaginationButtonClick(page)}
       />
-      {data.map(issue => (
+      {data.map((issue) => (
         <Issue key={issue.id} {...issue} />
       ))}
     </div>
