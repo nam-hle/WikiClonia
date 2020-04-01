@@ -7,7 +7,6 @@ import IssueTooltip from "./../IssueTooltip/index.jsx";
 
 dayjs.extend(relativeTime);
 
-console.log(2);
 /* eslint babel/camelcase: "off" */
 const Issue = ({ number, title, labels, created_at, user, body }) => {
   return (

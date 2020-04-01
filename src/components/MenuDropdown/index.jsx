@@ -10,7 +10,7 @@ const SubMenu = ({ name, choose }) => {
   const CheckPlaceholder = ({ choose }) => {
     return (
       <div className="submenu__checkbox">
-        {choose && <CheckIcon fontSize="large" />}
+        {choose && <CheckIcon fontSize="small" />}
       </div>
     );
   };
@@ -78,7 +78,7 @@ const SimpleMenu = ({ attr, onClick }) => {
         aria-haspopup="true"
         onClick={handleClick}
       >
-        Sort
+        Sorted
       </Button>
       <CustomMenu
         id="simple-menu"

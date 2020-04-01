@@ -2,33 +2,11 @@
    #TYPOGRAPHY-VARIABLES
    ========================================================================== */
 
-@font-face {
- font-family: titleFont;
- src: url('./fonts/league_gothic.otf');
-}
-
-@font-face {
- font-family: textFont;
- src: url('./fonts/GillSans/Gill%20Sans%20Medium.otf');
-}
-
-@font-face {
- font-family: textFontBold;
- src: url('./fonts/GillSans/Gill%20Sans%20Bold.otf');
-}
-
-
-
-@font-face {
- font-family: strongFont;
- src: url('./fonts/GillSans/Gill%20Sans%20Heavy.otf');
-}
-
 
 $font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue',
   sans-serif;
 $base-font-size: 16px;
 $letter-spacing: 0.1em;
 
-$font-title: 'titleFont', -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue',
+$font-title: -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue',
   sans-serif;

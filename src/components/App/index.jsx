@@ -5,10 +5,6 @@ import parse from "parse-link-header";
 import SimpleMenu from "./../MenuDropdown/index.jsx";
 import { LabelMenu } from "./../LabelMenuDropdown/index.jsx";
 
-// const authorization = new Headers({
-//   Authorization: "token 56b5fed798d2886c76230ce995418db3eb07b19d"
-// });
-// curl -H "Authorization: token 56b5fed798d2886c76230ce995418db3eb07b19d" https://api.github.com/repos/facebook/create-react-app/issues?state=all&per_page=25
 const range = (_from, _to) =>
   [...Array(_to - _from + 1)].map((_, i) => i + _from);
 
@@ -17,7 +13,7 @@ const BASE_URL =
 
 const PaginationButtonGroup = ({ currentPage, maxPage, onClick }) => {
   const calculate = (curPage, minPage = 1, maxPage = 20) => {
-    if (maxPage - minPage <= 8) return [range(minPage, maxPage)];
+    if (maxPage - minPage <= 10) return [range(minPage, maxPage)];
 
     let closeToLeft = curPage - 2 - (minPage + 1) <= 2,
       closeToRight = maxPage - 1 - (curPage + 2) <= 2;
@@ -86,7 +82,7 @@ const PaginationButtonGroup = ({ currentPage, maxPage, onClick }) => {
 const App = () => {
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [maxPage, setMaxPage] = useState(20);
+  const [maxPage, setMaxPage] = useState(10);
   const [attrSort, setAttrSort] = useState("");
 
   useEffect(() => {
@@ -109,7 +105,7 @@ const App = () => {
         (attrSort == "" ? "&q=" : `&sort=${sort}&direction=${direction}`),
       {
         headers: new Headers({
-          Authorization: "token 56b5fed798d2886c76230ce995418db3eb07b19d"
+          Authorization: "token 5abd54378edbd99be51128ed425d2d48a2420f21"
         })
       }
     )

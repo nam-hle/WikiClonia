@@ -108,7 +108,7 @@ gulp.task("babel", ["eslint"], function() {
     standalone: "openpgp",
     cache: {},
     packageCache: {},
-    debug: true,
+    debug: false,
   })
     .transform(babelify)
     .bundle()
@@ -130,6 +130,7 @@ function scripts(watch) {
     packageCache: {},
     fullPaths: watch
   });
+
   if(watch) {
     bundler = watchify(bundler);
   }
