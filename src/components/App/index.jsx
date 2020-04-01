@@ -5,17 +5,15 @@ import parse from "parse-link-header";
 import SimpleMenu from "./../MenuDropdown/index.jsx";
 import { LabelMenu } from "./../LabelMenuDropdown/index.jsx";
 
-const authorization = new Headers({
-  Authorization: "token bd171785f57e7294e2c9df7725f4aa047c244a5a",
-});
-
+// const authorization = new Headers({
+//   Authorization: "token 56b5fed798d2886c76230ce995418db3eb07b19d"
+// });
+// curl -H "Authorization: token 56b5fed798d2886c76230ce995418db3eb07b19d" https://api.github.com/repos/facebook/create-react-app/issues?state=all&per_page=25
 const range = (_from, _to) =>
   [...Array(_to - _from + 1)].map((_, i) => i + _from);
 
 const BASE_URL =
   "https://api.github.com/repos/facebook/create-react-app/issues?state=all&per_page=25";
-
-// curl -i "https://api.github.com/repos/facebook/create-react-app/issues?state=all&sort=updated&direction=asc"
 
 const PaginationButtonGroup = ({ currentPage, maxPage, onClick }) => {
   const calculate = (curPage, minPage = 1, maxPage = 20) => {
@@ -34,7 +32,7 @@ const PaginationButtonGroup = ({ currentPage, maxPage, onClick }) => {
       return [
         ...range(minPage, minPage + 1),
         0,
-        ...range(curPage - 2, maxPage),
+        ...range(curPage - 2, maxPage)
       ];
 
     return [
@@ -42,7 +40,7 @@ const PaginationButtonGroup = ({ currentPage, maxPage, onClick }) => {
       0,
       ...range(curPage - 2, curPage + 2),
       0,
-      ...range(maxPage - 1, maxPage),
+      ...range(maxPage - 1, maxPage)
     ];
   };
 
@@ -90,7 +88,6 @@ const App = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [maxPage, setMaxPage] = useState(20);
   const [attrSort, setAttrSort] = useState("");
-  // const [query, setQuery] = useState({});
 
   useEffect(() => {
     let sort = "",
@@ -106,24 +103,27 @@ const App = () => {
           ? "asc"
           : "desc";
     }
-    console.log({ attrSort, sort, direction });
     fetch(
       BASE_URL +
         `&page=${currentPage}` +
-        (attrSort == "" ? "&q=" : `&sort=${sort}&direction=${direction}`)
-      // { headers: authorization }
+        (attrSort == "" ? "&q=" : `&sort=${sort}&direction=${direction}`),
+      {
+        headers: new Headers({
+          Authorization: "token 56b5fed798d2886c76230ce995418db3eb07b19d"
+        })
+      }
     )
-      .then((response) => {
+      .then(response => {
         let links = parse(response.headers.get("Link"));
         if (links.last && maxPage != +links.last.page)
           setMaxPage(+links.last.page);
         return response.json();
       })
-      .then((_data) => setData(_data))
-      .catch((error) => console.error(error));
+      .then(_data => setData(_data))
+      .catch(error => console.error(error));
   }, [currentPage, attrSort]);
 
-  const handlePaginationButtonClick = (page) => {
+  const handlePaginationButtonClick = page => {
     if (page == "prev") {
       setCurrentPage(currentPage - 1);
     } else if (page == "next") {
@@ -133,7 +133,7 @@ const App = () => {
     }
   };
 
-  const handleSortButtonClick = (attr) =>
+  const handleSortButtonClick = attr =>
     setAttrSort(attrSort == attr ? "" : attr);
 
   return (
@@ -143,9 +143,9 @@ const App = () => {
       <PaginationButtonGroup
         maxPage={maxPage}
         currentPage={currentPage}
-        onClick={(page) => handlePaginationButtonClick(page)}
+        onClick={page => handlePaginationButtonClick(page)}
       />
-      {data.map((issue) => (
+      {data.map(issue => (
         <Issue key={issue.id} {...issue} />
       ))}
     </div>

@@ -102,23 +102,23 @@ gulp.task("eslint", function() {
     .pipe(eslint.failOnError());
 });
 
-// gulp.task("babel", ["eslint"], function() {
-//   return browserify({
-//     entries: ["./src/index.jsx"],
-//     standalone: "openpgp",
-//     cache: {},
-//     packageCache: {},
-//     debug: true,
-//   })
-//     .transform(babelify)
-//     .bundle()
-//     .pipe(source("bundle.js"))
-//     .pipe(buffer())
-//     .pipe(sourcemaps.init())
-//     .pipe(uglify().on("error", console.error))
-//     .pipe(sourcemaps.write())
-//     .pipe(gulp.dest("dist"));
-// });
+gulp.task("babel", ["eslint"], function() {
+  return browserify({
+    entries: ["./src/index.jsx"],
+    standalone: "openpgp",
+    cache: {},
+    packageCache: {},
+    debug: true,
+  })
+    .transform(babelify)
+    .bundle()
+    .pipe(source("bundle.js"))
+    .pipe(buffer())
+    .pipe(sourcemaps.init())
+    .pipe(uglify().on("error", console.error))
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest("dist"));
+});
 
 function scripts(watch) {
   var bundler, rebundle;
@@ -161,9 +161,10 @@ gulp.task('scripts', ['eslint'], function() {
 });
 
 gulp.task('watchScripts', ['eslint'], function() {
-  console.log("@");
   return scripts(true);
 });
+
+
 
 gulp.task("watch", function() {
   gulp.watch("src/scss/**/*.{sass,scss}", ["sass"]);

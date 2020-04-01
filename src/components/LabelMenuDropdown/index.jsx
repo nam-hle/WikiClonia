@@ -63,7 +63,7 @@ export const LabelMenu = () => {
   const [labels, setLabels] = useState([]);
   const [anchorEl, setAnchorEl] = useState(null);
   const authorization = new Headers({
-    Authorization: "token bd171785f57e7294e2c9df7725f4aa047c244a5a"
+    Authorization: "token 56b5fed798d2886c76230ce995418db3eb07b19d"
   });
 
   useEffect(() => {
