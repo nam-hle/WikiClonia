@@ -4,7 +4,6 @@ import Issue from "./../Issue/index.jsx";
 import parse from "parse-link-header";
 import { SortMenu } from "./../SortMenu/index.jsx";
 import { LabelMenu } from "./../LabelMenu/index.jsx";
-import "./../../scss/main.scss";
 
 const range = (_from, _to) =>
   [...Array(_to - _from + 1)].map((_, i) => i + _from);
@@ -14,7 +13,7 @@ const BASE_URL =
 
 const PaginationButtonGroup = ({ currentPage, maxPage, onClick }) => {
   const calculate = (curPage, minPage = 1, maxPage = 20) => {
-    if (maxPage - minPage <= 8) return [range(minPage, maxPage)];
+    if (maxPage - minPage <= 8) return [...range(minPage, maxPage)];
 
     let closeToLeft = curPage - 2 - (minPage + 1) <= 2,
       closeToRight = maxPage - 1 - (curPage + 2) <= 2;
@@ -104,7 +103,8 @@ const App = () => {
     fetch(
       BASE_URL +
         `&page=${currentPage}` +
-        (attrSort == "" ? "&q=" : `&sort=${sort}&direction=${direction}`),
+        (attrSort == "" ? "&q=" : `&sort=${sort}&direction=${direction}`) +
+        (label == "" ? "" : `&labels=${label}`),
       {
         headers: new Headers({
           Authorization: "token 7f55ccbdd686af502c38f572ede46065fe038087"
@@ -119,7 +119,7 @@ const App = () => {
       })
       .then(_data => setData(_data))
       .catch(error => console.error(error));
-  }, [currentPage, attrSort]);
+  }, [currentPage, attrSort, label]);
 
   const handlePaginationButtonClick = page => {
     if (page == "prev") {
@@ -148,9 +148,7 @@ const App = () => {
           <button>Assignee</button>
           <SortMenu attr={attrSort} onClick={handleSortButtonClick} />
         </div>
-        {data.map(issue => (
-          <Issue key={issue.id} {...issue} />
-        ))}
+        {data.length && data.map(issue => <Issue key={issue.id} {...issue} />)}
       </div>
       <PaginationButtonGroup
         style={{ "margin-top": "20px" }}
