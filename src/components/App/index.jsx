@@ -4,16 +4,17 @@ import Issue from "./../Issue/index.jsx";
 import parse from "parse-link-header";
 import SimpleMenu from "./../MenuDropdown/index.jsx";
 import { LabelMenu } from "./../LabelMenuDropdown/index.jsx";
+import "./../../scss/main.scss";
 
 const range = (_from, _to) =>
   [...Array(_to - _from + 1)].map((_, i) => i + _from);
 
 const BASE_URL =
-  "https://api.github.com/repos/facebook/create-react-app/issues?state=all&per_page=25";
+  "https://api.github.com/repos/facebook/create-react-app/issues?state=all&per_page=15";
 
 const PaginationButtonGroup = ({ currentPage, maxPage, onClick }) => {
   const calculate = (curPage, minPage = 1, maxPage = 20) => {
-    if (maxPage - minPage <= 10) return [range(minPage, maxPage)];
+    if (maxPage - minPage <= 8) return [range(minPage, maxPage)];
 
     let closeToLeft = curPage - 2 - (minPage + 1) <= 2,
       closeToRight = maxPage - 1 - (curPage + 2) <= 2;
@@ -42,7 +43,7 @@ const PaginationButtonGroup = ({ currentPage, maxPage, onClick }) => {
 
   return (
     <ButtonGroup
-      style={{ alignSelf: "center" }}
+      style={{ alignSelf: "center", marginTop: 20 }}
       color="primary"
       aria-label="outlined primary button group"
     >
@@ -82,8 +83,9 @@ const PaginationButtonGroup = ({ currentPage, maxPage, onClick }) => {
 const App = () => {
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [maxPage, setMaxPage] = useState(10);
+  const [maxPage, setMaxPage] = useState(20);
   const [attrSort, setAttrSort] = useState("");
+  const [label, setLabel] = useState("");
 
   useEffect(() => {
     let sort = "",
@@ -105,7 +107,7 @@ const App = () => {
         (attrSort == "" ? "&q=" : `&sort=${sort}&direction=${direction}`),
       {
         headers: new Headers({
-          Authorization: "token 5abd54378edbd99be51128ed425d2d48a2420f21"
+          Authorization: "token 4db2956775d596ffedacb7b7a79e84a96f0bf188"
         })
       }
     )
@@ -132,18 +134,26 @@ const App = () => {
   const handleSortButtonClick = attr =>
     setAttrSort(attrSort == attr ? "" : attr);
 
+  const handleLabelButtonClick = newLabel =>
+    setLabel(newLabel === label ? "" : newLabel);
+
   return (
     <div className="app">
-      <SimpleMenu attr={attrSort} onClick={handleSortButtonClick} />
-      <LabelMenu attr={""} />
+      <div className="main ">
+        <div className="filters">
+          <LabelMenu attr={label} onClick={handleLabelButtonClick} />
+          <SimpleMenu attr={attrSort} onClick={handleSortButtonClick} />
+        </div>
+        {data.map(issue => (
+          <Issue key={issue.id} {...issue} />
+        ))}
+      </div>
       <PaginationButtonGroup
+        style={{ "margin-top": "20px" }}
         maxPage={maxPage}
         currentPage={currentPage}
         onClick={page => handlePaginationButtonClick(page)}
       />
-      {data.map(issue => (
-        <Issue key={issue.id} {...issue} />
-      ))}
     </div>
   );
 };

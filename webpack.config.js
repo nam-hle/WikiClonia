@@ -2,15 +2,21 @@ const webpack = require("webpack");
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const HtmlWebpackPugPlugin = require("html-webpack-pug-plugin");
 
 module.exports = {
-  entry: ["./src/index.jsx", "./src/scss/main.scss"],
+  entry: ["./src/index.jsx", "./src/scss/main.scss", "./src/pug/index.pug"],
   output: {
-    filename: "bundle.js",
+    // filename: "bundle.js",
     path: path.join(__dirname, "dist")
   },
   module: {
     rules: [
+      {
+        test: /\.pug$/,
+        loader: "pug-loader"
+      },
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
@@ -40,9 +46,16 @@ module.exports = {
   devtool: "cheap-module-eval-source-map",
   devServer: {
     contentBase: path.join(__dirname, "dist"),
-    hot: true
+    port: 3000
   },
   plugins: [
+    new HtmlWebpackPlugin({
+      filename: "index.html",
+      template: "src/pug/index.pug"
+    }),
+    new HtmlWebpackPugPlugin(),
+    require("tailwindcss"),
+    require("autoprefixer"),
     new MiniCssExtractPlugin({
       filename: "main.css"
     })
@@ -55,5 +68,8 @@ module.exports = {
         }
       })
     ]
+  },
+  performance: {
+    hints: process.env.NODE_ENV === "production" ? "warning" : false
   }
 };

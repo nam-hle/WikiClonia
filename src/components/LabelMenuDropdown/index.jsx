@@ -1,57 +1,55 @@
-import Button from "@material-ui/core/Button";
+// import Button from "@material-ui/core/Button";
 import CheckIcon from "@material-ui/icons/Check";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import React, { useState, useEffect } from "react";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
+import Octicon, { getIconByName } from "@primer/octicons-react";
 
 const useStyles = makeStyles({
-  "menu-item": {
+  menu__item: {
     display: "grid",
-    "grid-template-columns": "30px auto",
+    "grid-template-columns": "30px 1fr",
     alignItems: "center",
     justifyContent: "center",
-    fontWeight: props => (props.choose ? 600 : "inherit")
-  },
-  "menu-item__text": {
-    height: 16,
-    width: 16,
-    borderRadius: 2,
-    display: "inline-block",
-    marginRight: 16,
-    backgroundColor: props => props.color
-  }
-});
-
-const SubMenu = ({ name, color, choose }) => {
-  const classes = useStyles({ color, choose });
-  return (
-    <div className={classes["menu-item"]}>
-      <div>{choose && <CheckIcon fontSize="small" />}</div>
-      <div>
-        <div className={classes["menu-item__text"]} />
-        {name}
-      </div>
-    </div>
-  );
-};
-
-const CustomMenuItem = withStyles(() => ({
-  root: {
+    width: "100%",
     padding: 8,
-    paddingLeft: 0,
     borderTop: "1px solid #E3E5E8",
+    fontSize: "inherit",
     "&:hover": {
       backgroundColor: "#F6F8FA"
     }
+  },
+  item__text: {
+    display: "flex",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    fontWeight: "semi-bold"
+  },
+  "menu__color-box": {
+    display: "inline-block",
+    height: 16,
+    width: 16,
+    marginRight: 8,
+    borderRadius: 2,
+    backgroundColor: props => props.color
+  },
+  menu__header: {
+    backgroundColor: "#F6F8FA",
+    padding: 8,
+    paddingLeft: 16,
+    fontWeight: 700,
+    color: "#24292E"
   }
-}))(MenuItem);
+});
 
-const CustomMenu = withStyles(() => ({
+const StyledMenu = withStyles(() => ({
   paper: {
     margin: 0,
     padding: 0,
-    minWidth: 300
+    minWidth: 300,
+    maxHeight: 500,
+    fontSize: 12
   },
   list: {
     padding: 0,
@@ -59,11 +57,25 @@ const CustomMenu = withStyles(() => ({
   }
 }))(Menu);
 
-export const LabelMenu = () => {
+const CustomMenuItem = ({ name, color, choose, onClick }) => {
+  const classes = useStyles({ color, choose });
+  return (
+    <MenuItem className={classes["menu__item"]} onClick={() => onClick(name)}>
+      <div>{choose && <CheckIcon fontSize="small" />}</div>
+      <div className={classes["item__text"]}>
+        <div className={classes["menu__color-box"]} />
+        {name}
+      </div>
+    </MenuItem>
+  );
+};
+
+export const LabelMenu = ({ onClick, attr }) => {
+  const classes = useStyles();
   const [labels, setLabels] = useState([]);
   const [anchorEl, setAnchorEl] = useState(null);
   const authorization = new Headers({
-    Authorization: "token 5abd54378edbd99be51128ed425d2d48a2420f21"
+    Authorization: "token 4db2956775d596ffedacb7b7a79e84a96f0bf188"
   });
 
   useEffect(() => {
@@ -71,7 +83,7 @@ export const LabelMenu = () => {
       headers: authorization
     })
       .then(response => response.json())
-      .then(_labels => setLabels(_labels))
+      .then(data => setLabels(data))
       .catch(error => console.error(error));
   }, []);
 
@@ -79,34 +91,38 @@ export const LabelMenu = () => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
-    // onClick(attr);
+  const handleClose = attr => {
+    onClick(attr);
     setAnchorEl(null);
   };
 
   return (
     <div>
-      <Button
-        aria-controls="label-menu"
-        aria-haspopup="true"
-        onClick={handleClick}
-      >
-        Labels
-      </Button>
-      <CustomMenu
+      <button onClick={handleClick}>
+        Label <Octicon size="small" icon={getIconByName("triangle-down")} />
+      </button>
+      <StyledMenu
+        className={classes["MuiMenu-list"]}
         id="label-menu"
         anchorEl={anchorEl}
         keepMounted
         open={Boolean(anchorEl)}
         onClose={() => setAnchorEl(null)}
+        transitionDuration={0}
       >
-        <div className="submenu-header">Filter by label</div>
+        <div className={classes["menu__header"]}>Filter by label</div>
         {labels.map((label, index) => (
-          <CustomMenuItem key={index} onClick={() => handleClose(label.name)}>
-            <SubMenu name={label.name} color={label.color} />
-          </CustomMenuItem>
+          <CustomMenuItem
+            key={index}
+            onClick={handleClose}
+            {...{
+              name: label.name,
+              color: label.color,
+              choose: label.name == attr
+            }}
+          />
         ))}
-      </CustomMenu>
+      </StyledMenu>
     </div>
   );
 };
