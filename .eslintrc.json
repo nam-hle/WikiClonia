@@ -3,11 +3,7 @@
         "browser": true,
         "es6": true
     },
-    "extends": [
-        "eslint:recommended",
-        "plugin:react/recommended",
-        "prettier"
-    ],
+    "extends": ["eslint:recommended", "plugin:react/recommended", "prettier"],
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly",
@@ -28,9 +24,7 @@
         "ecmaVersion": 6,
         "sourceType": "module"
     },
-    "plugins": [
-        "react", "prettier", "babel"
-    ],
+    "plugins": ["react", "prettier", "babel"],
     "parser": "babel-eslint",
     "rules": {
         "quotes": "off",
@@ -42,6 +36,7 @@
         "babel/quotes": 1,
         "babel/semi": 1,
         "babel/no-unused-expressions": 1,
-        "babel/valid-typeof": 1
+        "babel/valid-typeof": 1,
+        "babel/camelcase": 0
     }
 }

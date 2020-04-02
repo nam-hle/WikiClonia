@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { ButtonGroup, Button } from "@material-ui/core";
 import Issue from "./../Issue/index.jsx";
 import parse from "parse-link-header";
-import SimpleMenu from "./../MenuDropdown/index.jsx";
-import { LabelMenu } from "./../LabelMenuDropdown/index.jsx";
+import { SortMenu } from "./../SortMenu/index.jsx";
+import { LabelMenu } from "./../LabelMenu/index.jsx";
 import "./../../scss/main.scss";
 
 const range = (_from, _to) =>
@@ -107,7 +107,7 @@ const App = () => {
         (attrSort == "" ? "&q=" : `&sort=${sort}&direction=${direction}`),
       {
         headers: new Headers({
-          Authorization: "token 4db2956775d596ffedacb7b7a79e84a96f0bf188"
+          Authorization: "token 7f55ccbdd686af502c38f572ede46065fe038087"
         })
       }
     )
@@ -141,8 +141,12 @@ const App = () => {
     <div className="app">
       <div className="main ">
         <div className="filters">
+          <button>Author</button>
           <LabelMenu attr={label} onClick={handleLabelButtonClick} />
-          <SimpleMenu attr={attrSort} onClick={handleSortButtonClick} />
+          <button>Projects</button>
+          <button>Milestones</button>
+          <button>Assignee</button>
+          <SortMenu attr={attrSort} onClick={handleSortButtonClick} />
         </div>
         {data.map(issue => (
           <Issue key={issue.id} {...issue} />

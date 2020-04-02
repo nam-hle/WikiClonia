@@ -22,7 +22,7 @@
 @import "02-tools/tools.mq-sass";
 
 // 03. Generic
-@import "../../node_modules/normalize.css/normalize";
+// @import "tailwind_build";
 @import "03-generic/generic.selection";
 
 // 04. Elements
@@ -57,4 +57,4 @@
 @import "99-utilities/utilities.text";
 @import "99-utilities/utilities.visibility";
 
-@import "tailwind_build";
+
