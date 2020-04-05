@@ -4,10 +4,9 @@
     "description": "Template project with BEM and ITCSS methodology",
     "main": "gulpfile.js",
     "scripts": {
-        "build:css": "postcss src/scss/tailwind.css -o src/scss/tailwind_build.scss",
-        "s": "npm run build:css && webpack-dev-server --config ./webpack.config.js --mode development",
+        "s": "webpack-dev-server --config ./webpack.config.js --mode development --hot --inline",
         "b": "webpack --config ./webpack.config.js --mode production",
-        "t": "nyc mocha"
+        "webpack": "webpack --profile --json > stats.json"
     },
     "keywords": [
         "BEM",

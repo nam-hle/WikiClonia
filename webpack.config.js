@@ -9,9 +9,12 @@ module.exports = (env, argv) => {
   const isDevelopment = argv.mode === "development";
 
   return {
-    entry: ["./src/index.jsx", "./src/scss/main.scss", "./src/pug/index.pug"],
+    entry: {
+      // index: "./src/pages/main/index.js",
+      wiki: "./src/pages/wiki/index.js"
+    },
     output: {
-      // filename: "bundle.js",
+      filename: "[name].bundle.js",
       path: path.join(__dirname, "dist")
     },
     module: {
@@ -26,9 +29,15 @@ module.exports = (env, argv) => {
           use: ["babel-loader", "eslint-loader"]
         },
         {
-          test: /\.scss$/,
+          test: /\.s[ac]ss$/,
           use: [
-            { loader: MiniCssExtractPlugin.loader },
+            {
+              loader: MiniCssExtractPlugin.loader,
+              options: {
+                hmr: process.env.NODE_ENV === "development",
+                reloadAll: true
+              }
+            },
             {
               loader: "css-loader",
               options: {
@@ -53,18 +62,33 @@ module.exports = (env, argv) => {
       stats: {
         children: false, // Hide children information
         maxModules: 0 // Set the maximum number of modules to be shown
-      }
+      },
+      openPage: ["/", "/about"]
     },
     plugins: [
       new HtmlWebpackPlugin({
         filename: "index.html",
-        template: "src/pug/index.pug"
+        template: "./src/pages/main/index.pug"
+      }),
+      new HtmlWebpackPlugin({
+        filename: "wiki/index.html",
+        template: "./src/pages/wiki/wiki.pug",
+        file: {
+          main: {
+            entry: "./src/pages/wiki/index.js",
+            css: []
+          }
+        }
       }),
       new HtmlWebpackPugPlugin(),
       require("tailwindcss"),
       require("autoprefixer"),
       new MiniCssExtractPlugin({
-        filename: "main.css"
+        // Options similar to the same options in webpackOptions.output
+        // all options are optional
+        filename: "[name].css",
+        chunkFilename: "[id].css",
+        ignoreOrder: false // Enable to remove warnings about conflicting order
       })
     ],
     optimization: {
@@ -74,7 +98,10 @@ module.exports = (env, argv) => {
             safe: true
           }
         })
-      ]
+      ],
+      splitChunks: {
+        chunks: "all"
+      }
     },
     performance: {
       hints: process.env.NODE_ENV === "production" ? "warning" : false
