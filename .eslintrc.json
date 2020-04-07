@@ -38,6 +38,6 @@
         "babel/no-unused-expressions": 1,
         "babel/valid-typeof": 1,
         "babel/camelcase": 0,
-        "babel/newLabel": 0
+        "babel/new-cap": 0
     }
 }

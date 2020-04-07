@@ -1,5 +1,4 @@
 body {
-
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -9,7 +8,7 @@ body {
   color: $color-body;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
+  background-color: #f0f0f3;
   &.is-blocked,
   &.is-modal-open,
   &.is-gradpanel-open {
@@ -19,8 +18,4 @@ body {
   &.is-nav-mobile-open {
     overflow: hidden;
   }
-
-
 }
-
-

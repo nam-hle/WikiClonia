@@ -1,13 +1,14 @@
 .app
-  display: flex
-  flex-direction: column
+  display: grid
+  // flex-direction: column
+  grid-gap: 3rem
   width: 60%
   margin: 0 auto
   height: auto
 
 .main
   > div
-    border: 1px solid #D1D5DA
+    // border: 1px solid #D1D5DA
     border-bottom: none
     &:last-child
       border-bottom: 1px solid #D1D5DA
@@ -19,6 +20,13 @@
   font-weight: 600
   padding: 5px 0
   line-height: 1.75
+  border-radius: 9px
+  background-color: #F0F0F3
+  box-shadow:  5px -5px 10px #cccccf, -5px 5px 10px #ffffff
+  margin-top: 20px
+  &:hover
+    box-shadow: inset 5px -5px 10px #cccccf, inset -5px 5px 10px #ffffff
+
 
   &:hover
     background-color: #F6F8FA

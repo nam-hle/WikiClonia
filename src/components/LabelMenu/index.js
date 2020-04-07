@@ -31,7 +31,7 @@ const LabelMenuItem = MenuItem(({ id, color }) => {
 export const MenuContent = ({ chooseItem, handleClose }) => {
   const [labels, setLabels] = useState([]);
   const authorization = new Headers({
-    Authorization: "token 4c26b78d331d8e988cdd5811b5d235872b8f1fe0"
+    Authorization: "token f3ad1326cb1e668c81a170346cdd6607c4344a25"
   });
 
   useEffect(() => {

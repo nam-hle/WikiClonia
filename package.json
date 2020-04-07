@@ -120,6 +120,7 @@
         "react-uuid": "^1.0.2",
         "rebuild": "^0.1.2",
         "styled-components": "^5.0.1",
+        "tinycolor2": "^1.4.1",
         "uuid": "^7.0.2",
         "webpack-clean": "^1.2.3"
     }

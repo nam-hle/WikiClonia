@@ -10,7 +10,7 @@ module.exports = (env, argv) => {
 
   return {
     entry: {
-      // index: "./src/pages/main/index.js",
+      index: "./src/pages/main/index.js",
       wiki: "./src/pages/wiki/index.js"
     },
     output: {
@@ -60,35 +60,29 @@ module.exports = (env, argv) => {
       contentBase: path.join(__dirname, "dist"),
       port: 3000,
       stats: {
-        children: false, // Hide children information
-        maxModules: 0 // Set the maximum number of modules to be shown
+        children: false,
+        maxModules: 0
       },
       openPage: ["/", "/about"]
     },
     plugins: [
       new HtmlWebpackPlugin({
         filename: "index.html",
-        template: "./src/pages/main/index.pug"
+        template: "./src/pages/main/index.pug",
+        chunks: ["index"]
       }),
       new HtmlWebpackPlugin({
         filename: "wiki/index.html",
         template: "./src/pages/wiki/wiki.pug",
-        file: {
-          main: {
-            entry: "./src/pages/wiki/index.js",
-            css: []
-          }
-        }
+        chunks: ["wiki"]
       }),
       new HtmlWebpackPugPlugin(),
       require("tailwindcss"),
       require("autoprefixer"),
       new MiniCssExtractPlugin({
-        // Options similar to the same options in webpackOptions.output
-        // all options are optional
         filename: "[name].css",
         chunkFilename: "[id].css",
-        ignoreOrder: false // Enable to remove warnings about conflicting order
+        ignoreOrder: false
       })
     ],
     optimization: {
