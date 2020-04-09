@@ -15,9 +15,14 @@ const wikiLink = (url, displayText = url) => ({
   content: { type: "wikiLink", url, displayText }
 });
 
+const file = (url, caption = "", options = []) => ({
+  elementName: "Link",
+  content: { type: "media", supType: "File", caption, url, options }
+});
+
 const italic = content => ({ elementName: "Italic", content });
 
-let tests = [
+let wikiLinkTests = [
   ["simple link", "[[1234]]", [wikiLink("1234")]],
   ["simple link with pipe", "[[a|bc]]", [wikiLink("A", "bc")]],
   ["prefix character", "a[[b]]", ["a", wikiLink("B", "b")]],
@@ -84,8 +89,40 @@ let tests = [
   ]
 ];
 
-for (let i = 0; i < tests.length; i++) {
-  simpleTest(...tests[i]);
+let mediaTests = [
+  ["simplest", "[[File:wiki.png]]", [file("File:Wiki.png", "", [])]],
+  [
+    "with opts",
+    "[[File:wiki.png|thumb|Wikipedia logo]]",
+    [file("File:Wiki.png", "Wikipedia logo", ["thumb"])]
+  ],
+  [
+    "with alt",
+    "[[File:wiki.png|alt=Puzzle globe logo]]",
+    [file("File:Wiki.png", "", [{ key: "alt", value: "Puzzle globe logo" }])]
+  ],
+  [
+    "with link",
+    "[[File:wiki.png|link=Wikipedia]]",
+    [file("File:Wiki.png", "", [{ key: "link", value: "Wikipedia" }])]
+  ],
+  [
+    "complex",
+    "[[File:wiki.png|frame|centre|alt=Puzzle globe|Wikipedia logo]]",
+    [
+      file("File:Wiki.png", "Wikipedia logo", [
+        "frame",
+        "centre",
+        { key: "alt", value: "Puzzle globe" }
+      ])
+    ]
+  ]
+];
+
+for (const t of wikiLinkTests) {
+  simpleTest(...t);
 }
+
+for (const t of mediaTests) simpleTest(...t);
 
 // console.log(JSON.stringify(main("[[a]]''b''", null, 0), null, 2));

@@ -14,50 +14,54 @@ const capitalize = string =>
   string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 
 let debug = false;
+
+const ReferenceParser = (element, content, plain, options) => {
+  let res = {};
+
+  // Check type of reference
+  let first = content[0],
+    match,
+    nameRef = null,
+    citeType = null;
+  if ((match = /^ name="([^\"]+)">([\s\S]*)$/gm.exec(first))) {
+    nameRef = match[1];
+    first = match[2];
+  } else if (first[0] == ">") {
+    first = first.slice(1);
+  } else {
+    new Error("");
+  }
+  if (first) content[0] = first;
+  else content.shift();
+
+  // Try parse cite template
+
+  let s = content[0];
+  if (typeof s == "string" && (match = /^{{[Cc]ite ([^|]+)\|/gm.exec(s))) {
+    let a = s.split("|");
+    let cite = a.shift();
+    citeType = cite.split(" ")[1];
+    for (const pair of a) {
+      let equalIndex = pair.indexOf("=");
+      let [key, value] = [
+        pair.slice(0, equalIndex),
+        pair.slice(equalIndex + 1)
+      ];
+      res[key] = value;
+    }
+  } else {
+    citeType = "plaintext";
+    res.text = content;
+  }
+
+  res = { ...res, nameRef, citeType };
+  return res;
+};
+
 const internalParse = (element, content, plain, options) => {
   if (element.elementName == "Reference") {
-    let res = {};
-
-    // Check type of reference
-    let first = content[0],
-      match,
-      nameRef = null,
-      citeType = null;
-    if ((match = /^ name="([^\"]+)">([\s\S]*)$/gm.exec(first))) {
-      nameRef = match[1];
-      first = match[2];
-    } else if (first[0] == ">") {
-      first = first.slice(1);
-    } else {
-      new Error("");
-    }
-    if (first) content[0] = first;
-    else content.shift();
-
-    // Try parse cite template
-
-    let s = content[0];
-    if (typeof s == "string" && (match = /^{{[Cc]ite ([^|]+)\|/gm.exec(s))) {
-      let a = s.split("|");
-      let cite = a.shift();
-      citeType = cite.split(" ")[1];
-      for (const pair of a) {
-        let equalIndex = pair.indexOf("=");
-        let [key, value] = [
-          pair.slice(0, equalIndex),
-          pair.slice(equalIndex + 1)
-        ];
-        res[key] = value;
-      }
-    } else {
-      citeType = "plaintext";
-      res.text = content;
-    }
-
-    res = { ...res, nameRef, citeType };
-    return res;
+    return ReferenceParser(element, content, plain, options);
   } else if (element.elementName == "Link") {
-    // plain = plain.slice(2, -2);
     if (debug) {
       console.log(content);
       console.log();
@@ -68,37 +72,38 @@ const internalParse = (element, content, plain, options) => {
 
     let match;
 
-    // Remove square brackets
-    //
-    // ^((\w+):)?
-    // (
-    //   ([\w\-, ]+)( \((.+)\))|
-    //   ([\w\- ]+)( \((.+)\)|, (.+))
-    // )?$/
+    /********************************
+     *          FREE LINK
+     *******************************/
 
-    // Link to another wiki article with optional display text
-    // ^
-    //   ([^|])         inner link
-    //   (\|
-    //      ([\S\s]+)   optional display text
-    //   )
-    // $
+    /*
+    /* ^
+    /*  \[\[            startTokent
+    /*  ([^|]+)         fullUrl
+    /*  (\|([^|]+)?)?   optinal (pipe and optinal display text)
+    /*  \]\]            endToken
+    /*  (\w+)?          suffixStr
+    /* $
+    */
+
     let R_ARTICLE = /^\[\[([^|]+)(\|([^|]+)?)?\]\](\w+)?$/;
     if ((match = R_ARTICLE.exec(plain))) {
       let fullUrl = match[1],
         nonePipe = !match[2],
         trailingPipe = match[2] && !match[3],
-        displayText = match[3];
+        displayText = match[3],
+        suffixStr = match[4] || "";
 
       // Manipulate the url
       let namespace, disambiguation, rootUrl, url;
+
       //
       // ^
       //  ((\w+):)?   namespace?
       //  (
-      //      ([\w\-, ]+)( \((.+)\))  commas has priority over parantheses
+      //      ([\w\-,. ]+)( \((.+)\))  commas has priority over parantheses
       //    |
-      //      ([\w\- ]+)
+      //      ([\w\-. ]+)
       //      (
       //          \((.+)\)          trailing parentheses
       //        |
@@ -107,7 +112,7 @@ const internalParse = (element, content, plain, options) => {
       //  )
       // $
 
-      let urlMatch = /^((\w+):)?(([\w\-, ]+)( \((.+)\))|([\w\- ]+)( \((.+)\)|, (.+))?)$/.exec(
+      let urlMatch = /^((\w+):)?(([\w\-,. ]+)( \((.+)\))|([\w\-. ]+)( \((.+)\)|, (.+))?)$/.exec(
         fullUrl
       );
 
@@ -115,80 +120,51 @@ const internalParse = (element, content, plain, options) => {
       rootUrl = urlMatch[4] || urlMatch[7];
       disambiguation = urlMatch[5] || urlMatch[8] || "";
 
-      url = namespace + capitalizeFirst(rootUrl) + disambiguation;
-      url = url.replace(/ /g, "_"); // convert to valid URL
+      if ("File:" != namespace) {
+        url = namespace + capitalizeFirst(rootUrl) + disambiguation;
+        url = url.replace(/ /g, "_"); // convert to valid URL
 
-      displayText = nonePipe ? fullUrl : trailingPipe ? rootUrl : displayText;
+        displayText = nonePipe ? fullUrl : trailingPipe ? rootUrl : displayText;
+        displayText += suffixStr;
 
-      let suffixStr = match[4] || "";
-      displayText += suffixStr;
-      return {
-        type: "wikiLink",
-        url,
-        displayText
-      };
-    }
-
-    // Automatically rename links with trailing pipe
-    // ^
-    //    (\w+:)?       optional namespace
-    //    ([\w\s]+)     inner link
-    //    (
-    //      \s+\(.+\)   disambiguation
-    //      |
-    //      , .+        internal section
-    //    )?
-    // \|$
-    // Test link: https://regex101.com/r/14MXi2/4
-    let R_ARTICLE_TRAILING_PIPE = /^((\w+):)?([\w\s]+)( \((.+)\)|, (.+))?\|$/g;
-    if ((match = R_ARTICLE_TRAILING_PIPE.exec(plain))) {
-      let namespace = match[1] ? match[2] : null;
-      let displayText = match[3];
-      let innerLink = plain.replace(" ", "_");
-      let trailing = match[4]
-        ? {
-            type: match[4][0] == "," ? "disambiguation" : "section",
-            content: match[5],
-            plain: match[4]
-          }
-        : null;
-      return {
-        type: "freeLink",
-        subType: "renamedWikiLink",
-        namespace,
-        trailing,
-        innerLink,
-        displayText
-      };
+        return {
+          type: "wikiLink",
+          url,
+          displayText
+        };
+      }
     }
 
     // For handling format like:
     // [[File:Gatera de ademuz.jpg|thumb|left|A ''{{lang|es|gatera}}''
     // in [[Rincón de Ademuz]]
 
-    let chunks = plain.split("|");
+    let chunks = plain.slice(2, -2).split("|");
     let first = chunks[0];
-    let type = null,
-      res = {};
     let R_MEDIA = /^(File|Image|Media):(.*)$/i;
 
     if ((match = R_MEDIA.exec(first))) {
-      let res = {
-        type: "media",
-        subType: match[1].toLowerCase(),
-        innerLink: match[2]
-      };
-      let options = [];
-      let displayText = "";
-      let R_OPTION = /^(border|frame(less)?|thumb(nail)?|((\d+)?x)?\d+px|upright[ =]\d+\.\d+|upright=?|left|right|center|none|baseline|sub|super|top|text-top|middle|bottom|text-bottom|(alt|page|class|lang)=.+)$/i;
+      let type = "media",
+        supType = capitalizeFirst(match[1]),
+        rootUrl = capitalizeFirst(match[2]),
+        url = `${supType}:${rootUrl}`;
+      let res = { type, supType, url },
+        options = [],
+        caption = "";
+      let R_OPTION = /^(border|frame(less)?|thumb(nail)?|((\d+)?x)?\d+px|upright[ =]\d+\.\d+|upright=?|left|right|cent(er|re)|none|baseline|sub|super|top|text-top|middle|bottom|text-bottom|(alt|page|class|lang|link)=.+)$/i,
+        R_ATTRIBUTE = /^(alt|page|class|lang|link)=(.*$)/i;
+
       for (const chunk of chunks.slice(1)) {
-        if (R_OPTION.test(chunk)) {
-          options.push(chunk);
-        } else {
-          displayText += chunk;
+        if (!R_OPTION.test(chunk)) {
+          caption += chunk;
+          continue;
         }
+        let match;
+        if ((match = R_ATTRIBUTE.exec(chunk))) {
+          options.push({ key: match[1], value: match[2] });
+        } else options.push(chunk);
       }
-      return { ...res, options, displayText };
+      return { ...res, options, caption };
     }
 
     if (chunks.length == 1) {
@@ -315,7 +291,7 @@ const parse = (s, l, i, e) => {
 
 const main = (s, l, i, e = Global) => parse(s, l, i, e)[1];
 
-// console.log(JSON.stringify(main("[[public transport]]", null, 0), null, 2));
+console.log(JSON.stringify(main("[[public transport]]", null, 0), null, 2));
 // console.log(
 //   JSON.stringify(
 //     main("[[public transport|public transportation]]", null, 0),
@@ -323,9 +299,7 @@ const main = (s, l, i, e = Global) => parse(s, l, i, e)[1];
 //     2
 //   )
 // );
-console.log(
-  JSON.stringify(main("[[Wikipedia:Manual of Style]]", null, 0), null, 2)
-);
+// console.log(JSON.stringify(main("[[File:wiki.png]]", null, 0), null, 2));
 // console.log(JSON.stringify(main("[[Seattle, Washington|]]", null, 0), null, 2));
 // console.log(
 //   JSON.stringify(main("[[Wikipedia:Village pump|]]", null, 0), null, 2)
@@ -336,4 +310,4 @@ console.log(
 //
 // export { Global, main };
 
-// module.exports = { main };
+module.exports = { main };
