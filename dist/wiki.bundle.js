@@ -413,6 +413,7 @@ var internalParse = function internalParse(element, content, plain) {
         _iterator2.f();
       }
 
+      caption = main(caption).children;
       meta = _objectSpread({}, meta, {
         options: options,
         caption: caption
@@ -847,13 +848,31 @@ var Element = function Element(_ref3) {
 
     if (type == "media") {
       if (images[props.url]) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           style: {
-            "float": "left",
-            height: "80px"
+            "float": "right",
+            marginLeft: "0.5rem",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            maxWidth: "240px"
+          }
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          style: {
+            maxWidth: "220px"
           },
           src: images[props.url].url
-        });
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          style: {
+            fontSize: "0.8rem",
+            paddingLeft: "0.5rem"
+          }
+        }, props.caption.map(function (e, i) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Element, {
+            key: i,
+            props: e
+          });
+        }))));
       }
     }
   } else if (elementName == "Reference") {
