@@ -146,6 +146,7 @@ const internalParse = (element, content, plain) => {
           options.push({ key: match[1], value: match[2] });
         } else options.push(chunk);
       }
+      caption = main(caption).children;
       meta = { ...meta, options, caption };
       return [meta, null];
     }

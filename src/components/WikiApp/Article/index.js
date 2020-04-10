@@ -110,10 +110,25 @@ const Element = ({ props, images }) => {
     if (type == "media") {
       if (images[props.url]) {
         return (
-          <img
-            style={{ float: "left", height: "80px" }}
-            src={images[props.url].url}
-          />
+          <Fragment>
+            <div
+              style={{
+                float: "right",
+                marginLeft: "0.5rem",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                maxWidth: "240px"
+              }}
+            >
+              <img style={{ maxWidth: "220px" }} src={images[props.url].url} />
+              <div style={{ fontSize: "0.8rem", paddingLeft: "0.5rem" }}>
+                {props.caption.map((e, i) => (
+                  <Element key={i} props={e} />
+                ))}
+              </div>
+            </div>
+          </Fragment>
         );
       }
     }
