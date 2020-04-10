@@ -20,10 +20,10 @@ import { main } from "./../../../wiki_parser";
 //
 //
 
-const Text = ({ content }) => {
-  let [text, setText] = useState("");
+const Text = ({ text }) => {
+  let [splitText, setSplitText] = useState("");
   useEffect(() => {
-    let paragraphs = content.split("\n\n"),
+    let paragraphs = text.split("\n\n"),
       res = [];
     for (let i = 0; i < paragraphs.length; i++) {
       res.push(<span key={-i - 1}>{paragraphs[i]}</span>);
@@ -31,95 +31,115 @@ const Text = ({ content }) => {
         res.push(<br key={i} />);
       }
     }
-    setText(res);
+    setSplitText(res);
   }, []);
-  return <Fragment>{text}</Fragment>;
+  return <Fragment>{splitText}</Fragment>;
 };
 
-const Template = ({ content }) => {
-  // console.log(content);
-  if (typeof content === "string") {
-    // console.log("string");
-    return <span>{content}</span>;
-  }
-  if (Array.isArray(content)) {
+const Template = ({ props }) => {
+  // if (typeof props.children === "string") {
+  //   return <span>{props.children}</span>;
+  // }
+  console.log(props);
+  if (Array.isArray(props.children)) {
     // console.log("array");
     return (
       <Fragment>
-        {content.map((e, i) => (
+        {props.children.map((e, i) => (
           <Element key={i} props={e} />
         ))}
       </Fragment>
     );
   }
-  // console.log("cite");
+  let { attribute } = props;
+
   return (
-    <a className="wiki-cite" href={content.attribute.url}>
-      {content.attribute.title}
-    </a>
+    <Fragment>
+      <a className="wiki-cite" href={attribute.url}>
+        {attribute.title}
+      </a>
+      {}
+    </Fragment>
   );
+  //{
+  /*return <span>{JSON.stringify(props)}</span>;*/
+  //}
 };
 
 const Element = ({ props, images }) => {
-  let { elementName, content } = props;
+  let { elementName, children } = props;
 
   if (elementName == "Text") {
-    return <Text {...{ content }} />;
+    return <Text text={props.text} />;
   }
 
   if (elementName == "Template") {
-    return <Template {...{ content }} />;
+    return <Template {...{ props }} />;
   }
 
-  let renderContent;
-  if (Array.isArray(content)) {
-    renderContent = content.map((e, i) => <Element key={i} props={e} />);
+  let renderChildren;
+  if (Array.isArray(children)) {
+    renderChildren = children.map((e, i) => <Element key={i} props={e} />);
   }
 
   if (elementName == "Bold") {
-    return <span className="wiki-bold">{renderContent}</span>;
+    return <span className="wiki-bold">{renderChildren}</span>;
   }
 
   if (elementName == "Italic") {
-    return <span className="wiki-italic">{renderContent}</span>;
+    return <span className="wiki-italic">{renderChildren}</span>;
   }
 
   if (elementName == "Block Quote") {
-    return <blockquote>{renderContent}</blockquote>;
+    return <blockquote>{renderChildren}</blockquote>;
   }
 
   if (elementName == "Heading") {
-    return <h2>{renderContent}</h2>;
+    return <h2>{renderChildren}</h2>;
   }
 
   if (elementName == "Link") {
-    let type = props.content.type;
+    let type = props.type;
     if (type == "wikiLink") {
       return (
-        <a href={"https://en.wikipedia.org/wiki/" + props.content.url}>
-          {props.content.displayText}
+        <a href={"https://en.wikipedia.org/wiki/" + props.url}>
+          {props.displayText}
         </a>
       );
     }
     if (type == "media") {
-      if (images[props.content.url]) {
+      if (images[props.url]) {
         return (
           <img
             style={{ float: "left", height: "80px" }}
-            src={images[props.content.url].url}
+            src={images[props.url].url}
           />
         );
       }
     }
-  } else if (props.elementName == "Reference") {
-    console.log(content);
+  } else if (elementName == "Reference") {
+    // console.log(props);
+    if (
+      props.children &&
+      props.children.length &&
+      props.children[0].attribute &&
+      props.children[0].attribute.url
+    ) {
+      return (
+        <sup>
+          <a href={props.children[0].attribute.url}>{props.referenceIndex}</a>
+        </sup>
+      );
+    }
     return (
       //<span>
       //        {content.innerHTML.map((e, i) => (
       // {/*<Element key={i} props={e} />*/}
       // ))}
       // </span>
-      <sup>{content.referenceIndex}</sup>
+      <sup>
+        <a href={props}>{props.referenceIndex}</a>
+      </sup>
     );
   }
   return JSON.stringify(props);
@@ -128,7 +148,8 @@ const Element = ({ props, images }) => {
 const Article = () => {
   const [content, setContent] = useState([]);
   const [images, setImages] = useState({});
-  // const [references, setReferences] = useState([]);
+  const [references, setReferences] = useState([]);
+
   // get main content
   useEffect(() => {
     var url =
@@ -138,7 +159,8 @@ const Article = () => {
         return response.json();
       })
       .then(_text => {
-        setContent(main(_text.parse.wikitext["*"], null, 0).content);
+        setContent(main(_text.parse.wikitext["*"]).children);
+        console.log(main(_text.parse.wikitext["*"]));
       })
       .catch(function(error) {
         console.log(error);
@@ -146,15 +168,15 @@ const Article = () => {
   }, []);
 
   // get references
-  // useEffect(() => {
-  //   let res = [];
-  //   for (const element of content) {
-  //     if (element.elementName == "Reference") {
-  //       res.push(element);
-  //     }
-  //   }
-  //   setReferences(res);
-  // }, [content]);
+  useEffect(() => {
+    let res = [];
+    for (const element of content) {
+      if (element.elementName == "Reference") {
+        res.push(element);
+      }
+    }
+    setReferences(res);
+  }, [content]);
 
   // get images
   useEffect(() => {
@@ -177,15 +199,42 @@ const Article = () => {
       });
   }, []);
 
-  // console.log(references);
-
   return (
     <React.Fragment>
-      {content.map((element, index) => {
-        return <Element key={index} props={element} images={images} />;
+      {(function() {
+        let res = [];
+        for (let index = 0; index < content.length; index++) {
+          let element = content[index];
+          res.push(<Element key={index} props={element} images={images} />);
+          // console.log(element);
+          if (
+            element.elementName == "Heading" &&
+            element.children[0].text == " References "
+          ) {
+            break;
+          }
+        }
+        return res;
+      })()}
+      {references.map((reference, index) => {
+        return (
+          <li className="wiki-ref" key={index}>
+            <span>{reference.referenceIndex + ". "}</span>
+            {(function() {
+              return reference.children.map((child, childrenIndex) => {
+                return <Element key={childrenIndex} props={child} />;
+              });
+            })()}
+          </li>
+        );
       })}
     </React.Fragment>
   );
 };
 
 export default Article;
+
+// {content.map((element, index) => {
+//         if (element.elementName == "Reference" && element.children[0] == " References ")
+//         return <Element key={index} props={element} images={images} />;
+//       })}

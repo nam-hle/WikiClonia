@@ -1,5 +1,5 @@
 import "./../../scss/main.scss";
-import "./../../components/WikiApp/syle.sass";
+import "./../../components/WikiApp/style.sass";
 
 import ReactDOM from "react-dom";
 import React from "react";

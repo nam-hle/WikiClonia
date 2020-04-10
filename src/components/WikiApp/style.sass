@@ -1,0 +1,54 @@
+$backgroundColor: #FFF7E6
+$bodyColor: #1c2435
+$headingColor: #1c2435
+$pinkColor: hsl(338,79%,53%)
+
+@font-face
+  font-family: "Playfair Display"
+  src: url("./../../asset/fonts/PlayfairDisplay-VariableFont_wght.ttf")
+
+html
+  font-size: 100%
+
+body
+  color: $bodyColor
+  background-color: $backgroundColor
+  font-family: Georgia, serif;
+  font-size: 1.4rem
+  &::selection
+    background-color: #333130
+    color: $backgroundColor
+
+h2
+  clear: both
+  margin-top: 0.7rem
+  margin-bottom: 0.5rem
+  border-bottom: 1px solid $headingColor
+  color: $headingColor
+  font-family: "Playfair Display", Georgia, serif
+  font-weight: 800
+  font-size: 2.15rem
+
+a
+  text-decoration: underline
+  color: inherit
+  &:hover
+    color: $pinkColor
+
+
+sup
+  font-size: 0.9rem
+
+.wiki-italic
+  font-style: italic
+
+.wiki-bold
+  font-weight: bold
+
+.wiki-ref
+  list-style-type: none
+  font-size: 1rem
+
+
+
+
