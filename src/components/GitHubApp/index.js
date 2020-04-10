@@ -5,13 +5,15 @@ import parse from "parse-link-header";
 import SortMenu from "./../SortMenu";
 import { LabelMenu } from "./../LabelMenu";
 
+export const Context = React.createContext(null);
+
 const range = (_from, _to) =>
   [...Array(_to - _from + 1)].map((_, i) => i + _from);
 
 const BASE_URL =
   "https://api.github.com/repos/facebook/create-react-app/issues?state=all&per_page=15";
 
-const PaginationButtonGroup = ({ currentPage, maxPage, onClick }) => {
+const PaginationButtonGroup = ({ currentPage, maxPage }) => {
   const calculate = (curPage, minPage = 1, maxPage = 20) => {
     if (maxPage - minPage <= 8) return [...range(minPage, maxPage)];
 
@@ -41,41 +43,45 @@ const PaginationButtonGroup = ({ currentPage, maxPage, onClick }) => {
   };
 
   return (
-    <ButtonGroup
-      style={{ alignSelf: "center", marginTop: 20 }}
-      color="primary"
-      aria-label="outlined primary button group"
-    >
-      <Button
-        variant="outlined"
-        color="primary"
-        disabled={currentPage == 1}
-        onClick={() => onClick("prev")}
-      >
-        Previous
-      </Button>
-
-      {calculate(currentPage, 1, maxPage).map((page, index) => (
-        <Button
-          key={index}
-          variant={currentPage == page ? "contained" : "outlined"}
+    <Context.Consumer>
+      {({ handlePaginationButtonClick }) => (
+        <ButtonGroup
+          style={{ alignSelf: "center", marginTop: 20 }}
           color="primary"
-          onClick={() => onClick(page)}
-          disabled={page == 0}
+          aria-label="outlined primary button group"
         >
-          {page ? page : "..."}
-        </Button>
-      ))}
+          <Button
+            variant="outlined"
+            color="primary"
+            disabled={currentPage == 1}
+            onClick={() => handlePaginationButtonClick("prev")}
+          >
+            Previous
+          </Button>
 
-      <Button
-        variant="outlined"
-        color="primary"
-        disabled={currentPage == maxPage}
-        onClick={() => onClick("next")}
-      >
-        Next
-      </Button>
-    </ButtonGroup>
+          {calculate(currentPage, 1, maxPage).map((page, index) => (
+            <Button
+              key={index}
+              variant={currentPage == page ? "contained" : "outlined"}
+              color="primary"
+              onClick={() => handlePaginationButtonClick(page)}
+              disabled={page == 0}
+            >
+              {page ? page : "..."}
+            </Button>
+          ))}
+
+          <Button
+            variant="outlined"
+            color="primary"
+            disabled={currentPage == maxPage}
+            onClick={() => handlePaginationButtonClick("next")}
+          >
+            Next
+          </Button>
+        </ButtonGroup>
+      )}
+    </Context.Consumer>
   );
 };
 
@@ -107,7 +113,7 @@ const App = () => {
         (label == "" ? "" : `&labels=${label}`),
       {
         headers: new Headers({
-          Authorization: "token f3ad1326cb1e668c81a170346cdd6607c4344a25"
+          Authorization: "token 60a779656bb643ecf69c55e3ea0872cb1e7934b4"
         })
       }
     )
@@ -172,30 +178,36 @@ const App = () => {
         console.log(error);
       });
   });
+
   return (
-    <div className="app">
-      <div className="main ">
-        <div className="filters">
-          <button>Author</button>
-          <LabelMenu chooseItem={label} onClick={handleLabelButtonClick} />
-          <button>Projects</button>
-          <button>Milestones</button>
-          <button>Assignee</button>
-          <SortMenu chooseItem={attrSort} onClick={handleSortButtonClick} />
+    <Context.Provider value={{ handlePaginationButtonClick }}>
+      <div className="app">
+        <div className="main ">
+          <div className="filters">
+            <button>Author</button>
+            <LabelMenu chooseItem={label} onClick={handleLabelButtonClick} />
+            <button>Projects</button>
+            <button>Milestones</button>
+            <button>Assignee</button>
+            <SortMenu chooseItem={attrSort} onClick={handleSortButtonClick} />
+          </div>
+          {data.length &&
+            data.map(issue => (
+              <Issue
+                onClick={handleLabelButtonClick}
+                key={issue.id}
+                {...issue}
+              />
+            ))}
         </div>
-        {data.length &&
-          data.map(issue => (
-            <Issue onClick={handleLabelButtonClick} key={issue.id} {...issue} />
-          ))}
+        <PaginationButtonGroup
+          style={{ "margin-top": "20px" }}
+          maxPage={maxPage}
+          currentPage={currentPage}
+        />
       </div>
-      <PaginationButtonGroup
-        style={{ "margin-top": "20px" }}
-        maxPage={maxPage}
-        currentPage={currentPage}
-        onClick={page => handlePaginationButtonClick(page)}
-      />
-    </div>
+    </Context.Provider>
   );
 };
-
+// {/*onClick={page => handlePaginationButtonClick(page)}*/}
 export default App;
