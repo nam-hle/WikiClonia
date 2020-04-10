@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { main } from "./../../../wiki_parser";
+
+// const Data = React.createContext({});
 
 // const Image = ({ url, options, caption }) => {
 //   useEffect(() => {
@@ -15,10 +17,12 @@ import { main } from "./../../../wiki_parser";
 //       });
 //   }, []);
 // };
+//
+//
 
-const Element = ({ props, images }) => {
-  let { elementName, content } = props;
-  if (elementName == "Text") {
+const Text = ({ content }) => {
+  let [text, setText] = useState("");
+  useEffect(() => {
     let paragraphs = content.split("\n\n"),
       res = [];
     for (let i = 0; i < paragraphs.length; i++) {
@@ -27,7 +31,44 @@ const Element = ({ props, images }) => {
         res.push(<br key={i} />);
       }
     }
-    return <React.Fragment>{res}</React.Fragment>;
+    setText(res);
+  }, []);
+  return <Fragment>{text}</Fragment>;
+};
+
+const Template = ({ content }) => {
+  // console.log(content);
+  if (typeof content === "string") {
+    // console.log("string");
+    return <span>{content}</span>;
+  }
+  if (Array.isArray(content)) {
+    // console.log("array");
+    return (
+      <Fragment>
+        {content.map((e, i) => (
+          <Element key={i} props={e} />
+        ))}
+      </Fragment>
+    );
+  }
+  // console.log("cite");
+  return (
+    <a className="wiki-cite" href={content.attribute.url}>
+      {content.attribute.title}
+    </a>
+  );
+};
+
+const Element = ({ props, images }) => {
+  let { elementName, content } = props;
+
+  if (elementName == "Text") {
+    return <Text {...{ content }} />;
+  }
+
+  if (elementName == "Template") {
+    return <Template {...{ content }} />;
   }
 
   let renderContent;
@@ -36,11 +77,11 @@ const Element = ({ props, images }) => {
   }
 
   if (elementName == "Bold") {
-    return <span style={{ fontWeight: "bold" }}>{renderContent}</span>;
+    return <span className="wiki-bold">{renderContent}</span>;
   }
 
   if (elementName == "Italic") {
-    return <span style={{ fontWeight: "italic" }}>{renderContent}</span>;
+    return <span className="wiki-italic">{renderContent}</span>;
   }
 
   if (elementName == "Block Quote") {
@@ -53,7 +94,6 @@ const Element = ({ props, images }) => {
 
   if (elementName == "Link") {
     let type = props.content.type;
-    // console.log(content);
     if (type == "wikiLink") {
       return (
         <a href={"https://en.wikipedia.org/wiki/" + props.content.url}>
@@ -62,7 +102,6 @@ const Element = ({ props, images }) => {
       );
     }
     if (type == "media") {
-      console.log(images);
       if (images[props.content.url]) {
         return (
           <img
@@ -72,17 +111,25 @@ const Element = ({ props, images }) => {
         );
       }
     }
-    return "";
   } else if (props.elementName == "Reference") {
-    return <a href={props.content.url}>{props.content.title}</a>;
-  } else {
-    return JSON.stringify(props);
+    console.log(content);
+    return (
+      //<span>
+      //        {content.innerHTML.map((e, i) => (
+      // {/*<Element key={i} props={e} />*/}
+      // ))}
+      // </span>
+      <sup>{content.referenceIndex}</sup>
+    );
   }
+  return JSON.stringify(props);
 };
 
 const Article = () => {
   const [content, setContent] = useState([]);
   const [images, setImages] = useState({});
+  // const [references, setReferences] = useState([]);
+  // get main content
   useEffect(() => {
     var url =
       "https://en.wikipedia.org/w/api.php?action=parse&page=Pet_door&format=json&prop=wikitext&origin=*";
@@ -98,6 +145,18 @@ const Article = () => {
       });
   }, []);
 
+  // get references
+  // useEffect(() => {
+  //   let res = [];
+  //   for (const element of content) {
+  //     if (element.elementName == "Reference") {
+  //       res.push(element);
+  //     }
+  //   }
+  //   setReferences(res);
+  // }, [content]);
+
+  // get images
   useEffect(() => {
     var url =
       "https://en.wikipedia.org/w/api.php?action=query&titles=Pet_door&generator=images&gimlimit=10&prop=imageinfo&iiprop=url|dimensions|mime&format=json&origin=*";
@@ -112,19 +171,19 @@ const Article = () => {
           res[imgs[key].title] = imgs[key].imageinfo[0];
         }
         setImages(res);
-        console.log(res);
       })
       .catch(function(error) {
         console.log(error);
       });
   }, []);
 
+  // console.log(references);
+
   return (
     <React.Fragment>
       {content.map((element, index) => {
         return <Element key={index} props={element} images={images} />;
       })}
-      {JSON.stringify(images)}
     </React.Fragment>
   );
 };

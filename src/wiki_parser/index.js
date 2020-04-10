@@ -6,61 +6,52 @@
 
 const taste = (s, t, i) => s[i] == t[0] && s.substr(i, t.length) == t;
 
-// const add = (object, key, value) => ({ ...object, [key]: value });
-
 const capitalizeFirst = string =>
   string.charAt(0).toUpperCase() + string.slice(1);
 const capitalize = string =>
   string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 
+const trimAll = string => /^\s*(.*)\s*$/g.exec(string)[1];
+
 let debug = false;
 
-const ReferenceParser = (element, content) => {
-  let res = {};
+const CiteParser = plain => {
+  let R_CITE = /\{\{cite (?<subType>\w+)\s*\|(?<attributes>[\S\s]*)}}$/gi;
 
-  // Check type of reference
-  let first = content[0],
-    match,
-    nameRef = null,
-    citeType = null;
-  if ((match = /^ name="([^"]+)">([\s\S]*)$/gm.exec(first))) {
-    nameRef = match[1];
-    first = match[2];
-  } else if (first[0] == ">") {
-    first = first.slice(1);
-  } else {
-    new Error("");
-  }
-  if (first) content[0] = first;
-  else content.shift();
+  let { subType, attributes } = R_CITE.exec(plain).groups,
+    attribute = {};
 
-  // Try parse cite template
-
-  let s = content[0];
-  if (typeof s == "string" && (match = /^{{[Cc]ite ([^|]+)\|/gm.exec(s))) {
-    let a = s.split("|");
-    let cite = a.shift();
-    citeType = cite.split(" ")[1];
-    for (const pair of a) {
-      let equalIndex = pair.indexOf("=");
-      let [key, value] = [
-        pair.slice(0, equalIndex),
-        pair.slice(equalIndex + 1)
-      ];
-      res[key] = value;
-    }
-  } else {
-    citeType = "plaintext";
-    res.text = content;
+  for (const pair of attributes.split("|")) {
+    let equalIndex = pair.indexOf("=");
+    let [key, value] = [
+      pair.slice(0, equalIndex),
+      trimAll(pair.slice(equalIndex + 1))
+    ];
+    attribute[key] = value;
   }
 
-  res = { ...res, nameRef, citeType };
-  return res;
+  return { type: "cite", subType, attribute };
+};
+
+const ReferenceParser = plain => {
+  let {
+    nameAttr,
+    innerHTML
+  } = /^<ref(?:\s+name="(?<nameAttr>[^"]+)")?>(?<innerHTML>[\s\S]*)<\/ref>$/gi.exec(
+    plain
+  ).groups;
+
+  return { innerHTML: main(innerHTML, null, 0).content, nameAttr };
 };
 
 const internalParse = (element, content, plain) => {
   if (element.elementName == "Reference") {
-    return ReferenceParser(element, content);
+    return ReferenceParser(plain);
+  } else if (element.elementName == "Template") {
+    if (/^[Cc]ite/g.test(content[0].content)) {
+      return CiteParser(plain);
+    }
+    return content;
   } else if (element.elementName == "Link") {
     if (debug) {
       console.log(content);
@@ -208,7 +199,7 @@ const BoldItalic = {
     elementName: "Reference",
     startToken: "<ref",
     endToken: "</ref>",
-    allowElements: [Bold, Italic]
+    allowElements: []
   },
   Template = {
     elementName: "Template",
@@ -226,11 +217,12 @@ const BoldItalic = {
     elementName: "Global",
     startToken: null,
     endToken: null,
-    allowElements: [Bold, Italic, Obj, Heading, Reference, Template, BlockQuote]
+    allowElements: [Bold, Italic, Obj, Heading, Reference, BlockQuote, Template]
   };
 
 Obj.allowElements.push(Obj);
 Italic.allowElements.push(Obj);
+Reference.allowElements.push(Template);
 
 const parse = (s, l, i, e) => {
   // console.log(`Begin parse from |${s.substr(i, 10)}| with ${e.name}`);
@@ -239,7 +231,9 @@ const parse = (s, l, i, e) => {
     plain = "",
     cur,
     res = [],
-    options = {};
+    options = {},
+    referenceIndex = 0;
+
   l = l === null ? s.length : l;
   let { elementName, startToken, endToken, allowElements } = e;
   i += startToken === null ? 0 : startToken.length;
@@ -255,6 +249,9 @@ const parse = (s, l, i, e) => {
         let curPlain;
         [i, cur, curPlain] = parse(s, l, i, element);
         plain += curPlain;
+        if (element.elementName == "Reference") {
+          cur.content.referenceIndex = ++referenceIndex;
+        }
         res.push(cur);
 
         break;
@@ -290,17 +287,4 @@ const parse = (s, l, i, e) => {
 
 export const main = (s, l, i, e = Global) => parse(s, l, i, e)[1];
 
-// console.log(JSON.stringify(main(s, null, 0), null, 2));
-
-// console.log(
-//   JSON.stringify(
-//     main("[[public transport|public transportation]]", null, 0),
-//     null,
-//     2
-//   )
-// );
 // console.log(JSON.stringify(main("[[File:wiki.png]]", null, 0), null, 2));
-
-// console.log(JSON.stringify(parse(s, (l = null), (i = 0), Global)[1]));
-//
-// export { Global, main };

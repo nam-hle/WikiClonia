@@ -125,4 +125,20 @@ for (const t of wikiLinkTests) {
 
 for (const t of mediaTests) simpleTest(...t);
 
+const referenceTests = [
+  [
+    "simple",
+    "<ref>{{Cite web|url=http://www.trendhunter.com/trends/pet-door|title=Automated Pet Doors : pet door|access-date=2016-07-07}}</ref>",
+    [
+      {
+        nameAttr: null,
+        citeType: "web",
+        url: "http://www.trendhunter.com/trends/pet-door",
+        title: "Automated Pet Doors : pet door",
+        "access-date": "2016-07-07"
+      }
+    ]
+  ]
+];
+
 // console.log(JSON.stringify(main("[[a]]''b''", null, 0), null, 2));
