@@ -66,15 +66,19 @@ $space7: calc(#{$space6} * #{$ratio})
 
 html
   font-size: 1px
+  width: 100%
 
 body
   margin: 0
+  // align-items: center
+  width: 100%
   color: $color-black
   background-color: $color-white
   font-family: -apple-system, Georgia, serif
   font-size: $size1
   line-height: 1.6
   font-weight: normal
+
 
 h2
   clear: both
@@ -97,22 +101,57 @@ sup
 #wikiapp
   width: 100%
 
-
 .article
-  display: grid
-  grid-template-columns: max-content 1fr
-  margin: 0 15%
+
+  // grid-template-columns: 20% 80%
+  width: 80%
+  margin: 0 auto
+  position: relative
 
 
 
+.hero
+  // display: none
+  padding: 0
+  // padding-left: $space6
+  position: relative
+  width: 75%
+  left: 25%
+  &__title
+    font-family:  Georgia, serif
+    font-size: $size6
+    margin: $space3 0 $space3 $space2
 
-    // align-items: center
-    // text-align: center
+.sidebar
+  width: 15%
+  font-size: $size-1
+  background-color: $color-white-100
+  padding: $space3 0
+  overflow: hidden
+  position: fixed
+  &__title
+    display: table
+    margin: $space2 auto $space5
+    border-bottom: 1px solid $color-black-400
+    letter-spacing: 1.2
+  &__item
+    padding: 0 $space3
+    border-top: 1px solid $color-white-300
 
-
-
-
-  // display: inline-block
+  &__h1
+    display: flex
+    align-items: center
+    height: $space7
+    color: $color-black-200
+    font-weight: bold
+  &_h2s
+    display: flex
+    flex-direction: column
+  &__h2
+    // height: $space5
+    color: $color-black-400
+    padding-left: $space3
+    margin-bottom: $space1
 
 
 
@@ -125,6 +164,13 @@ sup
 .wiki-ref
   list-style-type: none
   font-size: $size-1
+
+.fl-left
+  float: left
+  margin-left: 0
+
+.fl-right
+  float: right
 
 .wiki-img
   &__container
@@ -143,47 +189,3 @@ sup
     padding: $space0
     padding-bottom: 0
     font-size: $size-2
-
-.fl-left
-  float: left
-  margin-left: 0
-
-.fl-right
-  float: right
-
-.hero
-  &__title
-    font-family:  Georgia, serif
-    font-size: $size6
-    margin: $space3 0 $space3 $space2
-
-
-.sidebar
-  width: 100%
-  font-size: $size-1
-  background-color: $color-white-100
-  padding: $space3 0
-  &__title
-    display: table
-    margin: $space2 auto $space5
-    border-bottom: 1px solid $color-black-400
-    letter-spacing: 1.2
-  &__item
-    padding: 0 $space3
-    border-top: 1px solid $color-white-300
-
-  &__h1
-    display: flex
-    align-items: center
-    height: $space7
-    color: $color-black-200
-    font-weight: bold
-
-  &__h2
-    height: $space5
-    color: $color-black-400
-    padding-left: $space3
-
-
-.hero
-  padding: 0 $space6

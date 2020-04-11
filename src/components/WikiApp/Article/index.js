@@ -1,24 +1,6 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { main } from "./../../../wiki_parser";
-
-// const Data = React.createContext({});
-
-// const Image = ({ url, options, caption }) => {
-//   useEffect(() => {
-//     var url =
-//       "http://en.wikipedia.org/w/api.php?action=query&titles=Pet_door&prop=pageimages&format=json&origin=*";
-//     fetch(url)
-//       .then(function(response) {
-//         return response.json();
-//       })
-//       .then(_text => {})
-//       .catch(function(error) {
-//         console.log(error);
-//       });
-//   }, []);
-// };
-//
-//
+import Sidebar from "./../SideBar";
 
 const Text = ({ text }) => {
   let [splitText, setSplitText] = useState("");
@@ -217,28 +199,7 @@ const Article = () => {
         style={{ width: "100%", height: 40, backgroundColor: "#252525" }}
       ></nav>
       <div className="article">
-        <div className="sidebar">
-          <div className="sidebar__title">TABLE OF CONTENT</div>
-          {parsed &&
-            parsed.headings &&
-            Object.keys(parsed.headings).map((h1, i) => {
-              let h2s = parsed.headings[h1];
-              return (
-                <Fragment key={i}>
-                  <div className="sidebar__item" key={h1}>
-                    <div className="sidebar__h1">{`${i + 1}. ` + h1}</div>
-                    <div className="sidebar__h2s">
-                      {h2s.map((h2, j) => (
-                        <div className="sidebar__h2" key={h2}>
-                          {`${i + 1}.${j + 1}. ` + h2}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </Fragment>
-              );
-            })}
-        </div>
+        {parsed.headings && <Sidebar headings={parsed.headings} />}
         <div className="hero">
           <div className="hero__title">Norway</div>
           {(function() {
@@ -278,8 +239,3 @@ const Article = () => {
 };
 
 export default Article;
-
-// {content.map((element, index) => {
-//         if (element.elementName == "Reference" && element.children[0] == " References ")
-//         return <Element key={index} props={element} images={images} />;
-//       })}
