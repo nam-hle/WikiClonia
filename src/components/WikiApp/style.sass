@@ -1,46 +1,120 @@
-$backgroundColor: #FFF7E6
-$bodyColor: #1c2435
-$headingColor: #1c2435
-$pinkColor: hsl(338,79%,53%)
+
+// $backgroundColor: #FFF7E6
+// $bodyColor: #1c2435
+// $headingColor: #1c2435
+// $pinkColor: hsl(338,79%,53%)
+
+$color-black:    #0F0F10
+$color-black-100: #252525               // menu background
+$color-black-200: #4A4956           // heading
+$color-black-300: #585763          // body
+$color-black-400: #6A6A6A
+
+$color-white: #FFFFFF               // bg body
+$color-white-100: #F7F7F7           // bg sidebar
+$color-white-200: #F0F0F0           // horizontal body
+$color-white-300: #EEEEEE           // border sidebar
+
+
+$color-blue: #247AFD               // a
+$color-blue-100: #3A6EA5            // a hover
+
+$ratio: 1.25
+
+
+
+$size0: 14rem
+$size-1: calc(#{$size0} / #{$ratio})
+$size-2: calc(#{$size-1} / #{$ratio})
+$size-3: calc(#{$size-2} / #{$ratio})
+$size-4: calc(#{$size-3} / #{$ratio})
+$size-5: calc(#{$size-4} / #{$ratio})
+$size-6: calc(#{$size-5} / #{$ratio})
+$size-7: calc(#{$size-6} / #{$ratio})
+$size1: calc(#{$size0} * #{$ratio})
+$size2: calc(#{$size1} * #{$ratio})
+$size3: calc(#{$size2} * #{$ratio})
+$size4: calc(#{$size3} * #{$ratio})
+$size5: calc(#{$size4} * #{$ratio})
+$size6: calc(#{$size5} * #{$ratio})
+$size7: calc(#{$size6} * #{$ratio})
+
+
+$space0: 8rem
+$space-1: calc(#{$space0} / #{$ratio})
+$space-2: calc(#{$space-1} / #{$ratio})
+$space-3: calc(#{$space-2} / #{$ratio})
+$space-4: calc(#{$space-3} / #{$ratio})
+$space-5: calc(#{$space-4} / #{$ratio})
+$space-6: calc(#{$space-5} / #{$ratio})
+$space-7: calc(#{$space-6} / #{$ratio})
+$space1: calc(#{$space0} * #{$ratio})
+$space2: calc(#{$space1} * #{$ratio})
+$space3: calc(#{$space2} * #{$ratio})
+$space4: calc(#{$space3} * #{$ratio})
+$space5: calc(#{$space4} * #{$ratio})
+$space6: calc(#{$space5} * #{$ratio})
+$space7: calc(#{$space6} * #{$ratio})
 
 @font-face
-  font-family: "Playfair Display"
-  src: url("./../../asset/fonts/PlayfairDisplay-VariableFont_wght.ttf")
+  font-family: "Roboto Heading"
+  src: url("./../../asset/fonts/Roboto/Roboto-Bold.ttf")
+
+@font-face
+  font-family: "Roboto Body"
+  src: url("./../../asset/fonts/Roboto/Roboto-Light.ttf")
 
 html
-  font-size: 100%
+  font-size: 1px
 
 body
-  color: $bodyColor
-  background-color: $backgroundColor
-  font-family: Georgia, serif;
-  font-size: 1.4rem
-  &::selection
-    background-color: #333130
-    color: $backgroundColor
+  margin: 0
+  color: $color-black
+  background-color: $color-white
+  font-family: -apple-system, Georgia, serif
+  font-size: $size1
+  line-height: 1.6
+  font-weight: normal
 
 h2
   clear: both
-  margin-top: 0.7rem
-  margin-bottom: 0.5rem
-  border-bottom: 1px solid $headingColor
-  color: $headingColor
-  font-family: "Playfair Display", Georgia, serif
-  font-weight: 800
-  font-size: 2.15rem
+  margin: $space5 0
+  color: $color-black
+  font-family:  Georgia, serif
+  font-weight: 500
+  font-size: $size3
 
 a
-  text-decoration: underline
-  color: inherit
+  color: $color-blue
   &:hover
-    color: $pinkColor
-
-
+    color: $color-blue-100
 
 sup
   font-size: 0.9rem
   a
     text-decoration: none
+
+#wikiapp
+  width: 100%
+
+
+.article
+  display: grid
+  grid-template-columns: max-content 1fr
+  margin: 0 15%
+
+
+
+
+    // align-items: center
+    // text-align: center
+
+
+
+
+  // display: inline-block
+
+
 
 .wiki-italic
   font-style: italic
@@ -50,8 +124,66 @@ sup
 
 .wiki-ref
   list-style-type: none
-  font-size: 1rem
+  font-size: $size-1
+
+.wiki-img
+  &__container
+    display: flex
+    flex-direction: column
+    align-items: center
+    max-width: 240px
+    margin: 0 $space3 $space3
+    padding: $space-2
+    border: 1px solid $color-white-300
+    clear: both
+
+  &__image
+    max-width: 220px
+  &__caption
+    padding: $space0
+    padding-bottom: 0
+    font-size: $size-2
+
+.fl-left
+  float: left
+  margin-left: 0
+
+.fl-right
+  float: right
+
+.hero
+  &__title
+    font-family:  Georgia, serif
+    font-size: $size6
+    margin: $space3 0 $space3 $space2
 
 
+.sidebar
+  width: 100%
+  font-size: $size-1
+  background-color: $color-white-100
+  padding: $space3 0
+  &__title
+    display: table
+    margin: $space2 auto $space5
+    border-bottom: 1px solid $color-black-400
+    letter-spacing: 1.2
+  &__item
+    padding: 0 $space3
+    border-top: 1px solid $color-white-300
+
+  &__h1
+    display: flex
+    align-items: center
+    height: $space7
+    color: $color-black-200
+    font-weight: bold
+
+  &__h2
+    height: $space5
+    color: $color-black-400
+    padding-left: $space3
 
 
+.hero
+  padding: 0 $space6

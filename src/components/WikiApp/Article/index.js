@@ -37,12 +37,7 @@ const Text = ({ text }) => {
 };
 
 const Template = ({ props }) => {
-  // if (typeof props.children === "string") {
-  //   return <span>{props.children}</span>;
-  // }
-  console.log(props);
   if (Array.isArray(props.children)) {
-    // console.log("array");
     return (
       <Fragment>
         {props.children.map((e, i) => (
@@ -61,9 +56,6 @@ const Template = ({ props }) => {
       {}
     </Fragment>
   );
-  //{
-  /*return <span>{JSON.stringify(props)}</span>;*/
-  //}
 };
 
 const Element = ({ props, images }) => {
@@ -94,8 +86,12 @@ const Element = ({ props, images }) => {
     return <blockquote>{renderChildren}</blockquote>;
   }
 
-  if (elementName == "Heading") {
+  if (elementName == "Heading1") {
     return <h2>{renderChildren}</h2>;
+  }
+
+  if (elementName == "Heading2") {
+    return <h3>{renderChildren}</h3>;
   }
 
   if (elementName == "Link") {
@@ -108,21 +104,13 @@ const Element = ({ props, images }) => {
       );
     }
     if (type == "media") {
-      if (images[props.url]) {
+      if (props && props.url && images && images[props.url]) {
+        let float = props.options.indexOf("left") > -1 ? "fl-left" : "fl-right";
         return (
           <Fragment>
-            <div
-              style={{
-                float: "right",
-                marginLeft: "0.5rem",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                maxWidth: "240px"
-              }}
-            >
-              <img style={{ maxWidth: "220px" }} src={images[props.url].url} />
-              <div style={{ fontSize: "0.8rem", paddingLeft: "0.5rem" }}>
+            <div className={`wiki-img__container ${float}`}>
+              <img className="wiki-img__image" src={images[props.url].url} />
+              <div className="wiki-img__caption">
                 {props.caption.map((e, i) => (
                   <Element key={i} props={e} />
                 ))}
@@ -157,25 +145,31 @@ const Element = ({ props, images }) => {
       </sup>
     );
   }
+  // console.log(props);
   return JSON.stringify(props);
 };
 
 const Article = () => {
-  const [content, setContent] = useState([]);
+  // const [content, setContent] = useState([]);
   const [images, setImages] = useState({});
   const [references, setReferences] = useState([]);
+  const [parsed, setParsed] = useState({});
 
   // get main content
   useEffect(() => {
     var url =
-      "https://en.wikipedia.org/w/api.php?action=parse&page=Pet_door&format=json&prop=wikitext&origin=*";
+      "https://en.wikipedia.org/w/api.php?action=parse&page=Norway&format=json&prop=wikitext&origin=*";
     fetch(url)
       .then(function(response) {
         return response.json();
       })
       .then(_text => {
-        setContent(main(_text.parse.wikitext["*"]).children);
-        console.log(main(_text.parse.wikitext["*"]));
+        let rawText = _text.parse.wikitext["*"];
+        let startIndex = rawText.indexOf(
+          "'''Norway''' ([[Norwegian language|Norwegian]]:"
+        );
+        let cutoffText = rawText.slice(startIndex);
+        setParsed(main(cutoffText));
       })
       .catch(function(error) {
         console.log(error);
@@ -184,19 +178,22 @@ const Article = () => {
 
   // get references
   useEffect(() => {
-    let res = [];
-    for (const element of content) {
-      if (element.elementName == "Reference") {
-        res.push(element);
+    console.log("Get references ", parsed);
+    if (parsed.children) {
+      let res = [];
+      for (const element of parsed.children) {
+        if (element.elementName == "Reference") {
+          res.push(element);
+        }
       }
+      setReferences(res);
     }
-    setReferences(res);
-  }, [content]);
+  }, [parsed]);
 
   // get images
   useEffect(() => {
     var url =
-      "https://en.wikipedia.org/w/api.php?action=query&titles=Pet_door&generator=images&gimlimit=10&prop=imageinfo&iiprop=url|dimensions|mime&format=json&origin=*";
+      "https://en.wikipedia.org/w/api.php?action=query&titles=Norway&generator=images&gimlimit=500&prop=imageinfo&iiprop=url|dimensions|mime&format=json&origin=*";
     fetch(url)
       .then(function(response) {
         return response.json();
@@ -215,35 +212,68 @@ const Article = () => {
   }, []);
 
   return (
-    <React.Fragment>
-      {(function() {
-        let res = [];
-        for (let index = 0; index < content.length; index++) {
-          let element = content[index];
-          res.push(<Element key={index} props={element} images={images} />);
-          // console.log(element);
-          if (
-            element.elementName == "Heading" &&
-            element.children[0].text == " References "
-          ) {
-            break;
-          }
-        }
-        return res;
-      })()}
-      {references.map((reference, index) => {
-        return (
-          <li className="wiki-ref" key={index}>
-            <span>{reference.referenceIndex + ". "}</span>
-            {(function() {
-              return reference.children.map((child, childrenIndex) => {
-                return <Element key={childrenIndex} props={child} />;
-              });
-            })()}
-          </li>
-        );
-      })}
-    </React.Fragment>
+    <Fragment>
+      <nav
+        style={{ width: "100%", height: 40, backgroundColor: "#252525" }}
+      ></nav>
+      <div className="article">
+        <div className="sidebar">
+          <div className="sidebar__title">TABLE OF CONTENT</div>
+          {parsed &&
+            parsed.headings &&
+            Object.keys(parsed.headings).map((h1, i) => {
+              let h2s = parsed.headings[h1];
+              return (
+                <Fragment key={i}>
+                  <div className="sidebar__item" key={h1}>
+                    <div className="sidebar__h1">{`${i + 1}. ` + h1}</div>
+                    <div className="sidebar__h2s">
+                      {h2s.map((h2, j) => (
+                        <div className="sidebar__h2" key={h2}>
+                          {`${i + 1}.${j + 1}. ` + h2}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </Fragment>
+              );
+            })}
+        </div>
+        <div className="hero">
+          <div className="hero__title">Norway</div>
+          {(function() {
+            let res = [],
+              content = parsed.children;
+            if (!content) return "Loading...";
+            for (let index = 0; index < content.length; index++) {
+              let element = content[index];
+              res.push(<Element key={index} props={element} images={images} />);
+              // console.log(element);
+              if (
+                element.elementName == "Heading1" &&
+                element.children[0].text == " References "
+              ) {
+                break;
+              }
+            }
+            return res;
+          })()}
+          {references.map((reference, index) => {
+            return (
+              <li className="wiki-ref" key={index}>
+                <span>{reference.referenceIndex + ". "}</span>
+                {(function() {
+                  return reference.children.map((child, childrenIndex) => {
+                    // console.log(index);
+                    return <Element key={childrenIndex} props={child} />;
+                  });
+                })()}
+              </li>
+            );
+          })}
+        </div>
+      </div>
+    </Fragment>
   );
 };
 
