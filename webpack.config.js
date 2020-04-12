@@ -35,7 +35,7 @@ module.exports = (env, argv) => {
               loader: MiniCssExtractPlugin.loader,
               options: {
                 hmr: process.env.NODE_ENV === "development",
-                reloadAll: true
+                reloadAll: false
               }
             },
             {

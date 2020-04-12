@@ -1,13 +1,11 @@
 import React, { Fragment } from "react";
 
 const Sidebar = ({ headings }) => {
-  console.log(headings);
   return (
     <div className="sidebar">
       <div className="sidebar__title">TABLE OF CONTENT</div>
       {headings &&
         Object.keys(headings).map((h1, i) => {
-          console.log(headings);
           let h2s = headings[h1];
           return (
             <Fragment key={i}>
