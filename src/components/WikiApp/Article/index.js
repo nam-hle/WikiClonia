@@ -23,7 +23,9 @@ const Article = () => {
         let startIndex = rawText.indexOf(
           "'''Norway''' ([[Norwegian language|Norwegian]]:"
         );
+
         let cutoffText = rawText.slice(startIndex);
+        console.log(cutoffText);
         setParsed(main(cutoffText));
       })
       .catch(function(error) {
@@ -69,7 +71,7 @@ const Article = () => {
     <Fragment>
       <Menu />
       <div className="article">
-        {parsed.headings && <Sidebar headings={parsed.headings} />}
+        <Sidebar headings={parsed.headings} />
         <div className="hero">
           <div className="hero__title">Norway</div>
           <Content content={parsed.children} images={images} />

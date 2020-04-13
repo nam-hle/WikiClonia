@@ -184,79 +184,79 @@ const internalParse = (element, content, plain) => {
 const BoldItalic = {
     elementName: "BoldItalic",
     startToken: "'''''",
-    endToken: "'''''",
+    endToken: ["'''''"],
     allowElements: []
   },
   Bold = {
     elementName: "Bold",
     startToken: "'''",
-    endToken: "'''",
+    endToken: ["'''"],
     allowElements: []
   },
   Italic = {
     elementName: "Italic",
     startToken: "''",
-    endToken: "''",
+    endToken: ["''"],
     allowElements: []
   },
   Obj = {
     elementName: "Link",
     startToken: "[[",
-    endToken: "]]",
+    endToken: ["]]"],
     allowElements: [Bold, Italic]
   },
   Heading1 = {
     elementName: "Heading1",
     startToken: "==",
-    endToken: "==",
+    endToken: ["=="],
     allowElements: []
   },
   Heading2 = {
     elementName: "Heading2",
     startToken: "===",
-    endToken: "===",
+    endToken: ["==="],
     allowElements: []
   },
   Heading3 = {
     elementName: "Heading3",
     startToken: "====",
-    endToken: "====",
+    endToken: ["===="],
     allowElements: []
   },
   Heading4 = {
     elementName: "Heading4",
     startToken: "=====",
-    endToken: "=====",
+    endToken: ["====="],
     allowElements: []
   },
   Heading5 = {
     elementName: "Heading5",
     startToken: "======",
-    endToken: "======",
+    endToken: ["======"],
     allowElements: []
   },
   Heading6 = {
     elementName: "Heading6",
     startToken: "=======",
-    endToken: "=======",
+    endToken: ["======="],
     allowElements: []
   },
   Reference = {
     elementName: "Reference",
     startToken: "<ref",
-    endToken: "</ref>",
+    endToken: ["</ref>", "/>"],
     allowElements: []
   },
   Template = {
     elementName: "Template",
     startToken: "{{",
-    endToken: "}}",
+    endToken: ["}}"],
     allowElements: []
   },
   BlockQuote = {
     elementName: "Block Quote",
     startToken: "<blockquote>",
-    endToken: "</blockquote>",
+    endToken: ["</blockquote>"],
     allowElements: [Italic, Bold, BoldItalic]
   },
   Global = {
@@ -284,43 +284,42 @@ Italic.allowElements.push(Obj);
 Reference.allowElements.push(Template);
 Template.allowElements.push(Reference, Obj);
 
-// const analyseHeadings = headings => {
-//   let getLevel = heading => +/^Heading(\d)$/.exec(heading.elementName)[1];
-//   let currentLevel = 0;
-//   let res = {};
-//   let currentHeading = res;
-//   for (const heading of headings) {
-//     let level = getLevel(heading);
-//     // console.log("Reach level ", level, " => ", heading);
-//     if (level > currentLevel) {
-//       if (!currentHeading.childrenHeadings)
-//         currentHeading.childrenHeadings = [];
-//       heading.parentHeading = currentHeading;
-//       currentHeading.childrenHeadings.push(heading);
-//     } else if (level == currentLevel) {
-//       let parent = currentHeading.parentHeading;
-//       parent.childrenHeadings.push(heading);
-//       heading.parentHeading = parent;
-//     } else {
-//       let grandParent = currentHeading.parentHeading.parentHeading;
-//       grandParent.childrenHeadings.push(heading);
-//       heading.parentHeading = grandParent;
-//     }
-//     currentHeading = heading;
-//     currentLevel = level;
-//   }
-//   return res;
-// };
+const analyseHeadings = headings => {
+  let getLevel = heading => +/^Heading(\d)$/.exec(heading.elementName)[1];
+  let currentLevel = 0,
+    res = {},
+    currentHeading = res;
+  for (const heading of headings) {
+    let level = getLevel(heading);
+    if (level > currentLevel) {
+      if (!currentHeading.childrenHeadings)
+        currentHeading.childrenHeadings = [];
+      heading.parentHeading = currentHeading;
+      currentHeading.childrenHeadings.push(heading);
+    } else if (level == currentLevel) {
+      let parent = currentHeading.parentHeading;
+      parent.childrenHeadings.push(heading);
+      heading.parentHeading = parent;
+    } else {
+      let grandParent = currentHeading.parentHeading.parentHeading;
+      grandParent.childrenHeadings.push(heading);
+      heading.parentHeading = grandParent;
+    }
+    currentHeading = heading;
+    currentLevel = level;
+  }
+  return res;
+};
 
 const parse = (s, l, i, e) => {
+  console.log(s.substr(i, 20), e.elementName);
   let buffer = "",
     plain = "",
     cur,
     res = [],
     options = {},
     referenceIndex = 0,
-    headings = [],
-    curHeading1;
+    headings = [];
 
   l = l === null ? s.length : l;
   let { elementName, startToken, endToken, allowElements } = e;
@@ -341,6 +340,7 @@ const parse = (s, l, i, e) => {
           cur.referenceIndex = ++referenceIndex;
         }
         if (/^Heading/.exec(cur.elementName) !== null) {
+          console.log(cur);
           headings.push(cur);
         }
         res.push(cur);
@@ -348,43 +348,40 @@ const parse = (s, l, i, e) => {
       }
     }
     if (!has) {
-      if (endToken && taste(s, endToken, i)) {
-        i += endToken.length;
-        plain += endToken;
+      if (endToken) {
+        let catchEndToken = false;
+        for (const eToken of endToken) {
+          if (taste(s, eToken, i)) {
+            catchEndToken = true;
+            i += eToken.length;
+            plain += eToken;
 
-        // perform get suffix string when parsing Link
-        if (elementName == "Link") {
-          while (i < l) {
-            let nowiki = "<nowiki />";
-            if (taste(s, nowiki, i)) {
-              i += nowiki.length;
-              break;
-            } else if (/\w/.test(s[i])) {
-              plain += s[i++];
-            } else break;
-          }
-        }
-        break;
-      }
+            // perform get suffix string when parsing Link
+            if (elementName == "Link") {
+              while (i < l) {
+                let nowiki = "<nowiki />";
+                if (taste(s, nowiki, i)) {
+                  i += nowiki.length;
+                  break;
+                } else if (/\w/.test(s[i])) {
+                  plain += s[i++];
+                } else break;
+              }
+            }
+          } // end taste
+        } // end for endToken
+        if (catchEndToken) break;
+      } // end if endToken
       plain += s[i];
       buffer += s[i++];
-    }
+    } // end not has
   }
   if (buffer) res.push({ elementName: "Text", text: buffer });
   let [meta, children] = internalParse(e, res, plain, options);
 
-  if (headings.length) headings = analyseHeadings(headings);
+  headings = headings.length ? analyseHeadings(headings) : {};
+
   return [i, clean({ elementName, children, headings, ...meta }), plain];
 };
 
 export const main = s => parse(s, null, 0, Global)[1];
-// const main = s => parse(s, null, 0, Global)[1];
-
-// const printHeading = (heading, level) => {
-//   console.log("  ".repeat(level), heading.children[0].text);
-//   if (heading.childrenHeadings) {
-//     for (const child of heading.childrenHeadings) {
-//       printHeading(child, level + 1);
-//     }
-//   }
-// };
