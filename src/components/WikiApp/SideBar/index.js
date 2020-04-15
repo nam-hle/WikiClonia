@@ -1,19 +1,22 @@
 import React, { Fragment } from "react";
 
-const Heading = ({ heading, level, numbering }) => {
-  let { text } = heading.children && heading.children[0];
+const Heading = ({ heading }) => {
   return (
     <Fragment>
-      <li>{numbering + " " + text}</li>
+      <li style={{ paddingLeft: `${heading.level * 16}rem` }}>
+        <a
+          href={"#" + heading.id}
+          className={
+            "heading-" + (heading.level == 1 ? "primary" : "secondary")
+          }
+        >
+          {heading.indices.join(".") + ". " + heading.text}
+        </a>
+      </li>
       {heading.childrenHeadings && (
-        <ul key={"ul" + numbering}>
+        <ul>
           {heading.childrenHeadings.map((child, index) => (
-            <Heading
-              key={index}
-              heading={child}
-              level={level + 1}
-              numbering={`${numbering}${index + 1}.`}
-            />
+            <Heading key={index} heading={child} />
           ))}
         </ul>
       )}
@@ -28,14 +31,7 @@ const Sidebar = ({ headings }) => {
       <ul>
         {headings &&
           headings.childrenHeadings.map((child, index) => {
-            return (
-              <Heading
-                key={index}
-                heading={child}
-                level={1}
-                numbering={"" + (index + 1) + "."}
-              />
-            );
+            return <Heading key={index} heading={child} />;
           })}
       </ul>
     </div>

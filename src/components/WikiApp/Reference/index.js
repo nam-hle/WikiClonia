@@ -7,9 +7,10 @@ const Reference = ({ references }) => {
       {references.map((reference, index) => (
         <li className="wiki-ref" key={index}>
           <span>{reference.referenceIndex + ". "}</span>
-          {reference.children.map((child, childIndex) => (
-            <Element key={childIndex} props={child} />
-          ))}
+          {reference.children &&
+            reference.children.map((child, childIndex) => (
+              <Element key={childIndex} props={child} />
+            ))}
         </li>
       ))}
     </Fragment>

@@ -13,19 +13,16 @@ const Article = () => {
   // get main content
   useEffect(() => {
     var url =
-      "https://en.wikipedia.org/w/api.php?action=parse&page=Norway&format=json&prop=wikitext&origin=*";
+      "https://en.wikipedia.org/w/api.php?action=parse&page=The_Last_Supper_(Leonardo)&format=json&prop=wikitext&origin=*";
     fetch(url)
       .then(function(response) {
         return response.json();
       })
       .then(_text => {
         let rawText = _text.parse.wikitext["*"];
-        let startIndex = rawText.indexOf(
-          "'''Norway''' ([[Norwegian language|Norwegian]]:"
-        );
+        let startIndex = rawText.indexOf("'''''The Last Supper'''''");
 
         let cutoffText = rawText.slice(startIndex);
-        console.log(cutoffText);
         setParsed(main(cutoffText));
       })
       .catch(function(error) {
@@ -49,7 +46,7 @@ const Article = () => {
   // get images
   useEffect(() => {
     var url =
-      "https://en.wikipedia.org/w/api.php?action=query&titles=Norway&generator=images&gimlimit=20&prop=imageinfo&iiprop=url|dimensions|mime&format=json&origin=*";
+      "https://en.wikipedia.org/w/api.php?action=query&titles=The_Last_Supper_(Leonardo)&generator=images&gimlimit=500&prop=imageinfo&iiprop=url|dimensions|mime&format=json&origin=*";
     fetch(url)
       .then(function(response) {
         return response.json();
@@ -73,7 +70,10 @@ const Article = () => {
       <div className="article">
         <Sidebar headings={parsed.headings} />
         <div className="hero">
-          <div className="hero__title">Norway</div>
+          <div className="hero__title">The Last Supper</div>
+          <div className="hero__credit">
+            From Wikipedia, the free encyclopedia
+          </div>
           <Content content={parsed.children} images={images} />
           <Reference {...{ references }} />
         </div>

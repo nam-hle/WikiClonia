@@ -6,7 +6,12 @@ const capitalizeFirst = string =>
 const capitalize = string =>
   string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 
-const trimAll = string => /^\s*(.*)\s*$/g.exec(string)[1];
+const trimAll = string => /^\s*([\s\S]+)\s*$/g.exec(string)[1];
+
+const trimQuote = str =>
+  '"' == str[0] && '"' == str[str.length - 1]
+    ? str.slice(1, str.length - 1)
+    : str;
 
 const clean = obj => {
   let res = {};
@@ -15,6 +20,7 @@ const clean = obj => {
     if (
       value === null ||
       value === undefined ||
+      (Array.isArray(value) && value.length === 0) ||
       (Object.keys(value).length === 0 && value.constructor === Object)
     )
       continue;
@@ -22,7 +28,37 @@ const clean = obj => {
   }
   return res;
 };
-// let debug = false;
+
+//
+// const toUperRoman = number => {
+//   const romanNumList = {
+//     M: 1000,
+//     CM: 900,
+//     D: 500,
+//     CD: 400,
+//     C: 100,
+//     XC: 90,
+//     L: 50,
+//     XV: 40,
+//     X: 10,
+//     IX: 9,
+//     V: 5,
+//     IV: 4,
+//     I: 1
+//   };
+//   let roman = "",
+//     a;
+//   if (number < 1 || number > 3999) throw "Enter a number between 1 and 3999";
+
+//   for (let key in romanNumList) {
+//     a = Math.floor(number / romanNumList[key]);
+//     if (a >= 0) for (let i = 0; i < a; i++) roman += key;
+//     number = number % romanNumList[key];
+//   }
+//   return roman;
+// };
+
+// const toLowerRoman = num => toUperRoman(num).toLowerCase();
 
 const CiteParser = plain => {
   let R_CITE = /\{\{cite (?<subType>\w+)\s*\|(?<attributes>[\S\s]*)}}$/gi;
@@ -34,34 +70,145 @@ const CiteParser = plain => {
     let equalIndex = pair.indexOf("=");
     let [key, value] = [
       pair.slice(0, equalIndex),
-      trimAll(pair.slice(equalIndex + 1))
+      pair.slice(equalIndex + 1).trim()
     ];
     attribute[key] = value;
   }
   return [{ type: "cite", subType, attribute }, null];
 };
 
+// <ref name=manchester2002>''LibreOffice for Starters'', First Edition, Flexible Minds, Manchester, 2002, p. 18</ref>
+// <ref name=manchester2002 />
+
 const ReferenceParser = plain => {
-  let match = /^<ref[^>]*>(?<children>[\s\S]*)<\/ref>$/gi.exec(plain);
-  let children;
-  if (match && match[1]) {
-    children = match[1];
-    return [null, main(children).children];
+  let refname,
+    refgroup,
+    children,
+    match,
+    remain = plain;
+
+  // 1. Extract tag name
+  const R_HEAD = /^<ref(erences)? *(?<remain>[\s\S]*)$/gi;
+  if ((match = R_HEAD.exec(plain)) === null)
+    throw "Reference Synxtax Error " + plain;
+
+  remain = match.groups.remain;
+
+  // 2. Try extract refgroup
+  const R_GROUP = /^group *= *(?<refgroup>\"[^#\"\'\/=>\?\\]+\"|[^\#\"\'\/=>\?\\ ]+)\s*(?<remain>[\s\S]*)$/gi;
+  if ((match = R_GROUP.exec(remain)) !== null) {
+    remain = match.groups.remain;
+    refgroup = match.groups.refgroup;
   }
-  // console.log(plain);
-  return [null, [{ elementName: "text", text: plain }]];
+
+  // 3. Try extract refname
+  const R_NAME = /^name *= *(?<refname>\"[^#\"\'\/=>\\]+\"|[^\#\"\'\/=>\?\\ ]+)\s*(?<remain>[\s\S]*)$/gi;
+  if ((match = R_NAME.exec(remain)) !== null) {
+    remain = match.groups.remain;
+    refname = match.groups.refname;
+  }
+
+  // 4.1. Reuse Reference
+  if (/^\s*\/>$/.exec(remain)) {
+    return [{ type: "reuse", refname, refgroup }, []];
+  }
+
+  // 4.2. Firstuse Reference
+  const R_FIRSTUSE = /^>(?<children>[\s\S]+)<\/ref>$/gi;
+  if ((match = R_FIRSTUSE.exec(remain)) === null) {
+    throw "Firstuse Reference Error " + remain;
+  }
+
+  children = main(match.groups.children).children;
+  if (refname) refname = trimQuote(refname);
+  if (refgroup) refgroup = trimQuote(refgroup);
+
+  return [{ type: "firstuse", refname, refgroup }, children];
+};
+
+const FootnoteParser = plain => {
+  let match,
+    remain,
+    fnGroup,
+    fnName,
+    subType,
+    children,
+    type = "footnote";
+
+  // 1. Extract subType footnote
+  const R_FOOTNOTE = /^\{\{(?<subType>[^|]+)\|(?<remain>[\S\s]+)}}$/;
+  if ((match = R_FOOTNOTE.exec(plain)) === null) throw "Footnote Error";
+  subType = match.groups.subType;
+  remain = match.groups.remain;
+
+  // 2. Extract group footnote
+  const R_GROUP = /^group=(?<fnGroup>\"[^#\"\'\/=>\?\\]+\"|[^\#\"\'\/=>\?\\ ]+)\|(?<remain>[\s\S]+)$/;
+  if ((match = R_GROUP.exec(remain)) !== null) {
+    fnGroup = match.groups.fnGroup;
+    remain = match.groups.remain;
+  }
+
+  // 3. Extract name footnote
+  const R_NAME = /^name=(?<fnName>\"[^#\"\'\/=>\?\\]+\"|[^\#\"\'\/=>\?\\ ]+)(\|(?<remain>[\s\S]+))?$/;
+  if ((match = R_NAME.exec(remain)) !== null) {
+    fnName = match.groups.fnName;
+    remain = match.groups.remain;
+  }
+
+  // 4. Parse real content footnote
+  children = remain ? main(remain).children : [];
+
+  // NOTE: numering foonote will be done in analyseReference function
+  return [{ type, subType, fnName, fnGroup }, children];
 };
 
 const internalParse = (element, content, plain) => {
   if (element.elementName == "Reference") {
     return ReferenceParser(plain);
+  } else if (element.elementName == "ExternalLink") {
+    const R_EXTERNAL = /^\[(?<url>\S+)( (?<displayText>[\s\S]+))?\]$/gi;
+    let match, url, displayText;
+    if ((match = R_EXTERNAL.exec(plain)) !== null) {
+      [url, displayText] = [match.groups.url, match.groups.displayText];
+      return [{ url, displayText }, []];
+    } else {
+      throw "ExternalLink Grammar Error";
+    }
   } else if (element.elementName == "Template") {
     if (/^{{[Cc]ite/g.test(plain)) {
       return CiteParser(plain);
+    } else if (/^{{(refn|efn|efn-(la|ua|lr|ur|lg))\|/.test(plain)) {
+      return FootnoteParser(plain);
+    } else if (/^{{lang-\w+\|/gi.test(plain)) {
+      let text = /\|(.*)}}$/.exec(plain)[1];
+      return [
+        { type: "lang" },
+        [
+          {
+            elementName: "Italic",
+            children: [
+              {
+                elementName: "Text",
+                text
+              }
+            ]
+          }
+        ]
+      ];
+    } else if (/^{{IPA-\w+\|/gi.test(plain)) {
+      let text = /\|(.*)}}$/.exec(plain)[1];
+      return [
+        { type: "lang" },
+        [
+          {
+            elementName: "Text",
+            text: "[" + text + "]"
+          }
+        ]
+      ];
     }
-    // console.log("@@");
-    // return [null, [...content]]
-    return [null, [{ elementName: "Text", text: "{{Temp}}" }]];
+
+    return [null, [{ elementName: "Text", text: `{{N/A: ${plain}}}` }]];
   } else if (element.elementName == "Link") {
     let match;
 
@@ -199,11 +346,17 @@ const BoldItalic = {
     endToken: ["''"],
     allowElements: []
   },
-  Obj = {
+  Link = {
     elementName: "Link",
     startToken: "[[",
     endToken: ["]]"],
     allowElements: [Bold, Italic]
+  },
+  ExternalLink = {
+    elementName: "ExternalLink",
+    startToken: "[",
+    endToken: ["]"],
+    allowElements: []
   },
   Heading1 = {
     elementName: "Heading1",
@@ -264,9 +417,11 @@ const BoldItalic = {
     startToken: null,
     endToken: null,
     allowElements: [
+      BoldItalic,
       Bold,
       Italic,
-      Obj,
+      Link,
+      ExternalLink,
       Heading6,
       Heading5,
       Heading4,
@@ -279,28 +434,49 @@ const BoldItalic = {
     ]
   };
 
-Obj.allowElements.push(Obj);
-Italic.allowElements.push(Obj);
+Link.allowElements.push(Link);
+Italic.allowElements.push(Link);
 Reference.allowElements.push(Template);
-Template.allowElements.push(Reference, Obj);
+Template.allowElements.push(Template, Reference, Link);
 
 const analyseHeadings = headings => {
   let getLevel = heading => +/^Heading(\d)$/.exec(heading.elementName)[1];
   let currentLevel = 0,
     res = {},
     currentHeading = res;
+
+  res.indices = [];
+
   for (const heading of headings) {
-    let level = getLevel(heading);
+    let level = getLevel(heading),
+      headingText = heading.children[0].text.trim(),
+      headingId = headingText.replace(/\s/, "") + "_" + level;
+
+    // add metadata
+    heading.level = level;
+    heading.text = headingText;
+    heading.id = headingId;
+    heading.className = "wiki-heading-" + level;
+    heading.indices = currentHeading.indices.slice();
+
+    // connect heading to heading tree
     if (level > currentLevel) {
+      heading.indices.push(1);
+
       if (!currentHeading.childrenHeadings)
         currentHeading.childrenHeadings = [];
       heading.parentHeading = currentHeading;
       currentHeading.childrenHeadings.push(heading);
     } else if (level == currentLevel) {
+      heading.indices[heading.indices.length - 1]++;
+
       let parent = currentHeading.parentHeading;
       parent.childrenHeadings.push(heading);
       heading.parentHeading = parent;
     } else {
+      heading.indices = heading.indices.slice(0, level);
+      heading.indices[heading.indices.length - 1]++;
+
       let grandParent = currentHeading.parentHeading.parentHeading;
       grandParent.childrenHeadings.push(heading);
       heading.parentHeading = grandParent;
@@ -312,7 +488,6 @@ const analyseHeadings = headings => {
 };
 
 const parse = (s, l, i, e) => {
-  console.log(s.substr(i, 20), e.elementName);
   let buffer = "",
     plain = "",
     cur,
@@ -340,7 +515,6 @@ const parse = (s, l, i, e) => {
           cur.referenceIndex = ++referenceIndex;
         }
         if (/^Heading/.exec(cur.elementName) !== null) {
-          console.log(cur);
           headings.push(cur);
         }
         res.push(cur);
@@ -379,9 +553,21 @@ const parse = (s, l, i, e) => {
   if (buffer) res.push({ elementName: "Text", text: buffer });
   let [meta, children] = internalParse(e, res, plain, options);
 
-  headings = headings.length ? analyseHeadings(headings) : {};
+  headings = headings.length ? analyseHeadings(headings) : null;
 
   return [i, clean({ elementName, children, headings, ...meta }), plain];
 };
 
-export const main = s => parse(s, null, 0, Global)[1];
+const main = s => parse(s, null, 0, Global)[1];
+
+export { main, clean, trimQuote, trimAll };
+
+// console.log(
+//   JSON.stringify(
+//     main(
+//       `'''''The Last Supper''''' ({{lang-it|Il Cenacolo}} {{IPA-it|il tʃeˈnaːkolo|}} or ''L'Ultima Cena'' {{IPA-it|ˈlultima ˈtʃeːna|}}) is a late 15th-century [[mural]] painting by Italian artist [[Leonardo da Vinci]] housed by the [[refectory]] of the Convent of [[Santa Maria delle Grazie (Milan)|Santa Maria delle Grazie]] in [[Milan]], [[Italy]]. It is one of the Western world's most recognizable paintings.<ref>{{cite web |url=https://www.sciencedaily.com/releases/2010/03/100331091143.htm |title=Leonardo Da Vinci's 'The Last Supper' reveals more secrets |publisher=sciencedaily.com |accessdate=3 March 2014}}</ref>`
+//     ),
+//     null,
+//     2
+//   )
+// );

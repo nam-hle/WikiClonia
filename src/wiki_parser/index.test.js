@@ -1,10 +1,11 @@
 // import { main, Global } from "./index.js";
-let main = require("./index.js");
+let m = require("./index.js");
 
-main = main.main;
+let main = m.main;
+let clean = m.clean;
 
 const simpleTest = (description, input, expected) => {
-  let actual = main(input, null, 0).children;
+  let actual = main(input).children;
   let trulyExpected = expected.map(e =>
     typeof e === "string" ? { elementName: "Text", text: e } : e
   );
@@ -17,19 +18,19 @@ const wikiLink = (url, displayText = url) => ({
   elementName: "Link",
   type: "wikiLink",
   url,
-  displayText,
-  children: null
+  displayText
 });
 
-const file = (url, caption = "", options = []) => ({
+const file = (url, caption = [], options = []) => ({
   elementName: "Link",
   type: "media",
   supType: "File",
   caption,
   url,
-  options,
-  children: null
+  options
 });
+
+const text = str => ({ elementName: "Text", text: str });
 
 const italic = content => ({ elementName: "Italic", children: content });
 
@@ -105,55 +106,168 @@ let wikiLinkTests = [
 ];
 
 let mediaTests = [
-  ["simplest", "[[File:wiki.png]]", [file("File:Wiki.png", "", [])]],
+  ["simplest", "[[File:wiki.png]]", [clean(file("File:Wiki.png", [], []))]],
   [
     "with opts",
     "[[File:wiki.png|thumb|Wikipedia logo]]",
-    [file("File:Wiki.png", "Wikipedia logo", ["thumb"])]
+    [clean(file("File:Wiki.png", [text("Wikipedia logo")], ["thumb"]))]
   ],
   [
     "with alt",
     "[[File:wiki.png|alt=Puzzle globe logo]]",
-    [file("File:Wiki.png", "", [{ key: "alt", value: "Puzzle globe logo" }])]
+    [
+      clean(
+        file("File:Wiki.png", [], [{ key: "alt", value: "Puzzle globe logo" }])
+      )
+    ]
   ],
   [
     "with link",
     "[[File:wiki.png|link=Wikipedia]]",
-    [file("File:Wiki.png", "", [{ key: "link", value: "Wikipedia" }])]
+    [clean(file("File:Wiki.png", [], [{ key: "link", value: "Wikipedia" }]))]
   ],
   [
     "complex",
     "[[File:wiki.png|frame|centre|alt=Puzzle globe|Wikipedia logo]]",
     [
-      file("File:Wiki.png", "Wikipedia logo", [
-        "frame",
-        "centre",
-        { key: "alt", value: "Puzzle globe" }
-      ])
+      clean(
+        file(
+          "File:Wiki.png",
+          [text("Wikipedia logo")],
+          ["frame", "centre", { key: "alt", value: "Puzzle globe" }]
+        )
+      )
     ]
   ]
 ];
+
+let refTests = [
+  [
+    "Basic ref",
+    "<ref>ABC</ref>",
+    [
+      {
+        elementName: "Reference",
+        referenceIndex: 1,
+        type: "noname",
+        children: [text("ABC")]
+      }
+    ]
+  ],
+  [
+    "ref with some format",
+    "<ref>''ABC''</ref>",
+    [
+      {
+        elementName: "Reference",
+        referenceIndex: 1,
+        type: "noname",
+        children: [italic([text("ABC")])]
+      }
+    ]
+  ],
+  [
+    "noquote named ref",
+    "<ref name=ABC002>ABC</ref>",
+    [
+      {
+        elementName: "Reference",
+        referenceIndex: 1,
+        type: "named",
+        refname: "ABC002",
+        children: [text("ABC")]
+      }
+    ]
+  ],
+  [
+    "quoted named ref",
+    '<ref name="ABC 002">ABC</ref>',
+    [
+      {
+        elementName: "Reference",
+        referenceIndex: 1,
+        type: "named",
+        refname: "ABC 002",
+        children: [text("ABC")]
+      }
+    ]
+  ],
+  [
+    "reuse ref",
+    '<ref name="ABC 002" />',
+    [
+      {
+        elementName: "Reference",
+        referenceIndex: 1,
+        type: "reuse",
+        refname: "ABC 002"
+      }
+    ]
+  ],
+  [
+    "footnote",
+    "Lorem ipsum dolor sit amet.{{efn|name=fn1|Footnote 1}} Consectetur adipisicing elit.{{efn|Footnote 2}} Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.{{efn|name=fn1}}",
+    [
+      {
+        elementName: "Text",
+        text: "Lorem ipsum dolor sit amet."
+      },
+      {
+        elementName: "Template",
+        children: [
+          {
+            elementName: "Text",
+            text: "Footnote 1"
+          }
+        ],
+        type: "footnote",
+        subType: "efn",
+        fnName: "fn1"
+      },
+      {
+        elementName: "Text",
+        text: " Consectetur adipisicing elit."
+      },
+      {
+        elementName: "Template",
+        children: [
+          {
+            elementName: "Text",
+            text: "Footnote 2"
+          }
+        ],
+        type: "footnote",
+        subType: "efn"
+      },
+      {
+        elementName: "Text",
+        text:
+          " Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      },
+      {
+        elementName: "Template",
+        type: "footnote",
+        subType: "efn",
+        fnName: "fn1"
+      }
+    ]
+  ]
+];
+
+// let footnoteRef = [
+//   ["bacsic",
+
+//   ]
+// ]
 
 for (const t of wikiLinkTests) {
   simpleTest(...t);
 }
 
-// for (const t of mediaTests) simpleTest(...t);
+for (const t of mediaTests) {
+  simpleTest(...t);
+}
 
-// const referenceTests = [
-//   [
-//     "simple",
-//     "<ref>{{Cite web|url=http://www.trendhunter.com/trends/pet-door|title=Automated Pet Doors : pet door|access-date=2016-07-07}}</ref>",
-//     [
-//       {
-//         nameAttr: null,
-//         citeType: "web",
-//         url: "http://www.trendhunter.com/trends/pet-door",
-//         title: "Automated Pet Doors : pet door",
-//         "access-date": "2016-07-07"
-//       }
-//     ]
-//   ]
-// ];
-
-// console.log(JSON.stringify(main("[[a]]''b''", null, 0), null, 2));
+for (const t of refTests) {
+  simpleTest(...t);
+}

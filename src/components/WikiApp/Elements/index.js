@@ -1,4 +1,5 @@
 import React, { Fragment, useState, useEffect } from "react";
+// import { trimAll } from "./../../../wiki_parser";
 
 export const Text = ({ text }) => {
   let [splitText, setSplitText] = useState("");
@@ -31,15 +32,29 @@ export const Template = ({ props }) => {
   return (
     <Fragment>
       <a className="wiki-cite" href={attribute.url}>
-        {attribute.title}
+        {`"${attribute.title}"`}
       </a>
-      {}
+      {". "}
+      {props.subType == "web" && attribute.publisher && (
+        <span>{`${attribute.publisher}. `}</span>
+      )}
+      {props.subType == "web" && attribute.accessdate && (
+        <span>{`Retrieved ${attribute.accessdate}. `}</span>
+      )}
     </Fragment>
   );
 };
 
 export const Element = ({ props, images }) => {
   let { elementName, children } = props;
+
+  if (elementName == "ExternalLink") {
+    return (
+      <a href={"https://en.wikipedia.org/wiki/" + props.url}>
+        {props.displayText}
+      </a>
+    );
+  }
 
   if (elementName == "Text") {
     return <Text text={props.text} />;
@@ -62,17 +77,25 @@ export const Element = ({ props, images }) => {
     return <span className="wiki-italic">{renderChildren}</span>;
   }
 
+  if (elementName == "BoldItalic") {
+    return <span className="wiki-italic wiki-bold">{renderChildren}</span>;
+  }
+
   if (elementName == "Block Quote") {
     return <blockquote>{renderChildren}</blockquote>;
   }
 
-  if (elementName == "Heading1") {
-    return <h2>{renderChildren}</h2>;
+  if (elementName.slice(0, -1) == "Heading") {
+    return (
+      <div className={props.className} id={props.id}>
+        {props.text}
+      </div>
+    );
   }
 
-  if (elementName == "Heading2") {
-    return <h3>{renderChildren}</h3>;
-  }
+  // if (elementName == "Heading2") {
+  //   return <h3>{renderChildren}</h3>;
+  // }
 
   if (elementName == "Link") {
     let type = props.type;

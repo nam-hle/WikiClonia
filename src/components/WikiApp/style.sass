@@ -1,9 +1,3 @@
-
-// $backgroundColor: #FFF7E6
-// $bodyColor: #1c2435
-// $headingColor: #1c2435
-// $pinkColor: hsl(338,79%,53%)
-
 $color-black:    #0F0F10
 $color-black-100: #252525               // menu background
 $color-black-200: #4A4956           // heading
@@ -16,14 +10,12 @@ $color-white-200: #F0F0F0           // horizontal body
 $color-white-300: #EEEEEE           // border sidebar
 
 
-$color-blue: #247AFD               // a
+$color-blue: #0F2EDB         // a
 $color-blue-100: #3A6EA5            // a hover
 
 $ratio: 1.25
 
-
-
-$size0: 14rem
+$size0: calc(12rem)
 $size-1: calc(#{$size0} / #{$ratio})
 $size-2: calc(#{$size-1} / #{$ratio})
 $size-3: calc(#{$size-2} / #{$ratio})
@@ -56,27 +48,47 @@ $space5: calc(#{$space4} * #{$ratio})
 $space6: calc(#{$space5} * #{$ratio})
 $space7: calc(#{$space6} * #{$ratio})
 
-@font-face
-  font-family: "Roboto Heading"
-  src: url("./../../asset/fonts/Roboto/Roboto-Bold.ttf")
+$ratio-heading: 1.2
+$size-heading0: 40rem
+$size-heading1: calc(#{$size-heading0} / #{$ratio})
+$size-heading2: calc(#{$size-heading1} / #{$ratio})
+$size-heading3: calc(#{$size-heading2} / #{$ratio})
+$size-heading4: calc(#{$size-heading3} / #{$ratio})
+$size-heading5: calc(#{$size-heading4} / #{$ratio})
+$size-heading6: calc(#{$size-heading5} / #{$ratio})
+$size-heading7: calc(#{$size-heading6} / #{$ratio})
+
+
 
 @font-face
-  font-family: "Roboto Body"
-  src: url("./../../asset/fonts/Roboto/Roboto-Light.ttf")
+  font-family: "Heading"
+  src: url("./../../asset/fonts/Lato/Lato-Bold.ttf")
+
+@font-face
+  font-family: "Body"
+  src: url("./../../asset/fonts/Lato/Lato-Light.ttf")
+
+@font-face
+  font-family: "Title"
+  src: url("./../../asset/fonts/Libre_Baskerville/LibreBaskerville-Bold.ttf")
+
+@font-face
+  font-family: "Credit"
+  src: url("./../../asset/fonts/Libre_Baskerville/LibreBaskerville-Regular.ttf")
 
 html
   font-size: 1px
   width: 100%
+  scroll-behavior: smooth
 
 body
   margin: 0
-  // align-items: center
   width: 100%
   color: $color-black
   background-color: $color-white
-  font-family: -apple-system, Georgia, serif
-  font-size: $size1
-  line-height: 1.6
+  font-family: "Body", -apple-system, BlinkMacSystemFont
+  font-size: $size2
+  line-height: 1.7
   font-weight: normal
 
 
@@ -88,15 +100,13 @@ h2
   font-weight: 500
   font-size: $size3
 
-a
-  color: $color-blue
-  &:hover
-    color: $color-blue-100
+
 
 sup
-  font-size: 0.9rem
+  font-size: $size-1
   a
     text-decoration: none
+    border: none
 
 li
   list-style-type: none
@@ -105,57 +115,58 @@ li
   width: 100%
 
 .article
-
-  // grid-template-columns: 20% 80%
-  width: 80%
-  margin: 0 auto
-  position: relative
-  // background-color: $color-black-200
-
+  display: grid
+  grid-template-columns: 1fr 3fr 1fr
 
 
 .hero
-  // display: none
-  padding: 0
-  // padding-left: $space6
-  position: relative
-  width: 75%
-  left: 25%
+  padding: $space7 3%
+  * + *
+    margin-bottom: 0.7em
+  a
+    color: #4A4956
+    border-bottom: 1px dashed #4A4956
+    &:hover
+      color: $color-blue
+      border: none
+  sup a
+    border: none
+
   &__title
-    font-family:  Georgia, serif
-    font-size: $size6
-    margin: $space3 0 $space3 $space2
+    font-family: "Title", "Georgia", "Times New Roman"
+    font-size: $size-heading0
+    text-align: center
+
+  &__credit
+    margin-top: 0.5srem
+    font-family: "Credit", "Georgia", "Times New Roman"
+    font-size: $size2
+    text-align: center
+    color: #AEB7B3
+    font-weight: 500
 
 .sidebar
-  width: 15%
-  font-size: $size-1
-  background-color: $color-white-100
-  padding: $space3 0
-  overflow: hidden
-  position: absolute
+
+  font-size: $size1
+  background-color: #EAEDF2
+  padding: $space3 $space3
+  box-shadow: inset -4px 0px 5px 0px #BBBEC2
+  * + *
+    margin-top: 0.7em
   &__title
     display: table
     margin: $space2 auto $space5
     border-bottom: 1px solid $color-black-400
     letter-spacing: 1.2
-  &__item
-    padding: 0 $space3
-    border-top: 1px solid $color-white-300
+    font-weight: 600
 
-  &__h1
-    display: flex
-    align-items: center
-    height: $space7
-    color: $color-black-200
-    font-weight: bold
-  &_h2s
-    display: flex
-    flex-direction: column
-  &__h2
-    // height: $space5
-    color: $color-black-400
-    padding-left: $space3
-    margin-bottom: $space1
+  .heading-primary
+    font-weight: 600
+    color: #3F454B
+  .heading-secondary
+    font-weight: 500
+    color: #7C8186
+
 
 
 
@@ -168,13 +179,38 @@ li
 .wiki-ref
   list-style-type: none
   font-size: $size-1
+  margin-top: 1.5em
 
-.fl-left
-  float: left
-  margin-left: 0
 
-.fl-right
-  float: right
+.wiki-heading-1, .wiki-heading-2, .wiki-heading-3, .wiki-heading-4, .wiki-heading-5, .wiki-heading-6, .wiki-heading-7
+  font-family: "Heading", -apple-system
+
+
+.wiki-heading-1
+  border-top: 1px solid #B5B5B5
+  padding-top: 0.6em
+  margin-top: 1em
+  font-size: $size-heading1
+
+.wiki-heading-2
+  font-size: $size-heading2
+
+.wiki-heading-3
+  font-size: $size-heading3
+
+.wiki-heading-4
+  font-size: $size-heading4
+
+.wiki-heading-5
+  font-size: $size-heading5
+
+.wiki-heading-6
+  font-size: $size-heading6
+
+.wiki-heading-7
+  font-size: $size-heading7
+
+
 
 .wiki-img
   &__container
@@ -186,10 +222,18 @@ li
     padding: $space-2
     border: 1px solid $color-white-300
     clear: both
-
   &__image
     max-width: 220px
   &__caption
     padding: $space0
     padding-bottom: 0
-    font-size: $size-2
+    font-size: $size0
+
+.fl-left
+  float: left
+  margin-left: calc(#{$space3} * -1)
+
+.fl-right
+  float: right
+  margin-right: calc(#{$space3} * -1)
+  right: 50%
