@@ -56,6 +56,10 @@ export const Element = ({ props, images }) => {
     );
   }
 
+  if (elementName == "Break") {
+    return <br />;
+  }
+
   if (elementName == "Text") {
     return <Text text={props.text} />;
   }

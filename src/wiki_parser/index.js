@@ -6,7 +6,7 @@ const capitalizeFirst = string =>
 const capitalize = string =>
   string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 
-const trimAll = string => /^\s*([\s\S]+)\s*$/g.exec(string)[1];
+// const trimAll = string => /^\s*([\s\S]+)\s*$/g.exec(string)[1];
 
 const trimQuote = str =>
   '"' == str[0] && '"' == str[str.length - 1]
@@ -61,7 +61,7 @@ const clean = obj => {
 // const toLowerRoman = num => toUperRoman(num).toLowerCase();
 
 const CiteParser = plain => {
-  let R_CITE = /\{\{cite (?<subType>\w+)\s*\|(?<attributes>[\S\s]*)}}$/gi;
+  let R_CITE = /\{\{cite (?<subType>\w+)\s*\|?(?<attributes>[\S\s]*)}}$/gi;
 
   let { subType, attributes } = R_CITE.exec(plain).groups,
     attribute = {};
@@ -102,7 +102,7 @@ const ReferenceParser = plain => {
   }
 
   // 3. Try extract refname
-  const R_NAME = /^name *= *(?<refname>\"[^#\"\'\/=>\\]+\"|[^\#\"\'\/=>\?\\ ]+)\s*(?<remain>[\s\S]*)$/gi;
+  const R_NAME = /^name *= *(?<refname>\"[^#\"\/=>\\]+\"|[^\#\"\'\/=>\?\\ ]+)\s*(?<remain>[\s\S]*)$/gi;
   if ((match = R_NAME.exec(remain)) !== null) {
     remain = match.groups.remain;
     refname = match.groups.refname;
@@ -328,7 +328,14 @@ const internalParse = (element, content, plain) => {
   return [null, [...content]];
 };
 
-const BoldItalic = {
+const Break = {
+    elementName: "Break",
+    startToken: "<br />",
+    endToken: [],
+    allowElements: [],
+    selfClose: true
+  },
+  BoldItalic = {
     elementName: "BoldItalic",
     startToken: "'''''",
     endToken: ["'''''"],
@@ -417,6 +424,7 @@ const BoldItalic = {
     startToken: null,
     endToken: null,
     allowElements: [
+      Break,
       BoldItalic,
       Bold,
       Italic,
@@ -436,7 +444,7 @@ const BoldItalic = {
 
 Link.allowElements.push(Link);
 Italic.allowElements.push(Link);
-Reference.allowElements.push(Template);
+Reference.allowElements.push(Break, Template);
 Template.allowElements.push(Template, Reference, Link);
 
 const analyseHeadings = headings => {
@@ -488,6 +496,7 @@ const analyseHeadings = headings => {
 };
 
 const parse = (s, l, i, e) => {
+  // console.log(e.elementName, s.substr(i, 20));
   let buffer = "",
     plain = "",
     cur,
@@ -500,13 +509,35 @@ const parse = (s, l, i, e) => {
   let { elementName, startToken, endToken, allowElements } = e;
   i += startToken === null ? 0 : startToken.length;
   plain += startToken === null ? "" : startToken;
+
   while (i < l) {
-    let has = false;
+    // Catch selfClose element
+    // for (const element of allowElements) {
+    //   if (element.selfClose && taste(s, element.startToken, i)) {
+    //     console.log("@");
+    //     if (buffer) res.push({ elementName: "Text", text: buffer });
+    //     buffer = "";
+    //     plain += startToken;
+    //     res.push({ elementName: "Break" });
+    //     i += start.length.length;
+    //   }
+    // }
+
+    let has = false,
+      hasSelfClose = false;
     for (let j = 0; j < allowElements.length; j++) {
       let element = allowElements[j];
       if (taste(s, element.startToken, i)) {
         if (buffer) res.push({ elementName: "Text", text: buffer });
         buffer = "";
+
+        if ((hasSelfClose = element.selfClose)) {
+          res.push({ elementName: element.elementName });
+          plain += element.startToken;
+          i += element.startToken.length;
+          break;
+        }
+
         has = true;
         let curPlain;
         [i, cur, curPlain] = parse(s, l, i, element);
@@ -521,6 +552,11 @@ const parse = (s, l, i, e) => {
         break;
       }
     }
+
+    if (hasSelfClose) {
+      continue;
+    }
+
     if (!has) {
       if (endToken) {
         let catchEndToken = false;
@@ -551,6 +587,7 @@ const parse = (s, l, i, e) => {
     } // end not has
   }
   if (buffer) res.push({ elementName: "Text", text: buffer });
+
   let [meta, children] = internalParse(e, res, plain, options);
 
   headings = headings.length ? analyseHeadings(headings) : null;
@@ -560,12 +597,12 @@ const parse = (s, l, i, e) => {
 
 const main = s => parse(s, null, 0, Global)[1];
 
-export { main, clean, trimQuote, trimAll };
+export { main, clean, trimQuote };
 
 // console.log(
 //   JSON.stringify(
 //     main(
-//       `'''''The Last Supper''''' ({{lang-it|Il Cenacolo}} {{IPA-it|il tʃeˈnaːkolo|}} or ''L'Ultima Cena'' {{IPA-it|ˈlultima ˈtʃeːna|}}) is a late 15th-century [[mural]] painting by Italian artist [[Leonardo da Vinci]] housed by the [[refectory]] of the Convent of [[Santa Maria delle Grazie (Milan)|Santa Maria delle Grazie]] in [[Milan]], [[Italy]]. It is one of the Western world's most recognizable paintings.<ref>{{cite web |url=https://www.sciencedaily.com/releases/2010/03/100331091143.htm |title=Leonardo Da Vinci's 'The Last Supper' reveals more secrets |publisher=sciencedaily.com |accessdate=3 March 2014}}</ref>`
+//       `<ref name="WorldEconomicAndFinancialSuperCenter">{{cite web |url=http://www.businessinsider.com/top-8-cities-by-gdp-china-vs-the-us-2011-8 |title=Top 8 Cities by GDP: China vs. The U.S. |quote=For instance, Shanghai, the largest Chinese city with the highest economic production, and a fast-growing global financial hub, is far from matching or surpassing New York, the largest city in the U.S. and the economic and financial super center of the world. |publisher=Business Insider, Inc |date=July 31, 2011 |accessdate=July 1, 2018}}<br />{{cite web |url=https://www.thejobnetwork.com/new-york-city-the-financial-capital-of-the-world/ |title=New York City: The Financial Capital of the World |publisher=Pando Logic|accessdate=July 1, 2018|date=October 8, 2015}}</ref>`
 //     ),
 //     null,
 //     2

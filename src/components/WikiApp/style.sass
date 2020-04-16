@@ -8,14 +8,14 @@ $color-white: #FFFFFF               // bg body
 $color-white-100: #F7F7F7           // bg sidebar
 $color-white-200: #F0F0F0           // horizontal body
 $color-white-300: #EEEEEE           // border sidebar
-
+$color-white-400: #F1F1F1
 
 $color-blue: #0F2EDB         // a
 $color-blue-100: #3A6EA5            // a hover
 
 $ratio: 1.25
 
-$size0: calc(12rem)
+$size0: calc(10rem)
 $size-1: calc(#{$size0} / #{$ratio})
 $size-2: calc(#{$size-1} / #{$ratio})
 $size-3: calc(#{$size-2} / #{$ratio})
@@ -47,6 +47,11 @@ $space4: calc(#{$space3} * #{$ratio})
 $space5: calc(#{$space4} * #{$ratio})
 $space6: calc(#{$space5} * #{$ratio})
 $space7: calc(#{$space6} * #{$ratio})
+$space8: calc(#{$space7} * #{$ratio})
+$space9: calc(#{$space8} * #{$ratio})
+$space10: calc(#{$space9} * #{$ratio})
+$space11: calc(#{$space10} * #{$ratio})
+$space12: calc(#{$space11} * #{$ratio})
 
 $ratio-heading: 1.2
 $size-heading0: 40rem
@@ -76,6 +81,10 @@ $size-heading7: calc(#{$size-heading6} / #{$ratio})
   font-family: "Credit"
   src: url("./../../asset/fonts/Libre_Baskerville/LibreBaskerville-Regular.ttf")
 
+@font-face
+  font-family: "Logo Pedia"
+  src: url("./../../asset/fonts/Merriweather/Merriweather-Light.ttf")
+
 html
   font-size: 1px
   width: 100%
@@ -85,12 +94,11 @@ body
   margin: 0
   width: 100%
   color: $color-black
-  background-color: $color-white
+  // background-color: $color-white
   font-family: "Body", -apple-system, BlinkMacSystemFont
   font-size: $size2
   line-height: 1.7
   font-weight: normal
-
 
 h2
   clear: both
@@ -99,8 +107,6 @@ h2
   font-family:  Georgia, serif
   font-weight: 500
   font-size: $size3
-
-
 
 sup
   font-size: $size-1
@@ -114,24 +120,99 @@ li
 #wikiapp
   width: 100%
 
+
+
+
+.menu
+  display: grid
+  grid-template-columns: 69% 31%
+  width: 100%
+  height: 50rem
+  position: fixed
+  background-color: rgba(255, 255, 255, 0.3)
+  box-shadow: 0px 2px 5px 0px #BBBEC2
+
+@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none)
+  .menu
+    -webkit-backdrop-filter: blur(10px)
+    backdrop-filter: blur(5px)
+
+.menu__primary
+  display: grid
+  grid-template-columns: 9fr 2fr 55fr 5fr
+  grid-template-rows: 1fr
+  .logo
+    grid-column: 1 / span 1
+    display: flex
+    justify-content: center
+    align-items: center
+    font-size: $size3
+    &-wiki
+      font-family: "Heading", -apple-system
+      font-weight: 700
+    &-pedia
+      font-family: "Logo Pedia", "Georgia", "Times New Roman"
+      font-weight: 300
+
+.menu__button-wrapper
+  grid-column: 3
+  display: grid
+  grid-template-columns: repeat(2, max-content) auto repeat(3, max-content)
+  color: $color-black-400
+  .menu__button
+    font-size: $size2
+  .button--choose
+    color: $color-black-100
+
+.menu__secondary
+  display: grid
+  grid-template-columns: 2fr 27fr 2fr
+  .menu__search-icon
+    display: flex
+    justify-content: center
+    align-items: center
+  .menu__search-input
+    background-color: rgba(255, 255, 255, 0)
+    border: none
+    &::placeholder
+      font-size: $size2
+      line-height: $size2
+    &:focus
+      outline: none
+
+.menu__input-wrapper
+  display: grid
+  grid-template-columns: auto repeat(2, min-content)
+  .menu__profile-icon, .menu__menu-icon
+    display: flex
+    justify-content: center
+    align-items: center
+    padding: 0 $space0
+
+
 .article
   display: grid
-  grid-template-columns: 1fr 3fr 1fr
+  grid-template-columns: 9% 2% 53% 5% 2% 27% 2%
+  width: 100%
+  margin: 0
+  padding-top: 50rem
+  background-color: white
 
 
 .hero
-  padding: $space7 3%
+  grid-column: 3 / span 1
+  padding-top: $space3
+
   * + *
     margin-bottom: 0.7em
   a
-    color: #4A4956
-    border-bottom: 1px dashed #4A4956
+    color: $color-black
+    border-bottom: 1px dashed #EBEBEC
     &:hover
       color: $color-blue
       border: none
   sup a
     border: none
-
   &__title
     font-family: "Title", "Georgia", "Times New Roman"
     font-size: $size-heading0
@@ -146,11 +227,11 @@ li
     font-weight: 500
 
 .sidebar
-
+  grid-column: 5 / span 3
   font-size: $size1
-  background-color: #EAEDF2
+  background-color: $color-white-400
   padding: $space3 $space3
-  box-shadow: inset -4px 0px 5px 0px #BBBEC2
+
   * + *
     margin-top: 0.7em
   &__title
@@ -168,7 +249,9 @@ li
     color: #7C8186
 
 
-
+/********************************
+ *        WIKI ELEMENTS
+ ********************************/
 
 .wiki-italic
   font-style: italic
@@ -181,10 +264,8 @@ li
   font-size: $size-1
   margin-top: 1.5em
 
-
 .wiki-heading-1, .wiki-heading-2, .wiki-heading-3, .wiki-heading-4, .wiki-heading-5, .wiki-heading-6, .wiki-heading-7
   font-family: "Heading", -apple-system
-
 
 .wiki-heading-1
   border-top: 1px solid #B5B5B5
@@ -209,8 +290,6 @@ li
 
 .wiki-heading-7
   font-size: $size-heading7
-
-
 
 .wiki-img
   &__container
