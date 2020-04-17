@@ -1,9 +1,10 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { main } from "./../../../wiki_parser";
-import Sidebar from "./../SideBar";
+// import Sidebar from "./../SideBar";
 import Reference from "./../Reference";
 import Content from "./../Content";
 import Menu from "./../Menu";
+import Navigation from "./../Navigation";
 
 const Article = () => {
   const [images, setImages] = useState({});
@@ -76,8 +77,8 @@ const Article = () => {
           <Content content={parsed.children} images={images} />
           <Reference {...{ references }} />
         </div>
-        <Sidebar headings={parsed.headings} />
       </div>
+      <Navigation headings={parsed.headings} />
     </Fragment>
   );
 };

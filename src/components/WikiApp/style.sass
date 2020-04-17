@@ -3,6 +3,7 @@ $color-black-100: #252525               // menu background
 $color-black-200: #4A4956           // heading
 $color-black-300: #585763          // body
 $color-black-400: #6A6A6A
+$color-black-500: #586069
 
 $color-white: #FFFFFF               // bg body
 $color-white-100: #F7F7F7           // bg sidebar
@@ -88,7 +89,6 @@ $size-heading7: calc(#{$size-heading6} / #{$ratio})
 html
   font-size: 1px
   width: 100%
-  scroll-behavior: smooth
 
 body
   margin: 0
@@ -121,23 +121,29 @@ li
   width: 100%
 
 
-
+/*
+ *  1. MENU
+ */
 
 .menu
   display: grid
   grid-template-columns: 69% 31%
+  position: fixed
   width: 100%
   height: 50rem
-  position: fixed
   background-color: rgba(255, 255, 255, 0.3)
   box-shadow: 0px 2px 5px 0px #BBBEC2
 
 @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none)
-  .menu
+  .menu,
     -webkit-backdrop-filter: blur(10px)
     backdrop-filter: blur(5px)
 
-.menu__primary
+/*
+ *  1.1. LEFT PANEL
+ */
+
+.menu__left-panel
   display: grid
   grid-template-columns: 9fr 2fr 55fr 5fr
   grid-template-rows: 1fr
@@ -158,13 +164,18 @@ li
   grid-column: 3
   display: grid
   grid-template-columns: repeat(2, max-content) auto repeat(3, max-content)
-  color: $color-black-400
+  color: $color-black-500
   .menu__button
-    font-size: $size2
+    padding: 0 $space1
+    font-size: $size1
   .button--choose
     color: $color-black-100
 
-.menu__secondary
+/*
+ *  1.2. RIGHT PANEL
+ */
+
+.menu__right-panel
   display: grid
   grid-template-columns: 2fr 27fr 2fr
   .menu__search-icon
@@ -174,9 +185,10 @@ li
   .menu__search-input
     background-color: rgba(255, 255, 255, 0)
     border: none
+    padding-left: $space0
     &::placeholder
-      font-size: $size2
-      line-height: $size2
+      font: 400 $size1 system-ui
+      color: #586069
     &:focus
       outline: none
 
@@ -189,6 +201,62 @@ li
     align-items: center
     padding: 0 $space0
 
+/*
+ *  2. NAVIGATION
+ */
+
+.navigation
+  display: grid
+  grid-template-columns: 9% 2% 53% 5% 2% 27% 2%
+  position: fixed
+  bottom: 0
+  width: 100%
+  height: 40rem
+  background-color: rgba(255, 255, 255, 0.7)
+  box-shadow: 0px -1px 1px 0px #F1F1F1
+  *
+    color: $color-black-100
+  &__content
+    grid-column: 3 / span 1
+    display: grid
+    grid-template-columns: min-content auto min-content
+  &__left-button
+    left: 0
+  &__right-button
+    right: 12px
+  &__btn-img
+    width: $space4
+  svg
+    width: $space4
+
+  &__headings
+    display: flex
+    justify-content: flex-start
+    align-items: center
+    padding: 0 $space1
+    overflow: hidden
+    a
+      display: inline-block
+      padding: $space-3 $space-1
+      margin-left: $space3
+      border-radius: $space0
+      font: $size1 system-ui
+      color: $color-black-500
+      font-weight: 500
+      white-space: nowrap
+      &:hover
+        color: $color-white-300
+        background-color: $color-black-300
+
+@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none)
+  .navigation
+    -webkit-backdrop-filter: blur(10px)
+    backdrop-filter: blur(5px)
+
+
+/*
+ *  3. ARTICLE
+ */
 
 .article
   display: grid

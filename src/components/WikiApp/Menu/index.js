@@ -5,7 +5,7 @@ import SearchIcon from "./../../../asset/images/search.png";
 
 const Menu = () => (
   <div className="menu">
-    <div className="menu__primary">
+    <div className="menu__left-panel">
       <div className="logo">
         <span className="logo-wiki">Wiki</span>
         <span className="logo-pedia">pedia</span>
@@ -19,7 +19,7 @@ const Menu = () => (
         <button className="menu__button">View history</button>
       </div>
     </div>
-    <div className="menu__secondary">
+    <div className="menu__right-panel">
       <div className="menu__search-icon">
         <img src={SearchIcon} />
       </div>
@@ -29,12 +29,6 @@ const Menu = () => (
           placeholder="Search Wikipedia"
           className="menu__search-input"
         />
-        {/*<div className="menu__profile-icon">
-          <img src={ProfileIcon} />
-        </div>*/}
-        {/*<div className="menu__menu-icon">
-          <img src={MenuIcon} />
-        </div>*/}
       </div>
     </div>
   </div>
