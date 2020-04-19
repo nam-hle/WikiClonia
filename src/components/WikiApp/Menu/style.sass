@@ -10,15 +10,16 @@
   height: $menu__height
 
 
-  color: $menu__color
   background-color: $menu__bg-color
   box-shadow: $menu__box-shadow
   *
+    color: $menu__color
     font-size: $size1
+
   svg
     width: $space3
     path
-      fill: $color-black-500
+      fill: $color-black
 
 
 @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none)
@@ -47,6 +48,7 @@
     margin-left: auto
   .menu__button
     padding: 0 $space1
+    color: $color-gray-dark
   .button--choose
     color: $color-black
 
@@ -71,7 +73,7 @@
   border: none
   padding-left: $space0
   &::placeholder
-    font: 400 $size1 system-ui
-    color: $color-black-500
+    font: 400 $size1 "Heading", -apple-system
+    color: $color-gray-dark
   &:focus
     outline: none

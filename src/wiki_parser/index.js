@@ -6,8 +6,6 @@ const capitalizeFirst = string =>
 const capitalize = string =>
   string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 
-// const trimAll = string => /^\s*([\s\S]+)\s*$/g.exec(string)[1];
-
 const trimQuote = str =>
   '"' == str[0] && '"' == str[str.length - 1]
     ? str.slice(1, str.length - 1)
@@ -493,7 +491,6 @@ const analyseHeadings = headings => {
 };
 
 const parse = (s, l, i, e) => {
-  // console.log(e.elementName, s.substr(i, 20));
   let buffer = "",
     plain = "",
     cur,
@@ -509,18 +506,6 @@ const parse = (s, l, i, e) => {
   plain += startToken === null ? "" : startToken;
 
   while (i < l) {
-    // Catch selfClose element
-    // for (const element of allowElements) {
-    //   if (element.selfClose && taste(s, element.startToken, i)) {
-    //     console.log("@");
-    //     if (buffer) res.push({ elementName: "Text", text: buffer });
-    //     buffer = "";
-    //     plain += startToken;
-    //     res.push({ elementName: "Break" });
-    //     i += start.length.length;
-    //   }
-    // }
-
     let has = false,
       hasSelfClose = false;
     for (let j = 0; j < allowElements.length; j++) {

@@ -6,7 +6,7 @@
 
 .navigation
   display: grid
-  grid-template-columns: 9% 2% 53% 5% 2% 27% 2%
+  grid-template-columns: 9% 2% 56% 5% 2% 24% 2%
 
   position: fixed
   bottom: 0
@@ -14,9 +14,9 @@
   height: 40rem
 
   background-color: rgba(255, 255, 255, 0.7)
-  box-shadow: 0px -1px 1px 0px #F1F1F1
+  box-shadow: 0px -1px 1px 0px $color-gray-light
   *
-    color: $color-black-100
+    color: $color-black
   svg
     width: $space4
   &__content
@@ -40,17 +40,17 @@
   display: flex
   justify-content: flex-start
   align-items: center
-  padding: 0 $space1
+  margin: 0 $space2
   overflow: hidden
   button
     display: inline-block
     padding: $space-3 $space0
-    margin-left: $space3
+    margin-left: $space1
     border-radius: $space0
     font: $size1 system-ui
-    color: $color-black-500
+    color: $color-black
     font-weight: 500
     white-space: nowrap
     &:hover
-      color: $color-white-300
-      background-color: $color-black-300
+      color: $color-gray-light
+      background-color: $color-black
