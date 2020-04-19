@@ -1,0 +1,77 @@
+@import "./../variables"
+
+.menu
+  display: grid
+  grid-template-columns: $menu__temp-col
+  grid-template-rows: 1fr
+
+  position: fixed
+  width: 100%
+  height: $menu__height
+
+
+  color: $menu__color
+  background-color: $menu__bg-color
+  box-shadow: $menu__box-shadow
+  *
+    font-size: $size1
+  svg
+    width: $space3
+    path
+      fill: $color-black-500
+
+
+@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none)
+  .menu
+    -webkit-backdrop-filter: blur(10px)
+    backdrop-filter: blur(10px)
+
+/*
+ *  1.1. LEFT PANEL
+ */
+
+.menu__left
+  grid-column: 1
+  display: flex
+  justify-content: center
+  align-items: center
+  .logo-wiki
+    font: $menu__logo-wiki__font
+  .logo-pedia
+    font: $menu__logo-pedia__font
+
+.menu__main
+  grid-column: 3
+  display: flex
+  .menu__button:nth-child(3)
+    margin-left: auto
+  .menu__button
+    padding: 0 $space1
+  .button--choose
+    color: $color-black
+
+/*
+ *  1.2. RIGHT PANEL
+ */
+
+
+.menu__search-icon
+  grid-column: 5
+  display: flex
+  justify-content: center
+  align-items: center
+
+.menu__right
+  display: grid
+  grid-template-columns: 1fr max-content
+  align-items: center
+  grid-column: 6
+
+.menu__search-input
+  border: none
+  padding-left: $space0
+  &::placeholder
+    font: 400 $size1 system-ui
+    color: $color-black-500
+  &:focus
+    outline: none

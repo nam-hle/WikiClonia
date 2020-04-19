@@ -77,9 +77,6 @@ const CiteParser = plain => {
   return [{ type: "cite", subType, attribute }, null];
 };
 
-// <ref name=manchester2002>''LibreOffice for Starters'', First Edition, Flexible Minds, Manchester, 2002, p. 18</ref>
-// <ref name=manchester2002 />
-
 const ReferenceParser = plain => {
   let refname,
     refgroup,
@@ -503,6 +500,7 @@ const parse = (s, l, i, e) => {
     res = [],
     options = {},
     referenceIndex = 0,
+    images = [],
     headings = [];
 
   l = l === null ? s.length : l;
@@ -548,6 +546,14 @@ const parse = (s, l, i, e) => {
         if (/^Heading/.exec(cur.elementName) !== null) {
           headings.push(cur);
         }
+
+        if (
+          cur.elementName == "Link" &&
+          cur.type == "media" &&
+          cur.supType == "File"
+        ) {
+          images.push(cur);
+        }
         res.push(cur);
         break;
       }
@@ -592,7 +598,11 @@ const parse = (s, l, i, e) => {
 
   headings = headings.length ? analyseHeadings(headings) : null;
 
-  return [i, clean({ elementName, children, headings, ...meta }), plain];
+  return [
+    i,
+    clean({ elementName, children, headings, images, ...meta }),
+    plain
+  ];
 };
 
 const main = s => parse(s, null, 0, Global)[1];

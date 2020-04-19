@@ -112,11 +112,16 @@ export const Element = ({ props, images }) => {
     }
     if (type == "media") {
       if (props && props.url && images && images[props.url]) {
+        // console.log(props);
         let float = props.options.indexOf("left") > -1 ? "fl-left" : "fl-right";
         return (
           <Fragment>
             <div className={`wiki-img__container ${float}`}>
-              <img className="wiki-img__image" src={images[props.url].url} />
+              <img
+                id={props.url}
+                className="wiki-img__image"
+                src={images[props.url].url}
+              />
               <div className="wiki-img__caption">
                 {props.caption.map((e, i) => (
                   <Element key={i} props={e} />

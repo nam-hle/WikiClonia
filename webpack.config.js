@@ -29,16 +29,26 @@ module.exports = (env, argv) => {
           use: ["babel-loader", "eslint-loader"]
         },
         {
-          test: /\.s[ac]ss$/,
+          test: /\.css$/,
+          use: ["style-loader", "css-loader"]
+        },
+        {
+          // Apply rule for .sass, .scss or .css files
+          test: /\.(sa|sc|c)ss$/i,
+
+          // Set loaders to transform files.
+          // Loaders are applying from right to left(!)
+          // The first loader will be applied after others
           use: [
             {
               loader: MiniCssExtractPlugin.loader,
               options: {
-                hmr: process.env.NODE_ENV === "development",
-                reloadAll: false
+                hmr: true,
+                reloadAll: true
               }
             },
             {
+              // This loader resolves url() and @imports inside CSS
               loader: "css-loader",
               options: {
                 importLoaders: 2,
@@ -46,6 +56,10 @@ module.exports = (env, argv) => {
               }
             },
             {
+              loader: "resolve-url-loader"
+            },
+            {
+              // First we transform SASS to standard CSS
               loader: "sass-loader",
               options: {
                 sourceMap: true
@@ -53,6 +67,34 @@ module.exports = (env, argv) => {
             }
           ]
         },
+        // {
+        //   test: /\.s[ac]ss$/,
+        //   use: [
+        //     {
+        //       loader: MiniCssExtractPlugin.loader,
+        //       options: {
+        //         hmr: process.env.NODE_ENV === "development",
+        //         reloadAll: false
+        //       }
+        //     },
+        //     {
+        //       loader: "css-loader",
+        //       options: {
+        //         importLoaders: 2,
+        //         sourceMap: true
+        //       }
+        //     },
+        //     {
+        //       loader: "resolve-url-loader"
+        //     },
+        //     {
+        //       loader: "sass-loader",
+        //       options: {
+        //         sourceMap: true
+        //       }
+        //     }
+        //   ]
+        // },
         {
           test: /\.(woff|woff2|eot|ttf|otf)$/,
           use: ["file-loader"]

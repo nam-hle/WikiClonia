@@ -1,90 +1,5 @@
-$color-black:    #0F0F10
-$color-black-100: #252525               // menu background
-$color-black-200: #4A4956           // heading
-$color-black-300: #585763          // body
-$color-black-400: #6A6A6A
-$color-black-500: #586069
-
-$color-white: #FFFFFF               // bg body
-$color-white-100: #F7F7F7           // bg sidebar
-$color-white-200: #F0F0F0           // horizontal body
-$color-white-300: #EEEEEE           // border sidebar
-$color-white-400: #F1F1F1
-
-$color-blue: #0F2EDB         // a
-$color-blue-100: #3A6EA5            // a hover
-
-$ratio: 1.25
-
-$size0: calc(10rem)
-$size-1: calc(#{$size0} / #{$ratio})
-$size-2: calc(#{$size-1} / #{$ratio})
-$size-3: calc(#{$size-2} / #{$ratio})
-$size-4: calc(#{$size-3} / #{$ratio})
-$size-5: calc(#{$size-4} / #{$ratio})
-$size-6: calc(#{$size-5} / #{$ratio})
-$size-7: calc(#{$size-6} / #{$ratio})
-$size1: calc(#{$size0} * #{$ratio})
-$size2: calc(#{$size1} * #{$ratio})
-$size3: calc(#{$size2} * #{$ratio})
-$size4: calc(#{$size3} * #{$ratio})
-$size5: calc(#{$size4} * #{$ratio})
-$size6: calc(#{$size5} * #{$ratio})
-$size7: calc(#{$size6} * #{$ratio})
-
-
-$space0: 8rem
-$space-1: calc(#{$space0} / #{$ratio})
-$space-2: calc(#{$space-1} / #{$ratio})
-$space-3: calc(#{$space-2} / #{$ratio})
-$space-4: calc(#{$space-3} / #{$ratio})
-$space-5: calc(#{$space-4} / #{$ratio})
-$space-6: calc(#{$space-5} / #{$ratio})
-$space-7: calc(#{$space-6} / #{$ratio})
-$space1: calc(#{$space0} * #{$ratio})
-$space2: calc(#{$space1} * #{$ratio})
-$space3: calc(#{$space2} * #{$ratio})
-$space4: calc(#{$space3} * #{$ratio})
-$space5: calc(#{$space4} * #{$ratio})
-$space6: calc(#{$space5} * #{$ratio})
-$space7: calc(#{$space6} * #{$ratio})
-$space8: calc(#{$space7} * #{$ratio})
-$space9: calc(#{$space8} * #{$ratio})
-$space10: calc(#{$space9} * #{$ratio})
-$space11: calc(#{$space10} * #{$ratio})
-$space12: calc(#{$space11} * #{$ratio})
-
-$ratio-heading: 1.2
-$size-heading0: 40rem
-$size-heading1: calc(#{$size-heading0} / #{$ratio})
-$size-heading2: calc(#{$size-heading1} / #{$ratio})
-$size-heading3: calc(#{$size-heading2} / #{$ratio})
-$size-heading4: calc(#{$size-heading3} / #{$ratio})
-$size-heading5: calc(#{$size-heading4} / #{$ratio})
-$size-heading6: calc(#{$size-heading5} / #{$ratio})
-$size-heading7: calc(#{$size-heading6} / #{$ratio})
-
-
-
-@font-face
-  font-family: "Heading"
-  src: url("./../../asset/fonts/Lato/Lato-Bold.ttf")
-
-@font-face
-  font-family: "Body"
-  src: url("./../../asset/fonts/Lato/Lato-Light.ttf")
-
-@font-face
-  font-family: "Title"
-  src: url("./../../asset/fonts/Libre_Baskerville/LibreBaskerville-Bold.ttf")
-
-@font-face
-  font-family: "Credit"
-  src: url("./../../asset/fonts/Libre_Baskerville/LibreBaskerville-Regular.ttf")
-
-@font-face
-  font-family: "Logo Pedia"
-  src: url("./../../asset/fonts/Merriweather/Merriweather-Light.ttf")
+@import "./_typography.css"
+@import "./_variables.sass"
 
 html
   font-size: 1px
@@ -93,23 +8,12 @@ html
 body
   margin: 0
   width: 100%
-  color: $color-black
-  // background-color: $color-white
-  font-family: "Body", -apple-system, BlinkMacSystemFont
-  font-size: $size2
-  line-height: 1.7
-  font-weight: normal
-
-h2
-  clear: both
-  margin: $space5 0
-  color: $color-black
-  font-family:  Georgia, serif
-  font-weight: 500
-  font-size: $size3
+  color: $body__color
+  font: $body__font
+  word-wrap: break-word
 
 sup
-  font-size: $size-1
+  font-size: $sup__font-size
   a
     text-decoration: none
     border: none
@@ -122,148 +26,17 @@ li
 
 
 /*
- *  1. MENU
- */
-
-.menu
-  display: grid
-  grid-template-columns: 69% 31%
-  position: fixed
-  width: 100%
-  height: 50rem
-  background-color: rgba(255, 255, 255, 0.3)
-  box-shadow: 0px 2px 5px 0px #BBBEC2
-
-@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none)
-  .menu,
-    -webkit-backdrop-filter: blur(10px)
-    backdrop-filter: blur(5px)
-
-/*
- *  1.1. LEFT PANEL
- */
-
-.menu__left-panel
-  display: grid
-  grid-template-columns: 9fr 2fr 55fr 5fr
-  grid-template-rows: 1fr
-  .logo
-    grid-column: 1 / span 1
-    display: flex
-    justify-content: center
-    align-items: center
-    font-size: $size3
-    &-wiki
-      font-family: "Heading", -apple-system
-      font-weight: 700
-    &-pedia
-      font-family: "Logo Pedia", "Georgia", "Times New Roman"
-      font-weight: 300
-
-.menu__button-wrapper
-  grid-column: 3
-  display: grid
-  grid-template-columns: repeat(2, max-content) auto repeat(3, max-content)
-  color: $color-black-500
-  .menu__button
-    padding: 0 $space1
-    font-size: $size1
-  .button--choose
-    color: $color-black-100
-
-/*
- *  1.2. RIGHT PANEL
- */
-
-.menu__right-panel
-  display: grid
-  grid-template-columns: 2fr 27fr 2fr
-  .menu__search-icon
-    display: flex
-    justify-content: center
-    align-items: center
-  .menu__search-input
-    background-color: rgba(255, 255, 255, 0)
-    border: none
-    padding-left: $space0
-    &::placeholder
-      font: 400 $size1 system-ui
-      color: #586069
-    &:focus
-      outline: none
-
-.menu__input-wrapper
-  display: grid
-  grid-template-columns: auto repeat(2, min-content)
-  .menu__profile-icon, .menu__menu-icon
-    display: flex
-    justify-content: center
-    align-items: center
-    padding: 0 $space0
-
-/*
- *  2. NAVIGATION
- */
-
-.navigation
-  display: grid
-  grid-template-columns: 9% 2% 53% 5% 2% 27% 2%
-  position: fixed
-  bottom: 0
-  width: 100%
-  height: 40rem
-  background-color: rgba(255, 255, 255, 0.7)
-  box-shadow: 0px -1px 1px 0px #F1F1F1
-  *
-    color: $color-black-100
-  &__content
-    grid-column: 3 / span 1
-    display: grid
-    grid-template-columns: min-content auto min-content
-  &__left-button
-    left: 0
-  &__right-button
-    right: 12px
-  &__btn-img
-    width: $space4
-  svg
-    width: $space4
-
-  &__headings
-    display: flex
-    justify-content: flex-start
-    align-items: center
-    padding: 0 $space1
-    overflow: hidden
-    a
-      display: inline-block
-      padding: $space-3 $space-1
-      margin-left: $space3
-      border-radius: $space0
-      font: $size1 system-ui
-      color: $color-black-500
-      font-weight: 500
-      white-space: nowrap
-      &:hover
-        color: $color-white-300
-        background-color: $color-black-300
-
-@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none)
-  .navigation
-    -webkit-backdrop-filter: blur(10px)
-    backdrop-filter: blur(5px)
-
-
-/*
  *  3. ARTICLE
  */
 
 .article
   display: grid
-  grid-template-columns: 9% 2% 53% 5% 2% 27% 2%
+  grid-template-columns: 9% 2% 56% 5% 2% 24% 2%
+
   width: 100%
   margin: 0
   padding-top: 50rem
+
   background-color: white
 
 
@@ -274,8 +47,7 @@ li
   * + *
     margin-bottom: 0.7em
   a
-    color: $color-black
-    border-bottom: 1px dashed #EBEBEC
+    color: #d23669
     &:hover
       color: $color-blue
       border: none
@@ -295,26 +67,33 @@ li
     font-weight: 500
 
 .sidebar
-  grid-column: 5 / span 3
+  grid-column: 6
+  grid-row: 1
   font-size: $size1
   background-color: $color-white-400
   padding: $space3 $space3
 
-  * + *
-    margin-top: 0.7em
-  &__title
-    display: table
-    margin: $space2 auto $space5
-    border-bottom: 1px solid $color-black-400
-    letter-spacing: 1.2
-    font-weight: 600
+  position: relative
 
-  .heading-primary
-    font-weight: 600
-    color: #3F454B
-  .heading-secondary
-    font-weight: 500
-    color: #7C8186
+  > *
+    position: absolute
+
+
+  // * + *
+  //   margin-top: 0.7em
+  // &__title
+  //   display: table
+  //   margin: $space2 auto $space5
+  //   border-bottom: 1px solid $color-black-400
+  //   letter-spacing: 1.2
+  //   font-weight: 600
+
+  // .heading-primary
+  //   font-weight: 600
+  //   color: #3F454B
+  // .heading-secondary
+  //   font-weight: 500
+  //   color: #7C8186
 
 
 /********************************
@@ -325,7 +104,7 @@ li
   font-style: italic
 
 .wiki-bold
-  font-weight: bold
+  font-family: "Heading", -apple-system
 
 .wiki-ref
   list-style-type: none
@@ -336,7 +115,7 @@ li
   font-family: "Heading", -apple-system
 
 .wiki-heading-1
-  border-top: 1px solid #B5B5B5
+  border-top: 1px solid rgba(0, 0, 0, 0.2)
   padding-top: 0.6em
   margin-top: 1em
   font-size: $size-heading1
@@ -364,23 +143,27 @@ li
     display: flex
     flex-direction: column
     align-items: center
-    max-width: 240px
-    margin: 0 $space3 $space3
-    padding: $space-2
+    justify-content: center
+
+    max-width: 20vw
     border: 1px solid $color-white-300
+    padding: $space-2
+
+    background-color: $color-white-100
     clear: both
+
   &__image
-    max-width: 220px
+    max-width: 100%
   &__caption
-    padding: $space0
-    padding-bottom: 0
+    margin-top: $space1
     font-size: $size0
 
 .fl-left
   float: left
-  margin-left: calc(#{$space3} * -1)
+  margin: $space2
+
 
 .fl-right
   float: right
-  margin-right: calc(#{$space3} * -1)
+  margin: $space2
   right: 50%

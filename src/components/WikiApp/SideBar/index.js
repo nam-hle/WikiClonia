@@ -1,60 +1,86 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
+import { Element } from "./../Elements";
 
-const Heading = ({ heading }) => {
-  return (
-    <Fragment>
-      <li style={{ paddingLeft: `${heading.level * 16}rem` }}>
-        <a
-          href={"#" + heading.id}
-          className={
-            "heading-" + (heading.level == 1 ? "primary" : "secondary")
-          }
-        >
-          {heading.indices.join(".") + ". " + heading.text}
-        </a>
-      </li>
-      {heading.childrenHeadings && (
-        <ul>
-          {heading.childrenHeadings.map((child, index) => (
-            <Heading key={index} heading={child} />
-          ))}
-        </ul>
-      )}
-    </Fragment>
-  );
-};
+const Sidebar = ({ content, images }) => {
+  // let [positions, setPositions] = useState([]);
 
-const Sidebar = ({ headings }) => {
+  // if (content && images) {
+  //   for (const img of content) {
+  //     let e = document.getElementById(img.url);
+  //     if (e) {
+  //       let body = document.body;
+  //       // let offset =
+  //       //   e.getBoundingClientRect().top - body.getBoundingClientRect().top;
+  //       console.log(
+  //         e.offsetTop,
+  //         e.getBoundingClientRect(),
+  //         body.getBoundingClientRect().top,
+  //         window.pageYOffset
+  //       );
+  //     }
+  //     // if (e) {
+  //     // img.pos = e.offsetTop;
+  //     // console.log(img.url, e.attributes);
+  //     // }
+  //   }
+  // }
+  useEffect(() => {
+    console.log(content, images);
+    if (content) {
+      for (const img of document.getElementsByClassName(
+        "wiki-img__container"
+      )) {
+        console.log(img.offsetTop);
+      }
+    }
+  }, [content]);
+
+  // useEffect(() => {
+  //   console.log("@");
+  //   if (content && images) {
+  //     for (const img of content) {
+  //       let e = document.getElementById(img.url);
+  //       if (e) {
+  //         let body = document.body;
+  //         // let offset =
+  //         //   e.getBoundingClientRect().top - body.getBoundingClientRect().top;
+  //         console.log(
+  //           e.getBoundingClientRect(),
+  //           body.getBoundingClientRect().top,
+  //           window.pageYOffset
+  //         );
+  //       }
+  //       // if (e) {
+  //       // img.pos = e.offsetTop;
+  //       // console.log(img.url, e.attributes);
+  //       // }
+  //     }
+  //   }
+  // }, []);
+
   return (
     <div className="sidebar">
-      <div className="sidebar__title">TABLE OF CONTENT</div>
-      <ul>
-        {headings &&
-          headings.childrenHeadings.map((child, index) => {
-            return <Heading key={index} heading={child} />;
+      <Fragment>
+        {content &&
+          images &&
+          content.map((img, index) => {
+            return (
+              img.url &&
+              images[img.url] && (
+                <div key={index} className={"wiki-img__container"}>
+                  <img className="wiki-img__image" src={images[img.url].url} />
+                  <div className="wiki-img__caption">
+                    {img.caption.map((e, i) => (
+                      <Element key={i} props={e} />
+                    ))}
+                  </div>
+                </div>
+              )
+            );
           })}
-      </ul>
+      </Fragment>
     </div>
   );
 };
 
 export default Sidebar;
-
-// {headings &&
-//   Object.keys(headings).map((h1, i) => {
-//     let h2s = headings[h1];
-//     return (
-//       <Fragment key={i}>
-//         <div className="sidebar__item" key={h1}>
-//           <div className="sidebar__h1">{`${i + 1}. ` + h1}</div>
-//           <div className="sidebar__h2s">
-//             {h2s.map((h2, j) => (
-//               <div className="sidebar__h2" key={h2}>
-//                 {`${i + 1}.${j + 1}. ` + h2}
-//               </div>
-//             ))}
-//           </div>
-//         </div>
-//       </Fragment>
-//     );
-//   })}

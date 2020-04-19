@@ -10,11 +10,10 @@ const Article = () => {
   const [images, setImages] = useState({});
   const [references, setReferences] = useState([]);
   const [parsed, setParsed] = useState({});
-
+  const title = "New_York_City";
   // get main content
   useEffect(() => {
-    var url =
-      "https://en.wikipedia.org/w/api.php?action=parse&page=New_York_City&format=json&prop=wikitext&origin=*";
+    var url = `https://en.wikipedia.org/w/api.php?action=parse&page=${title}&format=json&prop=wikitext&origin=*`;
     fetch(url)
       .then(function(response) {
         return response.json();
@@ -46,8 +45,7 @@ const Article = () => {
 
   // get images
   useEffect(() => {
-    var url =
-      "https://en.wikipedia.org/w/api.php?action=query&titles=New_York_City&generator=images&gimlimit=500&prop=imageinfo&iiprop=url|dimensions|mime&format=json&origin=*";
+    var url = `https://en.wikipedia.org/w/api.php?action=query&titles=${title}&generator=images&gimlimit=500&prop=imageinfo&iiprop=url|dimensions|mime&format=json&origin=*`;
     fetch(url)
       .then(function(response) {
         return response.json();
@@ -69,6 +67,7 @@ const Article = () => {
     <Fragment>
       <Menu />
       <div className="article">
+        {/*<Sidebar content={parsed.images} images={images} />*/}
         <div className="hero">
           <div className="hero__title">The Last Supper</div>
           <div className="hero__credit">

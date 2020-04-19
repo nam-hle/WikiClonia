@@ -1,0 +1,24 @@
+@font-face {
+  font-family: "Heading";
+  src: url("./../../asset/fonts/Lato/Lato-Bold.ttf");
+}
+
+@font-face {
+  font-family: "Body";
+  src: url("./../../asset/fonts/Merriweather/Merriweather-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Title";
+  src: url("./../../asset/fonts/Libre_Baskerville/LibreBaskerville-Bold.ttf");
+}
+
+@font-face {
+  font-family: "Credit";
+  src: url("./../../asset/fonts/Libre_Baskerville/LibreBaskerville-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Logo Pedia";
+  src: url("./../../asset/fonts/Merriweather/Merriweather-Light.ttf");
+}
