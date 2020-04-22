@@ -18,7 +18,7 @@ const wikiLink = (url, displayText = url) => ({
   elementName: "Link",
   type: "wikiLink",
   url,
-  displayText
+  displayText: [{ elementName: "Text", text: displayText }]
 });
 
 const file = (url, caption = [], options = []) => ({
@@ -149,7 +149,7 @@ let refTests = [
       {
         elementName: "Reference",
         referenceIndex: 1,
-        type: "noname",
+        type: "firstuse",
         children: [text("ABC")]
       }
     ]
@@ -161,7 +161,7 @@ let refTests = [
       {
         elementName: "Reference",
         referenceIndex: 1,
-        type: "noname",
+        type: "firstuse",
         children: [italic([text("ABC")])]
       }
     ]
@@ -173,7 +173,7 @@ let refTests = [
       {
         elementName: "Reference",
         referenceIndex: 1,
-        type: "named",
+        type: "firstuse",
         refname: "ABC002",
         children: [text("ABC")]
       }
@@ -186,7 +186,7 @@ let refTests = [
       {
         elementName: "Reference",
         referenceIndex: 1,
-        type: "named",
+        type: "firstuse",
         refname: "ABC 002",
         children: [text("ABC")]
       }
@@ -253,12 +253,6 @@ let refTests = [
     ]
   ]
 ];
-
-// let footnoteRef = [
-//   ["bacsic",
-
-//   ]
-// ]
 
 for (const t of wikiLinkTests) {
   simpleTest(...t);

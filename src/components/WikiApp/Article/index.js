@@ -6,6 +6,8 @@ import Content from "./../Content";
 import Menu from "./../Menu";
 import Navigation from "./../Navigation";
 
+export const ImagesContext = React.createContext(null);
+
 const Article = () => {
   const [images, setImages] = useState({});
   const [references, setReferences] = useState([]);
@@ -23,7 +25,9 @@ const Article = () => {
         let startIndex = rawText.indexOf("'''New York City'''");
 
         let cutoffText = rawText.slice(startIndex);
-        setParsed(main(cutoffText));
+        let result = main(cutoffText);
+        // console.log(result.images);
+        setParsed(result);
       })
       .catch(function(error) {
         console.log(error);
@@ -56,6 +60,7 @@ const Article = () => {
         for (const key in imgs) {
           res[imgs[key].title] = imgs[key].imageinfo[0];
         }
+        console.log(res);
         setImages(res);
       })
       .catch(function(error) {
@@ -64,21 +69,23 @@ const Article = () => {
   }, []);
 
   return (
-    <Fragment>
-      <Menu />
-      <div className="article">
-        {/*<Sidebar content={parsed.images} images={images} />*/}
-        <div className="hero">
-          <div className="hero__title">The Last Supper</div>
-          <div className="hero__credit">
-            From Wikipedia, the free encyclopedia
+    <ImagesContext.Provider value={{ images }}>
+      <Fragment>
+        <Menu />
+        <div className="article">
+          {/*<Sidebar content={parsed.images} images={images} />*/}
+          <div className="hero">
+            <div className="hero__title">The Last Supper</div>
+            <div className="hero__credit">
+              From Wikipedia, the free encyclopedia
+            </div>
+            <Content content={parsed.children} />
+            <Reference {...{ references }} />
           </div>
-          <Content content={parsed.children} images={images} />
-          <Reference {...{ references }} />
         </div>
-      </div>
-      <Navigation headings={parsed.headings} />
-    </Fragment>
+        <Navigation headings={parsed.headings} />
+      </Fragment>
+    </ImagesContext.Provider>
   );
 };
 

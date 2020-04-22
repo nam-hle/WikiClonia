@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from "react";
-// import { trimAll } from "./../../../wiki_parser";
+import { ImagesContext } from "./../Article";
 
 export const Text = ({ text }) => {
   let [splitText, setSplitText] = useState("");
@@ -18,6 +18,7 @@ export const Text = ({ text }) => {
 };
 
 export const Template = ({ props }) => {
+  // console.log(props);
   if (Array.isArray(props.children)) {
     return (
       <Fragment>
@@ -27,7 +28,22 @@ export const Template = ({ props }) => {
       </Fragment>
     );
   }
+
   let { attribute } = props;
+
+  if (props.type == "multipleImages") {
+    if (props.images) {
+      console.log(props.images.map(e => e.url));
+    }
+    return (
+      <div className="wiki-gallery">
+        {props.images &&
+          props.images.map((e, i) => {
+            return <Element key={i} props={e} />;
+          })}
+      </div>
+    );
+  }
 
   return (
     <Fragment>
@@ -45,7 +61,7 @@ export const Template = ({ props }) => {
   );
 };
 
-export const Element = ({ props, images }) => {
+export const Element = ({ props }) => {
   let { elementName, children } = props;
 
   if (elementName == "ExternalLink") {
@@ -97,40 +113,53 @@ export const Element = ({ props, images }) => {
     );
   }
 
-  // if (elementName == "Heading2") {
-  //   return <h3>{renderChildren}</h3>;
-  // }
+  if (elementName == "Gallery") {
+    return (
+      <div className="wiki-gallery">
+        {props.images.map((e, i) => {
+          return <Element key={i} props={e} />;
+        })}
+      </div>
+    );
+  }
 
   if (elementName == "Link") {
     let type = props.type;
     if (type == "wikiLink") {
       return (
         <a href={"https://en.wikipedia.org/wiki/" + props.url}>
-          {props.displayText}
+          {props.displayText.map((e, i) => {
+            return <Element key={i} props={e} />;
+          })}
         </a>
       );
     }
     if (type == "media") {
-      if (props && props.url && images && images[props.url]) {
-        // console.log(props);
-        let float = props.options.indexOf("left") > -1 ? "fl-left" : "fl-right";
+      const valueImages = React.useContext(ImagesContext);
+
+      if (props && props.url && valueImages && valueImages.images[props.url]) {
+        let float =
+          props.options && props.options.indexOf("left") > -1
+            ? "fl-left"
+            : "fl-right";
         return (
           <Fragment>
             <div className={`wiki-img__container ${float}`}>
               <img
                 id={props.url}
                 className="wiki-img__image"
-                src={images[props.url].url}
+                src={valueImages.images[props.url].url}
               />
               <div className="wiki-img__caption">
-                {props.caption.map((e, i) => (
-                  <Element key={i} props={e} />
-                ))}
+                {props.caption
+                  ? props.caption.map((e, i) => <Element key={i} props={e} />)
+                  : ""}
               </div>
             </div>
           </Fragment>
         );
       }
+      console.log("Not found ", props.url);
     }
   } else if (elementName == "Reference") {
     if (

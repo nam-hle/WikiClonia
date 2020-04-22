@@ -146,7 +146,7 @@ li
     border: 1px solid $color-gray-dark
     padding: $space-2
 
-    background-color: $color-gray-dark
+    // background-color: $color-gray-dark
     clear: both
 
   &__image
@@ -164,3 +164,16 @@ li
   float: right
   margin: $space2
   right: 50%
+
+
+.wiki-gallery
+  display: flex
+  flex-flow: row wrap
+  > .wiki-img__container
+    margin: 0
+    float: none
+    flex: 1 0 25%
+    max-width: initial
+    min-width: 20%
+    border: none
+
