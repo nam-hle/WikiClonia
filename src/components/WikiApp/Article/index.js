@@ -5,7 +5,7 @@ import Reference from "./../Reference";
 import Content from "./../Content";
 import Menu from "./../Menu";
 import Navigation from "./../Navigation";
-
+import "lazysizes";
 export const ImagesContext = React.createContext(null);
 
 const Article = () => {

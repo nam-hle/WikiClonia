@@ -1,3 +1,13 @@
+import convert from "convert-units";
+// var convert = require("convert-units");
+const UNITS = convert().list();
+console.log(UNITS);
+const ABBR_UNITS = convert()
+  .list()
+  .map(unit => unit.abbr);
+
+console.log(ABBR_UNITS.indexOf("mi"));
+
 const taste = (s, t, i) => s[i] == t[0] && s.substr(i, t.length) == t;
 
 const capitalizeFirst = string =>
@@ -44,12 +54,78 @@ const CiteParser = plain => {
   return { type: "cite", subType, attribute };
 };
 
-const ConvertParser = () => {
-  // let arr = plain.split`|`;
-  // let number = +arr[1],
-  //   fromUnit = arr[2],
-  //   toUnit = arr[3];
-  // console.log({ plain, number, fromUnit, toUnit });
+const ConvertParser = plain => {
+  const toMetric = fromUnit => {
+    let res = null;
+    try {
+      for (const toUnit of convert()
+        .from(fromUnit)
+        .possibilities()) {
+        let fromSystem = convert().describe(toUnit).system;
+        if ("metric" == fromSystem) res = toUnit;
+      }
+    } catch {
+      return null;
+    }
+    return res;
+  };
+
+  const toAbbr = str => {
+    if (/^°?[CF]$/.test(str)) return str;
+    let lower = str.toLowerCase();
+    for (const unit of UNITS) {
+      if (
+        unit.abbr.toLowerCase() == lower ||
+        unit.singular.toLowerCase() == lower ||
+        unit.plural.toLowerCase() == lower
+      )
+        return unit.abbr;
+    }
+    return null;
+  };
+
+  let tokens = plain.slice(2, -2).split`|`,
+    numbers = null,
+    fromUnit,
+    toUnit = null,
+    answer = null;
+
+  tokens.shift();
+  if (/^\-?\d+(\.\d*)?$/g.test(tokens[0])) numbers = tokens.shift();
+
+  fromUnit = toAbbr(tokens.shift());
+
+  if (/^°?C$/.test(fromUnit)) {
+    fromUnit = "°C";
+    toUnit = "°F";
+    answer = +numbers / (5 / 9) + 32;
+  } else if (/^°?F$/.test(fromUnit)) {
+    fromUnit = "°F";
+    toUnit = "°C";
+    answer = (+numbers - 32) * (5 / 9);
+  } else {
+    if (tokens.length && ABBR_UNITS.indexOf(tokens[0]) != -1) {
+      toUnit = tokens.shift();
+    }
+
+    if (!toUnit) toUnit = toMetric(fromUnit);
+    if (numbers && toUnit && fromUnit) {
+      answer = convert(+numbers)
+        .from(fromUnit)
+        .to(toUnit);
+    }
+  }
+
+  answer = answer ? answer.toFixed(2) : null;
+  if (fromUnit && toUnit && answer !== null) {
+    return {
+      elementName: "Text",
+      text: `${numbers} ${fromUnit} (${answer} ${toUnit})`
+    };
+  }
+
+  console.warn("Pares Error: ", { plain, numbers, fromUnit, toUnit, answer });
+  return { elementName: "Text", text: plain };
 };
 
 const ReferenceParser = plain => {
@@ -159,7 +235,7 @@ const GalleryParser = plain => {
 
 const MultipleImageParser = plain => {
   const R_MULTIPLE_IMAGES = /^\{\{multiple image\s*\|(?<remain>[\s\S]+)}}$/gi;
-  // console.log("PLAIN ", plain);
+
   let match = R_MULTIPLE_IMAGES.exec(plain),
     key,
     value,
@@ -177,7 +253,7 @@ const MultipleImageParser = plain => {
     if ((match = R_PAIR.exec(remain)) === null) break;
     ({ key, value, remain } = match.groups);
     value = value.trim();
-    // console.log({ key, value });
+
     if ((match = R_KEY_IMAGE.exec(key)) === null) {
       attributes[key] = value;
     } else {
@@ -249,7 +325,7 @@ const internalParse = (element, content, plain) => {
         text: "[" + text + "]"
       };
     } else if (/^{{convert/gi.test(plain)) {
-      ConvertParser(plain);
+      return ConvertParser(plain);
     } else if (/^{{multiple image/gi.test(plain)) {
       return MultipleImageParser(plain);
     }
@@ -674,21 +750,7 @@ const main = str => parse(str, null, 0, Global)[1];
 
 export { main, clean, trimQuote };
 
-// console.log(
-//   JSON.stringify(
-//     main(
-//       `{{multiple image|align = right|perrow = 2|total_width=370
-// | image1 = Empire State Building (HDR).jpg|width1=550|height1=600
-// | image2 = Chrysler Building spire, Manhattan, by Carol Highsmith (LOC highsm.04444).jpg |width2=550|height2=600
-// | image3 = Greenpoint Houses.JPG |width3=550|height3=400
-// | image4 = Antiguo vs Moderno (4432379954).jpg |width4=550|height4=400
-// | footer = Clockwise, from upper left: The [[Empire State Building]] is a solitary icon of New York, defined by its [[setback (architecture)|setbacks]], Art Deco details, and spire as the [[List of tallest buildings and structures|world's tallest building]] from 1931 to 1970; the [[Chrysler Building]], built in 1930, is also a Manhattan icon in the [[Art Deco]] style, with ornamental [[hubcap]]s and its spire; [[Modern architecture|Modernist architecture]] juxtaposed with [[Gothic Revival architecture]] in [[Midtown Manhattan]]; and landmark 19th-century [[rowhouse]]s, including [[brownstone]]s, on tree-lined Kent Street in the [[Greenpoint, Brooklyn|Greenpoint Historic District]], Brooklyn.
-// }}`
-//     ),
-//     null,
-//     2
-//   )
-// );
+// console.log(JSON.stringify(main(`{{convert|2|km|mi}}`), null, 2));
 
 // let s = `{{multiple image |header = Religious affiliations in New York City | align = center | direction = horizontal | image1 = StPatCathExt1.jpg | width1 = 103 | caption1 = The [[New York City Landmarks|landmark]] [[Gothic revival architecture|Neo-Gothic]] Roman Catholic [[St. Patrick's Cathedral (Manhattan)|St. Patrick's Cathedral]], Midtown Manhattan | alt1 = | image2 = Jueus ultraortodoxes satmar a brooklyn.jpg | width2 = 200 | caption2 = [[Haredi Jews|Ultra-Orthodox]] [[Jews in New York City|Jewish]] residents in Brooklyn. Brooklyn has the largest Jewish community in the United States, with approximately 600,000 individuals.<ref name=BrooklynJewish/> | alt2 = | image3 = Islamic Cultural Center E96 jeh.JPG | width3 = 131 | caption3 = The [[Islamic Cultural Center of New York]] in [[Upper Manhattan]], the first mosque built in New York City. | alt3 = | image4 = Exterior Hindu Temple.JPG | width4 = 100 | caption4 = [[Hindu Temple Society of North America|Ganesh Temple]] in [[Flushing, Queens]], the oldest [[Hindu temple]] in the U.S. | alt4 = | image5 = Buddhist Temple, Chinatown.jpg | width5 = 112 | caption5 = [[New York Mahayana Temple|Mahayana Buddhist Temple]] in [[Chinatown, Manhattan]] | alt5 = | image6 = Times Square after dark atheist.jpg | width6 = 200 | caption6 = A significant proportion of New Yorkers hold [[American Atheists|atheistic]] views, promoted on this [[digital billboard|electronic billboard]] in [[Times Square]]. | alt6 = }}`;
 

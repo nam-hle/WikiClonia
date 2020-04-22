@@ -1,5 +1,6 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { ImagesContext } from "./../Article";
+// import lazySizes from "lazysizes";
 
 export const Text = ({ text }) => {
   let [splitText, setSplitText] = useState("");
@@ -18,7 +19,6 @@ export const Text = ({ text }) => {
 };
 
 export const Template = ({ props }) => {
-  // console.log(props);
   if (Array.isArray(props.children)) {
     return (
       <Fragment>
@@ -32,9 +32,6 @@ export const Template = ({ props }) => {
   let { attribute } = props;
 
   if (props.type == "multipleImages") {
-    if (props.images) {
-      console.log(props.images.map(e => e.url));
-    }
     return (
       <div className="wiki-gallery">
         {props.images &&
@@ -147,8 +144,8 @@ export const Element = ({ props }) => {
             <div className={`wiki-img__container ${float}`}>
               <img
                 id={props.url}
-                className="wiki-img__image"
-                src={valueImages.images[props.url].url}
+                className="lazyload wiki-img__image"
+                data-src={valueImages.images[props.url].url}
               />
               <div className="wiki-img__caption">
                 {props.caption
@@ -159,7 +156,6 @@ export const Element = ({ props }) => {
           </Fragment>
         );
       }
-      console.log("Not found ", props.url);
     }
   } else if (elementName == "Reference") {
     if (
