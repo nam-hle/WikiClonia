@@ -4,15 +4,15 @@ import ProfileIcon from "./../../../asset/images/profile.svg";
 import "./style.sass";
 
 const Menu = () => {
-  const [position, setPosition] = React.useState(document.body.scrollTop);
+  // const [position, setPosition] = React.useState(document.body.scrollTop);
 
-  React.useEffect(() => {
-    function handleClickOutside() {
-      setPosition(document.body.scrollTop);
-    }
-    window.addEventListener("scroll", handleClickOutside);
-    return () => window.removeEventListener("scroll", handleClickOutside);
-  }, []);
+  // React.useEffect(() => {
+  //   function handleClickOutside() {
+  //     setPosition(document.body.scrollTop);
+  //   }
+  //   window.addEventListener("scroll", handleClickOutside);
+  //   return () => window.removeEventListener("scroll", handleClickOutside);
+  // }, []);
 
   return (
     <div className="menu">
@@ -25,9 +25,10 @@ const Menu = () => {
         <button className="menu__button">Talk</button>
         <button className="menu__button button--choose">Read</button>
         <button className="menu__button">View source</button>
-        <button className="menu__button" id="position">
+        <button className="menu__button">View history</button>
+        {/*<button className="menu__button" id="position">
           {position}
-        </button>
+        </button>*/}
       </div>
       <div className="menu__search-icon">
         <SearchIcon />

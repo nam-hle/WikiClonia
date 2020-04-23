@@ -1,12 +1,10 @@
 import convert from "convert-units";
+//
 // var convert = require("convert-units");
 const UNITS = convert().list();
-console.log(UNITS);
 const ABBR_UNITS = convert()
   .list()
   .map(unit => unit.abbr);
-
-console.log(ABBR_UNITS.indexOf("mi"));
 
 const taste = (s, t, i) => s[i] == t[0] && s.substr(i, t.length) == t;
 
@@ -81,7 +79,7 @@ const ConvertParser = plain => {
       )
         return unit.abbr;
     }
-    return null;
+    return str;
   };
 
   let tokens = plain.slice(2, -2).split`|`,
@@ -91,7 +89,8 @@ const ConvertParser = plain => {
     answer = null;
 
   tokens.shift();
-  if (/^\-?\d+(\.\d*)?$/g.test(tokens[0])) numbers = tokens.shift();
+
+  numbers = tokens.shift();
 
   fromUnit = toAbbr(tokens.shift());
 
@@ -110,9 +109,16 @@ const ConvertParser = plain => {
 
     if (!toUnit) toUnit = toMetric(fromUnit);
     if (numbers && toUnit && fromUnit) {
-      answer = convert(+numbers)
-        .from(fromUnit)
-        .to(toUnit);
+      try {
+        answer = convert(+numbers)
+          .from(fromUnit)
+          .to(toUnit);
+      } catch {
+        return {
+          elementName: "Text",
+          text: `${numbers} ${fromUnit}`
+        };
+      }
     }
   }
 
@@ -124,8 +130,10 @@ const ConvertParser = plain => {
     };
   }
 
-  console.warn("Pares Error: ", { plain, numbers, fromUnit, toUnit, answer });
-  return { elementName: "Text", text: plain };
+  return {
+    elementName: "Text",
+    text: `${numbers} ${fromUnit}`
+  };
 };
 
 const ReferenceParser = plain => {
@@ -233,12 +241,38 @@ const GalleryParser = plain => {
   return { attributes, images };
 };
 
+const parsePairPipe = plain => {
+  let res = {},
+    remain = plain,
+    key,
+    nextIndex,
+    parsedPlain,
+    match;
+
+  const R_KEY = /^[\|\s]*(?<key>\w+)\s*=(?<remain>[\s\S]*)$/;
+
+  while (remain) {
+    if ((match = R_KEY.exec(remain)) === null)
+      throw "PairPipe Syntax Error " + remain;
+    ({ key, remain } = match.groups);
+
+    [nextIndex, , parsedPlain] = parse(remain, null, 0, PairPipe);
+    remain = remain.substr(nextIndex);
+
+    let value = parsedPlain;
+    match = /^\s*(?<value>[\s\S]+?)[\|\s]*$/.exec(value);
+    if (match === null) throw `Infobox Syntax Error ${value}`;
+    value = match.groups.value;
+    res[key] = value == "|" ? "" : value;
+  }
+
+  return res;
+};
+
 const MultipleImageParser = plain => {
   const R_MULTIPLE_IMAGES = /^\{\{multiple image\s*\|(?<remain>[\s\S]+)}}$/gi;
 
   let match = R_MULTIPLE_IMAGES.exec(plain),
-    key,
-    value,
     attributes = {},
     images = [];
 
@@ -246,42 +280,68 @@ const MultipleImageParser = plain => {
 
   let { remain } = match.groups;
 
-  let R_PAIR = /^(?<key>\w+)\s*=\s*(?<value>[\s\S]*?)(?=\|\s*\w+\s*=|$)(\|\s*)?(?<remain>[\s\S]*)/i;
   let R_KEY_IMAGE = /^\s*(?<imageKey>[a-z\-\_]+)(?<imageID>\d+)\s*$/i;
 
-  while (remain) {
-    if ((match = R_PAIR.exec(remain)) === null) break;
-    ({ key, value, remain } = match.groups);
-    value = value.trim();
+  let pairs = parsePairPipe(remain);
 
+  for (const key of Object.keys(pairs)) {
+    const value = pairs[key];
     if ((match = R_KEY_IMAGE.exec(key)) === null) {
       attributes[key] = value;
-    } else {
-      let { imageKey, imageID } = match.groups;
-      imageID = +imageID - 1;
-
-      if (images[imageID] === undefined) images.push({});
-      if ("image" == imageKey) {
-        images[imageID].url = "File:" + value.trim();
-      } else if ("caption" == imageKey) {
-        images[imageID].caption = main(value).children;
-      } else images[imageID][imageKey] = value;
+      continue;
     }
+
+    let { imageKey, imageID } = match.groups;
+    imageID = +imageID - 1;
+    if (images[imageID] === undefined) images.push({});
+    if ("image" == imageKey) {
+      images[imageID].url = "File:" + value.trim();
+    } else if ("caption" == imageKey) {
+      images[imageID].caption = main(value).children;
+    } else images[imageID][imageKey] = value;
   }
 
-  images = images.map(image => {
-    let res = {
-      elementName: "Link",
-      type: "media",
-      supType: "File",
-      url: image.url,
-      options: [],
-      caption: image.caption || [{ elementName: "Text", text: "" }]
-    };
-    return res;
-  });
+  images = images.map(image => ({
+    elementName: "Link",
+    type: "media",
+    supType: "File",
+    url: image.url,
+    options: [],
+    caption: image.caption || [{ elementName: "Text", text: "" }]
+  }));
 
   return { type: "multipleImages", images, attributes };
+};
+
+const InfoboxParser = plain => {
+  const R_INFO = /^\{\{Infobox (?<subtype>[^|]+)\s*\|(?<remain>[\s\S]+)}}$/gi;
+  let match = R_INFO.exec(plain),
+    subtype,
+    remain,
+    sections = [];
+  if (match === null) throw "Infobox Syntax Error" + plain;
+
+  ({ subtype, remain } = match.groups);
+
+  for (const section of remain.split`----`) {
+    // console.log(section);
+    // console.log("--------------");
+
+    let attributes = parsePairPipe(section);
+
+    // clean leading space and trailing "|" and "---"
+
+    // for (const key of Object.keys(attributes)) {
+    //   let value = attributes[key];
+    //   match = /^(?<content>[\s\S]+?)[\|\s]*$/.exec(value);
+    //   if (match === null) throw `Infobox Syntax Error ${value}`;
+    //   content = match.groups.content;
+    //   attributes[key] = content == "|" ? "" : content;
+    // }
+    sections.push(attributes);
+  }
+
+  return { type: "Infobox", subtype, sections };
 };
 
 const internalParse = (element, content, plain) => {
@@ -328,9 +388,15 @@ const internalParse = (element, content, plain) => {
       return ConvertParser(plain);
     } else if (/^{{multiple image/gi.test(plain)) {
       return MultipleImageParser(plain);
+    } else if (/^{{Infobox \w+/gi.test(plain)) {
+      return InfoboxParser(plain);
     }
 
-    return { children: [{ elementName: "Text", text: `{{N/A: ${plain}}}` }] };
+    return {
+      type: "N/A",
+      // children: [{ elementName: "Text", text: `<--N/A--${plain}-->` }]
+      children: [{ elementName: "Text", text: "N/A" }]
+    };
   }
 
   if (element.elementName == "Link") {
@@ -399,7 +465,7 @@ const internalParse = (element, content, plain) => {
       );
 
       if (urlMatch === null) {
-        console.log("@");
+        // console.log("@");
         return content;
       }
       namespace = capitalize(urlMatch[1] || "");
@@ -462,7 +528,13 @@ const internalParse = (element, content, plain) => {
   return { children: content };
 };
 
-const Break = {
+const Comment = {
+    elementName: "Comment",
+    startToken: "<!--",
+    endToken: ["-->"],
+    allowedChildren: []
+  },
+  Break = {
     elementName: "Break",
     startToken: "<br />",
     endToken: [],
@@ -559,11 +631,18 @@ const Break = {
     endToken: ["</blockquote>"],
     allowedChildren: [Italic, Bold, BoldItalic]
   },
+  PairPipe = {
+    elementName: "PairPipe",
+    startToken: null,
+    endToken: ["|"],
+    allowedChildren: []
+  },
   Global = {
     elementName: "Global",
     startToken: null,
     endToken: null,
     allowedChildren: [
+      Comment,
       Gallery,
       Break,
       BoldItalic,
@@ -587,6 +666,7 @@ Link.allowedChildren.push(Link);
 Italic.allowedChildren.push(Link);
 Reference.allowedChildren.push(Break, Template);
 Template.allowedChildren.push(Template, Reference, Link);
+PairPipe.allowedChildren = Global.allowedChildren;
 
 const analyseHeadings = headings => {
   if (!headings.length) return null;
@@ -734,7 +814,7 @@ const parse = (str, strlen, index, e) => {
 
   if (buffer) content.push({ elementName: "Text", text: buffer });
 
-  return [
+  let res = [
     index,
     clean({
       elementName,
@@ -744,20 +824,281 @@ const parse = (str, strlen, index, e) => {
     }),
     plain
   ];
+
+  // if (elementName == "Gallery")
+  //   console.dir({ parsed: JSON.stringify(res[1]), plain });
+
+  return res;
 };
 
 const main = str => parse(str, null, 0, Global)[1];
 
+// const second = str => parse(str, null, 0, PairPipe)[1];
 export { main, clean, trimQuote };
 
-// console.log(JSON.stringify(main(`{{convert|2|km|mi}}`), null, 2));
+// console.log(
+//   JSON.stringify(
+//     main(
+//       `{{Redirect2|NYC|New York, New York|4=New York City (disambiguation)|5=and|6=NYC (disambiguation)|7=and|8=New York, New York (disambiguation)}}
+// {{Use mdy dates|date=January 2020}}
+// {{Short description|Largest city in the United States}}
+// <!-- Don't add a particular image size to most images of this article; it will be reverted. The images need to be able to customize from personal preferences. -->
+// {{Infobox settlement
+// | name                     = New York<!-- DO NOT change without discussion -->
+// | official_name            = <!-- DO NOT add to this parameter without consensus -->
+// | settlement_type          = [[City (New York)|City]]
+// | named_for                = [[James II of England|James, Duke of York]]
+// |image_skyline             = {{multiple image
+// | border                   = infobox
+// | total_width              = 290
+// | image_style              = border:1;
+// | perrow                   = 1/3/2/2
+// | image1                   = Lower Manhattan skyline - June 2017.jpg
+// | image2                   = Central park pond.jpg
+// | image3                   = Unisphere Flushing Meadows Queens.jpg
+// | image4                   = Brooklyn Bridge, west tower (7433306334).jpg
+// | image5                   = LadyLiberty02.jpg
+// | image6                   = Times_square_night.jpg
+// | image7                   = Midtown Manhattan 2019.jpg
+// | image8                   = Manhattan Bridge 2 (6214831091).jpg
+// }}
+// | image_caption            = From top, left to right: [[Lower Manhattan]], [[Central Park]], the [[Unisphere]], the [[Brooklyn Bridge]], [[Statue of Liberty]], [[Times Square]], [[Midtown Manhattan]], [[Manhattan Bridge]]
+// | image_flag               = Flag of New York City.svg
+// | image_seal               = Seal_of_New_York_City_BW.svg
+// | image_blank_emblem       = NYC Logo Wolff Olins.svg
+// | blank_emblem_type        = [[Wordmark]]
+// | nickname                 = ''See [[Nicknames of New York City]]''
+// <!-- maps and coordinates -->
+// | image_map                = {{Maplink|frame=yes|plain=y|frame-width=290|frame-height=270|frame-align=center|stroke-width=3|zoom=9|frame-lat=40.7|frame-long=-73.944|type=shape-inverse|stroke-color=#808080|id=Q60|title=New York City}}
+// | mapsize                  =
+// | map_caption              = Interactive map outlining New York City
+// | pushpin_map              = New York#USA#North America
+// | pushpin_relief           = 1
+// |pushpin_mapsize           = 290px
+// | pushpin_map_caption      = Location within the state of New York##Location within the United States##Location within North America
+// | pushpin_label            = New York
+// | pushpin_label_position   = left
+// | coordinates              = {{coord|40.661|N|73.944|W|region:US-NY|format=dms|display=inline,title}}
+// | coor_pinpoint            = <!-- to specify exact location of coordinates (was coor_type) -->
+// | coordinates_footnotes    =<ref name="GR1">{{cite web |url=https://www.census.gov/geographies/reference-files/time-series/geo/gazetteer-files.html |publisher=[[United States Census Bureau]] |accessdate=April 23, 2011 |date=February 12, 2011 |title=US Gazetteer files: 2010, 2000, and 1990}}</ref>
+// | subdivision_type         = Country
+// | subdivision_name         = {{nowrap|{{flag|United States}}}}
+// | subdivision_type2        = State
+// | subdivision_name2        = {{flag|New York}}
+// ----
+// | subdivision_type3        = [[List of regions of the United States|Region]]
+// | subdivision_name3        = [[Mid-Atlantic (United States)|Mid-Atlantic]]
+// | subdivision_type4        = [[County (United States)|Constituent counties]] ([[Boroughs of New York City|boroughs]])
+// | subdivision_name4        = [[The Bronx|Bronx (The Bronx)]]<br />[[Brooklyn|Kings (Brooklyn)]]<br />[[Manhattan|New York (Manhattan)]]<br />[[Queens|Queens (Queens)]]<br />[[Staten Island|Richmond (Staten Island)]]
+// ----
+// | subdivision_type5        = [[Colony|Historic colonies]]
+// | subdivision_name5        = [[New Netherland]]<br />[[Province of New York]]
+// | established_title        = Settled
+// | established_date         = 1624
+// | established_title1       = [[City of Greater New York|Consolidated]]
+// | established_date1        = 1898
+// | established_title2       =
+// | government_footnotes     =
+// | government_type          = [[Mayor–council government|Mayor–Council]]
+// | governing_body           = [[New York City Council]]
+// | leader_title             = [[Mayor of New York City|Mayor]]
+// | leader_name              = [[Bill de Blasio]] ([[Democratic Party (United States)|D]])
+// | total_type               = Total
+// | unit_pref                = Imperial
+// | area_footnotes           =<ref name="GR1" />
+// | area_total_sq_mi         = 468.484
+// | area_land_sq_mi          = 302.643
+// | area_water_sq_mi         = 165.841
+// | area_metro_sq_mi         = 13318
+// | elevation_footnotes      =<ref name="GR3">{{cite web |url=http://geonames.usgs.gov |accessdate=January 31, 2008 |title=US Board on Geographic Names |publisher=[[United States Geological Survey]] |date=June 23, 2018}} Search for feature ID 975772.</ref>
+// | elevation_m              = 10
+// | elevation_ft             = 33
+// | population_rank          = [[List of United States cities by population|1st in the U.S.]]
+// | population_density_sq_mi = 27,751
+// | population_as_of         = [[2010 United States Census|2010]]
+// | population_total         = 8175133
+// | population_footnotes     =<ref name=Census2010>[https://www.census.gov Community Facts for New York City] , [[United States Census Bureau]]. Retrieved May 26, 2017.</ref>
+// | population_est           = 8398748
+// | pop_est_as_of            = 2018
+// | pop_est_footnotes        =<ref name=2018Estimate />
+// | population_blank1_title  = [[Metropolitan statistical area|MSA (2018)]]
+// | population_blank1        = 19,979,477<ref name="MetroEst">{{cite web|url=https://factfinder.census.gov/bkmk/table/1.0/en/PEP/2017/GCTPEPANNR.US24PR|title=Annual Estimates of the Resident Population: April 1, 2010 to July 1, 2017—Metropolitan Statistical Area; and for Puerto Rico—2017 Population Estimates|publisher=U.S. Census Bureau|accessdate=March 24, 2018|archive-url=https://archive.today/20200213005215/https://factfinder.census.gov/bkmk/table/1.0/en/PEP/2017/GCTPEPANNR.US24PR|archive-date=February 13, 2020|url-status=dead}}</ref> ([[List of metropolitan statistical areas|1st]])
+// | population_blank2_title  = [[New York metropolitan area|CSA (2018)]]
+// | population_blank2        = 22,679,948<ref name=CombinedEst>{{cite web |url=https://www.census.gov |title=Annual Estimates of the Resident Population: April 1, 2010 to July 1, 2018—Combined Statistical Area; and for Puerto Rico—2017 Population Estimates |publisher=U.S. Census Bureau |accessdate=April 27, 2018 }}</ref> ([[List of Combined Statistical Areas|1st]])
+// | population_demonym       = New Yorker
+// | blank6_name              = [[GDP]] (City, 2018)
+// | blank6_info              = $842.3&nbsp;billion<ref name="bea.gov">[https://www.bea.gov/system/files/2019-12/lagdp1219.pdf ''Local Area Gross Domestic Product, 2018''], [[Bureau of Economic Analysis]], released December 17, 2019. Accessed December 12, 2019.</ref> (1st)
+// | blank7_name              = [[Gross metropolitan product|GMP]] (Metro, 2020)
+// | blank7_info              = $2.0&nbsp;trillion<ref name="NYCMetroGMP">{{cite web|url=https://www.statista.com/statistics/183808/gmp-of-the-20-biggest-metro-areas/|title=U.S. metro areas—ranked by Gross Metropolitan Product (GMP) 2020 {{!}} Statistic|website=Statista|accessdate=May 31, 2019}}</ref> (1st)
+// | timezone1                = [[Eastern Time Zone|EST]]
+// | utc_offset1              = −05:00
+// | timezone1_DST            = [[Eastern Time Zone|EDT]]
+// | utc_offset1_DST          = −04:00
+// | postal_code_type         = [[ZIP Code]]s
+// | postal_code              = 100xx–104xx, 11004–05, 111xx–114xx, 116xx
+// | area_code                = [[Area codes 212, 646, and 332|212/646/332]], [[Area codes 718, 347, and 929|718/347/929]], [[Area code 917|917]]
+// | blank_name               = [[Federal Information Processing Standards|FIPS code]]
+// | blank_info               = 36-51000
+// | blank1_name              = [[Geographic Names Information System|GNIS]] feature ID
+// | blank1_info              = 975772
+// | blank2_name              = Major airports
+// | blank2_info              = [[John F. Kennedy International Airport]], [[Newark Liberty International Airport]], [[LaGuardia Airport]]
+// | blank4_name              = [[Commuter rail]]
+// | blank4_info              = [[LIRR]], [[Metro-North]], [[NJ Transit Rail Operations|NJ Transit]]
+// | blank5_name              = [[Rapid transit]]
+// | blank5_info              = [[New York City Subway|Subway]], [[Staten Island Railway]], [[PATH (rail system)|PATH]]
+// | blank_name_sec2          = Largest [[Boroughs of New York City|borough]] by area
+// | blank_info_sec2          = [[Queens]] {{convert|109|sqmi|km2}}
+// | blank1_name_sec2         = Largest borough by population
+// | blank1_info_sec2         = [[Brooklyn]] (2015 est 2,636,735)<ref name=BrooklynQuickFacts>{{cite web |title=State & County QuickFacts—Kings County (Brooklyn Borough), New York |url=http://quickfacts.census.gov/qfd/states/36/36047.html |publisher=United States Census Bureau |accessdate=March 24, 2016 |archiveurl=https://web.archive.org/web/20160217175357/http://quickfacts.census.gov/qfd/states/36/36047.html |archivedate=February 17, 2016}}</ref>
+// | blank2_name_sec2         = Largest borough by [[GDP]] (2018)
+// | blank2_info_sec2         = [[Manhattan]] $600.2 billion<ref name="bea.gov"/>
+// | website                  = [https://www.nyc.gov/ NYC.gov]
+// | population_density_km2   = 10,715
+// }}
 
-// let s = `{{multiple image |header = Religious affiliations in New York City | align = center | direction = horizontal | image1 = StPatCathExt1.jpg | width1 = 103 | caption1 = The [[New York City Landmarks|landmark]] [[Gothic revival architecture|Neo-Gothic]] Roman Catholic [[St. Patrick's Cathedral (Manhattan)|St. Patrick's Cathedral]], Midtown Manhattan | alt1 = | image2 = Jueus ultraortodoxes satmar a brooklyn.jpg | width2 = 200 | caption2 = [[Haredi Jews|Ultra-Orthodox]] [[Jews in New York City|Jewish]] residents in Brooklyn. Brooklyn has the largest Jewish community in the United States, with approximately 600,000 individuals.<ref name=BrooklynJewish/> | alt2 = | image3 = Islamic Cultural Center E96 jeh.JPG | width3 = 131 | caption3 = The [[Islamic Cultural Center of New York]] in [[Upper Manhattan]], the first mosque built in New York City. | alt3 = | image4 = Exterior Hindu Temple.JPG | width4 = 100 | caption4 = [[Hindu Temple Society of North America|Ganesh Temple]] in [[Flushing, Queens]], the oldest [[Hindu temple]] in the U.S. | alt4 = | image5 = Buddhist Temple, Chinatown.jpg | width5 = 112 | caption5 = [[New York Mahayana Temple|Mahayana Buddhist Temple]] in [[Chinatown, Manhattan]] | alt5 = | image6 = Times Square after dark atheist.jpg | width6 = 200 | caption6 = A significant proportion of New Yorkers hold [[American Atheists|atheistic]] views, promoted on this [[digital billboard|electronic billboard]] in [[Times Square]]. | alt6 = }}`;
+// {{Regions of New York}}
 
-// const R = /\{\{multiple image\s*(\|\s*(\w+)\s*=([\s\S]*?))+\}\}$/gi;
-// for (const match of s.matchAll(R)) {
-//   console.log(match[0]);
-//   console.log();
-//   console.log();
-//   console.log();
-// }
+// '''New York City''' ('''NYC'''), often called the '''City of New York''' or simply '''New York''' `
+//     ),
+//     null,
+//     2
+//   )
+// );
+
+// console.log(
+//   JSON.stringify(
+//     main(`{{Infobox settlement
+// | name                     = New York<!-- DO NOT change without discussion -->
+// | official_name            = <!-- DO NOT add to this parameter without consensus -->
+// | settlement_type          = [[City (New York)|City]]
+// | named_for                = [[James II of England|James, Duke of York]]
+// |image_skyline             = {{multiple image
+// | border                   = infobox
+// | total_width              = 290
+// | image_style              = border:1;
+// | perrow                   = 1/3/2/2
+// | image1                   = Lower Manhattan skyline - June 2017.jpg
+// | image2                   = Central park pond.jpg
+// | image3                   = Unisphere Flushing Meadows Queens.jpg
+// | image4                   = Brooklyn Bridge, west tower (7433306334).jpg
+// | image5                   = LadyLiberty02.jpg
+// | image6                   = Times_square_night.jpg
+// | image7                   = Midtown Manhattan 2019.jpg
+// | image8                   = Manhattan Bridge 2 (6214831091).jpg
+// }}
+// | image_caption            = From top, left to right: [[Lower Manhattan]], [[Central Park]], the [[Unisphere]], the [[Brooklyn Bridge]], [[Statue of Liberty]], [[Times Square]], [[Midtown Manhattan]], [[Manhattan Bridge]]
+// | image_flag               = Flag of New York City.svg
+// | image_seal               = Seal_of_New_York_City_BW.svg
+// | image_blank_emblem       = NYC Logo Wolff Olins.svg
+// | blank_emblem_type        = [[Wordmark]]
+// | nickname                 = ''See [[Nicknames of New York City]]''
+// <!-- maps and coordinates -->
+// | image_map                = {{Maplink|frame=yes|plain=y|frame-width=290|frame-height=270|frame-align=center|stroke-width=3|zoom=9|frame-lat=40.7|frame-long=-73.944|type=shape-inverse|stroke-color=#808080|id=Q60|title=New York City}}
+// | mapsize                  =
+// | map_caption              = Interactive map outlining New York City
+// | pushpin_map              = New York#USA#North America
+// | pushpin_relief           = 1
+// |pushpin_mapsize           = 290px
+// | pushpin_map_caption      = Location within the state of New York##Location within the United States##Location within North America
+// | pushpin_label            = New York
+// | pushpin_label_position   = left
+// | coordinates              = {{coord|40.661|N|73.944|W|region:US-NY|format=dms|display=inline,title}}
+// | coor_pinpoint            = <!-- to specify exact location of coordinates (was coor_type) -->
+// | coordinates_footnotes    =<ref name="GR1">{{cite web |url=https://www.census.gov/geographies/reference-files/time-series/geo/gazetteer-files.html |publisher=[[United States Census Bureau]] |accessdate=April 23, 2011 |date=February 12, 2011 |title=US Gazetteer files: 2010, 2000, and 1990}}</ref>
+// | subdivision_type         = Country
+// | subdivision_name         = {{nowrap|{{flag|United States}}}}
+// | subdivision_type2        = State
+// | subdivision_name2        = {{flag|New York}}
+// ----
+// | subdivision_type3        = [[List of regions of the United States|Region]]
+// | subdivision_name3        = [[Mid-Atlantic (United States)|Mid-Atlantic]]
+// | subdivision_type4        = [[County (United States)|Constituent counties]] ([[Boroughs of New York City|boroughs]])
+// | subdivision_name4        = [[The Bronx|Bronx (The Bronx)]]<br />[[Brooklyn|Kings (Brooklyn)]]<br />[[Manhattan|New York (Manhattan)]]<br />[[Queens|Queens (Queens)]]<br />[[Staten Island|Richmond (Staten Island)]]
+// ----
+// | subdivision_type5        = [[Colony|Historic colonies]]
+// | subdivision_name5        = [[New Netherland]]<br />[[Province of New York]]
+// | established_title        = Settled
+// | established_date         = 1624
+// | established_title1       = [[City of Greater New York|Consolidated]]
+// | established_date1        = 1898
+// | established_title2       =
+// | government_footnotes     =
+// | government_type          = [[Mayor–council government|Mayor–Council]]
+// | governing_body           = [[New York City Council]]
+// | leader_title             = [[Mayor of New York City|Mayor]]
+// | leader_name              = [[Bill de Blasio]] ([[Democratic Party (United States)|D]])
+// | total_type               = Total
+// | unit_pref                = Imperial
+// | area_footnotes           =<ref name="GR1" />
+// | area_total_sq_mi         = 468.484
+// | area_land_sq_mi          = 302.643
+// | area_water_sq_mi         = 165.841
+// | area_metro_sq_mi         = 13318
+// | elevation_footnotes      =<ref name="GR3">{{cite web |url=http://geonames.usgs.gov |accessdate=January 31, 2008 |title=US Board on Geographic Names |publisher=[[United States Geological Survey]] |date=June 23, 2018}} Search for feature ID 975772.</ref>
+// | elevation_m              = 10
+// | elevation_ft             = 33
+// | population_rank          = [[List of United States cities by population|1st in the U.S.]]
+// | population_density_sq_mi = 27,751
+// | population_as_of         = [[2010 United States Census|2010]]
+// | population_total         = 8175133
+// | population_footnotes     =<ref name=Census2010>[https://www.census.gov Community Facts for New York City] , [[United States Census Bureau]]. Retrieved May 26, 2017.</ref>
+// | population_est           = 8398748
+// | pop_est_as_of            = 2018
+// | pop_est_footnotes        =<ref name=2018Estimate />
+// | population_blank1_title  = [[Metropolitan statistical area|MSA (2018)]]
+// | population_blank1        = 19,979,477<ref name="MetroEst">{{cite web|url=https://factfinder.census.gov/bkmk/table/1.0/en/PEP/2017/GCTPEPANNR.US24PR|title=Annual Estimates of the Resident Population: April 1, 2010 to July 1, 2017—Metropolitan Statistical Area; and for Puerto Rico—2017 Population Estimates|publisher=U.S. Census Bureau|accessdate=March 24, 2018|archive-url=https://archive.today/20200213005215/https://factfinder.census.gov/bkmk/table/1.0/en/PEP/2017/GCTPEPANNR.US24PR|archive-date=February 13, 2020|url-status=dead}}</ref> ([[List of metropolitan statistical areas|1st]])
+// | population_blank2_title  = [[New York metropolitan area|CSA (2018)]]
+// | population_blank2        = 22,679,948<ref name=CombinedEst>{{cite web |url=https://www.census.gov |title=Annual Estimates of the Resident Population: April 1, 2010 to July 1, 2018—Combined Statistical Area; and for Puerto Rico—2017 Population Estimates |publisher=U.S. Census Bureau |accessdate=April 27, 2018 }}</ref> ([[List of Combined Statistical Areas|1st]])
+// | population_demonym       = New Yorker
+// | blank6_name              = [[GDP]] (City, 2018)
+// | blank6_info              = $842.3&nbsp;billion<ref name="bea.gov">[https://www.bea.gov/system/files/2019-12/lagdp1219.pdf ''Local Area Gross Domestic Product, 2018''], [[Bureau of Economic Analysis]], released December 17, 2019. Accessed December 12, 2019.</ref> (1st)
+// | blank7_name              = [[Gross metropolitan product|GMP]] (Metro, 2020)
+// | blank7_info              = $2.0&nbsp;trillion<ref name="NYCMetroGMP">{{cite web|url=https://www.statista.com/statistics/183808/gmp-of-the-20-biggest-metro-areas/|title=U.S. metro areas—ranked by Gross Metropolitan Product (GMP) 2020 {{!}} Statistic|website=Statista|accessdate=May 31, 2019}}</ref> (1st)
+// | timezone1                = [[Eastern Time Zone|EST]]
+// | utc_offset1              = −05:00
+// | timezone1_DST            = [[Eastern Time Zone|EDT]]
+// | utc_offset1_DST          = −04:00
+// | postal_code_type         = [[ZIP Code]]s
+// | postal_code              = 100xx–104xx, 11004–05, 111xx–114xx, 116xx
+// | area_code                = [[Area codes 212, 646, and 332|212/646/332]], [[Area codes 718, 347, and 929|718/347/929]], [[Area code 917|917]]
+// | blank_name               = [[Federal Information Processing Standards|FIPS code]]
+// | blank_info               = 36-51000
+// | blank1_name              = [[Geographic Names Information System|GNIS]] feature ID
+// | blank1_info              = 975772
+// | blank2_name              = Major airports
+// | blank2_info              = [[John F. Kennedy International Airport]], [[Newark Liberty International Airport]], [[LaGuardia Airport]]
+// | blank4_name              = [[Commuter rail]]
+// | blank4_info              = [[LIRR]], [[Metro-North]], [[NJ Transit Rail Operations|NJ Transit]]
+// | blank5_name              = [[Rapid transit]]
+// | blank5_info              = [[New York City Subway|Subway]], [[Staten Island Railway]], [[PATH (rail system)|PATH]]
+// | blank_name_sec2          = Largest [[Boroughs of New York City|borough]] by area
+// | blank_info_sec2          = [[Queens]] {{convert|109|sqmi|km2}}
+// | blank1_name_sec2         = Largest borough by population
+// | blank1_info_sec2         = [[Brooklyn]] (2015 est 2,636,735)<ref name=BrooklynQuickFacts>{{cite web |title=State & County QuickFacts—Kings County (Brooklyn Borough), New York |url=http://quickfacts.census.gov/qfd/states/36/36047.html |publisher=United States Census Bureau |accessdate=March 24, 2016 |archiveurl=https://web.archive.org/web/20160217175357/http://quickfacts.census.gov/qfd/states/36/36047.html |archivedate=February 17, 2016}}</ref>
+// | blank2_name_sec2         = Largest borough by [[GDP]] (2018)
+// | blank2_info_sec2         = [[Manhattan]] $600.2 billion<ref name="bea.gov"/>
+// | website                  = [https://www.nyc.gov/ NYC.gov]
+// | population_density_km2   = 10,715
+// }}`),
+//     null,
+//     2
+//   )
+// );
+
+// let s = `align = right
+//  | direction = vertical
+//  | image1 = New York City Marathon 2014 (15082977714).jpg
+//  | width1 = 225
+//  | caption1 = The [[New York City Marathon|New York Marathon]] is the largest marathon in the world.<ref name="NYCMarathonWorld'sLargest">{{cite web |url=http://www.runnersworld.com/new-york-city-marathon/2017-new-york-city-marathon-entrants-by-the-numbers |title=2017 New York City Marathon Entrants By the Numbers—Applications for the world's largest race were at an all-time high for 2017 |author=Kit Fox |publisher=Runner's World—Rodale Inc |date=March 2, 2017 |accessdate=May 10, 2017}}</ref>
+//  | alt1 = Three runners in a race down a street where onlookers are cheering behind barriers.
+//  | image2 = Arthur ashe stadium interior.jpg
+//  | width2 = 225
+//  | caption2 = The [[U.S. Open (tennis)|U.S. Open Tennis Championships]] are held every August and September in [[Flushing Meadows-Corona Park]], Queens.
+//  | alt2 = A tennis stadium pack with fans watching a grass court.
+//  | image3 = Citi Field 2011.JPG
+//  | width3 = 225
+//  | caption3 = [[Citi Field]], also in Flushing Meadows-Corona Park, has been home to the [[New York Mets]] since 2009.
+//  | alt3 = A baseball stadium from behind home plate in the evening.`;
+
+// console.log(parsePairPipe(s));

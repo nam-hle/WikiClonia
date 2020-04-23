@@ -19,6 +19,8 @@ export const Text = ({ text }) => {
 };
 
 export const Template = ({ props }) => {
+  if (props.type == "N/A" || props.type == "Infobox") return "";
+
   if (Array.isArray(props.children)) {
     return (
       <Fragment>
@@ -30,7 +32,7 @@ export const Template = ({ props }) => {
   }
 
   let { attribute } = props;
-
+  // console.log(props);
   if (props.type == "multipleImages") {
     return (
       <div className="wiki-gallery">
@@ -41,25 +43,29 @@ export const Template = ({ props }) => {
       </div>
     );
   }
+  if (props.type == "cite")
+    return (
+      <Fragment>
+        <a className="wiki-cite" href={attribute.url}>
+          {`"${attribute.title}"`}
+        </a>
+        {". "}
+        {props.subType == "web" && attribute.publisher && (
+          <span>{`${attribute.publisher}. `}</span>
+        )}
+        {props.subType == "web" && attribute.accessdate && (
+          <span>{`Retrieved ${attribute.accessdate}. `}</span>
+        )}
+      </Fragment>
+    );
 
-  return (
-    <Fragment>
-      <a className="wiki-cite" href={attribute.url}>
-        {`"${attribute.title}"`}
-      </a>
-      {". "}
-      {props.subType == "web" && attribute.publisher && (
-        <span>{`${attribute.publisher}. `}</span>
-      )}
-      {props.subType == "web" && attribute.accessdate && (
-        <span>{`Retrieved ${attribute.accessdate}. `}</span>
-      )}
-    </Fragment>
-  );
+  return "<--N/A" + JSON.stringify(props) + "-->";
 };
 
 export const Element = ({ props }) => {
   let { elementName, children } = props;
+
+  if (elementName == "Comment") return "";
 
   if (elementName == "ExternalLink") {
     return (
