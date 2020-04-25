@@ -1,14 +1,17 @@
 import React, { Fragment } from "react";
 import { Element } from "./../Elements";
+import Skeleton from "react-loading-skeleton";
 
 const Content = ({ content, images }) => {
-  if (!content) return "Loading...";
-
   return (
     <Fragment>
-      {content.map((element, index) => (
-        <Element key={index} props={element} images={images} />
-      ))}
+      {content ? (
+        content.map((element, index) => (
+          <Element key={index} props={element} images={images} />
+        ))
+      ) : (
+        <Skeleton count={30} duration={1} />
+      )}
     </Fragment>
   );
 };

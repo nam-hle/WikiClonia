@@ -32,7 +32,7 @@ export const Template = ({ props }) => {
   }
 
   let { attribute } = props;
-  // console.log(props);
+
   if (props.type == "multipleImages") {
     return (
       <div className="wiki-gallery">
@@ -140,11 +140,9 @@ export const Element = ({ props }) => {
     if (type == "media") {
       const valueImages = React.useContext(ImagesContext);
 
-      if (props && props.url && valueImages && valueImages.images[props.url]) {
+      if (props?.url && valueImages?.images[props.url]) {
         let float =
-          props.options && props.options.indexOf("left") > -1
-            ? "fl-left"
-            : "fl-right";
+          props?.options?.indexOf("left") > -1 ? "fl-left" : "fl-right";
         return (
           <Fragment>
             <div className={`wiki-img__container ${float}`}>
@@ -164,12 +162,7 @@ export const Element = ({ props }) => {
       }
     }
   } else if (elementName == "Reference") {
-    if (
-      props.children &&
-      props.children.length &&
-      props.children[0].attribute &&
-      props.children[0].attribute.url
-    ) {
+    if (props?.children?.[0].attribute?.url) {
       return (
         <sup>
           <a href={props.children[0].attribute.url}>{props.referenceIndex}</a>
