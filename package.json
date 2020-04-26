@@ -32,11 +32,9 @@
         "@babel/core": "^7.9.0",
         "@babel/plugin-proposal-class-properties": "^7.8.3",
         "@babel/plugin-transform-react-jsx": "^7.8.3",
-        "@babel/plugin-transform-runtime": "^7.9.0",
         "@babel/preset-env": "^7.9.0",
         "@babel/preset-flow": "^7.8.3",
         "@babel/preset-react": "^7.9.4",
-        "@babel/runtime": "^7.9.2",
         "@material-ui/icons": "^4.9.1",
         "@svgr/webpack": "^5.3.1",
         "autoprefixer": "^9.7.5",
@@ -104,7 +102,7 @@
         "postcss-preset-env": "^6.7.0",
         "prettier": "^1.19.1",
         "pug-loader": "^2.4.0",
-        "react": "^16.13.1",
+        "react": "^16.13.0",
         "react-dom": "^16.13.0",
         "react-hot-loader": "^4.12.20",
         "react-router-dom": "^5.1.2",
@@ -141,8 +139,11 @@
         "lazysizes": "^5.2.0",
         "node-gyp": "^6.1.0",
         "react-inlinesvg": "^1.2.0",
+<<<<<<< HEAD
         "react-loading-skeleton": "^2.0.1",
         "react-tiny-popover": "^4.0.0",
+=======
+>>>>>>> parent of f769b01... Implement useFetch
         "react-uuid": "^1.0.2",
         "rebuild": "^0.1.2",
         "styled-components": "^5.0.1",

@@ -1,11 +1,12 @@
 import React, { Fragment, useState, useEffect } from "react";
-// import React, { useState, useEffect } from "react";
-// import React from "react";
 import { main } from "./../../../wiki_parser";
+// import Sidebar from "./../SideBar";
+// import Reference from "./../Reference";
 import Content from "./../Content";
 import Menu from "./../Menu";
 import Navigation from "./../Navigation";
 import "lazysizes";
+<<<<<<< HEAD
 import useFetch from "./../../../hooks/useFetch.js";
 import Popover from "react-tiny-popover";
 
@@ -16,6 +17,11 @@ export const ImagesContext = React.createContext(null);
 
 const titles = [
   // "Pet_door"
+=======
+export const ImagesContext = React.createContext(null);
+
+const titles = [
+>>>>>>> parent of f769b01... Implement useFetch
   "New_York_City",
   "The_Last_Supper_(Leonardo)",
   "Leonardo_da_Vinci",
@@ -25,38 +31,8 @@ const titles = [
 
 const title = titles[Math.floor(Math.random() * titles.length)];
 
-const parseWikiText = response => main(response?.parse?.wikitext?.["*"]);
-
-const buildURL = params =>
-  "https://en.wikipedia.org/w/api.php?" +
-  new URLSearchParams({ ...params, format: "json", origin: "*" });
-
-const contentParams = title => ({
-  action: "parse",
-  prop: "wikitext",
-  page: title
-});
-
-const imageParams = (title, limit = 500) => ({
-  action: "query",
-  prop: "imageinfo",
-  titles: title,
-  generator: "images",
-  gimlimit: limit,
-  iiprop: "url|dimensions"
-});
-
-const summaryParams = title => ({
-  action: "query",
-  prop: "extracts",
-  exsentences: 4,
-  exintro: true,
-  explaintext: true,
-  redirects: 1,
-  titles: title
-});
-
 const Article = () => {
+<<<<<<< HEAD
   const [images, setImages] = useState(null);
   const [content, setContent] = useState(null);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
@@ -70,22 +46,33 @@ const Article = () => {
   // get images
   const imageFetch = useFetch(buildURL(imageParams(title)));
 
-  useEffect(() => {
-    let imgs = imageFetch.response?.query?.pages,
-      res = {};
-    // return object {filename: {url, width, height}}
-    for (const key in imgs) {
-      let { url, width, height } = imgs[key]?.imageinfo?.[0];
-      res[imgs[key].title] = { url, width, height };
-    }
-    setImages(res);
-  }, [imageFetch.response]);
+=======
+  const [images, setImages] = useState({});
+  // const [references, setReferences] = useState([]);
+  const [parsed, setParsed] = useState({});
+  // const title = titles[Math.floor(Math.random() * titles.length)];
+  // title = title || "New_York_City";
+  // title = title || "The_Last_Supper_(Leonardo)";
+  // title = title || "Leonardo_da_Vinci";
+  // title = title || "Mona_Lisa";
 
-  const summaryFetch = useFetch(buildURL(summaryParams(title)));
-
+  // get main content
+>>>>>>> parent of f769b01... Implement useFetch
   useEffect(() => {
-    console.log(summaryFetch.response);
-  }, [summaryFetch.response]);
+    var url = `https://en.wikipedia.org/w/api.php?action=parse&page=${title}&format=json&prop=wikitext&origin=*`;
+    fetch(url)
+      .then(function(response) {
+        return response.json();
+      })
+      .then(_text => {
+        let rawText = _text.parse.wikitext["*"];
+        let result = main(rawText);
+        setParsed(result);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  }, []);
 
   // get references
   // useEffect(() => {
@@ -99,6 +86,26 @@ const Article = () => {
   //     setReferences(res);
   //   }
   // }, [parsed]);
+
+  // get images
+  useEffect(() => {
+    var url = `https://en.wikipedia.org/w/api.php?action=query&titles=${title}&generator=images&gimlimit=500&prop=imageinfo&iiprop=url|dimensions|mime&format=json&origin=*`;
+    fetch(url)
+      .then(function(response) {
+        return response.json();
+      })
+      .then(data => {
+        let imgs = data.query.pages,
+          res = {};
+        for (const key in imgs) {
+          res[imgs[key].title] = imgs[key].imageinfo[0];
+        }
+        setImages(res);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  }, []);
 
   return (
     <ImagesContext.Provider value={{ images }}>
@@ -120,11 +127,11 @@ const Article = () => {
             <div className="hero__credit">
               From Wikipedia, the free encyclopedia
             </div>
-            <Content content={content?.children} />
+            <Content content={parsed.children} />
             {/*<Reference {...{ references }} />*/}
           </div>
         </div>
-        <Navigation headings={content?.headings} />
+        <Navigation headings={parsed.headings} />
       </Fragment>
     </ImagesContext.Provider>
   );

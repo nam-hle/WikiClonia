@@ -831,7 +831,7 @@ const parse = (str, strlen, index, e) => {
   return res;
 };
 
-const main = str => (str ? parse(str, null, 0, Global)[1] : "@");
+const main = str => parse(str, null, 0, Global)[1];
 
 // const second = str => parse(str, null, 0, PairPipe)[1];
 export { main, clean, trimQuote };
