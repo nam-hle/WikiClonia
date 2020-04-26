@@ -1,6 +1,5 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { ImagesContext } from "./../Article";
-// import lazySizes from "lazysizes";
 
 export const Text = ({ text }) => {
   let [splitText, setSplitText] = useState("");
@@ -16,6 +15,16 @@ export const Text = ({ text }) => {
     setSplitText(res);
   }, []);
   return <Fragment>{splitText}</Fragment>;
+};
+
+const WikiLink = ({ url, displayText }) => {
+  return (
+    <a href={"https://en.wikipedia.org/wiki/" + url}>
+      {displayText.map((e, i) => {
+        return <Element key={i} props={e} />;
+      })}
+    </a>
+  );
 };
 
 export const Template = ({ props }) => {
@@ -129,13 +138,7 @@ export const Element = ({ props }) => {
   if (elementName == "Link") {
     let type = props.type;
     if (type == "wikiLink") {
-      return (
-        <a href={"https://en.wikipedia.org/wiki/" + props.url}>
-          {props.displayText.map((e, i) => {
-            return <Element key={i} props={e} />;
-          })}
-        </a>
-      );
+      return <WikiLink url={props.url} displayText={props.displayText} />;
     }
     if (type == "media") {
       const valueImages = React.useContext(ImagesContext);
