@@ -142,6 +142,7 @@
         "node-gyp": "^6.1.0",
         "react-inlinesvg": "^1.2.0",
         "react-loading-skeleton": "^2.0.1",
+        "react-tiny-popover": "^4.0.0",
         "react-uuid": "^1.0.2",
         "rebuild": "^0.1.2",
         "styled-components": "^5.0.1",

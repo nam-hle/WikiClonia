@@ -7,6 +7,7 @@ import Menu from "./../Menu";
 import Navigation from "./../Navigation";
 import "lazysizes";
 import useFetch from "./../../../hooks/useFetch.js";
+import Popover from "react-tiny-popover";
 
 // import Sidebar from "./../SideBar";
 // import Reference from "./../Reference";
@@ -14,12 +15,12 @@ import useFetch from "./../../../hooks/useFetch.js";
 export const ImagesContext = React.createContext(null);
 
 const titles = [
-  "Pet_door"
-  // "New_York_City"
-  // "The_Last_Supper_(Leonardo)",
-  // "Leonardo_da_Vinci"
-  // "Mona_Lisa",
-  // "Renaissance"
+  // "Pet_door"
+  "New_York_City",
+  "The_Last_Supper_(Leonardo)",
+  "Leonardo_da_Vinci",
+  "Mona_Lisa",
+  "Renaissance"
 ];
 
 const title = titles[Math.floor(Math.random() * titles.length)];
@@ -58,7 +59,7 @@ const summaryParams = title => ({
 const Article = () => {
   const [images, setImages] = useState(null);
   const [content, setContent] = useState(null);
-
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   // get content
   const contentFetch = useFetch(buildURL(contentParams(title)));
 
@@ -106,6 +107,15 @@ const Article = () => {
         <div className="article">
           {/*<Sidebar content={parsed.images} images={images} />*/}
           <div className="hero">
+            <Popover
+              isOpen={isPopoverOpen}
+              position={"top"}
+              content={<div>{"Hi! I'm popover content."}</div>}
+            >
+              <div onClick={() => setIsPopoverOpen(!isPopoverOpen)}>
+                Click me!
+              </div>
+            </Popover>
             <div className="hero__title">{title.replace(/_/g, " ")}</div>
             <div className="hero__credit">
               From Wikipedia, the free encyclopedia
