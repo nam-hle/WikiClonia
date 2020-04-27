@@ -33,9 +33,9 @@ const useImages = title => {
   return images;
 };
 
-const useSummary = title => {
+const useSummary = (title, show) => {
   const [summary, setSummary] = useState(null);
-  const summaryFetch = useFetch(buildURL(summaryParams(title)));
+  const summaryFetch = useFetch(buildURL(summaryParams(title)), { show });
   useEffect(() => {
     let pages = summaryFetch.response?.query?.pages;
     if (pages) {
@@ -45,7 +45,7 @@ const useSummary = title => {
       }
       setSummary(extract);
     }
-  }, [summaryFetch.response]);
+  }, [summaryFetch.response, show]);
   return summary;
 };
 

@@ -1,5 +1,7 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { ImagesContext } from "./../Article";
+import Tooltip from "./../Tooltip";
+// import { useSummary } from "./../../../hooks/useWiki.js";
 
 export const Text = ({ text }) => {
   let [splitText, setSplitText] = useState("");
@@ -19,11 +21,13 @@ export const Text = ({ text }) => {
 
 const WikiLink = ({ url, displayText }) => {
   return (
-    <a href={"https://en.wikipedia.org/wiki/" + url}>
-      {displayText.map((e, i) => {
-        return <Element key={i} props={e} />;
-      })}
-    </a>
+    <Tooltip url={url}>
+      <a href={"https://en.wikipedia.org/wiki/" + url}>
+        {displayText.map((e, i) => {
+          return <Element key={i} props={e} />;
+        })}
+      </a>
+    </Tooltip>
   );
 };
 

@@ -1,0 +1,32 @@
+.tooltip
+  display: inline-block
+  justify-content: center
+  position: relative
+
+.tooltip-content
+  position: absolute
+  min-width: 40vw
+  background-color: #121212
+  text-align: left
+  color: #fff
+  transform: translateX(-50%)
+  white-space: wrap
+  border-radius: 4px
+  padding: 6px 10px
+
+  &:before
+    content: ""
+    position: absolute
+
+.tooltip-content.top
+  bottom: 100%
+  left: 50%
+  margin-bottom: 10px
+  &:before
+    top: 100%
+    left: 50%
+    margin-left: -4px
+    border-left: 8px solid transparent
+    border-right: 8px solid transparent
+    border-top: 8px solid #000
+
