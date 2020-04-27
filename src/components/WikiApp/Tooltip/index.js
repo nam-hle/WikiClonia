@@ -3,7 +3,7 @@ import { buildURL, summaryParams } from "./../../../WikiWrapper";
 import Skeleton from "react-loading-skeleton";
 import "./style.sass";
 
-const extractSummary = (json, maxchar = 200) => {
+const extractSummary = (json, maxchar = 300) => {
   let content = json.query?.pages,
     extract = null,
     title = json.query?.normalized?.[0]?.to;
@@ -42,7 +42,10 @@ const Tooltip = props => {
       {show && (
         <div className="tooltip-content top">
           {title ? (
-            <h3 style={{ marginTop: 0 }} className="tooltip-title">
+            <h3
+              style={{ marginTop: 0, marginBottom: "5rem" }}
+              className="tooltip-title"
+            >
               {title}
             </h3>
           ) : (

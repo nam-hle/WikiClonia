@@ -14,12 +14,12 @@ import "lazysizes";
 export const ImagesContext = React.createContext(null);
 
 const titles = [
-  "Pet_door"
-  // "New_York_City"
-  // "The_Last_Supper_(Leonardo)",
-  // "Leonardo_da_Vinci",
-  // "Mona_Lisa"
-  // "Renaissance"
+  // "Pet_door"
+  "New_York_City",
+  "The_Last_Supper_(Leonardo)",
+  "Leonardo_da_Vinci",
+  "Mona_Lisa",
+  "Renaissance"
 ];
 
 const title = titles[Math.floor(Math.random() * titles.length)];
