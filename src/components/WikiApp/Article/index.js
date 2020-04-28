@@ -3,43 +3,27 @@ import Content from "./../Content";
 import Menu from "./../Menu";
 import Navigation from "./../Navigation";
 import { usePageContent, useImages } from "./../../../hooks/useWiki.js";
-import { SkeletonTheme } from "react-loading-skeleton";
-
 import "lazysizes";
-// import { Tooltip } from "react-lightweight-tooltip";
+import { SkeletonTheme } from "react-loading-skeleton";
 
 // import Sidebar from "./../SideBar";
 // import Reference from "./../Reference";
 
 export const ImagesContext = React.createContext(null);
 
-const titles = [
-  // "Pet_door"
-  "New_York_City",
-  "The_Last_Supper_(Leonardo)",
-  "Leonardo_da_Vinci",
-  "Mona_Lisa",
-  "Renaissance"
-];
+// const titles = [
+//   // "Pet_door"
+//   "New_York_City",
+//   "The_Last_Supper_(Leonardo)",
+//   "Leonardo_da_Vinci",
+//   "Mona_Lisa",
+//   "Renaissance"
+// ];
 
-const title = titles[Math.floor(Math.random() * titles.length)];
-
-const Article = () => {
+const Article = ({ title }) => {
+  title = title || "New_York_City";
   const pageContent = usePageContent(title);
   const images = useImages(title);
-
-  // get references
-  // useEffect(() => {
-  //   if (parsed.children) {
-  //     let res = [];
-  //     for (const element of parsed.children) {
-  //       if (element.elementName == "Reference") {
-  //         res.push(element);
-  //       }
-  //     }
-  //     setReferences(res);
-  //   }
-  // }, [parsed]);
 
   return (
     <ImagesContext.Provider value={{ images }}>
@@ -65,3 +49,16 @@ const Article = () => {
 };
 
 export default Article;
+
+// get references
+// useEffect(() => {
+//   if (parsed.children) {
+//     let res = [];
+//     for (const element of parsed.children) {
+//       if (element.elementName == "Reference") {
+//         res.push(element);
+//       }
+//     }
+//     setReferences(res);
+//   }
+// }, [parsed]);

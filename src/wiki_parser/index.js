@@ -322,6 +322,7 @@ const InfoboxParser = plain => {
   if (match === null) throw "Infobox Syntax Error" + plain;
 
   ({ subtype, remain } = match.groups);
+  subtype = subtype.trim();
 
   for (const section of remain.split`----`) {
     // console.log(section);

@@ -22,28 +22,28 @@ export const Text = ({ text }) => {
 const Heading = ({ className, id, text }) => {
   const heading = React.useRef();
 
-  const isElementInViewport = () => {
-    // console.log("text");
-    let el = heading.current;
-    // Special bonus for those using jQuery
+  // const isElementInViewport = () => {
+  //   // console.log("text");
+  //   let el = heading.current;
+  //   // Special bonus for those using jQuery
 
-    var rect = el.getBoundingClientRect();
+  //   var rect = el.getBoundingClientRect();
 
-    let res =
-      rect.top >= 0 &&
-      rect.left >= 0 &&
-      rect.bottom <=
-        (window.innerHeight || document.documentElement.clientHeight) &&
-      rect.right <= (window.innerWidth || document.documentElement.clientWidth);
-    if (res) {
-      console.log(text);
-    }
-  };
+  //   let res =
+  //     rect.top >= 0 &&
+  //     rect.left >= 0 &&
+  //     rect.bottom <=
+  //       (window.innerHeight || document.documentElement.clientHeight) &&
+  //     rect.right <= (window.innerWidth || document.documentElement.clientWidth);
+  //   // if (res) {
+  //   //   console.log(text);
+  //   // }
+  // };
 
-  useEffect(() => {
-    window.addEventListener("scroll", isElementInViewport);
-    return () => window.removeEventListener("scroll", isElementInViewport);
-  }, []);
+  // useEffect(() => {
+  //   window.addEventListener("scroll", isElementInViewport);
+  //   return () => window.removeEventListener("scroll", isElementInViewport);
+  // }, []);
 
   return (
     <div ref={heading} className={className} id={id}>

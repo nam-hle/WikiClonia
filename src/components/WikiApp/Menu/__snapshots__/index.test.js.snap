@@ -43,9 +43,8 @@ exports[`renders correctly 1`] = `
     </button>
     <button
       className="menu__button"
-      id="position"
     >
-      0
+      View history
     </button>
   </div>
   <div
