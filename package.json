@@ -7,7 +7,7 @@
         "start": "webpack-dev-server --config ./webpack.config.js --mode development --hot --inline",
         "build": "webpack --config ./webpack.config.js --mode production",
         "webpack": "webpack --profile --json > stats.json",
-        "test": "jest && codecov",
+        "test": "jest",
         "lint": "node_modules/.bin/goodparts ./src"
     },
     "jest": {
