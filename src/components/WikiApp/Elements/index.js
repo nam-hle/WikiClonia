@@ -67,15 +67,15 @@ const WikiLink = ({ url, displayText }) => {
 export const Template = ({ props }) => {
   if (props.type == "N/A" || props.type == "Infobox") return "";
 
-  if (Array.isArray(props.children)) {
-    return (
-      <Fragment>
-        {props.children.map((e, i) => (
-          <Element key={i} props={e} />
-        ))}
-      </Fragment>
-    );
-  }
+  // if (Array.isArray(props.children)) {
+  //   return (
+  //     <Fragment>
+  //       {props.children.map((e, i) => (
+  //         <Element key={i} props={e} />
+  //       ))}
+  //     </Fragment>
+  //   );
+  // }
 
   let { attribute } = props;
   // console.log(props);

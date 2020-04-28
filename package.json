@@ -4,10 +4,11 @@
     "description": "Template project with BEM and ITCSS methodology",
     "main": "gulpfile.js",
     "scripts": {
-        "s": "webpack-dev-server --config ./webpack.config.js --mode development --hot --inline",
-        "b": "webpack --config ./webpack.config.js --mode production",
+        "start": "webpack-dev-server --config ./webpack.config.js --mode development --hot --inline",
+        "build": "webpack --config ./webpack.config.js --mode production",
         "webpack": "webpack --profile --json > stats.json",
-        "test": "jest"
+        "test": "jest && codecov",
+        "lint": "node_modules/.bin/goodparts ./src"
     },
     "jest": {
         "verbose": true,
@@ -18,7 +19,9 @@
         "moduleNameMapper": {
             "\\.(css|less|sass|scss)$": "<rootDir>/__mocks__/styleMock.js",
             "\\.(gif|ttf|eot|svg)$": "<rootDir>/__mocks__/fileMock.js"
-        }
+        },
+        "coverageDirectory": "./coverage/",
+        "collectCoverage": true
     },
     "keywords": [
         "BEM",
@@ -62,6 +65,8 @@
         "cssnano": "^4.1.10",
         "del": "^5.1.0",
         "envify": "^4.1.0",
+        "enzyme": "^3.11.0",
+        "enzyme-adapter-react-16": "^1.15.2",
         "eslint": "^6.8.0",
         "eslint-config-prettier": "^6.10.0",
         "eslint-loader": "^3.0.3",
@@ -93,6 +98,7 @@
         "gulp-watch": "^5.0.1",
         "html-webpack-plugin": "^4.0.4",
         "html-webpack-pug-plugin": "^2.0.0",
+        "istanbul": "^0.4.5",
         "jest": "^25.3.0",
         "mini-css-extract-plugin": "^0.9.0",
         "node-sass": "^4.13.1",
@@ -139,6 +145,7 @@
         "convert-units": "^2.3.4",
         "core-js": "^3.6.4",
         "dayjs": "^1.8.23",
+        "jest-cli": "^25.4.0",
         "lazysizes": "^5.2.0",
         "node-gyp": "^6.1.0",
         "react-inlinesvg": "^1.2.0",

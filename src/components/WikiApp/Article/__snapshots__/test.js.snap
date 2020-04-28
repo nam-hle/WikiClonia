@@ -1,357 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly 1`] = `
-Array [
-  <div
-    className="menu"
-  >
-    <div
-      className="menu__left"
-    >
-      <span
-        className="logo-wiki"
-      >
-        Wiki
-      </span>
-      <span
-        className="logo-pedia"
-      >
-        pedia
-      </span>
-    </div>
-    <div
-      className="menu__main"
-    >
-      <button
-        className="menu__button button--choose"
-      >
-        Article
-      </button>
-      <button
-        className="menu__button"
-      >
-        Talk
-      </button>
-      <button
-        className="menu__button button--choose"
-      >
-        Read
-      </button>
-      <button
-        className="menu__button"
-      >
-        View source
-      </button>
-      <button
-        className="menu__button"
-      >
-        View history
-      </button>
-    </div>
-    <div
-      className="menu__search-icon"
-    >
-      <test-file-stub />
-    </div>
-    <div
-      className="menu__right"
-    >
-      <input
-        className="menu__search-input"
-        placeholder="Search Wikipedia"
-        type="text"
-      />
-      <div
-        className="menu__profile-icon"
-      >
-        <test-file-stub />
-      </div>
-    </div>
-  </div>,
-  <div
-    className="css-1qtlriq-SkeletonTheme"
-  >
-    <div
-      className="article"
-    >
-      <div
-        className="hero"
-      >
-        <div
-          className="hero__title"
-        >
-          Pet door
-        </div>
-        <div
-          className="hero__credit"
-        >
-          From Wikipedia, the free encyclopedia
-        </div>
-        Loading...
-      </div>
-    </div>
-  </div>,
-  <div
-    className="navigation"
-  >
-    <div
-      className="navigation__content"
-    >
-      <button
-        className="navigation__button navigation__left-button"
-        onClick={[Function]}
-      >
-        <test-file-stub />
-      </button>
-      <div
-        className="navigation__headings"
-      />
-      <button
-        className="navigation__button navigation__right-button"
-        onClick={[Function]}
-      >
-        <test-file-stub />
-      </button>
-    </div>
-  </div>,
-]
-`;
-
-exports[`renders correctly 2`] = `
-Array [
-  <div
-    className="menu"
-  >
-    <div
-      className="menu__left"
-    >
-      <span
-        className="logo-wiki"
-      >
-        Wiki
-      </span>
-      <span
-        className="logo-pedia"
-      >
-        pedia
-      </span>
-    </div>
-    <div
-      className="menu__main"
-    >
-      <button
-        className="menu__button button--choose"
-      >
-        Article
-      </button>
-      <button
-        className="menu__button"
-      >
-        Talk
-      </button>
-      <button
-        className="menu__button button--choose"
-      >
-        Read
-      </button>
-      <button
-        className="menu__button"
-      >
-        View source
-      </button>
-      <button
-        className="menu__button"
-      >
-        View history
-      </button>
-    </div>
-    <div
-      className="menu__search-icon"
-    >
-      <test-file-stub />
-    </div>
-    <div
-      className="menu__right"
-    >
-      <input
-        className="menu__search-input"
-        placeholder="Search Wikipedia"
-        type="text"
-      />
-      <div
-        className="menu__profile-icon"
-      >
-        <test-file-stub />
-      </div>
-    </div>
-  </div>,
-  <div
-    className="css-1qtlriq-SkeletonTheme"
-  >
-    <div
-      className="article"
-    >
-      <div
-        className="hero"
-      >
-        <div
-          className="hero__title"
-        >
-          New York City
-        </div>
-        <div
-          className="hero__credit"
-        >
-          From Wikipedia, the free encyclopedia
-        </div>
-        Loading...
-      </div>
-    </div>
-  </div>,
-  <div
-    className="navigation"
-  >
-    <div
-      className="navigation__content"
-    >
-      <button
-        className="navigation__button navigation__left-button"
-        onClick={[Function]}
-      >
-        <test-file-stub />
-      </button>
-      <div
-        className="navigation__headings"
-      />
-      <button
-        className="navigation__button navigation__right-button"
-        onClick={[Function]}
-      >
-        <test-file-stub />
-      </button>
-    </div>
-  </div>,
-]
-`;
-
-exports[`renders correctly 3`] = `
-Array [
-  <div
-    className="menu"
-  >
-    <div
-      className="menu__left"
-    >
-      <span
-        className="logo-wiki"
-      >
-        Wiki
-      </span>
-      <span
-        className="logo-pedia"
-      >
-        pedia
-      </span>
-    </div>
-    <div
-      className="menu__main"
-    >
-      <button
-        className="menu__button button--choose"
-      >
-        Article
-      </button>
-      <button
-        className="menu__button"
-      >
-        Talk
-      </button>
-      <button
-        className="menu__button button--choose"
-      >
-        Read
-      </button>
-      <button
-        className="menu__button"
-      >
-        View source
-      </button>
-      <button
-        className="menu__button"
-      >
-        View history
-      </button>
-    </div>
-    <div
-      className="menu__search-icon"
-    >
-      <test-file-stub />
-    </div>
-    <div
-      className="menu__right"
-    >
-      <input
-        className="menu__search-input"
-        placeholder="Search Wikipedia"
-        type="text"
-      />
-      <div
-        className="menu__profile-icon"
-      >
-        <test-file-stub />
-      </div>
-    </div>
-  </div>,
-  <div
-    className="css-1qtlriq-SkeletonTheme"
-  >
-    <div
-      className="article"
-    >
-      <div
-        className="hero"
-      >
-        <div
-          className="hero__title"
-        >
-          The Last Supper (Leonardo)
-        </div>
-        <div
-          className="hero__credit"
-        >
-          From Wikipedia, the free encyclopedia
-        </div>
-        Loading...
-      </div>
-    </div>
-  </div>,
-  <div
-    className="navigation"
-  >
-    <div
-      className="navigation__content"
-    >
-      <button
-        className="navigation__button navigation__left-button"
-        onClick={[Function]}
-      >
-        <test-file-stub />
-      </button>
-      <div
-        className="navigation__headings"
-      />
-      <button
-        className="navigation__button navigation__right-button"
-        onClick={[Function]}
-      >
-        <test-file-stub />
-      </button>
-    </div>
-  </div>,
-]
-`;
-
-exports[`renders correctly 4`] = `
+exports[`renders correctly with Leonardo_da_Vinci 1`] = `
 Array [
   <div
     className="menu"
@@ -468,7 +117,7 @@ Array [
 ]
 `;
 
-exports[`renders correctly 5`] = `
+exports[`renders correctly with Mona_Lisa 1`] = `
 Array [
   <div
     className="menu"
@@ -585,7 +234,241 @@ Array [
 ]
 `;
 
-exports[`renders correctly 6`] = `
+exports[`renders correctly with New_York_City 1`] = `
+Array [
+  <div
+    className="menu"
+  >
+    <div
+      className="menu__left"
+    >
+      <span
+        className="logo-wiki"
+      >
+        Wiki
+      </span>
+      <span
+        className="logo-pedia"
+      >
+        pedia
+      </span>
+    </div>
+    <div
+      className="menu__main"
+    >
+      <button
+        className="menu__button button--choose"
+      >
+        Article
+      </button>
+      <button
+        className="menu__button"
+      >
+        Talk
+      </button>
+      <button
+        className="menu__button button--choose"
+      >
+        Read
+      </button>
+      <button
+        className="menu__button"
+      >
+        View source
+      </button>
+      <button
+        className="menu__button"
+      >
+        View history
+      </button>
+    </div>
+    <div
+      className="menu__search-icon"
+    >
+      <test-file-stub />
+    </div>
+    <div
+      className="menu__right"
+    >
+      <input
+        className="menu__search-input"
+        placeholder="Search Wikipedia"
+        type="text"
+      />
+      <div
+        className="menu__profile-icon"
+      >
+        <test-file-stub />
+      </div>
+    </div>
+  </div>,
+  <div
+    className="css-1qtlriq-SkeletonTheme"
+  >
+    <div
+      className="article"
+    >
+      <div
+        className="hero"
+      >
+        <div
+          className="hero__title"
+        >
+          New York City
+        </div>
+        <div
+          className="hero__credit"
+        >
+          From Wikipedia, the free encyclopedia
+        </div>
+        Loading...
+      </div>
+    </div>
+  </div>,
+  <div
+    className="navigation"
+  >
+    <div
+      className="navigation__content"
+    >
+      <button
+        className="navigation__button navigation__left-button"
+        onClick={[Function]}
+      >
+        <test-file-stub />
+      </button>
+      <div
+        className="navigation__headings"
+      />
+      <button
+        className="navigation__button navigation__right-button"
+        onClick={[Function]}
+      >
+        <test-file-stub />
+      </button>
+    </div>
+  </div>,
+]
+`;
+
+exports[`renders correctly with Pet_door 1`] = `
+Array [
+  <div
+    className="menu"
+  >
+    <div
+      className="menu__left"
+    >
+      <span
+        className="logo-wiki"
+      >
+        Wiki
+      </span>
+      <span
+        className="logo-pedia"
+      >
+        pedia
+      </span>
+    </div>
+    <div
+      className="menu__main"
+    >
+      <button
+        className="menu__button button--choose"
+      >
+        Article
+      </button>
+      <button
+        className="menu__button"
+      >
+        Talk
+      </button>
+      <button
+        className="menu__button button--choose"
+      >
+        Read
+      </button>
+      <button
+        className="menu__button"
+      >
+        View source
+      </button>
+      <button
+        className="menu__button"
+      >
+        View history
+      </button>
+    </div>
+    <div
+      className="menu__search-icon"
+    >
+      <test-file-stub />
+    </div>
+    <div
+      className="menu__right"
+    >
+      <input
+        className="menu__search-input"
+        placeholder="Search Wikipedia"
+        type="text"
+      />
+      <div
+        className="menu__profile-icon"
+      >
+        <test-file-stub />
+      </div>
+    </div>
+  </div>,
+  <div
+    className="css-1qtlriq-SkeletonTheme"
+  >
+    <div
+      className="article"
+    >
+      <div
+        className="hero"
+      >
+        <div
+          className="hero__title"
+        >
+          Pet door
+        </div>
+        <div
+          className="hero__credit"
+        >
+          From Wikipedia, the free encyclopedia
+        </div>
+        Loading...
+      </div>
+    </div>
+  </div>,
+  <div
+    className="navigation"
+  >
+    <div
+      className="navigation__content"
+    >
+      <button
+        className="navigation__button navigation__left-button"
+        onClick={[Function]}
+      >
+        <test-file-stub />
+      </button>
+      <div
+        className="navigation__headings"
+      />
+      <button
+        className="navigation__button navigation__right-button"
+        onClick={[Function]}
+      >
+        <test-file-stub />
+      </button>
+    </div>
+  </div>,
+]
+`;
+
+exports[`renders correctly with Renaissance 1`] = `
 Array [
   <div
     className="menu"
@@ -666,6 +549,123 @@ Array [
           className="hero__title"
         >
           Renaissance
+        </div>
+        <div
+          className="hero__credit"
+        >
+          From Wikipedia, the free encyclopedia
+        </div>
+        Loading...
+      </div>
+    </div>
+  </div>,
+  <div
+    className="navigation"
+  >
+    <div
+      className="navigation__content"
+    >
+      <button
+        className="navigation__button navigation__left-button"
+        onClick={[Function]}
+      >
+        <test-file-stub />
+      </button>
+      <div
+        className="navigation__headings"
+      />
+      <button
+        className="navigation__button navigation__right-button"
+        onClick={[Function]}
+      >
+        <test-file-stub />
+      </button>
+    </div>
+  </div>,
+]
+`;
+
+exports[`renders correctly with The_Last_Supper_(Leonardo) 1`] = `
+Array [
+  <div
+    className="menu"
+  >
+    <div
+      className="menu__left"
+    >
+      <span
+        className="logo-wiki"
+      >
+        Wiki
+      </span>
+      <span
+        className="logo-pedia"
+      >
+        pedia
+      </span>
+    </div>
+    <div
+      className="menu__main"
+    >
+      <button
+        className="menu__button button--choose"
+      >
+        Article
+      </button>
+      <button
+        className="menu__button"
+      >
+        Talk
+      </button>
+      <button
+        className="menu__button button--choose"
+      >
+        Read
+      </button>
+      <button
+        className="menu__button"
+      >
+        View source
+      </button>
+      <button
+        className="menu__button"
+      >
+        View history
+      </button>
+    </div>
+    <div
+      className="menu__search-icon"
+    >
+      <test-file-stub />
+    </div>
+    <div
+      className="menu__right"
+    >
+      <input
+        className="menu__search-input"
+        placeholder="Search Wikipedia"
+        type="text"
+      />
+      <div
+        className="menu__profile-icon"
+      >
+        <test-file-stub />
+      </div>
+    </div>
+  </div>,
+  <div
+    className="css-1qtlriq-SkeletonTheme"
+  >
+    <div
+      className="article"
+    >
+      <div
+        className="hero"
+      >
+        <div
+          className="hero__title"
+        >
+          The Last Supper (Leonardo)
         </div>
         <div
           className="hero__credit"
