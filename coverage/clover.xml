@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1588131466979" clover="3.2.0">
-  <project timestamp="1588131466980" name="All files">
+<coverage generated="1588132038102" clover="3.2.0">
+  <project timestamp="1588132038102" name="All files">
     <metrics statements="526" coveredstatements="477" conditionals="289" coveredconditionals="245" methods="64" coveredmethods="49" elements="879" coveredelements="771" complexity="0" loc="526" ncloc="526" packages="9" files="11" classes="11"/>
     <package name="WikiWrapper">
       <metrics statements="6" coveredstatements="6" conditionals="1" coveredconditionals="1" methods="5" coveredmethods="4"/>
