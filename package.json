@@ -23,6 +23,12 @@
         "coverageDirectory": "./coverage/",
         "collectCoverage": true
     },
+    "husky": {
+        "hooks": {
+            "pre-commit": "npm test",
+            "pre-push": "npm test"
+        }
+    },
     "keywords": [
         "BEM",
         "ITCSS",
@@ -100,6 +106,7 @@
         "gulp-watch": "^5.0.1",
         "html-webpack-plugin": "^4.0.4",
         "html-webpack-pug-plugin": "^2.0.0",
+        "husky": "^4.2.5",
         "istanbul": "^0.4.5",
         "jest": "^25.3.0",
         "mini-css-extract-plugin": "^0.9.0",
