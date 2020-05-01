@@ -1,39 +1,13 @@
 import convert from "convert-units";
+import { Global, PairPipe } from "./elements";
+import { analyseHeadings } from "./analyser";
+import { taste, capitalizeFirst, capitalize, trimQuote, clean } from "./utils";
 
 // var convert = require("convert-units");
 const UNITS = convert().list();
 const ABBR_UNITS = convert()
   .list()
   .map(unit => unit.abbr);
-
-const taste = (s, t, i) => s[i] == t[0] && s.substr(i, t.length) == t;
-
-const capitalizeFirst = string =>
-  string.charAt(0).toUpperCase() + string.slice(1);
-
-const capitalize = string =>
-  string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
-
-const trimQuote = str =>
-  str && '"' == str[0] && '"' == str[str.length - 1]
-    ? str.slice(1, str.length - 1)
-    : str;
-
-const clean = obj => {
-  let res = {};
-  for (const key in obj) {
-    let value = obj[key];
-    if (
-      value === null ||
-      value === undefined ||
-      (Array.isArray(value) && value.length === 0) ||
-      Object.keys(value).length === 0
-    )
-      continue;
-    res[key] = value;
-  }
-  return res;
-};
 
 const createTextElement = text => ({ elementName: "Text", text });
 
@@ -510,196 +484,13 @@ const internalParse = (element, content, plain) => {
   return { children: content };
 };
 
-const Comment = {
-    elementName: "Comment",
-    startToken: "<!--",
-    endToken: ["-->"],
-    allowedChildren: []
-  },
-  Break = {
-    elementName: "Break",
-    startToken: "<br />",
-    endToken: [],
-    allowedChildren: [],
-    selfClose: true
-  },
-  BoldItalic = {
-    elementName: "BoldItalic",
-    startToken: "'''''",
-    endToken: ["'''''"],
-    allowedChildren: []
-  },
-  Bold = {
-    elementName: "Bold",
-    startToken: "'''",
-    endToken: ["'''"],
-    allowedChildren: []
-  },
-  Italic = {
-    elementName: "Italic",
-    startToken: "''",
-    endToken: ["''"],
-    allowedChildren: []
-  },
-  Gallery = {
-    elementName: "Gallery",
-    startToken: "<gallery",
-    endToken: ["</gallery>"],
-    allowedChildren: []
-  },
-  Link = {
-    elementName: "Link",
-    startToken: "[[",
-    endToken: ["]]"],
-    allowedChildren: [Bold, Italic]
-  },
-  ExternalLink = {
-    elementName: "ExternalLink",
-    startToken: "[",
-    endToken: ["]"],
-    allowedChildren: []
-  },
-  Heading1 = {
-    elementName: "Heading1",
-    startToken: "==",
-    endToken: ["=="],
-    allowedChildren: []
-  },
-  Heading2 = {
-    elementName: "Heading2",
-    startToken: "===",
-    endToken: ["==="],
-    allowedChildren: []
-  },
-  Heading3 = {
-    elementName: "Heading3",
-    startToken: "====",
-    endToken: ["===="],
-    allowedChildren: []
-  },
-  Heading4 = {
-    elementName: "Heading4",
-    startToken: "=====",
-    endToken: ["====="],
-    allowedChildren: []
-  },
-  Heading5 = {
-    elementName: "Heading5",
-    startToken: "======",
-    endToken: ["======"],
-    allowedChildren: []
-  },
-  Heading6 = {
-    elementName: "Heading6",
-    startToken: "=======",
-    endToken: ["======="],
-    allowedChildren: []
-  },
-  Reference = {
-    elementName: "Reference",
-    startToken: "<ref",
-    endToken: ["</ref>", "/>"],
-    allowedChildren: []
-  },
-  Template = {
-    elementName: "Template",
-    startToken: "{{",
-    endToken: ["}}"],
-    allowedChildren: []
-  },
-  BlockQuote = {
-    elementName: "Block Quote",
-    startToken: "<blockquote>",
-    endToken: ["</blockquote>"],
-    allowedChildren: [Italic, Bold, BoldItalic]
-  },
-  PairPipe = {
-    elementName: "PairPipe",
-    startToken: null,
-    endToken: ["|"],
-    allowedChildren: []
-  },
-  Global = {
-    elementName: "Global",
-    startToken: null,
-    endToken: null,
-    allowedChildren: [
-      Comment,
-      Gallery,
-      Break,
-      BoldItalic,
-      Bold,
-      Italic,
-      Link,
-      ExternalLink,
-      Heading6,
-      Heading5,
-      Heading4,
-      Heading3,
-      Heading2,
-      Heading1,
-      Reference,
-      BlockQuote,
-      Template
-    ]
-  };
-
-Link.allowedChildren.push(Link);
-Italic.allowedChildren.push(Link);
-Reference.allowedChildren.push(Break, Template);
-Template.allowedChildren.push(Template, Reference, Link);
-PairPipe.allowedChildren = Global.allowedChildren;
-
-const analyseHeadings = headings => {
-  if (!headings.length) return null;
-  let getLevel = heading => +/^Heading(\d)$/.exec(heading.elementName)[1];
-  let currentLevel = 0,
-    res = {},
-    currentHeading = res;
-
-  res.indices = [];
-
-  for (const heading of headings) {
-    let level = getLevel(heading),
-      headingText = heading.children[0].text.trim(),
-      headingId = headingText.replace(/\s/, "") + "_" + level;
-
-    // add metadata
-    heading.level = level;
-    heading.text = headingText;
-    heading.id = headingId;
-    heading.className = "wiki-heading-" + level;
-    heading.indices = currentHeading.indices.slice();
-
-    // connect heading to heading tree
-    if (level > currentLevel) {
-      heading.indices.push(1);
-
-      if (!currentHeading.childrenHeadings)
-        currentHeading.childrenHeadings = [];
-      heading.parentHeading = currentHeading;
-      currentHeading.childrenHeadings.push(heading);
-    } else if (level == currentLevel) {
-      heading.indices[heading.indices.length - 1]++;
-
-      let parent = currentHeading.parentHeading;
-      parent.childrenHeadings.push(heading);
-      heading.parentHeading = parent;
-    } else {
-      heading.indices = heading.indices.slice(0, level);
-      heading.indices[heading.indices.length - 1]++;
-
-      let grandParent = currentHeading.parentHeading.parentHeading;
-      grandParent.childrenHeadings.push(heading);
-      heading.parentHeading = grandParent;
-    }
-    currentHeading = heading;
-    currentLevel = level;
-  }
-  return res;
-};
-
-const parse = (str, strlen, index, e, opts = { headings: true }) => {
+const parse = (
+  str,
+  strlen,
+  index,
+  targetElement,
+  opts = { headings: true }
+) => {
   let buffer = "",
     has,
     plain = "",
@@ -713,18 +504,17 @@ const parse = (str, strlen, index, e, opts = { headings: true }) => {
     hasSelfClose;
 
   strlen = strlen === null ? str.length : strlen;
-  let { elementName, startToken, endToken, allowedChildren } = e;
+  let { elementName, startToken, endToken, allowedChildren } = targetElement;
   index += startToken === null ? 0 : startToken.length;
   plain += startToken === null ? "" : startToken;
 
   while (index < strlen) {
-    // console.log(index);
     hasSelfClose = false;
     has = false;
     for (const matchElement of allowedChildren) {
       if (!taste(str, matchElement.startToken, index)) continue;
       has = true;
-      if (buffer) content.push({ elementName: "Text", text: buffer });
+      if (buffer) content.push(createTextElement(buffer));
       buffer = "";
 
       if ((hasSelfClose = matchElement.selfClose)) {
@@ -738,24 +528,21 @@ const parse = (str, strlen, index, e, opts = { headings: true }) => {
       plain += nextPlain;
       content.push(nextElement);
 
-      if (matchElement.elementName == "Reference") {
+      if (matchElement.elementName == "Reference")
         nextElement.referenceIndex = ++referenceIndex;
-      }
-      if (/^Heading/.exec(nextElement.elementName) !== null) {
+
+      if (/^Heading/.exec(nextElement.elementName) !== null)
         headings.push(nextElement);
-      }
 
       if (
         nextElement.elementName == "Link" &&
         nextElement.type == "media" &&
         nextElement.supType == "File"
-      ) {
+      )
         images.push(nextElement);
-      }
 
-      if (nextElement.elementName == "Gallery") {
+      if (nextElement.elementName == "Gallery")
         images.push(...nextElement.images);
-      }
 
       break;
     }
@@ -771,7 +558,7 @@ const parse = (str, strlen, index, e, opts = { headings: true }) => {
             index += eToken.length;
             plain += eToken;
 
-            if (e.elementName == "Link") {
+            if (targetElement.elementName == "Link") {
               while (index < strlen) {
                 let nowiki = "<nowiki />";
                 if (taste(str, nowiki, index)) {
@@ -794,16 +581,15 @@ const parse = (str, strlen, index, e, opts = { headings: true }) => {
     } // end not has
   }
 
-  if (buffer) content.push({ elementName: "Text", text: buffer });
+  if (buffer) content.push(createTextElement(buffer));
 
-  // console.log(opts.headings);
   let res = [
     index,
     clean({
       elementName,
       headings: opts.headings ? analyseHeadings(headings) : null,
       images,
-      ...internalParse(e, content, plain, options)
+      ...internalParse(targetElement, content, plain, options)
     }),
     plain
   ];
