@@ -11,7 +11,7 @@
         "lint": "npx eslint --ignore-pattern '/**/test.js' 'src/**/*.js'"
     },
     "jest": {
-        "verbose": true,
+        "verbose": false,
         "transform": {
             "^.+\\.svg$": "<rootDir>/svgTransform.js",
             "^.+\\.(js|jsx|mjs)$": "<rootDir>/node_modules/babel-jest"
