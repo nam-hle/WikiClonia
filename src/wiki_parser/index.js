@@ -35,6 +35,8 @@ const clean = obj => {
   return res;
 };
 
+const createTextElement = text => ({ elementName: "Text", text });
+
 const CiteParser = plain => {
   let R_CITE = /\{\{cite (?<subType>\w+)\s*\|?(?<attributes>[\S\s]*)}}$/gi;
 
@@ -378,21 +380,13 @@ const internalParse = (element, content, plain) => {
       let text = /\|(.*)}}$/.exec(plain)[1];
       return {
         elementName: "Italic",
-        children: [
-          {
-            elementName: "Text",
-            text
-          }
-        ]
+        children: [createTextElement(text)]
       };
     }
 
     if (/^{{IPA-\w+\|/gi.test(plain)) {
       let text = /\|(.*)}}$/.exec(plain)[1];
-      return {
-        elementName: "Text",
-        text: "[" + text + "]"
-      };
+      return createTextElement("[" + text + "]");
     }
 
     return {
