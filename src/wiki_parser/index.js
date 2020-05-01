@@ -1,4 +1,7 @@
 import convert from "convert-units";
+import { Global, PairPipe } from "./elements";
+import { analyseHeadings } from "./analyser";
+import { taste, capitalizeFirst, capitalize, trimQuote, clean } from "./utils";
 
 // var convert = require("convert-units");
 const UNITS = convert().list();
@@ -6,42 +9,16 @@ const ABBR_UNITS = convert()
   .list()
   .map(unit => unit.abbr);
 
-const taste = (s, t, i) => s[i] == t[0] && s.substr(i, t.length) == t;
-
-const capitalizeFirst = string =>
-  string.charAt(0).toUpperCase() + string.slice(1);
-
-const capitalize = string =>
-  string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
-
-const trimQuote = str =>
-  str && '"' == str[0] && '"' == str[str.length - 1]
-    ? str.slice(1, str.length - 1)
-    : str;
-
-const clean = obj => {
-  let res = {};
-  for (const key in obj) {
-    let value = obj[key];
-    if (
-      value === null ||
-      value === undefined ||
-      (Array.isArray(value) && value.length === 0) ||
-      Object.keys(value).length === 0
-    )
-      continue;
-    res[key] = value;
-  }
-  return res;
-};
+const createTextElement = text => ({ elementName: "Text", text });
 
 const CiteParser = plain => {
-  let R_CITE = /\{\{cite (?<subType>\w+)\s*\|?(?<attributes>[\S\s]*)}}$/gi;
+  let R_CITE = /\{\{cite (?<subType>\w+)\s*\|?(?<remain>[\S\s]*)}}$/gi;
 
-  let { subType, attributes } = R_CITE.exec(plain).groups,
-    attribute = {};
+  let { subType, remain } = R_CITE.exec(plain).groups;
 
-  for (const pair of attributes.split("|")) {
+  let attribute = {};
+
+  for (const pair of remain.split("|")) {
     let equalIndex = pair.indexOf("=");
     let [key, value] = [
       pair.slice(0, equalIndex),
@@ -216,12 +193,13 @@ const FootnoteParser = plain => {
 };
 
 const GalleryParser = plain => {
-  const R_GALLERY = /\<gallery\s+(?<attr>[^>]+)?>(?<content>[\s\S]+)<\/gallery>/gi;
+  const R_GALLERY = /\<gallery\s*(?<attr>[^>]+)?>(?<content>[\s\S]+)<\/gallery>/gi;
   let match,
     attr,
     content,
     attributes = {};
-  if ((match = R_GALLERY.exec(plain)) === null) throw "Gallery Syntax Error";
+  if ((match = R_GALLERY.exec(plain)) === null)
+    throw "Gallery Syntax Error" + plain;
 
   ({ attr, content } = match.groups);
 
@@ -253,15 +231,15 @@ const parsePairPipe = plain => {
 
   while (remain) {
     if ((match = R_KEY.exec(remain)) === null)
-      throw "PairPipe Syntax Error " + remain;
+      throw "Key PairPipe Syntax Error " + remain;
     ({ key, remain } = match.groups);
-
+    key = key.trim();
     [nextIndex, , parsedPlain] = parse(remain, null, 0, PairPipe);
     remain = remain.substr(nextIndex);
 
     let value = parsedPlain;
     match = /^\s*(?<value>[\s\S]+?)[\|\s]*$/.exec(value);
-    if (match === null) throw `Infobox Syntax Error ${value}`;
+    if (match === null) throw `Value PairPipe Syntax Error ${value}`;
     value = match.groups.value;
     res[key] = value == "|" ? "" : value;
   }
@@ -324,401 +302,206 @@ const InfoboxParser = plain => {
   ({ subtype, remain } = match.groups);
   subtype = subtype.trim();
 
-  for (const section of remain.split`----`) {
-    // console.log(section);
-    // console.log("--------------");
-
-    let attributes = parsePairPipe(section);
-
-    // clean leading space and trailing "|" and "---"
-
-    // for (const key of Object.keys(attributes)) {
-    //   let value = attributes[key];
-    //   match = /^(?<content>[\s\S]+?)[\|\s]*$/.exec(value);
-    //   if (match === null) throw `Infobox Syntax Error ${value}`;
-    //   content = match.groups.content;
-    //   attributes[key] = content == "|" ? "" : content;
-    // }
-    sections.push(attributes);
-  }
+  for (const section of remain.split`----`)
+    sections.push(parsePairPipe(section));
 
   return { type: "Infobox", subtype, sections };
 };
 
-const internalParse = (element, content, plain) => {
-  if (element.elementName == "Reference") {
-    return ReferenceParser(plain);
-  }
+const InternalLinkParser = (plain, content) => {
+  // console.log({ plain });
+  let match;
+  /********************************
+   *          FREE LINK
+   *******************************/
 
-  if (element.elementName == "Gallery") return GalleryParser(plain);
+  /*
+  /* ^
+  /*  \[\[            startTokent
+  /*  ([^|]+)         fullUrl
+  /*  (\|([^|]+)?)?   optinal (pipe and optinal display text)
+  /*  \]\]            endToken
+  /*  (\w+)?          suffixStr
+  /* $
+  */
 
-  if (element.elementName == "ExternalLink") {
-    const R_EXTERNAL = /^\[(?<url>\S+)( (?<displayText>[\s\S]+))?\]$/gi;
-    let match, url, displayText;
-    if ((match = R_EXTERNAL.exec(plain)) !== null) {
-      ({ url, displayText } = match.groups);
-      return { url, displayText };
-    } else {
-      throw "ExternalLink Grammar Error";
+  let R_ARTICLE = /^\[\[([^|]+)(\|([^|]+)?)?\]\](\w+)?$/;
+  if ((match = R_ARTICLE.exec(plain))) {
+    let fullUrl = match[1],
+      nonePipe = !match[2],
+      trailingPipe = match[2] && !match[3],
+      displayText = match[3],
+      suffixStr = match[4] || "";
+
+    // console.log({
+    //   fullUrl,
+    //   nonePipe,
+    //   trailingPipe,
+    //   displayText,
+    //   suffixStr
+    // });
+
+    // Manipulate the url
+    let namespace, disambiguation, rootUrl, url;
+
+    //
+    // ^
+    //  ((\w+):)?   namespace?
+    //  (
+    //      ([\w\-,. ]+)( \((.+)\))  commas has priority over parantheses
+    //    |
+    //      ([\w\-. ]+)
+    //      (
+    //          \((.+)\)          trailing parentheses
+    //        |
+    //          , (.+)            trailing comma
+    //      )?
+    //  )
+    // $
+
+    // let urlMatch = /^(:?(\w+):)?
+    // (
+    //   ([\w\-,.#\"\(\) ]+)( \((.+)\))
+    //   |
+    //   ([\w\-.#\"\(\) ]+)( \((.+)\)|, (.+))?
+    // )$/.exec(
+    //   fullUrl
+    // );
+    // ([\w\-,.#\"\(\) ]+)( \((.+)\))
+
+    let urlMatch = /^(:?(\w+):)?(([^\(]+)( \((.+)\))|([^,(]+)( \((.+)\)|, (.+))?|([\s\S]*))$/.exec(
+      fullUrl
+    );
+
+    if (urlMatch === null) {
+      // console.log("@");
+      return content;
     }
-  }
+    namespace = capitalize(urlMatch[1] || "");
+    rootUrl = urlMatch[4] || urlMatch[7] || urlMatch[11];
+    disambiguation = urlMatch[5] || urlMatch[8] || "";
 
-  if (element.elementName == "Template") {
-    if (/^{{[Cc]ite/g.test(plain)) {
-      return CiteParser(plain);
-    } else if (/^{{(refn|efn|efn-(la|ua|lr|ur|lg))\|/.test(plain)) {
-      return FootnoteParser(plain);
-    } else if (/^{{lang-\w+\|/gi.test(plain)) {
-      let text = /\|(.*)}}$/.exec(plain)[1];
+    if ("File:" != namespace) {
+      url = namespace + capitalizeFirst(rootUrl) + disambiguation;
+      url = url.replace(/ /g, "_"); // convert to valid URL
+      displayText = nonePipe ? fullUrl : trailingPipe ? rootUrl : displayText;
+
+      if (suffixStr) {
+        displayText += suffixStr;
+      }
+
+      displayText = [{ elementName: "Text", text: displayText }];
       return {
-        elementName: "Italic",
-        children: [
-          {
-            elementName: "Text",
-            text
-          }
-        ]
+        type: "wikiLink",
+        url,
+        displayText
       };
-    } else if (/^{{IPA-\w+\|/gi.test(plain)) {
-      let text = /\|(.*)}}$/.exec(plain)[1];
-      return {
-        elementName: "Text",
-        text: "[" + text + "]"
-      };
-    } else if (/^{{convert/gi.test(plain)) {
-      return ConvertParser(plain);
-    } else if (/^{{multiple image/gi.test(plain)) {
-      return MultipleImageParser(plain);
-    } else if (/^{{Infobox \w+/gi.test(plain)) {
-      return InfoboxParser(plain);
     }
-
-    return {
-      type: "N/A",
-      // children: [{ elementName: "Text", text: `<--N/A--${plain}-->` }]
-      children: [{ elementName: "Text", text: "N/A" }]
-    };
   }
 
-  if (element.elementName == "Link") {
-    // console.log({ plain });
-    let match;
-    /********************************
-     *          FREE LINK
-     *******************************/
+  // For handling format like:
+  // [[File:Gatera de ademuz.jpg|thumb|left|A ''{{lang|es|gatera}}''
+  // in [[Rincón de Ademuz]]
 
-    /*
-    /* ^
-    /*  \[\[            startTokent
-    /*  ([^|]+)         fullUrl
-    /*  (\|([^|]+)?)?   optinal (pipe and optinal display text)
-    /*  \]\]            endToken
-    /*  (\w+)?          suffixStr
-    /* $
-    */
+  let chunks = plain.slice(2, -2).split("|");
+  let first = chunks[0];
+  let R_MEDIA = /^(File|Image|Media):(.*)$/i;
+  if ((match = R_MEDIA.exec(first))) {
+    let type = "media",
+      supType = capitalizeFirst(match[1]),
+      rootUrl = capitalizeFirst(match[2]),
+      url = `${supType}:${rootUrl}`;
+    let meta = { type, supType, url },
+      options = [],
+      caption = [];
+    let R_OPTION = /^(border|frame(less)?|thumb(nail)?|((\d+)?x)?\d+px|upright[ =]\d+\.\d+|upright=?|left|right|cent(er|re)|none|baseline|sub|super|top|text-top|middle|bottom|text-bottom|(alt|page|class|lang|link)=.+)$/i,
+      R_ATTRIBUTE = /^(alt|page|class|lang|link)=(.*$)/i;
 
-    let R_ARTICLE = /^\[\[([^|]+)(\|([^|]+)?)?\]\](\w+)?$/;
-    if ((match = R_ARTICLE.exec(plain))) {
-      let fullUrl = match[1],
-        nonePipe = !match[2],
-        trailingPipe = match[2] && !match[3],
-        displayText = match[3],
-        suffixStr = match[4] || "";
-
-      // console.log({
-      //   fullUrl,
-      //   nonePipe,
-      //   trailingPipe,
-      //   displayText,
-      //   suffixStr
-      // });
-
-      // Manipulate the url
-      let namespace, disambiguation, rootUrl, url;
-
-      //
-      // ^
-      //  ((\w+):)?   namespace?
-      //  (
-      //      ([\w\-,. ]+)( \((.+)\))  commas has priority over parantheses
-      //    |
-      //      ([\w\-. ]+)
-      //      (
-      //          \((.+)\)          trailing parentheses
-      //        |
-      //          , (.+)            trailing comma
-      //      )?
-      //  )
-      // $
-
-      // let urlMatch = /^(:?(\w+):)?
-      // (
-      //   ([\w\-,.#\"\(\) ]+)( \((.+)\))
-      //   |
-      //   ([\w\-.#\"\(\) ]+)( \((.+)\)|, (.+))?
-      // )$/.exec(
-      //   fullUrl
-      // );
-      // ([\w\-,.#\"\(\) ]+)( \((.+)\))
-
-      let urlMatch = /^(:?(\w+):)?(([^\(]+)( \((.+)\))|([^,(]+)( \((.+)\)|, (.+))?|([\s\S]*))$/.exec(
-        fullUrl
-      );
-
-      if (urlMatch === null) {
-        // console.log("@");
-        return content;
+    for (const chunk of chunks.slice(1)) {
+      // console.log(chunk);
+      if (!R_OPTION.test(chunk)) {
+        caption.push(chunk);
+        continue;
       }
-      namespace = capitalize(urlMatch[1] || "");
-      rootUrl = urlMatch[4] || urlMatch[7] || urlMatch[11];
-      disambiguation = urlMatch[5] || urlMatch[8] || "";
 
-      if ("File:" != namespace) {
-        url = namespace + capitalizeFirst(rootUrl) + disambiguation;
-        url = url.replace(/ /g, "_"); // convert to valid URL
-        displayText = nonePipe ? fullUrl : trailingPipe ? rootUrl : displayText;
-
-        if (suffixStr) {
-          displayText += suffixStr;
-        }
-
-        displayText = [{ elementName: "Text", text: displayText }];
-        return {
-          type: "wikiLink",
-          url,
-          displayText
-        };
-      }
+      let match;
+      if ((match = R_ATTRIBUTE.exec(chunk))) {
+        options.push({ key: match[1], value: match[2] });
+      } else options.push(chunk);
     }
 
-    // For handling format like:
-    // [[File:Gatera de ademuz.jpg|thumb|left|A ''{{lang|es|gatera}}''
-    // in [[Rincón de Ademuz]]
-
-    let chunks = plain.slice(2, -2).split("|");
-    let first = chunks[0];
-    let R_MEDIA = /^(File|Image|Media):(.*)$/i;
-    if ((match = R_MEDIA.exec(first))) {
-      let type = "media",
-        supType = capitalizeFirst(match[1]),
-        rootUrl = capitalizeFirst(match[2]),
-        url = `${supType}:${rootUrl}`;
-      let meta = { type, supType, url },
-        options = [],
-        caption = [];
-      let R_OPTION = /^(border|frame(less)?|thumb(nail)?|((\d+)?x)?\d+px|upright[ =]\d+\.\d+|upright=?|left|right|cent(er|re)|none|baseline|sub|super|top|text-top|middle|bottom|text-bottom|(alt|page|class|lang|link)=.+)$/i,
-        R_ATTRIBUTE = /^(alt|page|class|lang|link)=(.*$)/i;
-
-      for (const chunk of chunks.slice(1)) {
-        // console.log(chunk);
-        if (!R_OPTION.test(chunk)) {
-          caption.push(chunk);
-          continue;
-        }
-
-        let match;
-        if ((match = R_ATTRIBUTE.exec(chunk))) {
-          options.push({ key: match[1], value: match[2] });
-        } else options.push(chunk);
-      }
-
-      caption = main(caption.join("|")).children;
-      return { ...meta, options, caption };
-    }
+    caption = main(caption.join("|")).children;
+    return { ...meta, options, caption };
   }
+  // throw new Error("Internal Link Syntax Error" + plain);
   return { children: content };
 };
 
-const Comment = {
-    elementName: "Comment",
-    startToken: "<!--",
-    endToken: ["-->"],
-    allowedChildren: []
-  },
-  Break = {
-    elementName: "Break",
-    startToken: "<br />",
-    endToken: [],
-    allowedChildren: [],
-    selfClose: true
-  },
-  BoldItalic = {
-    elementName: "BoldItalic",
-    startToken: "'''''",
-    endToken: ["'''''"],
-    allowedChildren: []
-  },
-  Bold = {
-    elementName: "Bold",
-    startToken: "'''",
-    endToken: ["'''"],
-    allowedChildren: []
-  },
-  Italic = {
-    elementName: "Italic",
-    startToken: "''",
-    endToken: ["''"],
-    allowedChildren: []
-  },
-  Gallery = {
-    elementName: "Gallery",
-    startToken: "<gallery",
-    endToken: ["</gallery>"],
-    allowedChildren: []
-  },
-  Link = {
-    elementName: "Link",
-    startToken: "[[",
-    endToken: ["]]"],
-    allowedChildren: [Bold, Italic]
-  },
-  ExternalLink = {
-    elementName: "ExternalLink",
-    startToken: "[",
-    endToken: ["]"],
-    allowedChildren: []
-  },
-  Heading1 = {
-    elementName: "Heading1",
-    startToken: "==",
-    endToken: ["=="],
-    allowedChildren: []
-  },
-  Heading2 = {
-    elementName: "Heading2",
-    startToken: "===",
-    endToken: ["==="],
-    allowedChildren: []
-  },
-  Heading3 = {
-    elementName: "Heading3",
-    startToken: "====",
-    endToken: ["===="],
-    allowedChildren: []
-  },
-  Heading4 = {
-    elementName: "Heading4",
-    startToken: "=====",
-    endToken: ["====="],
-    allowedChildren: []
-  },
-  Heading5 = {
-    elementName: "Heading5",
-    startToken: "======",
-    endToken: ["======"],
-    allowedChildren: []
-  },
-  Heading6 = {
-    elementName: "Heading6",
-    startToken: "=======",
-    endToken: ["======="],
-    allowedChildren: []
-  },
-  Reference = {
-    elementName: "Reference",
-    startToken: "<ref",
-    endToken: ["</ref>", "/>"],
-    allowedChildren: []
-  },
-  Template = {
-    elementName: "Template",
-    startToken: "{{",
-    endToken: ["}}"],
-    allowedChildren: []
-  },
-  BlockQuote = {
-    elementName: "Block Quote",
-    startToken: "<blockquote>",
-    endToken: ["</blockquote>"],
-    allowedChildren: [Italic, Bold, BoldItalic]
-  },
-  PairPipe = {
-    elementName: "PairPipe",
-    startToken: null,
-    endToken: ["|"],
-    allowedChildren: []
-  },
-  Global = {
-    elementName: "Global",
-    startToken: null,
-    endToken: null,
-    allowedChildren: [
-      Comment,
-      Gallery,
-      Break,
-      BoldItalic,
-      Bold,
-      Italic,
-      Link,
-      ExternalLink,
-      Heading6,
-      Heading5,
-      Heading4,
-      Heading3,
-      Heading2,
-      Heading1,
-      Reference,
-      BlockQuote,
-      Template
-    ]
-  };
+const TemplateParser = plain => {
+  if (/^{{convert/i.test(plain)) return ConvertParser(plain);
 
-Link.allowedChildren.push(Link);
-Italic.allowedChildren.push(Link);
-Reference.allowedChildren.push(Break, Template);
-Template.allowedChildren.push(Template, Reference, Link);
-PairPipe.allowedChildren = Global.allowedChildren;
+  if (/^{{multiple image/i.test(plain)) return MultipleImageParser(plain);
 
-const analyseHeadings = headings => {
-  if (!headings.length) return null;
-  let getLevel = heading => +/^Heading(\d)$/.exec(heading.elementName)[1];
-  let currentLevel = 0,
-    res = {},
-    currentHeading = res;
+  if (/^{{Infobox \w+/i.test(plain)) return InfoboxParser(plain);
 
-  res.indices = [];
+  if (/^{{cite/i.test(plain)) return CiteParser(plain);
 
-  for (const heading of headings) {
-    let level = getLevel(heading),
-      headingText = heading.children[0].text.trim(),
-      headingId = headingText.replace(/\s/, "") + "_" + level;
+  if (/^{{(refn|efn|sfn|efn-\w{2})\|/i.test(plain))
+    return FootnoteParser(plain);
 
-    // add metadata
-    heading.level = level;
-    heading.text = headingText;
-    heading.id = headingId;
-    heading.className = "wiki-heading-" + level;
-    heading.indices = currentHeading.indices.slice();
-
-    // connect heading to heading tree
-    if (level > currentLevel) {
-      heading.indices.push(1);
-
-      if (!currentHeading.childrenHeadings)
-        currentHeading.childrenHeadings = [];
-      heading.parentHeading = currentHeading;
-      currentHeading.childrenHeadings.push(heading);
-    } else if (level == currentLevel) {
-      heading.indices[heading.indices.length - 1]++;
-
-      let parent = currentHeading.parentHeading;
-      parent.childrenHeadings.push(heading);
-      heading.parentHeading = parent;
-    } else {
-      heading.indices = heading.indices.slice(0, level);
-      heading.indices[heading.indices.length - 1]++;
-
-      let grandParent = currentHeading.parentHeading.parentHeading;
-      grandParent.childrenHeadings.push(heading);
-      heading.parentHeading = grandParent;
-    }
-    currentHeading = heading;
-    currentLevel = level;
+  if (/^{{lang-\w+\|/i.test(plain)) {
+    let text = /\|(.*)}}$/.exec(plain)[1];
+    return {
+      elementName: "Italic",
+      children: [createTextElement(text)]
+    };
   }
-  return res;
+
+  if (/^{{IPAc?-\w+\|/gi.test(plain)) {
+    let text = /\|(.*)}}$/.exec(plain)[1];
+    return createTextElement("[" + text + "]");
+  }
+
+  return {
+    type: "N/A",
+    children: [{ elementName: "Text", text: "N/A" }]
+  };
 };
 
-const parse = (str, strlen, index, e, opts = { headings: true }) => {
+const ExternalLinkParer = plain => {
+  const R_EXTERNAL = /^\[(?<url>\S+)( (?<displayText>[\s\S]+))?\]$/gi;
+  let url,
+    displayText,
+    match = R_EXTERNAL.exec(plain);
+
+  if (match === null) throw new Error("ExternalLink Syntax Error");
+  ({ url, displayText } = match.groups);
+  return { url, displayText };
+};
+
+const internalParse = (element, content, plain) => {
+  let { elementName } = element;
+
+  if (elementName == "Reference") return ReferenceParser(plain);
+
+  if (elementName == "Gallery") return GalleryParser(plain);
+
+  if (elementName == "Link") return InternalLinkParser(plain, content);
+
+  if (elementName == "Template") return TemplateParser(plain);
+
+  if (elementName == "ExternalLink") return ExternalLinkParer(plain);
+
+  return { children: content };
+};
+
+const parse = (
+  str,
+  strlen,
+  index,
+  targetElement,
+  opts = { headings: true }
+) => {
   let buffer = "",
     has,
     plain = "",
@@ -732,18 +515,17 @@ const parse = (str, strlen, index, e, opts = { headings: true }) => {
     hasSelfClose;
 
   strlen = strlen === null ? str.length : strlen;
-  let { elementName, startToken, endToken, allowedChildren } = e;
+  let { elementName, startToken, endToken, allowedChildren } = targetElement;
   index += startToken === null ? 0 : startToken.length;
   plain += startToken === null ? "" : startToken;
 
   while (index < strlen) {
-    // console.log(index);
     hasSelfClose = false;
     has = false;
     for (const matchElement of allowedChildren) {
       if (!taste(str, matchElement.startToken, index)) continue;
       has = true;
-      if (buffer) content.push({ elementName: "Text", text: buffer });
+      if (buffer) content.push(createTextElement(buffer));
       buffer = "";
 
       if ((hasSelfClose = matchElement.selfClose)) {
@@ -757,24 +539,21 @@ const parse = (str, strlen, index, e, opts = { headings: true }) => {
       plain += nextPlain;
       content.push(nextElement);
 
-      if (matchElement.elementName == "Reference") {
+      if (matchElement.elementName == "Reference")
         nextElement.referenceIndex = ++referenceIndex;
-      }
-      if (/^Heading/.exec(nextElement.elementName) !== null) {
+
+      if (/^Heading/.exec(nextElement.elementName) !== null)
         headings.push(nextElement);
-      }
 
       if (
         nextElement.elementName == "Link" &&
         nextElement.type == "media" &&
         nextElement.supType == "File"
-      ) {
+      )
         images.push(nextElement);
-      }
 
-      if (nextElement.elementName == "Gallery") {
+      if (nextElement.elementName == "Gallery")
         images.push(...nextElement.images);
-      }
 
       break;
     }
@@ -790,7 +569,7 @@ const parse = (str, strlen, index, e, opts = { headings: true }) => {
             index += eToken.length;
             plain += eToken;
 
-            if (e.elementName == "Link") {
+            if (targetElement.elementName == "Link") {
               while (index < strlen) {
                 let nowiki = "<nowiki />";
                 if (taste(str, nowiki, index)) {
@@ -813,16 +592,15 @@ const parse = (str, strlen, index, e, opts = { headings: true }) => {
     } // end not has
   }
 
-  if (buffer) content.push({ elementName: "Text", text: buffer });
+  if (buffer) content.push(createTextElement(buffer));
 
-  // console.log(opts.headings);
   let res = [
     index,
     clean({
       elementName,
       headings: opts.headings ? analyseHeadings(headings) : null,
       images,
-      ...internalParse(e, content, plain, options)
+      ...internalParse(targetElement, content, plain, options)
     }),
     plain
   ];

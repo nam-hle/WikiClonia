@@ -1,6 +1,6 @@
 // import { main, Global } from "./index.js";
 import { main, clean } from "./";
-import { new_york } from "./test_input";
+import { new_york, supper } from "./test_input";
 // let m = require("./index.js");
 
 // let main = m.main;
@@ -1096,4 +1096,8 @@ test(`Should work with pet door article`, () => {
 
 test(`Should work with new york article`, () => {
   expect(main(new_york)).toMatchSnapshot();
+});
+
+test(`Should work with last supper article`, () => {
+  expect(main(supper)).toMatchSnapshot();
 });
