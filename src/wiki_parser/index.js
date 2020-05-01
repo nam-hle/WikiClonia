@@ -346,21 +346,21 @@ const InfoboxParser = plain => {
 };
 
 const internalParse = (element, content, plain) => {
-  if (element.elementName == "Reference") {
-    return ReferenceParser(plain);
-  }
+  let { elementName } = element;
 
-  if (element.elementName == "Gallery") return GalleryParser(plain);
+  if (elementName == "Reference") return ReferenceParser(plain);
+
+  if (elementName == "Gallery") return GalleryParser(plain);
 
   if (element.elementName == "ExternalLink") {
     const R_EXTERNAL = /^\[(?<url>\S+)( (?<displayText>[\s\S]+))?\]$/gi;
-    let match, url, displayText;
-    if ((match = R_EXTERNAL.exec(plain)) !== null) {
-      ({ url, displayText } = match.groups);
-      return { url, displayText };
-    } else {
-      throw "ExternalLink Grammar Error";
-    }
+    let url,
+      displayText,
+      match = R_EXTERNAL.exec(plain);
+
+    if (match === null) throw new Error("ExternalLink Syntax Error");
+    ({ url, displayText } = match.groups);
+    return { url, displayText };
   }
 
   if (element.elementName == "Template") {
