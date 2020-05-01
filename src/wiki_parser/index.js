@@ -38,12 +38,13 @@ const clean = obj => {
 const createTextElement = text => ({ elementName: "Text", text });
 
 const CiteParser = plain => {
-  let R_CITE = /\{\{cite (?<subType>\w+)\s*\|?(?<attributes>[\S\s]*)}}$/gi;
+  let R_CITE = /\{\{cite (?<subType>\w+)\s*\|?(?<remain>[\S\s]*)}}$/gi;
 
-  let { subType, attributes } = R_CITE.exec(plain).groups,
-    attribute = {};
+  let { subType, remain } = R_CITE.exec(plain).groups;
 
-  for (const pair of attributes.split("|")) {
+  let attribute = {};
+
+  for (const pair of remain.split("|")) {
     let equalIndex = pair.indexOf("=");
     let [key, value] = [
       pair.slice(0, equalIndex),
@@ -255,15 +256,15 @@ const parsePairPipe = plain => {
 
   while (remain) {
     if ((match = R_KEY.exec(remain)) === null)
-      throw "PairPipe Syntax Error " + remain;
+      throw "Key PairPipe Syntax Error " + remain;
     ({ key, remain } = match.groups);
-
+    key = key.trim();
     [nextIndex, , parsedPlain] = parse(remain, null, 0, PairPipe);
     remain = remain.substr(nextIndex);
 
     let value = parsedPlain;
     match = /^\s*(?<value>[\s\S]+?)[\|\s]*$/.exec(value);
-    if (match === null) throw `Infobox Syntax Error ${value}`;
+    if (match === null) throw `Value PairPipe Syntax Error ${value}`;
     value = match.groups.value;
     res[key] = value == "|" ? "" : value;
   }
@@ -326,23 +327,8 @@ const InfoboxParser = plain => {
   ({ subtype, remain } = match.groups);
   subtype = subtype.trim();
 
-  for (const section of remain.split`----`) {
-    // console.log(section);
-    // console.log("--------------");
-
-    let attributes = parsePairPipe(section);
-
-    // clean leading space and trailing "|" and "---"
-
-    // for (const key of Object.keys(attributes)) {
-    //   let value = attributes[key];
-    //   match = /^(?<content>[\s\S]+?)[\|\s]*$/.exec(value);
-    //   if (match === null) throw `Infobox Syntax Error ${value}`;
-    //   content = match.groups.content;
-    //   attributes[key] = content == "|" ? "" : content;
-    // }
-    sections.push(attributes);
-  }
+  for (const section of remain.split`----`)
+    sections.push(parsePairPipe(section));
 
   return { type: "Infobox", subtype, sections };
 };
