@@ -8,7 +8,7 @@
         "build": "webpack --config ./webpack.config.js --mode production",
         "webpack": "webpack --profile --json > stats.json",
         "test": "jest",
-        "lint": "node_modules/.bin/goodparts ./src"
+        "lint": "npx eslint --ignore-pattern '/**/test.js' 'src/**/*.js'"
     },
     "jest": {
         "verbose": true,
@@ -25,8 +25,8 @@
     },
     "husky": {
         "hooks": {
-            "pre-commit": "npm test",
-            "pre-push": "npm test"
+            "pre-commit": "npm run lint && npm test",
+            "pre-push": "npm run lint && npm test"
         }
     },
     "keywords": [
