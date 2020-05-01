@@ -193,12 +193,13 @@ const FootnoteParser = plain => {
 };
 
 const GalleryParser = plain => {
-  const R_GALLERY = /\<gallery\s+(?<attr>[^>]+)?>(?<content>[\s\S]+)<\/gallery>/gi;
+  const R_GALLERY = /\<gallery\s*(?<attr>[^>]+)?>(?<content>[\s\S]+)<\/gallery>/gi;
   let match,
     attr,
     content,
     attributes = {};
-  if ((match = R_GALLERY.exec(plain)) === null) throw "Gallery Syntax Error";
+  if ((match = R_GALLERY.exec(plain)) === null)
+    throw "Gallery Syntax Error" + plain;
 
   ({ attr, content } = match.groups);
 
@@ -307,6 +308,177 @@ const InfoboxParser = plain => {
   return { type: "Infobox", subtype, sections };
 };
 
+const InternalLinkParser = (plain, content) => {
+  // console.log({ plain });
+  let match;
+  /********************************
+   *          FREE LINK
+   *******************************/
+
+  /*
+  /* ^
+  /*  \[\[            startTokent
+  /*  ([^|]+)         fullUrl
+  /*  (\|([^|]+)?)?   optinal (pipe and optinal display text)
+  /*  \]\]            endToken
+  /*  (\w+)?          suffixStr
+  /* $
+  */
+
+  let R_ARTICLE = /^\[\[([^|]+)(\|([^|]+)?)?\]\](\w+)?$/;
+  if ((match = R_ARTICLE.exec(plain))) {
+    let fullUrl = match[1],
+      nonePipe = !match[2],
+      trailingPipe = match[2] && !match[3],
+      displayText = match[3],
+      suffixStr = match[4] || "";
+
+    // console.log({
+    //   fullUrl,
+    //   nonePipe,
+    //   trailingPipe,
+    //   displayText,
+    //   suffixStr
+    // });
+
+    // Manipulate the url
+    let namespace, disambiguation, rootUrl, url;
+
+    //
+    // ^
+    //  ((\w+):)?   namespace?
+    //  (
+    //      ([\w\-,. ]+)( \((.+)\))  commas has priority over parantheses
+    //    |
+    //      ([\w\-. ]+)
+    //      (
+    //          \((.+)\)          trailing parentheses
+    //        |
+    //          , (.+)            trailing comma
+    //      )?
+    //  )
+    // $
+
+    // let urlMatch = /^(:?(\w+):)?
+    // (
+    //   ([\w\-,.#\"\(\) ]+)( \((.+)\))
+    //   |
+    //   ([\w\-.#\"\(\) ]+)( \((.+)\)|, (.+))?
+    // )$/.exec(
+    //   fullUrl
+    // );
+    // ([\w\-,.#\"\(\) ]+)( \((.+)\))
+
+    let urlMatch = /^(:?(\w+):)?(([^\(]+)( \((.+)\))|([^,(]+)( \((.+)\)|, (.+))?|([\s\S]*))$/.exec(
+      fullUrl
+    );
+
+    if (urlMatch === null) {
+      // console.log("@");
+      return content;
+    }
+    namespace = capitalize(urlMatch[1] || "");
+    rootUrl = urlMatch[4] || urlMatch[7] || urlMatch[11];
+    disambiguation = urlMatch[5] || urlMatch[8] || "";
+
+    if ("File:" != namespace) {
+      url = namespace + capitalizeFirst(rootUrl) + disambiguation;
+      url = url.replace(/ /g, "_"); // convert to valid URL
+      displayText = nonePipe ? fullUrl : trailingPipe ? rootUrl : displayText;
+
+      if (suffixStr) {
+        displayText += suffixStr;
+      }
+
+      displayText = [{ elementName: "Text", text: displayText }];
+      return {
+        type: "wikiLink",
+        url,
+        displayText
+      };
+    }
+  }
+
+  // For handling format like:
+  // [[File:Gatera de ademuz.jpg|thumb|left|A ''{{lang|es|gatera}}''
+  // in [[Rincón de Ademuz]]
+
+  let chunks = plain.slice(2, -2).split("|");
+  let first = chunks[0];
+  let R_MEDIA = /^(File|Image|Media):(.*)$/i;
+  if ((match = R_MEDIA.exec(first))) {
+    let type = "media",
+      supType = capitalizeFirst(match[1]),
+      rootUrl = capitalizeFirst(match[2]),
+      url = `${supType}:${rootUrl}`;
+    let meta = { type, supType, url },
+      options = [],
+      caption = [];
+    let R_OPTION = /^(border|frame(less)?|thumb(nail)?|((\d+)?x)?\d+px|upright[ =]\d+\.\d+|upright=?|left|right|cent(er|re)|none|baseline|sub|super|top|text-top|middle|bottom|text-bottom|(alt|page|class|lang|link)=.+)$/i,
+      R_ATTRIBUTE = /^(alt|page|class|lang|link)=(.*$)/i;
+
+    for (const chunk of chunks.slice(1)) {
+      // console.log(chunk);
+      if (!R_OPTION.test(chunk)) {
+        caption.push(chunk);
+        continue;
+      }
+
+      let match;
+      if ((match = R_ATTRIBUTE.exec(chunk))) {
+        options.push({ key: match[1], value: match[2] });
+      } else options.push(chunk);
+    }
+
+    caption = main(caption.join("|")).children;
+    return { ...meta, options, caption };
+  }
+  // throw new Error("Internal Link Syntax Error" + plain);
+  return { children: content };
+};
+
+const TemplateParser = plain => {
+  if (/^{{convert/i.test(plain)) return ConvertParser(plain);
+
+  if (/^{{multiple image/i.test(plain)) return MultipleImageParser(plain);
+
+  if (/^{{Infobox \w+/i.test(plain)) return InfoboxParser(plain);
+
+  if (/^{{cite/i.test(plain)) return CiteParser(plain);
+
+  if (/^{{(refn|efn|sfn|efn-\w{2})\|/i.test(plain))
+    return FootnoteParser(plain);
+
+  if (/^{{lang-\w+\|/i.test(plain)) {
+    let text = /\|(.*)}}$/.exec(plain)[1];
+    return {
+      elementName: "Italic",
+      children: [createTextElement(text)]
+    };
+  }
+
+  if (/^{{IPAc?-\w+\|/gi.test(plain)) {
+    let text = /\|(.*)}}$/.exec(plain)[1];
+    return createTextElement("[" + text + "]");
+  }
+
+  return {
+    type: "N/A",
+    children: [{ elementName: "Text", text: "N/A" }]
+  };
+};
+
+const ExternalLinkParer = plain => {
+  const R_EXTERNAL = /^\[(?<url>\S+)( (?<displayText>[\s\S]+))?\]$/gi;
+  let url,
+    displayText,
+    match = R_EXTERNAL.exec(plain);
+
+  if (match === null) throw new Error("ExternalLink Syntax Error");
+  ({ url, displayText } = match.groups);
+  return { url, displayText };
+};
+
 const internalParse = (element, content, plain) => {
   let { elementName } = element;
 
@@ -314,173 +486,12 @@ const internalParse = (element, content, plain) => {
 
   if (elementName == "Gallery") return GalleryParser(plain);
 
-  if (element.elementName == "ExternalLink") {
-    const R_EXTERNAL = /^\[(?<url>\S+)( (?<displayText>[\s\S]+))?\]$/gi;
-    let url,
-      displayText,
-      match = R_EXTERNAL.exec(plain);
+  if (elementName == "Link") return InternalLinkParser(plain, content);
 
-    if (match === null) throw new Error("ExternalLink Syntax Error");
-    ({ url, displayText } = match.groups);
-    return { url, displayText };
-  }
+  if (elementName == "Template") return TemplateParser(plain);
 
-  if (element.elementName == "Template") {
-    if (/^{{convert/i.test(plain)) return ConvertParser(plain);
+  if (elementName == "ExternalLink") return ExternalLinkParer(plain);
 
-    if (/^{{multiple image/i.test(plain)) return MultipleImageParser(plain);
-
-    if (/^{{Infobox \w+/i.test(plain)) return InfoboxParser(plain);
-
-    if (/^{{cite/i.test(plain)) return CiteParser(plain);
-
-    if (/^{{(refn|efn|efn-\w{2})\|/i.test(plain)) return FootnoteParser(plain);
-
-    if (/^{{lang-\w+\|/i.test(plain)) {
-      let text = /\|(.*)}}$/.exec(plain)[1];
-      return {
-        elementName: "Italic",
-        children: [createTextElement(text)]
-      };
-    }
-
-    if (/^{{IPA-\w+\|/gi.test(plain)) {
-      let text = /\|(.*)}}$/.exec(plain)[1];
-      return createTextElement("[" + text + "]");
-    }
-
-    return {
-      type: "N/A",
-      children: [{ elementName: "Text", text: "N/A" }]
-    };
-  }
-
-  if (element.elementName == "Link") {
-    // console.log({ plain });
-    let match;
-    /********************************
-     *          FREE LINK
-     *******************************/
-
-    /*
-    /* ^
-    /*  \[\[            startTokent
-    /*  ([^|]+)         fullUrl
-    /*  (\|([^|]+)?)?   optinal (pipe and optinal display text)
-    /*  \]\]            endToken
-    /*  (\w+)?          suffixStr
-    /* $
-    */
-
-    let R_ARTICLE = /^\[\[([^|]+)(\|([^|]+)?)?\]\](\w+)?$/;
-    if ((match = R_ARTICLE.exec(plain))) {
-      let fullUrl = match[1],
-        nonePipe = !match[2],
-        trailingPipe = match[2] && !match[3],
-        displayText = match[3],
-        suffixStr = match[4] || "";
-
-      // console.log({
-      //   fullUrl,
-      //   nonePipe,
-      //   trailingPipe,
-      //   displayText,
-      //   suffixStr
-      // });
-
-      // Manipulate the url
-      let namespace, disambiguation, rootUrl, url;
-
-      //
-      // ^
-      //  ((\w+):)?   namespace?
-      //  (
-      //      ([\w\-,. ]+)( \((.+)\))  commas has priority over parantheses
-      //    |
-      //      ([\w\-. ]+)
-      //      (
-      //          \((.+)\)          trailing parentheses
-      //        |
-      //          , (.+)            trailing comma
-      //      )?
-      //  )
-      // $
-
-      // let urlMatch = /^(:?(\w+):)?
-      // (
-      //   ([\w\-,.#\"\(\) ]+)( \((.+)\))
-      //   |
-      //   ([\w\-.#\"\(\) ]+)( \((.+)\)|, (.+))?
-      // )$/.exec(
-      //   fullUrl
-      // );
-      // ([\w\-,.#\"\(\) ]+)( \((.+)\))
-
-      let urlMatch = /^(:?(\w+):)?(([^\(]+)( \((.+)\))|([^,(]+)( \((.+)\)|, (.+))?|([\s\S]*))$/.exec(
-        fullUrl
-      );
-
-      if (urlMatch === null) {
-        // console.log("@");
-        return content;
-      }
-      namespace = capitalize(urlMatch[1] || "");
-      rootUrl = urlMatch[4] || urlMatch[7] || urlMatch[11];
-      disambiguation = urlMatch[5] || urlMatch[8] || "";
-
-      if ("File:" != namespace) {
-        url = namespace + capitalizeFirst(rootUrl) + disambiguation;
-        url = url.replace(/ /g, "_"); // convert to valid URL
-        displayText = nonePipe ? fullUrl : trailingPipe ? rootUrl : displayText;
-
-        if (suffixStr) {
-          displayText += suffixStr;
-        }
-
-        displayText = [{ elementName: "Text", text: displayText }];
-        return {
-          type: "wikiLink",
-          url,
-          displayText
-        };
-      }
-    }
-
-    // For handling format like:
-    // [[File:Gatera de ademuz.jpg|thumb|left|A ''{{lang|es|gatera}}''
-    // in [[Rincón de Ademuz]]
-
-    let chunks = plain.slice(2, -2).split("|");
-    let first = chunks[0];
-    let R_MEDIA = /^(File|Image|Media):(.*)$/i;
-    if ((match = R_MEDIA.exec(first))) {
-      let type = "media",
-        supType = capitalizeFirst(match[1]),
-        rootUrl = capitalizeFirst(match[2]),
-        url = `${supType}:${rootUrl}`;
-      let meta = { type, supType, url },
-        options = [],
-        caption = [];
-      let R_OPTION = /^(border|frame(less)?|thumb(nail)?|((\d+)?x)?\d+px|upright[ =]\d+\.\d+|upright=?|left|right|cent(er|re)|none|baseline|sub|super|top|text-top|middle|bottom|text-bottom|(alt|page|class|lang|link)=.+)$/i,
-        R_ATTRIBUTE = /^(alt|page|class|lang|link)=(.*$)/i;
-
-      for (const chunk of chunks.slice(1)) {
-        // console.log(chunk);
-        if (!R_OPTION.test(chunk)) {
-          caption.push(chunk);
-          continue;
-        }
-
-        let match;
-        if ((match = R_ATTRIBUTE.exec(chunk))) {
-          options.push({ key: match[1], value: match[2] });
-        } else options.push(chunk);
-      }
-
-      caption = main(caption.join("|")).children;
-      return { ...meta, options, caption };
-    }
-  }
   return { children: content };
 };
 

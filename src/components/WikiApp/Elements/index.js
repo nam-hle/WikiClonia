@@ -105,6 +105,16 @@ export const Template = ({ props }) => {
       </Fragment>
     );
 
+  if (props.type == "footnote") {
+    return (
+      <sup className="wiki-footnote">
+        {props.children.map((e, i) => (
+          <Element key={i} props={e} />
+        ))}
+      </sup>
+    );
+  }
+
   return "<--N/A" + JSON.stringify(props) + "-->";
 };
 

@@ -21,7 +21,7 @@ export const ImagesContext = React.createContext(null);
 // ];
 
 const Article = ({ title }) => {
-  title = title || "Pet_door";
+  title = title || "The_Last_Supper_(Leonardo)";
   const pageContent = usePageContent(title);
   const images = useImages(title);
 
