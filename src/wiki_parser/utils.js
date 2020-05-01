@@ -17,8 +17,8 @@ const clean = obj => {
     let value = obj[key];
     if (
       !value ||
-      (Array.isArray(value) && value.length === 0) ||
-      Object.keys(value).length === 0
+      (Array.isArray(value) && !value.length) ||
+      !Object.keys(value).length
     )
       continue;
     res[key] = value;
