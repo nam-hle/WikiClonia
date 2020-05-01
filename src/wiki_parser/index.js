@@ -364,11 +364,17 @@ const internalParse = (element, content, plain) => {
   }
 
   if (element.elementName == "Template") {
-    if (/^{{[Cc]ite/g.test(plain)) {
-      return CiteParser(plain);
-    } else if (/^{{(refn|efn|efn-(la|ua|lr|ur|lg))\|/.test(plain)) {
-      return FootnoteParser(plain);
-    } else if (/^{{lang-\w+\|/gi.test(plain)) {
+    if (/^{{convert/i.test(plain)) return ConvertParser(plain);
+
+    if (/^{{multiple image/i.test(plain)) return MultipleImageParser(plain);
+
+    if (/^{{Infobox \w+/i.test(plain)) return InfoboxParser(plain);
+
+    if (/^{{cite/i.test(plain)) return CiteParser(plain);
+
+    if (/^{{(refn|efn|efn-\w{2})\|/i.test(plain)) return FootnoteParser(plain);
+
+    if (/^{{lang-\w+\|/i.test(plain)) {
       let text = /\|(.*)}}$/.exec(plain)[1];
       return {
         elementName: "Italic",
@@ -379,23 +385,18 @@ const internalParse = (element, content, plain) => {
           }
         ]
       };
-    } else if (/^{{IPA-\w+\|/gi.test(plain)) {
+    }
+
+    if (/^{{IPA-\w+\|/gi.test(plain)) {
       let text = /\|(.*)}}$/.exec(plain)[1];
       return {
         elementName: "Text",
         text: "[" + text + "]"
       };
-    } else if (/^{{convert/gi.test(plain)) {
-      return ConvertParser(plain);
-    } else if (/^{{multiple image/gi.test(plain)) {
-      return MultipleImageParser(plain);
-    } else if (/^{{Infobox \w+/gi.test(plain)) {
-      return InfoboxParser(plain);
     }
 
     return {
       type: "N/A",
-      // children: [{ elementName: "Text", text: `<--N/A--${plain}-->` }]
       children: [{ elementName: "Text", text: "N/A" }]
     };
   }
