@@ -309,21 +309,7 @@ const InfoboxParser = plain => {
 };
 
 const InternalLinkParser = (plain, content) => {
-  // console.log({ plain });
   let match;
-  /********************************
-   *          FREE LINK
-   *******************************/
-
-  /*
-  /* ^
-  /*  \[\[            startTokent
-  /*  ([^|]+)         fullUrl
-  /*  (\|([^|]+)?)?   optinal (pipe and optinal display text)
-  /*  \]\]            endToken
-  /*  (\w+)?          suffixStr
-  /* $
-  */
 
   let R_ARTICLE = /^\[\[([^|]+)(\|([^|]+)?)?\]\](\w+)?$/;
   if ((match = R_ARTICLE.exec(plain))) {
