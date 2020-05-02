@@ -8,7 +8,8 @@
         "build": "webpack --config ./webpack.config.js --mode production",
         "webpack": "webpack --profile --json > stats.json",
         "test": "jest",
-        "lint": "npx eslint --ignore-pattern '/**/test.js' 'src/**/*.js'"
+        "lint": "npx eslint --ignore-pattern '/**/test.js' 'src/**/*.js'",
+        "coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls"
     },
     "jest": {
         "verbose": false,
@@ -68,6 +69,7 @@
         "clean-webpack-plugin": "^0.1.18",
         "codecov": "^3.6.5",
         "codecov.io": "^0.1.6",
+        "coveralls": "^3.1.0",
         "cross-env": "^7.0.2",
         "css-loader": "^3.5.2",
         "cssnano": "^4.1.10",
