@@ -21,7 +21,7 @@ export const ImagesContext = React.createContext(null);
 // ];
 
 const Article = ({ title }) => {
-  title = title || "Pet_door";
+  title = title || "New_York_City";
   const pageContent = usePageContent(title);
   const images = useImages(title);
 
@@ -42,7 +42,7 @@ const Article = ({ title }) => {
     <ImagesContext.Provider value={{ images }}>
       <Fragment>
         <Menu />
-        <SkeletonTheme color="#202020" highlightColor="#444">
+        <SkeletonTheme color="transparent">
           <div className="article">
             <div className="hero">
               <div className="hero__title">{title.replace(/_/g, " ")}</div>

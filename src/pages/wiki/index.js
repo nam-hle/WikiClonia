@@ -1,4 +1,4 @@
-import "./../../scss/main.scss";
+import "./../../components/WikiApp/normalize.css";
 import "./../../components/WikiApp/style3.scss";
 import "./../../components/WikiApp/style.sass";
 

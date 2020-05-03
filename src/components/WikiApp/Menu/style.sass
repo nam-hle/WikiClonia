@@ -8,14 +8,14 @@
   position: fixed
   z-index: 1000
   width: 100%
-  height: $menu__height
+  height: 50rem
 
 
   background-color: rgba(var(--bg-color), 0.3)
   box-shadow: 0px 1px 3px 0px var(--shadow-color)
   *
-    color: $menu__color
-    font-size: $size1
+    color: var(--text-color)
+    font-size: $size2
 
   svg
     width: $space3
@@ -38,9 +38,9 @@
   justify-content: center
   align-items: center
   .logo-wiki
-    font: $menu__logo-wiki__font
+    font: 400 $size3 "Heading", -apple-system
   .logo-pedia
-    font: $menu__logo-pedia__font
+    font: 300 $size3 "Logo Pedia", -apple-system
 
 .menu__main
   grid-column: 3
@@ -73,7 +73,6 @@
   padding-left: $space0
   background-color: transparent
   &::placeholder
-    font: 400 $size1 "Heading", -apple-system
+    // font: 400 $size2 "Heading", -apple-system
     color: var(--text-color)
-  &:focus
-    outline: none
+    // font-size: $size1

@@ -28,10 +28,10 @@ module.exports = (env, argv) => {
           exclude: /node_modules/,
           use: ["babel-loader", "eslint-loader"]
         },
-        {
-          test: /\.css$/,
-          use: ["style-loader", "css-loader"]
-        },
+        // {
+        //   test: /\.css$/,
+        //   use: ["style-loader", "css-loader"]
+        // },
         {
           // Apply rule for .sass, .scss or .css files
           test: /\.(sa|sc|c)ss$/i,

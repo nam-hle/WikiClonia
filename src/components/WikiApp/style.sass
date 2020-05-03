@@ -1,6 +1,9 @@
 @import "./_typography.css"
 @import "./_variables.sass"
 
+*:focus
+  outline: none
+
 html
   font-size: 1px
   width: 100%
@@ -9,18 +12,30 @@ body
   margin: 0
   width: 100%
   background-color: var(--bg-color)
-  color: $body__color
-  font: $body__font
+  color: var(--text-color)
+  font: normal 400 $size2/1.6 "Body", -apple-system, BlinkMacSystemFont
   word-wrap: break-word
 
+
+a
+  text-decoration: none
+
 sup
-  font-size: $sup__font-size
+  font-size: $size-1
   a
     text-decoration: none
     border: none
 
 li
   list-style-type: none
+
+button
+  background-color: transparent
+  border: none
+  cursor: pointer
+
+
+
 
 #wikiapp
   width: 100%
@@ -64,18 +79,6 @@ li
     text-align: center
     color: #AEB7B3
     font-weight: 500
-
-// .sidebar
-//   grid-column: 6
-//   grid-row: 1
-//   font-size: $size1
-//   background-color: $color-gray-light
-//   padding: $space3 $space3
-
-//   position: relative
-
-//   > *
-//     position: absolute
 
 
 /********************************
