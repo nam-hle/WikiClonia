@@ -8,6 +8,7 @@ html
 body
   margin: 0
   width: 100%
+  background-color: var(--bg-color)
   color: $body__color
   font: $body__font
   word-wrap: break-word
@@ -29,6 +30,7 @@ li
  *  3. ARTICLE
  */
 
+
 .article
   display: grid
   grid-template-columns: 9% 2% 56% 5% 2% 24% 2%
@@ -37,7 +39,7 @@ li
   margin: 0
   padding: 50rem 0
 
-  background-color: white
+  background-color: var(--bg-color)
 
 
 .hero
@@ -47,7 +49,7 @@ li
   * + *
     margin-bottom: 0.7em
   a
-    color: $color-pink-light
+    color: var(--primary-color)
   sup a
     border: none
   &__title
@@ -63,34 +65,17 @@ li
     color: #AEB7B3
     font-weight: 500
 
-.sidebar
-  grid-column: 6
-  grid-row: 1
-  font-size: $size1
-  background-color: $color-gray-light
-  padding: $space3 $space3
+// .sidebar
+//   grid-column: 6
+//   grid-row: 1
+//   font-size: $size1
+//   background-color: $color-gray-light
+//   padding: $space3 $space3
 
-  position: relative
+//   position: relative
 
-  > *
-    position: absolute
-
-
-  // * + *
-  //   margin-top: 0.7em
-  // &__title
-  //   display: table
-  //   margin: $space2 auto $space5
-  //   border-bottom: 1px solid $color-black-400
-  //   letter-spacing: 1.2
-  //   font-weight: 600
-
-  // .heading-primary
-  //   font-weight: 600
-  //   color: #3F454B
-  // .heading-secondary
-  //   font-weight: 500
-  //   color: #7C8186
+//   > *
+//     position: absolute
 
 
 /********************************
@@ -112,7 +97,7 @@ li
   font-family: "Heading", -apple-system
 
 .wiki-heading-1
-  border-top: 1px solid rgba(0, 0, 0, 0.2)
+  border-top: 1px solid var(--shadow-color)
   padding-top: 0.6em
   margin-top: 1em
   font-size: $size-heading1
@@ -141,39 +126,40 @@ li
     flex-direction: column
     align-items: center
     justify-content: center
-
     max-width: 20vw
-    border: 1px solid $color-gray-dark
     padding: $space-2
-
-    // background-color: $color-gray-dark
     clear: both
-
+    margin: $space0 $space1
   &__image
     max-width: 100%
   &__caption
     margin-top: $space1
     font-size: $size0
+    a
 
 .fl-left
   float: left
-  margin: $space2
-
 
 .fl-right
   float: right
-  margin: $space2
   right: 50%
 
-
 .wiki-gallery
+  clear: both
   display: flex
+  align-items: flex-end
+  justify-content: center
   flex-flow: row wrap
   > .wiki-img__container
     margin: 0
     float: none
-    flex: 1 0 25%
+    flex: 1 0 40%
+    display: block
     max-width: initial
-    min-width: 20%
     border: none
+  > .wiki-img__image
+    object-fit: cover
+    object-position: 50% 50%
+    height: 20vh
+
 

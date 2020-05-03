@@ -1,0 +1,24 @@
+:root {
+  --light-text: #222430;
+  --light-bg: #f7f7f7;
+  --light-primary: #d23669;
+  --light-shadow: #9c9f99;
+
+  /* Dark mode */
+  --dark-text: #f7f7f7;
+  --dark-bg: #222430;
+  --dark-primary: #bd93f9;
+  --dark-shadow: #aeb7b3;
+
+  --text-color: var(--dark-text);
+  --bg-color: var(--dark-bg);
+  --primary-color: var(--dark-primary);
+  --shadow-color: var(--dark-shadow);
+}
+
+.funky {
+  --text-color: var(--light-text);
+  --bg-color: var(--light-bg);
+  --primary-color: var(--light-primary);
+  --shadow-color: var(--light-shadow);
+}

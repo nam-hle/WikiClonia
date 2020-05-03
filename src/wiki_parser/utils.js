@@ -1,4 +1,4 @@
-const taste = (s, t, i) => s[i] == t[0] && s.substr(i, t.length) == t;
+const tasteStr = (s, t, i) => s[i] == t[0] && s.substr(i, t.length) == t;
 
 const capitalizeFirst = string =>
   string.charAt(0).toUpperCase() + string.slice(1);
@@ -26,4 +26,4 @@ const clean = obj => {
   return res;
 };
 
-export { taste, capitalizeFirst, capitalize, trimQuote, clean };
+export { tasteStr, capitalizeFirst, capitalize, trimQuote, clean };

@@ -1,7 +1,13 @@
 import convert from "convert-units";
 import { Global, PairPipe } from "./elements";
 import { analyseHeadings } from "./analyser";
-import { taste, capitalizeFirst, capitalize, trimQuote, clean } from "./utils";
+import {
+  tasteStr,
+  capitalizeFirst,
+  capitalize,
+  trimQuote,
+  clean
+} from "./utils";
 
 // var convert = require("convert-units");
 const UNITS = convert().list();
@@ -193,7 +199,7 @@ const FootnoteParser = plain => {
 };
 
 const GalleryParser = plain => {
-  const R_GALLERY = /\<gallery\s*(?<attr>[^>]+)?>(?<content>[\s\S]+)<\/gallery>/gi;
+  const R_GALLERY = /<gallery\s*(?<attr>[^>]+)?>(?<content>[\s\S]+)<\/gallery>/gi;
   let match,
     attr,
     content,
@@ -261,7 +267,7 @@ const MultipleImageParser = plain => {
   let R_KEY_IMAGE = /^\s*(?<imageKey>[a-z\-\_]+)(?<imageID>\d+)\s*$/i;
 
   let pairs = parsePairPipe(remain);
-
+  // console.log(pairs);
   for (const key of Object.keys(pairs)) {
     const value = pairs[key];
     if ((match = R_KEY_IMAGE.exec(key)) === null) {
@@ -284,7 +290,8 @@ const MultipleImageParser = plain => {
     type: "media",
     supType: "File",
     url: image.url,
-    options: [],
+    multipleImage: true,
+    options: clean({ ...image, image: null, caption: null, url: null }),
     caption: image.caption || [{ elementName: "Text", text: "" }]
   }));
 
@@ -509,7 +516,7 @@ const parse = (
     hasSelfClose = false;
     has = false;
     for (const matchElement of allowedChildren) {
-      if (!taste(str, matchElement.startToken, index)) continue;
+      if (!tasteStr(str, matchElement.startToken, index)) continue;
       has = true;
       if (buffer) content.push(createTextElement(buffer));
       buffer = "";
@@ -550,7 +557,7 @@ const parse = (
       if (endToken) {
         let catchEndToken = false;
         for (const eToken of endToken) {
-          if (taste(str, eToken, index)) {
+          if (tasteStr(str, eToken, index)) {
             catchEndToken = true;
             index += eToken.length;
             plain += eToken;
@@ -558,7 +565,7 @@ const parse = (
             if (targetElement.elementName == "Link") {
               while (index < strlen) {
                 let nowiki = "<nowiki />";
-                if (taste(str, nowiki, index)) {
+                if (tasteStr(str, nowiki, index)) {
                   index += nowiki.length;
                   break;
                 } else if (/\w/.test(str[index])) {
@@ -566,7 +573,7 @@ const parse = (
                 } else break;
               }
             }
-          } // end taste
+          } // end tasteStr
         } // end for endToken
         if (catchEndToken) break;
       } // end if endToken

@@ -44,8 +44,9 @@ Array [
       </button>
       <button
         className="menu__button"
+        id="theme-switch"
       >
-        View history
+        Change theme
       </button>
     </div>
     <div
@@ -87,7 +88,11 @@ Array [
         >
           From Wikipedia, the free encyclopedia
         </div>
-        Loading...
+        <div
+          className="wiki-content"
+        >
+          Loading...
+        </div>
       </div>
     </div>
   </div>,
@@ -161,8 +166,9 @@ Array [
       </button>
       <button
         className="menu__button"
+        id="theme-switch"
       >
-        View history
+        Change theme
       </button>
     </div>
     <div
@@ -204,7 +210,11 @@ Array [
         >
           From Wikipedia, the free encyclopedia
         </div>
-        Loading...
+        <div
+          className="wiki-content"
+        >
+          Loading...
+        </div>
       </div>
     </div>
   </div>,
@@ -278,8 +288,9 @@ Array [
       </button>
       <button
         className="menu__button"
+        id="theme-switch"
       >
-        View history
+        Change theme
       </button>
     </div>
     <div
@@ -321,7 +332,11 @@ Array [
         >
           From Wikipedia, the free encyclopedia
         </div>
-        Loading...
+        <div
+          className="wiki-content"
+        >
+          Loading...
+        </div>
       </div>
     </div>
   </div>,
@@ -395,8 +410,9 @@ Array [
       </button>
       <button
         className="menu__button"
+        id="theme-switch"
       >
-        View history
+        Change theme
       </button>
     </div>
     <div
@@ -438,7 +454,11 @@ Array [
         >
           From Wikipedia, the free encyclopedia
         </div>
-        Loading...
+        <div
+          className="wiki-content"
+        >
+          Loading...
+        </div>
       </div>
     </div>
   </div>,
@@ -512,8 +532,9 @@ Array [
       </button>
       <button
         className="menu__button"
+        id="theme-switch"
       >
-        View history
+        Change theme
       </button>
     </div>
     <div
@@ -555,7 +576,11 @@ Array [
         >
           From Wikipedia, the free encyclopedia
         </div>
-        Loading...
+        <div
+          className="wiki-content"
+        >
+          Loading...
+        </div>
       </div>
     </div>
   </div>,
@@ -629,8 +654,9 @@ Array [
       </button>
       <button
         className="menu__button"
+        id="theme-switch"
       >
-        View history
+        Change theme
       </button>
     </div>
     <div
@@ -672,7 +698,11 @@ Array [
         >
           From Wikipedia, the free encyclopedia
         </div>
-        Loading...
+        <div
+          className="wiki-content"
+        >
+          Loading...
+        </div>
       </div>
     </div>
   </div>,

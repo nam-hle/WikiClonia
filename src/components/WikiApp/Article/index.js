@@ -21,9 +21,22 @@ export const ImagesContext = React.createContext(null);
 // ];
 
 const Article = ({ title }) => {
-  title = title || "The_Last_Supper_(Leonardo)";
+  title = title || "Pet_door";
   const pageContent = usePageContent(title);
   const images = useImages(title);
+
+  React.useEffect(() => {
+    let toggle = document.getElementById("theme-switch");
+
+    toggle?.addEventListener("click", function(e) {
+      e.preventDefault();
+      if (document.body.classList.contains("funky")) {
+        document.body.classList.remove("funky");
+      } else {
+        document.body.classList.add("funky");
+      }
+    });
+  }, []);
 
   return (
     <ImagesContext.Provider value={{ images }}>
@@ -31,7 +44,6 @@ const Article = ({ title }) => {
         <Menu />
         <SkeletonTheme color="#202020" highlightColor="#444">
           <div className="article">
-            {/*<Sidebar content={parsed.images} images={images} />*/}
             <div className="hero">
               <div className="hero__title">{title.replace(/_/g, " ")}</div>
               <div className="hero__credit">

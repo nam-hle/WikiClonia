@@ -11,8 +11,8 @@
   height: $menu__height
 
 
-  background-color: $menu__bg-color
-  box-shadow: $menu__box-shadow
+  background-color: rgba(var(--bg-color), 0.3)
+  box-shadow: 0px 1px 3px 0px var(--shadow-color)
   *
     color: $menu__color
     font-size: $size1
@@ -20,7 +20,7 @@
   svg
     width: $space3
     path
-      fill: $color-black
+      fill: var(--text-color)
 
 
 @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none)
@@ -49,9 +49,7 @@
     margin-left: auto
   .menu__button
     padding: 0 $space1
-    color: $color-gray-dark
-  .button--choose
-    color: $color-black
+    color: var(--text-color)
 
 /*
  *  1.2. RIGHT PANEL
@@ -73,8 +71,9 @@
 .menu__search-input
   border: none
   padding-left: $space0
+  background-color: transparent
   &::placeholder
     font: 400 $size1 "Heading", -apple-system
-    color: $color-gray-dark
+    color: var(--text-color)
   &:focus
     outline: none

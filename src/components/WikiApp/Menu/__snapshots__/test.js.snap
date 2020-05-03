@@ -43,8 +43,9 @@ exports[`renders correctly 1`] = `
     </button>
     <button
       className="menu__button"
+      id="theme-switch"
     >
-      View history
+      Change theme
     </button>
   </div>
   <div

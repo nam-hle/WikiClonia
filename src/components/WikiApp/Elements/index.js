@@ -1,7 +1,6 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { ImagesContext } from "./../Article";
 import Tooltip from "./../Tooltip";
-// import { useSummary } from "./../../../hooks/useWiki.js";
 
 export const Text = ({ text }) => {
   let [splitText, setSplitText] = useState("");
@@ -67,18 +66,7 @@ const WikiLink = ({ url, displayText }) => {
 export const Template = ({ props }) => {
   if (props.type == "N/A" || props.type == "Infobox") return "";
 
-  // if (Array.isArray(props.children)) {
-  //   return (
-  //     <Fragment>
-  //       {props.children.map((e, i) => (
-  //         <Element key={i} props={e} />
-  //       ))}
-  //     </Fragment>
-  //   );
-  // }
-
   let { attribute } = props;
-  // console.log(props);
   if (props.type == "multipleImages") {
     return (
       <div className="wiki-gallery">
@@ -188,7 +176,7 @@ export const Element = ({ props }) => {
 
       if (props && props.url && valueImages && valueImages.images[props.url]) {
         let float =
-          props.options && props.options.indexOf("left") > -1
+          !props.multipleImage && props?.options?.indexOf("left") > -1
             ? "fl-left"
             : "fl-right";
         return (
@@ -200,9 +188,8 @@ export const Element = ({ props }) => {
                 data-src={valueImages.images[props.url].url}
               />
               <div className="wiki-img__caption">
-                {props.caption
-                  ? props.caption.map((e, i) => <Element key={i} props={e} />)
-                  : ""}
+                {props.caption?.map((e, i) => <Element key={i} props={e} />) ||
+                  ""}
               </div>
             </div>
           </Fragment>

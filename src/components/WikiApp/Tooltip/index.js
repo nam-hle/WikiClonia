@@ -34,7 +34,7 @@ const Tooltip = props => {
   }, [show]);
 
   return (
-    <div
+    <span
       className="tooltip"
       onMouseOver={handleMouseIn}
       onMouseLeave={handleMouseOut}
@@ -56,7 +56,7 @@ const Tooltip = props => {
       )}
 
       {React.Children.toArray(children)}
-    </div>
+    </span>
   );
 };
 

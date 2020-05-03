@@ -67,34 +67,7 @@ module.exports = (env, argv) => {
             }
           ]
         },
-        // {
-        //   test: /\.s[ac]ss$/,
-        //   use: [
-        //     {
-        //       loader: MiniCssExtractPlugin.loader,
-        //       options: {
-        //         hmr: process.env.NODE_ENV === "development",
-        //         reloadAll: false
-        //       }
-        //     },
-        //     {
-        //       loader: "css-loader",
-        //       options: {
-        //         importLoaders: 2,
-        //         sourceMap: true
-        //       }
-        //     },
-        //     {
-        //       loader: "resolve-url-loader"
-        //     },
-        //     {
-        //       loader: "sass-loader",
-        //       options: {
-        //         sourceMap: true
-        //       }
-        //     }
-        //   ]
-        // },
+
         {
           test: /\.(woff|woff2|eot|ttf|otf)$/,
           use: ["file-loader"]

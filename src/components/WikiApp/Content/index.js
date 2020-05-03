@@ -1,15 +1,15 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { Element } from "./../Elements";
 
-const Content = ({ content, images }) => {
-  if (!content) return "Loading...";
-
+const Content = ({ content }) => {
   return (
-    <Fragment>
-      {content.map((element, index) => (
-        <Element key={index} props={element} images={images} />
-      ))}
-    </Fragment>
+    <div className="wiki-content">
+      {content
+        ? content.map((element, index) => (
+            <Element key={index} props={element} />
+          ))
+        : "Loading..."}
+    </div>
   );
 };
 
