@@ -13,7 +13,8 @@ const Navigation = ({ headings }) => {
     let maxPos = width - visibleWidth;
     let slideWidth = maxPos * 0.15;
 
-    console.log({ width, pos, visibleWidth, maxPos });
+    // console.log({ width, pos, visibleWidth, maxPos });
+    console.log(document.querySelector(".navigation__headings:nth-child(1)"));
     headingsRef.current.scrollLeft =
       direction == "right"
         ? Math.min(maxPos, pos + slideWidth)
@@ -22,6 +23,35 @@ const Navigation = ({ headings }) => {
 
   const handle2 = id => {
     let heading = document.getElementById(id);
+    let button = document.getElementById(id + "__btn");
+    let navigation = document.getElementsByClassName("navigation__headings")[0];
+    let [buttonWidth, buttonPosition] = [button.offsetWidth, button.offsetLeft];
+
+    let [navigationClientWidth, navigationScrollLeft] = [
+      navigation.clientWidth,
+      navigation.scrollLeft
+    ];
+
+    let buttonMin = buttonPosition,
+      buttonMax = buttonPosition + buttonWidth;
+    let windowMin = navigationScrollLeft,
+      windowMax = navigationScrollLeft + navigationClientWidth;
+
+    if (buttonMin > windowMax || buttonMax < windowMin) {
+      console.log("out of bound");
+    } else if (buttonMin >= windowMin && buttonMax <= windowMax) {
+      console.log("entire");
+    } else {
+      let delta = buttonWidth * 0.5;
+      if (buttonMin < windowMin) {
+        delta += windowMin - buttonMin;
+        navigation.scrollLeft -= delta;
+      } else {
+        delta += buttonMax - windowMax;
+        navigation.scrollLeft += delta;
+      }
+    }
+
     let body = document.body;
     body.scrollTop =
       heading.offsetTop -
@@ -37,14 +67,17 @@ const Navigation = ({ headings }) => {
           <LeftButton />
         </button>
         <div ref={headingsRef} className="navigation__headings">
-          {headings &&
-            headings.childrenHeadings.map((heading, index) => {
-              return (
-                <button key={index} onClick={() => handle2(heading.id)}>
-                  {heading.text}
-                </button>
-              );
-            })}
+          {headings?.childrenHeadings.map((heading, index) => {
+            return (
+              <button
+                key={index}
+                onClick={() => handle2(heading.id)}
+                id={heading.id + "__btn"}
+              >
+                {heading.text}
+              </button>
+            );
+          })}
         </div>
         <button
           onClick={() => handle("right")}
