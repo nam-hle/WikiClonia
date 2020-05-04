@@ -176,7 +176,7 @@ export const Element = ({ props }) => {
       }
     }
   } else if (elementName == "Reference") {
-    if (props?.children?.[0]?.attribute?.url) {
+    if (props && props?.children?.[0]?.attribute?.url) {
       return (
         <sup>
           <a href={props.children[0].attribute.url}>{props.referenceIndex}</a>
