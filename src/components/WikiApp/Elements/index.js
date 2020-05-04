@@ -1,6 +1,7 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { ImagesContext } from "./../Article";
 import Tooltip from "./../Tooltip";
+import { v4 as uuidv4 } from "uuid";
 
 export const Text = ({ text }) => {
   let [splitText, setSplitText] = useState("");
@@ -8,9 +9,9 @@ export const Text = ({ text }) => {
     let paragraphs = text.split("\n\n"),
       res = [];
     for (let i = 0; i < paragraphs.length; i++) {
-      res.push(<span key={-i - 1}>{paragraphs[i]}</span>);
+      res.push(<span key={uuidv4()}>{paragraphs[i]}</span>);
       if (i < paragraphs.length - 1) {
-        res.push(<br key={i} />);
+        res.push(<br key={uuidv4()} />);
       }
     }
     setSplitText(res);
@@ -20,29 +21,6 @@ export const Text = ({ text }) => {
 
 const Heading = ({ className, id, text }) => {
   const heading = React.useRef();
-
-  // const isElementInViewport = () => {
-  //   // console.log("text");
-  //   let el = heading.current;
-  //   // Special bonus for those using jQuery
-
-  //   var rect = el.getBoundingClientRect();
-
-  //   let res =
-  //     rect.top >= 0 &&
-  //     rect.left >= 0 &&
-  //     rect.bottom <=
-  //       (window.innerHeight || document.documentElement.clientHeight) &&
-  //     rect.right <= (window.innerWidth || document.documentElement.clientWidth);
-  //   // if (res) {
-  //   //   console.log(text);
-  //   // }
-  // };
-
-  // useEffect(() => {
-  //   window.addEventListener("scroll", isElementInViewport);
-  //   return () => window.removeEventListener("scroll", isElementInViewport);
-  // }, []);
 
   return (
     <div ref={heading} className={className} id={id}>
@@ -55,8 +33,8 @@ const WikiLink = ({ url, displayText }) => {
   return (
     <Tooltip url={url}>
       <a href={"https://en.wikipedia.org/wiki/" + url}>
-        {displayText.map((e, i) => {
-          return <Element key={i} props={e} />;
+        {displayText.map(e => {
+          return <Element key={uuidv4()} props={e} />;
         })}
       </a>
     </Tooltip>
@@ -71,8 +49,8 @@ export const Template = ({ props }) => {
     return (
       <div className="wiki-gallery">
         {props.images &&
-          props.images.map((e, i) => {
-            return <Element key={i} props={e} />;
+          props.images.map(e => {
+            return <Element key={uuidv4()} props={e} />;
           })}
       </div>
     );
@@ -96,8 +74,8 @@ export const Template = ({ props }) => {
   if (props.type == "footnote") {
     return (
       <sup className="wiki-footnote">
-        {props.children.map((e, i) => (
-          <Element key={i} props={e} />
+        {props.children.map(e => (
+          <Element key={uuidv4()} props={e} />
         ))}
       </sup>
     );
@@ -107,6 +85,7 @@ export const Template = ({ props }) => {
 };
 
 export const Element = ({ props }) => {
+  if (props === null) throw new Error("Create element withou props");
   let { elementName, children } = props;
 
   if (elementName == "Comment") return "";
@@ -133,7 +112,7 @@ export const Element = ({ props }) => {
 
   let renderChildren;
   if (Array.isArray(children)) {
-    renderChildren = children.map((e, i) => <Element key={i} props={e} />);
+    renderChildren = children.map(e => <Element key={uuidv4()} props={e} />);
   }
 
   if (elementName == "Bold") {
@@ -159,8 +138,8 @@ export const Element = ({ props }) => {
   if (elementName == "Gallery") {
     return (
       <div className="wiki-gallery">
-        {props.images.map((e, i) => {
-          return <Element key={i} props={e} />;
+        {props.images.map(e => {
+          return <Element key={uuidv4()} props={e} />;
         })}
       </div>
     );
@@ -188,8 +167,9 @@ export const Element = ({ props }) => {
                 data-src={valueImages.images[props.url].url}
               />
               <div className="wiki-img__caption">
-                {props.caption?.map((e, i) => <Element key={i} props={e} />) ||
-                  ""}
+                {props.caption?.map(e => (
+                  <Element key={uuidv4()} props={e} />
+                )) || ""}
               </div>
             </div>
           </Fragment>
@@ -197,12 +177,7 @@ export const Element = ({ props }) => {
       }
     }
   } else if (elementName == "Reference") {
-    if (
-      props.children &&
-      props.children.length &&
-      props.children[0].attribute &&
-      props.children[0].attribute.url
-    ) {
+    if (props && props.children?.[0]?.attribute?.url) {
       return (
         <sup>
           <a href={props.children[0].attribute.url}>{props.referenceIndex}</a>
