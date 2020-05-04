@@ -96,11 +96,6 @@ module.exports = (env, argv) => {
     plugins: [
       new CleanWebpackPlugin({ root: path.join(__dirname, "dist") }),
       new HtmlWebpackPlugin({
-        filename: "index.html",
-        template: "./src/pages/main/index.pug",
-        chunks: ["index"]
-      }),
-      new HtmlWebpackPlugin({
         filename: "wiki/index.html",
         template: "./src/pages/wiki/wiki.pug",
         chunks: ["wiki"]
