@@ -85,6 +85,7 @@ export const Template = ({ props }) => {
 };
 
 export const Element = ({ props }) => {
+  if (props === null) throw new Error("Create element withou props");
   let { elementName, children } = props;
 
   if (elementName == "Comment") return "";
