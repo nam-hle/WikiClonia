@@ -4,13 +4,14 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const HtmlWebpackPugPlugin = require("html-webpack-pug-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = (env, argv) => {
   const isDevelopment = argv.mode === "development";
 
   return {
     entry: {
-      index: "./src/pages/main/index.js",
+      // index: "./src/pages/main/index.js",
       wiki: "./src/pages/wiki/index.js"
     },
     output: {
@@ -82,7 +83,7 @@ module.exports = (env, argv) => {
         }
       ]
     },
-    devtool: isDevelopment ? "#eval-source-map" : "source-map",
+    devtool: isDevelopment ? "#eval-source-map" : false,
     devServer: {
       contentBase: path.join(__dirname, "dist"),
       port: 3000,
@@ -93,6 +94,7 @@ module.exports = (env, argv) => {
       openPage: ["/", "/about"]
     },
     plugins: [
+      new CleanWebpackPlugin({ root: path.join(__dirname, "dist") }),
       new HtmlWebpackPlugin({
         filename: "index.html",
         template: "./src/pages/main/index.pug",
