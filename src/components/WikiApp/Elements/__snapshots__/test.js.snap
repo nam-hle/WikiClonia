@@ -1604,7 +1604,21 @@ exports[`Should work with new york article 217`] = `
   className="wiki-heading-1"
   id="History_1"
 >
-  History
+  <div
+    className="heading__index heading__tens"
+  >
+    0
+  </div>
+  <div
+    className="heading__index heading__ones"
+  >
+    1
+  </div>
+  <div
+    className="heading__text"
+  >
+    History
+  </div>
 </div>
 `;
 
@@ -7702,7 +7716,21 @@ exports[`Should work with new york article 901`] = `
   className="wiki-heading-1"
   id="Geography_1"
 >
-  Geography
+  <div
+    className="heading__index heading__tens"
+  >
+    0
+  </div>
+  <div
+    className="heading__index heading__ones"
+  >
+    2
+  </div>
+  <div
+    className="heading__text"
+  >
+    Geography
+  </div>
 </div>
 `;
 
@@ -14325,7 +14353,21 @@ exports[`Should work with new york article 1715`] = `
   className="wiki-heading-1"
   id="Demographics_1"
 >
-  Demographics
+  <div
+    className="heading__index heading__tens"
+  >
+    0
+  </div>
+  <div
+    className="heading__index heading__ones"
+  >
+    3
+  </div>
+  <div
+    className="heading__text"
+  >
+    Demographics
+  </div>
 </div>
 `;
 
@@ -19514,7 +19556,21 @@ exports[`Should work with new york article 2292`] = `
   className="wiki-heading-1"
   id="Economy_1"
 >
-  Economy
+  <div
+    className="heading__index heading__tens"
+  >
+    0
+  </div>
+  <div
+    className="heading__index heading__ones"
+  >
+    4
+  </div>
+  <div
+    className="heading__text"
+  >
+    Economy
+  </div>
 </div>
 `;
 
@@ -24628,7 +24684,21 @@ exports[`Should work with new york article 2898`] = `
   className="wiki-heading-1"
   id="Educationand scholarly activity_1"
 >
-  Education and scholarly activity
+  <div
+    className="heading__index heading__tens"
+  >
+    0
+  </div>
+  <div
+    className="heading__index heading__ones"
+  >
+    5
+  </div>
+  <div
+    className="heading__text"
+  >
+    Education and scholarly activity
+  </div>
 </div>
 `;
 
@@ -25627,7 +25697,21 @@ exports[`Should work with new york article 3027`] = `
   className="wiki-heading-1"
   id="Humanresources_1"
 >
-  Human resources
+  <div
+    className="heading__index heading__tens"
+  >
+    0
+  </div>
+  <div
+    className="heading__index heading__ones"
+  >
+    6
+  </div>
+  <div
+    className="heading__text"
+  >
+    Human resources
+  </div>
 </div>
 `;
 
@@ -27129,7 +27213,21 @@ exports[`Should work with new york article 3212`] = `
   className="wiki-heading-1"
   id="Cultureand contemporary life_1"
 >
-  Culture and contemporary life
+  <div
+    className="heading__index heading__tens"
+  >
+    0
+  </div>
+  <div
+    className="heading__index heading__ones"
+  >
+    7
+  </div>
+  <div
+    className="heading__text"
+  >
+    Culture and contemporary life
+  </div>
 </div>
 `;
 
@@ -32276,7 +32374,21 @@ exports[`Should work with new york article 3853`] = `
   className="wiki-heading-1"
   id="Transportation_1"
 >
-  Transportation
+  <div
+    className="heading__index heading__tens"
+  >
+    0
+  </div>
+  <div
+    className="heading__index heading__ones"
+  >
+    8
+  </div>
+  <div
+    className="heading__text"
+  >
+    Transportation
+  </div>
 </div>
 `;
 
@@ -35296,7 +35408,21 @@ exports[`Should work with new york article 4233`] = `
   className="wiki-heading-1"
   id="{{anchor|Environmentalperspectives}} Environment_1"
 >
-  {{anchor|Environmental perspectives}} Environment
+  <div
+    className="heading__index heading__tens"
+  >
+    0
+  </div>
+  <div
+    className="heading__index heading__ones"
+  >
+    9
+  </div>
+  <div
+    className="heading__text"
+  >
+    {{anchor|Environmental perspectives}} Environment
+  </div>
 </div>
 `;
 
@@ -36334,7 +36460,21 @@ exports[`Should work with new york article 4379`] = `
   className="wiki-heading-1"
   id="Governmentand politics_1"
 >
-  Government and politics
+  <div
+    className="heading__index heading__tens"
+  >
+    1
+  </div>
+  <div
+    className="heading__index heading__ones"
+  >
+    0
+  </div>
+  <div
+    className="heading__text"
+  >
+    Government and politics
+  </div>
 </div>
 `;
 
@@ -37147,7 +37287,21 @@ exports[`Should work with new york article 4481`] = `
   className="wiki-heading-1"
   id="Notablepeople_1"
 >
-  Notable people
+  <div
+    className="heading__index heading__tens"
+  >
+    1
+  </div>
+  <div
+    className="heading__index heading__ones"
+  >
+    1
+  </div>
+  <div
+    className="heading__text"
+  >
+    Notable people
+  </div>
 </div>
 `;
 
@@ -37162,7 +37316,21 @@ exports[`Should work with new york article 4485`] = `
   className="wiki-heading-1"
   id="Globaloutreach_1"
 >
-  Global outreach
+  <div
+    className="heading__index heading__tens"
+  >
+    1
+  </div>
+  <div
+    className="heading__index heading__ones"
+  >
+    2
+  </div>
+  <div
+    className="heading__text"
+  >
+    Global outreach
+  </div>
 </div>
 `;
 
@@ -39415,7 +39583,21 @@ exports[`Should work with new york article 4795`] = `
   className="wiki-heading-1"
   id="Seealso_1"
 >
-  See also
+  <div
+    className="heading__index heading__tens"
+  >
+    1
+  </div>
+  <div
+    className="heading__index heading__ones"
+  >
+    3
+  </div>
+  <div
+    className="heading__text"
+  >
+    See also
+  </div>
 </div>
 `;
 
@@ -39444,7 +39626,21 @@ exports[`Should work with new york article 4799`] = `
   className="wiki-heading-1"
   id="Notes_1"
 >
-  Notes
+  <div
+    className="heading__index heading__tens"
+  >
+    1
+  </div>
+  <div
+    className="heading__index heading__ones"
+  >
+    4
+  </div>
+  <div
+    className="heading__text"
+  >
+    Notes
+  </div>
 </div>
 `;
 
@@ -39459,7 +39655,21 @@ exports[`Should work with new york article 4803`] = `
   className="wiki-heading-1"
   id="References_1"
 >
-  References
+  <div
+    className="heading__index heading__tens"
+  >
+    1
+  </div>
+  <div
+    className="heading__index heading__ones"
+  >
+    5
+  </div>
+  <div
+    className="heading__text"
+  >
+    References
+  </div>
 </div>
 `;
 
@@ -39474,7 +39684,21 @@ exports[`Should work with new york article 4807`] = `
   className="wiki-heading-1"
   id="Furtherreading_1"
 >
-  Further reading
+  <div
+    className="heading__index heading__tens"
+  >
+    1
+  </div>
+  <div
+    className="heading__index heading__ones"
+  >
+    6
+  </div>
+  <div
+    className="heading__text"
+  >
+    Further reading
+  </div>
 </div>
 `;
 
@@ -39636,7 +39860,21 @@ exports[`Should work with new york article 4831`] = `
   className="wiki-heading-1"
   id="Externallinks_1"
 >
-  External links
+  <div
+    className="heading__index heading__tens"
+  >
+    1
+  </div>
+  <div
+    className="heading__index heading__ones"
+  >
+    7
+  </div>
+  <div
+    className="heading__text"
+  >
+    External links
+  </div>
 </div>
 `;
 

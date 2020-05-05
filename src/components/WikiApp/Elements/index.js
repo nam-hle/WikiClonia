@@ -19,8 +19,22 @@ export const Text = ({ text }) => {
   return <Fragment>{splitText}</Fragment>;
 };
 
-const Heading = ({ className, id, text }) => {
+const Heading = ({ className, id, text, level, indices }) => {
   const heading = React.useRef();
+
+  if (1 === level) {
+    let indexLevel = "" + indices[0];
+    if (indexLevel < 10) indexLevel = "0" + indexLevel;
+    let tensIndexLevel = indexLevel[0],
+      onesIndexLvel = indexLevel[1];
+    return (
+      <div ref={heading} className={className} id={id}>
+        <div className="heading__index heading__tens">{tensIndexLevel}</div>
+        <div className="heading__index heading__ones">{onesIndexLvel}</div>
+        <div className="heading__text">{text}</div>
+      </div>
+    );
+  }
 
   return (
     <div ref={heading} className={className} id={id}>
@@ -55,6 +69,7 @@ export const Template = ({ props }) => {
       </div>
     );
   }
+
   if (props.type == "cite")
     return (
       <Fragment>

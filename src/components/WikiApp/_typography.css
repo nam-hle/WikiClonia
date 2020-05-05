@@ -22,3 +22,8 @@
   font-family: "Logo Pedia";
   src: url("./../../asset/fonts/Merriweather/Merriweather-Light.ttf");
 }
+
+@font-face {
+  font-family: "Index Heading";
+  src: url("./../../asset/fonts/PlayfairDisplay-VariableFont_wght.ttf");
+}

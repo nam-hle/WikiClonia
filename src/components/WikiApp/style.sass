@@ -16,7 +16,6 @@ body
   font: normal 400 $size2/1.6 "Body", -apple-system, BlinkMacSystemFont
   word-wrap: break-word
 
-
 a
   text-decoration: none
 
@@ -34,19 +33,8 @@ button
   border: none
   cursor: pointer
 
-
-
-
 #wikiapp
   width: 100%
-
-
-/*
- *  3. ARTICLE
- */
-
-
-
 
 
 /********************************
@@ -68,12 +56,43 @@ button
   font-family: "Heading", -apple-system
 
 .wiki-heading-1
-  border-top: 1px solid var(--shadow-color)
-  padding-top: 0.6em
-  margin-top: 1em
-  font-size: $size-heading1
+  // border-top: 1px solid var(--shadow-color)
+  // padding-top: 0.6em
+  // margin-top: 1em
+  display: flex
+  justify-content: start
+  align-items: center
+  margin-left: calc((#{$margin-left} * 0.85 + #{$space-left})/-76*100)
+  font-size: $size6
+  margin-bottom: $size0 !important
+  & + span, & + br
+    display: none
+    margin: 0
+    line-height: 0
+  > *
+    // display: inline-block
+    margin-bottom: 0 !important
+    // vertical-align: bottom
+  .heading__index
+    font-family: "Index Heading", "Heading", -apple-system
+    font-size: $space12
+    color: var(--primary-color)
+    opacity: 0.7
+  .heading__ones
+    position: relative
+    left: -0.6ch
+    bottom: -0.3ch
+    // margin-left: calc((#{$margin-left} * 0.85 + #{$space-left})/-76*100*0.3)
+  .heading__tens
+    // opacity: 0.5
+  .heading__text
+    letter-spacing: 0.15em
+    vertical-align: center
+    // margin-left: calc((#{$margin-left} * 0.85 + #{$space-left})/-76*100*0.3)
 
 .wiki-heading-2
+  padding-left: $size2
+  border-left: $size-3 solid var(--primary-color)
   font-size: $size-heading2
 
 .wiki-heading-3
