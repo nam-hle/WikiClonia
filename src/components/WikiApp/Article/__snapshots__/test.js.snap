@@ -46,7 +46,7 @@ Array [
         className="menu__button"
         id="theme-switch"
       >
-        Change theme
+        Light Mode
       </button>
     </div>
     <div
@@ -168,7 +168,7 @@ Array [
         className="menu__button"
         id="theme-switch"
       >
-        Change theme
+        Light Mode
       </button>
     </div>
     <div
@@ -290,7 +290,7 @@ Array [
         className="menu__button"
         id="theme-switch"
       >
-        Change theme
+        Light Mode
       </button>
     </div>
     <div
@@ -412,7 +412,7 @@ Array [
         className="menu__button"
         id="theme-switch"
       >
-        Change theme
+        Light Mode
       </button>
     </div>
     <div
@@ -534,7 +534,7 @@ Array [
         className="menu__button"
         id="theme-switch"
       >
-        Change theme
+        Light Mode
       </button>
     </div>
     <div
@@ -656,7 +656,7 @@ Array [
         className="menu__button"
         id="theme-switch"
       >
-        Change theme
+        Light Mode
       </button>
     </div>
     <div

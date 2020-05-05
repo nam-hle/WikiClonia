@@ -16,7 +16,7 @@ const Menu = () => {
         <button className="menu__button button--choose">Read</button>
         <button className="menu__button">View source</button>
         <button className="menu__button" id="theme-switch">
-          Change theme
+          Light Mode
         </button>
       </div>
       <div className="menu__search-icon">

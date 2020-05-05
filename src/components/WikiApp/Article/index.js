@@ -3,11 +3,9 @@ import Content from "./../Content";
 import Menu from "./../Menu";
 import Navigation from "./../Navigation";
 import { usePageContent, useImages } from "./../../../hooks/useWiki.js";
-import "lazysizes";
 import { SkeletonTheme } from "react-loading-skeleton";
-
-// import Sidebar from "./../SideBar";
-// import Reference from "./../Reference";
+import "lazysizes";
+import "./style.sass";
 
 export const ImagesContext = React.createContext(null);
 
@@ -31,8 +29,10 @@ const Article = ({ title }) => {
     toggle?.addEventListener("click", function(e) {
       e.preventDefault();
       if (document.body.classList.contains("funky")) {
+        toggle.innerText = "Light Mode";
         document.body.classList.remove("funky");
       } else {
+        toggle.innerText = "Dark Mode";
         document.body.classList.add("funky");
       }
     });

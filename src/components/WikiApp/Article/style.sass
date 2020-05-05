@@ -1,0 +1,49 @@
+@import "./../_typography.css"
+@import "./../_variables.sass"
+
+.article
+  display: grid
+  // grid-template-columns: 9% 2% 56% 5% 2% 24% 2%
+
+  width: 100%
+  margin: 0
+  padding: 50rem 0
+
+  background-color: var(--bg-color)
+
+.hero
+  margin: 0 5%
+  display: grid
+  grid-template-columns: $margin-left $space-left $main-left $main-mid $main-right $space-right $margin-right
+  padding-top: $space3
+  position: relative
+  @media only screen and (min-width: 2000px)
+    margin: 0 20vw
+
+  * + *
+    margin-bottom: 0.7em
+  a
+    color: var(--primary-color)
+  sup a
+    border: none
+  &__title
+    grid-column: 3 / span 3
+    font-family: "Title", "Georgia", "Times New Roman"
+    font-size: $size-heading0
+    text-align: center
+
+  &__credit
+    grid-column: 3 / span 3
+    margin-top: 0.5rem
+    font-family: "Credit", "Georgia", "Times New Roman"
+    font-size: $size2
+    text-align: center
+    color: #AEB7B3
+    font-weight: 500
+
+  .wiki-content
+    grid-column: 3 / span 3
+    // display: grid
+    // grid-template-columns: 10% 2% 25% 26% 25% 2% 10%
+    *
+      grid-column: 3 / span 3
