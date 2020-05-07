@@ -1,22 +1,25 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment } from "react";
 import { ImagesContext } from "./../Article";
 import Tooltip from "./../Tooltip";
 import { v4 as uuidv4 } from "uuid";
 
 export const Text = ({ text }) => {
-  let [splitText, setSplitText] = useState("");
-  useEffect(() => {
-    let paragraphs = text.split("\n\n"),
-      res = [];
-    for (let i = 0; i < paragraphs.length; i++) {
-      res.push(<span key={uuidv4()}>{paragraphs[i]}</span>);
-      if (i < paragraphs.length - 1) {
-        res.push(<br key={uuidv4()} />);
-      }
-    }
-    setSplitText(res);
-  }, []);
-  return <Fragment>{splitText}</Fragment>;
+  // let [splitText, setSplitText] = useState("");
+  // useEffect(() => {
+  //   let paragraphs = text.split("\n\n"),
+  //     res = [];
+  //   for (let i = 0; i < paragraphs.length; i++) {
+  //     res.push(<span key={uuidv4()}>{paragraphs[i]}</span>);
+  //     if (i < paragraphs.length - 1) {
+  //       res.push(<br key={uuidv4()} />);
+  //     }
+  //   }
+  //   setSplitText(res);
+  // }, []);
+  {
+    /*return <Fragment>{splitText}</Fragment>;*/
+  }
+  return <span>{text.replace("\n\n", "\n")}</span>;
 };
 
 const Heading = ({ className, id, text, level, indices }) => {

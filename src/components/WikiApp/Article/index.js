@@ -19,7 +19,7 @@ export const ImagesContext = React.createContext(null);
 // ];
 
 const Article = ({ title }) => {
-  title = title || "New_York_City";
+  title = title || "Mona_Lisa";
   const pageContent = usePageContent(title);
   const images = useImages(title);
 
