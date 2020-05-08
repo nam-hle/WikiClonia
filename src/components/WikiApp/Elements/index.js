@@ -1,26 +1,43 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment } from "react";
 import { ImagesContext } from "./../Article";
 import Tooltip from "./../Tooltip";
 import { v4 as uuidv4 } from "uuid";
 
 export const Text = ({ text }) => {
-  let [splitText, setSplitText] = useState("");
-  useEffect(() => {
-    let paragraphs = text.split("\n\n"),
-      res = [];
-    for (let i = 0; i < paragraphs.length; i++) {
-      res.push(<span key={uuidv4()}>{paragraphs[i]}</span>);
-      if (i < paragraphs.length - 1) {
-        res.push(<br key={uuidv4()} />);
-      }
-    }
-    setSplitText(res);
-  }, []);
-  return <Fragment>{splitText}</Fragment>;
+  // let [splitText, setSplitText] = useState("");
+  // useEffect(() => {
+  //   let paragraphs = text.split("\n\n"),
+  //     res = [];
+  //   for (let i = 0; i < paragraphs.length; i++) {
+  //     res.push(<span key={uuidv4()}>{paragraphs[i]}</span>);
+  //     if (i < paragraphs.length - 1) {
+  //       res.push(<br key={uuidv4()} />);
+  //     }
+  //   }
+  //   setSplitText(res);
+  // }, []);
+  {
+    /*return <Fragment>{splitText}</Fragment>;*/
+  }
+  return <span>{text.replace("\n\n", "\n")}</span>;
 };
 
-const Heading = ({ className, id, text }) => {
+const Heading = ({ className, id, text, level, indices }) => {
   const heading = React.useRef();
+
+  if (1 === level) {
+    let indexLevel = "" + indices[0];
+    if (indexLevel < 10) indexLevel = "0" + indexLevel;
+    let tensIndexLevel = indexLevel[0],
+      onesIndexLvel = indexLevel[1];
+    return (
+      <div ref={heading} className={className} id={id}>
+        <div className="heading__index heading__tens">{tensIndexLevel}</div>
+        <div className="heading__index heading__ones">{onesIndexLvel}</div>
+        <div className="heading__text">{text}</div>
+      </div>
+    );
+  }
 
   return (
     <div ref={heading} className={className} id={id}>
@@ -55,6 +72,7 @@ export const Template = ({ props }) => {
       </div>
     );
   }
+
   if (props.type == "cite")
     return (
       <Fragment>

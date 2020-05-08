@@ -5,10 +5,22 @@
   --light-shadow: #9c9f99;
 
   /* Dark mode */
-  --dark-text: #f7f7f7;
-  --dark-bg: #222430;
-  --dark-primary: #bd93f9;
-  --dark-shadow: #aeb7b3;
+  // --dark-text: #f7f7f7;
+  // --dark-bg: #222430;
+  // --dark-primary: #bd93f9;
+  // --dark-shadow: #0a0a0e;
+
+  // --dark-text: #ebeae7;
+  // --dark-bg: #231f20;
+  // --dark-primary-light: #7c9ba5;
+  // --dark-primary: #7baaa7;
+  // --dark-secondary: #c6d2d9;
+
+  --dark-text: #e3e3de;
+  --dark-bg: #1d3958;
+  --dark-primary: #dcc23d;
+  --dark-primary-light: #cc922f;
+  --dark-shadow: #0f1f30;
 
   --text-color: var(--dark-text);
   --bg-color: var(--dark-bg);
