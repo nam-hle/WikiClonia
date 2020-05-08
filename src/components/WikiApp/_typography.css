@@ -1,11 +1,11 @@
 @font-face {
   font-family: "Heading";
-  src: url("./../../asset/fonts/Lato/Lato-Bold.ttf");
+  src: url("./../../asset/fonts/YesevaOne-Regular.ttf");
 }
 
 @font-face {
   font-family: "Body";
-  src: url("./../../asset/fonts/Merriweather/Merriweather-Regular.ttf");
+  src: url("./../../asset/fonts/MavenPro-VariableFont_wght.ttf");
 }
 
 @font-face {
@@ -26,4 +26,9 @@
 @font-face {
   font-family: "Index Heading";
   src: url("./../../asset/fonts/PlayfairDisplay-VariableFont_wght.ttf");
+}
+
+@font-face {
+  font-family: "Menu";
+  src: url("./../../asset/fonts/Montserrat-Regular.ttf");
 }

@@ -9,13 +9,18 @@
   z-index: 1000
   width: 100%
   height: 50rem
+  padding: 0 10%
 
+  background-color: rgba(var(--bg-color),0.3)
+  // background-color: rgba(244, 234, 226, 0.8)
+  box-shadow: 0px 4px 10px -3px var(--shadow-color)
 
-  background-color: rgba(var(--bg-color), 0.3)
-  box-shadow: 0px 1px 3px 0px var(--shadow-color)
+  font-family: "Menu", -apple-system, BlinkMacSystemFont
   *
     color: var(--text-color)
-    font-size: $size2
+    font-size: $size0
+    text-transform: uppercase
+    letter-spacing: 0.1em
 
   svg
     width: $space3
@@ -50,6 +55,8 @@
   .menu__button
     padding: 0 $space1
     color: var(--text-color)
+    &:hover
+      color: var(--primary-color)
 
 /*
  *  1.2. RIGHT PANEL
@@ -64,13 +71,13 @@
 
 .menu__right
   display: grid
-  grid-template-columns: 1fr max-content
+  grid-template-columns: 1fr min-content
   align-items: center
   grid-column: 6
 
 .menu__search-input
   border: none
-  padding-left: $space0
+  // padding-left: $space0
   background-color: transparent
   &::placeholder
     // font: 400 $size2 "Heading", -apple-system

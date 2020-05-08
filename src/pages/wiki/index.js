@@ -1,5 +1,5 @@
 import "./../../components/WikiApp/normalize.css";
-import "./../../components/WikiApp/style3.scss";
+import "./../../components/WikiApp/theme.scss";
 import "./../../components/WikiApp/style.sass";
 
 import ReactDOM from "react-dom";

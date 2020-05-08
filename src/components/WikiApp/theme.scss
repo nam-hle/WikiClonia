@@ -1,14 +1,17 @@
 :root {
   --light-text: #222430;
   --light-bg: #f7f7f7;
-  --light-primary: #d23669;
+  // --light-primary: #d23669;
+  --light-primary: #b75e42;
   --light-shadow: #9c9f99;
+  --light-menu: #f4eae2;
 
   /* Dark mode */
-  // --dark-text: #f7f7f7;
-  // --dark-bg: #222430;
-  // --dark-primary: #bd93f9;
-  // --dark-shadow: #0a0a0e;
+  --dark-text: #f7f7f7;
+  --dark-bg: #2e3f5a;
+  --dark-primary: #d1adfb;
+  --dark-shadow: #232f44;
+  --dark-menu: #a3c4bc;
 
   // --dark-text: #ebeae7;
   // --dark-bg: #231f20;
@@ -16,16 +19,17 @@
   // --dark-primary: #7baaa7;
   // --dark-secondary: #c6d2d9;
 
-  --dark-text: #e3e3de;
-  --dark-bg: #1d3958;
-  --dark-primary: #dcc23d;
-  --dark-primary-light: #cc922f;
-  --dark-shadow: #0f1f30;
+  // --dark-text: #f7f7f7;
+  // --dark-bg: ##232F44;
+  // --dark-primary: #dcc23d;
+  // --dark-primary-light: #cc922f;
+  // --dark-shadow: #0f1f30;
 
   --text-color: var(--dark-text);
   --bg-color: var(--dark-bg);
   --primary-color: var(--dark-primary);
   --shadow-color: var(--dark-shadow);
+  --menu-color: var(--dark-menu);
 }
 
 .funky {
@@ -33,4 +37,5 @@
   --bg-color: var(--light-bg);
   --primary-color: var(--light-primary);
   --shadow-color: var(--light-shadow);
+  --menu-color: var(--light-shadow);
 }

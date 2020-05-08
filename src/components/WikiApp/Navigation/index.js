@@ -13,7 +13,6 @@ const Navigation = ({ headings }) => {
     let maxPos = width - visibleWidth;
     let slideWidth = maxPos * 0.15;
 
-    // console.log({ width, pos, visibleWidth, maxPos });
     console.log(document.querySelector(".navigation__headings:nth-child(1)"));
     headingsRef.current.scrollLeft =
       direction == "right"
@@ -55,7 +54,7 @@ const Navigation = ({ headings }) => {
     let body = document.body;
     body.scrollTop =
       heading.offsetTop -
-      document.getElementsByClassName("menu")[0].offsetHeight;
+      document.getElementsByClassName("menu")[0].clientHeight;
   };
   return (
     <div className="navigation">

@@ -36,7 +36,6 @@ button
 #wikiapp
   width: 100%
 
-
 /********************************
  *        WIKI ELEMENTS
  ********************************/
@@ -45,7 +44,7 @@ button
   font-style: italic
 
 .wiki-bold
-  font-family: "Heading", -apple-system
+  font-weight: 500
 
 .wiki-ref
   list-style-type: none
@@ -53,9 +52,11 @@ button
   margin-top: 1.5em
 
 .wiki-heading-1, .wiki-heading-2, .wiki-heading-3, .wiki-heading-4, .wiki-heading-5, .wiki-heading-6, .wiki-heading-7
-  font-family: "Index Heading", "Heading", -apple-system
-  // letter-spacing: 0.08em
-  font-weight: 600
+  margin-top: 0.7em
+  font-family:  "Heading", -apple-system
+  font-weight: 400
+  font-size: $size3
+  clear: both
 
 .wiki-heading-1
   display: flex
@@ -70,7 +71,7 @@ button
     margin-bottom: 0 !important
     display: inline-block
   .heading__index
-    font-size: $size6
+    font-size: $size5
     color: var(--primary-color)
     opacity: 0.7
   .heading__ones
@@ -80,23 +81,23 @@ button
   margin-top: 0.7em
   padding-left: $size2
   border-left: $size-5 solid var(--primary-color)
-  font-size: $size-heading2
+  font-size: $size4
 
-.wiki-heading-3
-  margin-top: 0.7em
-  font-size: $size-heading3
+// .wiki-heading-3, .wiki-heading-4,
+//   margin-top: 0.7em
+//   font-size: $size3
 
-.wiki-heading-4
-  font-size: $size-heading4
+// .wiki-heading-4
+//   font-size: $size2
 
-.wiki-heading-5
-  font-size: $size-heading5
+// .wiki-heading-5
+//   font-size: $size-heading5
 
-.wiki-heading-6
-  font-size: $size-heading6
+// .wiki-heading-6
+//   font-size: $size-heading6
 
-.wiki-heading-7
-  font-size: $size-heading7
+// .wiki-heading-7
+//   font-size: $size-heading7
 
 .wiki-img
   &__container
