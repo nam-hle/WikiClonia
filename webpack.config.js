@@ -5,6 +5,8 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const HtmlWebpackPugPlugin = require("html-webpack-pug-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
+  .BundleAnalyzerPlugin;
 
 module.exports = (env, argv) => {
   const isDevelopment = argv.mode === "development";
@@ -107,7 +109,8 @@ module.exports = (env, argv) => {
         filename: "[name].css",
         chunkFilename: "[id].css",
         ignoreOrder: false
-      })
+      }),
+      new BundleAnalyzerPlugin()
     ],
     optimization: {
       minimizer: [
