@@ -4,9 +4,8 @@
     "description": "Template project with BEM and ITCSS methodology",
     "main": "gulpfile.js",
     "scripts": {
-        "start": "webpack-dev-server --config ./webpack.config.js --mode development --hot --inline",
         "build": "webpack --config ./webpack.config.js --mode production",
-        "webpack": "webpack --profile --json > stats.json",
+        "start": "webpack-dev-server --config ./webpack.config.js --mode development --hot --inline",
         "test": "jest",
         "lint": "npx eslint 'src/**/*.js' --ignore-pattern '/**/test.js' ",
         "coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls"
