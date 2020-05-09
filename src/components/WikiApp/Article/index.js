@@ -29,10 +29,10 @@ const Article = ({ title }) => {
     toggle?.addEventListener("click", function(e) {
       e.preventDefault();
       if (document.body.classList.contains("funky")) {
-        toggle.innerText = "Light Mode";
+        toggle.innerText = "LIGHT MODE";
         document.body.classList.remove("funky");
       } else {
-        toggle.innerText = "Dark Mode";
+        toggle.innerText = "DARK MODE";
         document.body.classList.add("funky");
       }
     });

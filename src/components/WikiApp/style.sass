@@ -36,9 +36,7 @@ button
 #wikiapp
   width: 100%
 
-/********************************
- *        WIKI ELEMENTS
- ********************************/
+
 
 .wiki-italic
   font-style: italic
@@ -55,7 +53,7 @@ button
   margin-top: 0.7em
   font-family:  "Heading", -apple-system
   font-weight: 400
-  font-size: $size3
+  font-size: $size2
   clear: both
 
 .wiki-heading-1
@@ -65,45 +63,27 @@ button
   margin-left: calc((#{$margin-left} * 0.55 + #{$space-left})/-76*100)
   margin-bottom: $size0 !important
   margin-top: 0.7em
-  font-size: $size6
+  font-size: $size4
 
   > *
     margin-bottom: 0 !important
     display: inline-block
   .heading__index
-    font-size: $size5
     color: var(--primary-color)
-    opacity: 0.7
   .heading__ones
     margin-right: $space5
 
 .wiki-heading-2
   margin-top: 0.7em
-  padding-left: $size2
+  padding-left: $size1
   border-left: $size-5 solid var(--primary-color)
-  font-size: $size4
-
-// .wiki-heading-3, .wiki-heading-4,
-//   margin-top: 0.7em
-//   font-size: $size3
-
-// .wiki-heading-4
-//   font-size: $size2
-
-// .wiki-heading-5
-//   font-size: $size-heading5
-
-// .wiki-heading-6
-//   font-size: $size-heading6
-
-// .wiki-heading-7
-//   font-size: $size-heading7
+  font-size: $size3
 
 .wiki-img
   &__container
     display: flex
     flex-direction: column
-    align-items: center
+    align-items: flex-start
     justify-content: center
 
     max-width: calc((#{$margin-left} + #{$space-left} + #{$main-left})/76*100)
@@ -116,7 +96,7 @@ button
     max-width: 100%
     -webkit-transition: -webkit-transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1)
     transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1)
-    z-index: 900
+    z-index: 1000
     &:hover
       -webkit-transform: scale(1.05, 1.05)
       transform: scale(1.05, 1.05)

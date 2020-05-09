@@ -1,7 +1,7 @@
 :root {
   --light-text: #222430;
   --light-bg: #f7f7f7;
-  // --light-primary: #d23669;
+  --light-text-disable: #84858c;
   --light-primary: #b75e42;
   --light-shadow: #9c9f99;
   --light-menu: #f4eae2;
@@ -9,6 +9,7 @@
   /* Dark mode */
   --dark-text: #f7f7f7;
   --dark-bg: #2e3f5a;
+  --dark-text-disable: #e6e7e8;
   --dark-primary: #d1adfb;
   --dark-shadow: #232f44;
   --dark-menu: #a3c4bc;
@@ -30,6 +31,7 @@
   --primary-color: var(--dark-primary);
   --shadow-color: var(--dark-shadow);
   --menu-color: var(--dark-menu);
+  --disable-color: var(--dark-text-disable);
 }
 
 .funky {
@@ -37,5 +39,6 @@
   --bg-color: var(--light-bg);
   --primary-color: var(--light-primary);
   --shadow-color: var(--light-shadow);
-  --menu-color: var(--light-shadow);
+  --menu-color: var(--light-menu);
+  --disable-color: var(--light-text-disable);
 }

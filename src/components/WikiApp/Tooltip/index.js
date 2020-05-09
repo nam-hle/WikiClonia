@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { buildURL, summaryParams } from "./../../../WikiWrapper";
-import Skeleton from "react-loading-skeleton";
+// import Skeleton from "react-loading-skeleton";
+import { PulseLoader } from "react-spinners";
+import { css } from "@emotion/core";
+
 import "./style.sass";
 
 const extractSummary = (json, maxchar = 300) => {
@@ -11,6 +14,13 @@ const extractSummary = (json, maxchar = 300) => {
   extract = extract.substr(0, maxchar) + "...";
   return { extract, title };
 };
+
+const override = css`
+  margin: 0 auto;
+  display: flex;
+  justifycontent: center;
+  alignitems: center;
+`;
 
 const Tooltip = props => {
   const { url, children } = props;
@@ -49,7 +59,12 @@ const Tooltip = props => {
               {title}
             </h3>
           ) : (
-            <Skeleton height={100} duration={1} />
+            <PulseLoader
+              css={override}
+              color={getComputedStyle(
+                document.documentElement
+              ).getPropertyValue("--text-color")}
+            />
           )}
           {summary}
         </div>

@@ -118,11 +118,13 @@
         "webpack-stream": "^5.2.1"
     },
     "dependencies": {
+        "@emotion/core": "^10.0.28",
         "convert-units": "^2.3.4",
         "core-js": "^3.6.4",
         "lazysizes": "^5.2.0",
         "node-gyp": "^6.1.0",
         "react-loading-skeleton": "^2.0.1",
+        "react-spinners": "^0.8.3",
         "react-uuid": "^1.0.2",
         "rebuild": "^0.1.2",
         "uuid": "^7.0.2"

@@ -5,23 +5,34 @@
   margin-bottom: 0
 
 .tooltip-content
-  position: absolute
-  width: 40vw
-  background-color: var(--primary-color)
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
 
-  text-align: justify
+  position: absolute
+  z-index: 2000
+  width: 40vw
+  border-radius: 4px
+  padding: 6px 10px
+  background-color: var(--primary-color)
+  transform: translateX(-50%)
+  height: min-content
+
   text-decoration: none
   text-style: normal
   color: var(--bg-color)
-  transform: translateX(-50%)
+  font-size: 0.7em
   white-space: wrap
-  border-radius: 4px
-  padding: 6px 10px
   .tooltip-title
     font-family: "Heading", "Helvetica Neue", sans-serif
   &:before
     content: ""
     position: absolute
+
+.wiki-img__container
+  .tooltip-content
+    font-size: 1em
 
 .tooltip-content.top
   bottom: 100%

@@ -3,69 +3,53 @@
 exports[`renders correctly with Leonardo_da_Vinci 1`] = `
 Array [
   <div
-    className="menu"
+    className="menu-wrapper"
   >
     <div
-      className="menu__left"
+      className="menu"
     >
-      <span
-        className="logo-wiki"
-      >
-        Wiki
-      </span>
-      <span
-        className="logo-pedia"
-      >
-        pedia
-      </span>
-    </div>
-    <div
-      className="menu__main"
-    >
-      <button
-        className="menu__button button--choose"
-      >
-        Article
-      </button>
-      <button
-        className="menu__button"
-      >
-        Talk
-      </button>
-      <button
-        className="menu__button button--choose"
-      >
-        Read
-      </button>
-      <button
-        className="menu__button"
-      >
-        View source
-      </button>
-      <button
-        className="menu__button"
-        id="theme-switch"
-      >
-        Light Mode
-      </button>
-    </div>
-    <div
-      className="menu__search-icon"
-    >
-      <test-file-stub />
-    </div>
-    <div
-      className="menu__right"
-    >
-      <input
-        className="menu__search-input"
-        placeholder="Search Wikipedia"
-        type="text"
-      />
       <div
-        className="menu__profile-icon"
+        className="menu__left"
       >
-        <test-file-stub />
+        <span
+          className="logo-wiki"
+        >
+          Wiki
+        </span>
+        <span
+          className="logo-pedia"
+        >
+          pedia
+        </span>
+      </div>
+      <div
+        className="menu__right"
+      >
+        <div
+          className="menu__search-icon"
+        >
+          <test-file-stub />
+        </div>
+        <input
+          className="menu__search-input"
+          placeholder="Search Wikipedia"
+          type="text"
+        />
+      </div>
+      <div
+        className="menu__main"
+      >
+        <button
+          className="menu__button"
+        >
+          VIEW SOURCE
+        </button>
+        <button
+          className="menu__button"
+          id="theme-switch"
+        >
+          LIGHT MODE
+        </button>
       </div>
     </div>
   </div>,
@@ -125,69 +109,53 @@ Array [
 exports[`renders correctly with Mona_Lisa 1`] = `
 Array [
   <div
-    className="menu"
+    className="menu-wrapper"
   >
     <div
-      className="menu__left"
+      className="menu"
     >
-      <span
-        className="logo-wiki"
-      >
-        Wiki
-      </span>
-      <span
-        className="logo-pedia"
-      >
-        pedia
-      </span>
-    </div>
-    <div
-      className="menu__main"
-    >
-      <button
-        className="menu__button button--choose"
-      >
-        Article
-      </button>
-      <button
-        className="menu__button"
-      >
-        Talk
-      </button>
-      <button
-        className="menu__button button--choose"
-      >
-        Read
-      </button>
-      <button
-        className="menu__button"
-      >
-        View source
-      </button>
-      <button
-        className="menu__button"
-        id="theme-switch"
-      >
-        Light Mode
-      </button>
-    </div>
-    <div
-      className="menu__search-icon"
-    >
-      <test-file-stub />
-    </div>
-    <div
-      className="menu__right"
-    >
-      <input
-        className="menu__search-input"
-        placeholder="Search Wikipedia"
-        type="text"
-      />
       <div
-        className="menu__profile-icon"
+        className="menu__left"
       >
-        <test-file-stub />
+        <span
+          className="logo-wiki"
+        >
+          Wiki
+        </span>
+        <span
+          className="logo-pedia"
+        >
+          pedia
+        </span>
+      </div>
+      <div
+        className="menu__right"
+      >
+        <div
+          className="menu__search-icon"
+        >
+          <test-file-stub />
+        </div>
+        <input
+          className="menu__search-input"
+          placeholder="Search Wikipedia"
+          type="text"
+        />
+      </div>
+      <div
+        className="menu__main"
+      >
+        <button
+          className="menu__button"
+        >
+          VIEW SOURCE
+        </button>
+        <button
+          className="menu__button"
+          id="theme-switch"
+        >
+          LIGHT MODE
+        </button>
       </div>
     </div>
   </div>,
@@ -247,69 +215,53 @@ Array [
 exports[`renders correctly with New_York_City 1`] = `
 Array [
   <div
-    className="menu"
+    className="menu-wrapper"
   >
     <div
-      className="menu__left"
+      className="menu"
     >
-      <span
-        className="logo-wiki"
-      >
-        Wiki
-      </span>
-      <span
-        className="logo-pedia"
-      >
-        pedia
-      </span>
-    </div>
-    <div
-      className="menu__main"
-    >
-      <button
-        className="menu__button button--choose"
-      >
-        Article
-      </button>
-      <button
-        className="menu__button"
-      >
-        Talk
-      </button>
-      <button
-        className="menu__button button--choose"
-      >
-        Read
-      </button>
-      <button
-        className="menu__button"
-      >
-        View source
-      </button>
-      <button
-        className="menu__button"
-        id="theme-switch"
-      >
-        Light Mode
-      </button>
-    </div>
-    <div
-      className="menu__search-icon"
-    >
-      <test-file-stub />
-    </div>
-    <div
-      className="menu__right"
-    >
-      <input
-        className="menu__search-input"
-        placeholder="Search Wikipedia"
-        type="text"
-      />
       <div
-        className="menu__profile-icon"
+        className="menu__left"
       >
-        <test-file-stub />
+        <span
+          className="logo-wiki"
+        >
+          Wiki
+        </span>
+        <span
+          className="logo-pedia"
+        >
+          pedia
+        </span>
+      </div>
+      <div
+        className="menu__right"
+      >
+        <div
+          className="menu__search-icon"
+        >
+          <test-file-stub />
+        </div>
+        <input
+          className="menu__search-input"
+          placeholder="Search Wikipedia"
+          type="text"
+        />
+      </div>
+      <div
+        className="menu__main"
+      >
+        <button
+          className="menu__button"
+        >
+          VIEW SOURCE
+        </button>
+        <button
+          className="menu__button"
+          id="theme-switch"
+        >
+          LIGHT MODE
+        </button>
       </div>
     </div>
   </div>,
@@ -369,69 +321,53 @@ Array [
 exports[`renders correctly with Pet_door 1`] = `
 Array [
   <div
-    className="menu"
+    className="menu-wrapper"
   >
     <div
-      className="menu__left"
+      className="menu"
     >
-      <span
-        className="logo-wiki"
-      >
-        Wiki
-      </span>
-      <span
-        className="logo-pedia"
-      >
-        pedia
-      </span>
-    </div>
-    <div
-      className="menu__main"
-    >
-      <button
-        className="menu__button button--choose"
-      >
-        Article
-      </button>
-      <button
-        className="menu__button"
-      >
-        Talk
-      </button>
-      <button
-        className="menu__button button--choose"
-      >
-        Read
-      </button>
-      <button
-        className="menu__button"
-      >
-        View source
-      </button>
-      <button
-        className="menu__button"
-        id="theme-switch"
-      >
-        Light Mode
-      </button>
-    </div>
-    <div
-      className="menu__search-icon"
-    >
-      <test-file-stub />
-    </div>
-    <div
-      className="menu__right"
-    >
-      <input
-        className="menu__search-input"
-        placeholder="Search Wikipedia"
-        type="text"
-      />
       <div
-        className="menu__profile-icon"
+        className="menu__left"
       >
-        <test-file-stub />
+        <span
+          className="logo-wiki"
+        >
+          Wiki
+        </span>
+        <span
+          className="logo-pedia"
+        >
+          pedia
+        </span>
+      </div>
+      <div
+        className="menu__right"
+      >
+        <div
+          className="menu__search-icon"
+        >
+          <test-file-stub />
+        </div>
+        <input
+          className="menu__search-input"
+          placeholder="Search Wikipedia"
+          type="text"
+        />
+      </div>
+      <div
+        className="menu__main"
+      >
+        <button
+          className="menu__button"
+        >
+          VIEW SOURCE
+        </button>
+        <button
+          className="menu__button"
+          id="theme-switch"
+        >
+          LIGHT MODE
+        </button>
       </div>
     </div>
   </div>,
@@ -491,69 +427,53 @@ Array [
 exports[`renders correctly with Renaissance 1`] = `
 Array [
   <div
-    className="menu"
+    className="menu-wrapper"
   >
     <div
-      className="menu__left"
+      className="menu"
     >
-      <span
-        className="logo-wiki"
-      >
-        Wiki
-      </span>
-      <span
-        className="logo-pedia"
-      >
-        pedia
-      </span>
-    </div>
-    <div
-      className="menu__main"
-    >
-      <button
-        className="menu__button button--choose"
-      >
-        Article
-      </button>
-      <button
-        className="menu__button"
-      >
-        Talk
-      </button>
-      <button
-        className="menu__button button--choose"
-      >
-        Read
-      </button>
-      <button
-        className="menu__button"
-      >
-        View source
-      </button>
-      <button
-        className="menu__button"
-        id="theme-switch"
-      >
-        Light Mode
-      </button>
-    </div>
-    <div
-      className="menu__search-icon"
-    >
-      <test-file-stub />
-    </div>
-    <div
-      className="menu__right"
-    >
-      <input
-        className="menu__search-input"
-        placeholder="Search Wikipedia"
-        type="text"
-      />
       <div
-        className="menu__profile-icon"
+        className="menu__left"
       >
-        <test-file-stub />
+        <span
+          className="logo-wiki"
+        >
+          Wiki
+        </span>
+        <span
+          className="logo-pedia"
+        >
+          pedia
+        </span>
+      </div>
+      <div
+        className="menu__right"
+      >
+        <div
+          className="menu__search-icon"
+        >
+          <test-file-stub />
+        </div>
+        <input
+          className="menu__search-input"
+          placeholder="Search Wikipedia"
+          type="text"
+        />
+      </div>
+      <div
+        className="menu__main"
+      >
+        <button
+          className="menu__button"
+        >
+          VIEW SOURCE
+        </button>
+        <button
+          className="menu__button"
+          id="theme-switch"
+        >
+          LIGHT MODE
+        </button>
       </div>
     </div>
   </div>,
@@ -613,69 +533,53 @@ Array [
 exports[`renders correctly with The_Last_Supper_(Leonardo) 1`] = `
 Array [
   <div
-    className="menu"
+    className="menu-wrapper"
   >
     <div
-      className="menu__left"
+      className="menu"
     >
-      <span
-        className="logo-wiki"
-      >
-        Wiki
-      </span>
-      <span
-        className="logo-pedia"
-      >
-        pedia
-      </span>
-    </div>
-    <div
-      className="menu__main"
-    >
-      <button
-        className="menu__button button--choose"
-      >
-        Article
-      </button>
-      <button
-        className="menu__button"
-      >
-        Talk
-      </button>
-      <button
-        className="menu__button button--choose"
-      >
-        Read
-      </button>
-      <button
-        className="menu__button"
-      >
-        View source
-      </button>
-      <button
-        className="menu__button"
-        id="theme-switch"
-      >
-        Light Mode
-      </button>
-    </div>
-    <div
-      className="menu__search-icon"
-    >
-      <test-file-stub />
-    </div>
-    <div
-      className="menu__right"
-    >
-      <input
-        className="menu__search-input"
-        placeholder="Search Wikipedia"
-        type="text"
-      />
       <div
-        className="menu__profile-icon"
+        className="menu__left"
       >
-        <test-file-stub />
+        <span
+          className="logo-wiki"
+        >
+          Wiki
+        </span>
+        <span
+          className="logo-pedia"
+        >
+          pedia
+        </span>
+      </div>
+      <div
+        className="menu__right"
+      >
+        <div
+          className="menu__search-icon"
+        >
+          <test-file-stub />
+        </div>
+        <input
+          className="menu__search-input"
+          placeholder="Search Wikipedia"
+          type="text"
+        />
+      </div>
+      <div
+        className="menu__main"
+      >
+        <button
+          className="menu__button"
+        >
+          VIEW SOURCE
+        </button>
+        <button
+          className="menu__button"
+          id="theme-switch"
+        >
+          LIGHT MODE
+        </button>
       </div>
     </div>
   </div>,

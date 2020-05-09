@@ -3,16 +3,13 @@
 
 .article
   display: grid
-  // grid-template-columns: 9% 2% 56% 5% 2% 24% 2%
-
   width: 100%
   margin: 0
   padding: 50rem 0
-
   background-color: var(--bg-color)
 
 .hero
-  margin: 0 10%
+  margin: 0 $main-margin
   display: grid
   grid-template-columns: $margin-left $space-left $main-left $main-mid $main-right $space-right $margin-right
   padding-top: $space3
@@ -29,7 +26,7 @@
   &__title
     grid-column: 3 / span 3
     font-family: "Heading", "Georgia", "Times New Roman"
-    font-size: $size-heading0
+    font-size: $size-title
     text-align: center
 
   &__credit

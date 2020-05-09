@@ -1,31 +1,29 @@
 @import "./../variables"
 
-.menu
-  display: grid
-  grid-template-columns: $menu__temp-col
-  grid-template-rows: 1fr
-
+.menu-wrapper
   position: fixed
-  z-index: 1000
+  z-index: 5000
   width: 100%
   height: 50rem
-  padding: 0 10%
-
-  background-color: rgba(var(--bg-color),0.3)
-  // background-color: rgba(244, 234, 226, 0.8)
   box-shadow: 0px 4px 10px -3px var(--shadow-color)
 
+.menu
+  display: grid
+  grid-template-columns: 1fr 4fr 1fr
+  grid-template-rows: 1fr
+
+  margin: 0 $main-margin
+  height: 100%
+
   font-family: "Menu", -apple-system, BlinkMacSystemFont
-  *
-    color: var(--text-color)
-    font-size: $size0
-    text-transform: uppercase
-    letter-spacing: 0.1em
+  color: var(--text-color)
+  font-size: $size-1
+  letter-spacing: 0.07em
 
   svg
     width: $space3
-    path
-      fill: var(--text-color)
+    > path
+      fill: var(--disable-color)
 
 
 @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none)
@@ -33,53 +31,45 @@
     -webkit-backdrop-filter: blur(10px)
     backdrop-filter: blur(10px)
 
-/*
- *  1.1. LEFT PANEL
- */
 
 .menu__left
-  grid-column: 1
   display: flex
   justify-content: center
   align-items: center
   .logo-wiki
-    font: 400 $size3 "Heading", -apple-system
+    font: 400 $size2 "Heading", -apple-system
   .logo-pedia
-    font: 300 $size3 "Logo Pedia", -apple-system
+    font-size: $size1
+    font-weight: 100
 
 .menu__main
   grid-column: 3
+  margin-left: auto
   display: flex
-  .menu__button:nth-child(3)
-    margin-left: auto
   .menu__button
-    padding: 0 $space1
+    width: max-content
+    padding: 0
+    padding-left: $space1
     color: var(--text-color)
     &:hover
       color: var(--primary-color)
 
-/*
- *  1.2. RIGHT PANEL
- */
 
+.menu__right
+  grid-column: 2
+  display: flex
+  align-items: center
 
 .menu__search-icon
-  grid-column: 5
   display: flex
   justify-content: center
   align-items: center
 
-.menu__right
-  display: grid
-  grid-template-columns: 1fr min-content
-  align-items: center
-  grid-column: 6
-
 .menu__search-input
   border: none
-  // padding-left: $space0
+  padding-left: $space2
   background-color: transparent
-  &::placeholder
+  &:placeholder
     // font: 400 $size2 "Heading", -apple-system
-    color: var(--text-color)
+    color: var(--disable-color)
     // font-size: $size1
