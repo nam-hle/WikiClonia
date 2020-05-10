@@ -267,7 +267,6 @@ const MultipleImageParser = plain => {
   let R_KEY_IMAGE = /^\s*(?<imageKey>[a-z\-\_]+)(?<imageID>\d+)\s*$/i;
 
   let pairs = parsePairPipe(remain);
-  // console.log(pairs);
   for (const key of Object.keys(pairs)) {
     const value = pairs[key];
     if ((match = R_KEY_IMAGE.exec(key)) === null) {
@@ -277,7 +276,7 @@ const MultipleImageParser = plain => {
 
     let { imageKey, imageID } = match.groups;
     imageID = +imageID - 1;
-    if (images[imageID] === undefined) images.push({});
+    if (images[imageID] === undefined) images[imageID] = {};
     if ("image" == imageKey) {
       images[imageID].url = "File:" + value.trim();
     } else if ("caption" == imageKey) {
