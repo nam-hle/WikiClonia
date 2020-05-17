@@ -20,7 +20,11 @@ const createTextElement = text => ({ elementName: "Text", text });
 const CiteParser = plain => {
   let R_CITE = /\{\{cite (?<subType>\w+)\s*\|?(?<remain>[\S\s]*)}}$/gi;
 
-  let { subType, remain } = R_CITE.exec(plain).groups;
+  let match = R_CITE.exec(plain);
+
+  if (!match) return;
+
+  let { subType, remain } = match.groups;
 
   let attribute = {};
 

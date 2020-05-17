@@ -118,6 +118,7 @@
     },
     "dependencies": {
         "@emotion/core": "^10.0.28",
+        "@popperjs/core": "^2.4.0",
         "convert-units": "^2.3.4",
         "core-js": "^3.6.4",
         "lazysizes": "^5.2.0",
