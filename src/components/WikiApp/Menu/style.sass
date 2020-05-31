@@ -3,7 +3,7 @@
 .menu-wrapper
   position: fixed
   z-index: 5000
-  width: 100%
+  width: 100vw
   height: 50rem
   box-shadow: 0px 4px 10px -3px var(--shadow-color)
 
@@ -65,10 +65,6 @@
   display: flex
   align-items: center
   grid-area: search
-  .menu__search-icon
-    display: flex
-    justify-content: center
-    align-items: center
 
   .menu__search-input
     border: none
@@ -79,9 +75,9 @@
 
 // LANDSCAPE VIEW
 
-@media all and (max-width: 1000px)
+@media all and (max-width: $desktop-brp)
   .menu
-    padding: 1%
+    padding: 0 1%
     grid-template-areas: "logo search main"
 
   .menu__main
@@ -95,7 +91,7 @@
 
 // MOBILE VIEW
 
-@media all and (max-width: 376px)
+@media all and (max-width: $mobile-brp)
   .menu
     grid-template-areas: "main logo search"
 
@@ -111,5 +107,6 @@
     justify-content: center
     &-input
       display: none
+      padding: 0
 
 
