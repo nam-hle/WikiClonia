@@ -14,8 +14,6 @@
   grid-template-columns: $margin-left $space-left $main-left $main-mid $main-right $space-right $margin-right
   padding-top: $space3
   position: relative
-  // @media only screen and (min-width: 2000px)
-  //   margin: 0 20vw
 
   * + *
     margin-bottom: 0.7em
@@ -42,3 +40,7 @@
     grid-column: 3 / span 3
     *
       grid-column: 3 / span 3
+
+@media all and (max-width: $mobile-brp)
+  .hero
+    margin: 0

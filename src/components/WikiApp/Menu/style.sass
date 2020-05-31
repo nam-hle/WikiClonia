@@ -4,7 +4,7 @@
   position: fixed
   z-index: 5000
   width: 100vw
-  height: 50rem
+  height: 60rem
   box-shadow: 0px 4px 10px -3px var(--shadow-color)
 
 .menu
@@ -18,7 +18,7 @@
 
   font-family: "Menu", -apple-system, BlinkMacSystemFont
   color: var(--text-color)
-  font-size: $size-1
+  font-size: $size0
   letter-spacing: 0.07em
 
   svg
@@ -31,16 +31,15 @@
     -webkit-backdrop-filter: blur(10px)
     backdrop-filter: blur(10px)
 
-
 .menu__logo
   display: flex
   justify-content: center
   align-items: center
   grid-area: logo
   .logo-wiki, .logo-icon
-    font: 400 $size2 "Heading", -apple-system
+    font: 400 $size4 "Heading", -apple-system
   .logo-pedia
-    font-size: $size1
+    font-size: $size3
     font-weight: 100
   .logo-icon
     display: none
@@ -51,6 +50,8 @@
   justify-content: space-around
   align-items: center
   grid-area: main
+  .menu__icon
+    display: none
   .menu__button
     width: max-content
     padding: 0
@@ -65,7 +66,7 @@
   display: flex
   align-items: center
   grid-area: search
-
+  padding-left: $space0
   .menu__search-input
     border: none
     padding-left: $space2
