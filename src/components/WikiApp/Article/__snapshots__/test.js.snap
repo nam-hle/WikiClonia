@@ -9,7 +9,7 @@ Array [
       className="menu"
     >
       <div
-        className="menu__left"
+        className="menu__logo"
       >
         <span
           className="logo-wiki"
@@ -21,9 +21,14 @@ Array [
         >
           pedia
         </span>
+        <span
+          className="logo-icon"
+        >
+          W
+        </span>
       </div>
       <div
-        className="menu__right"
+        className="menu__search"
       >
         <div
           className="menu__search-icon"
@@ -49,6 +54,11 @@ Array [
           id="theme-switch"
         >
           LIGHT MODE
+        </button>
+        <button
+          className="menu__button menu__icon"
+        >
+          <test-file-stub />
         </button>
       </div>
     </div>
@@ -81,26 +91,30 @@ Array [
     </div>
   </div>,
   <div
-    className="navigation"
+    className="navigation-wrapper"
   >
     <div
-      className="navigation__content"
+      className="navigation"
     >
-      <button
-        className="navigation__button navigation__left-button"
-        onClick={[Function]}
-      >
-        <test-file-stub />
-      </button>
       <div
-        className="navigation__headings"
-      />
-      <button
-        className="navigation__button navigation__right-button"
-        onClick={[Function]}
+        className="navigation__content"
       >
-        <test-file-stub />
-      </button>
+        <button
+          className="navigation__button navigation__left-button"
+          onClick={[Function]}
+        >
+          <test-file-stub />
+        </button>
+        <div
+          className="navigation__headings"
+        />
+        <button
+          className="navigation__button navigation__right-button"
+          onClick={[Function]}
+        >
+          <test-file-stub />
+        </button>
+      </div>
     </div>
   </div>,
 ]
@@ -115,7 +129,7 @@ Array [
       className="menu"
     >
       <div
-        className="menu__left"
+        className="menu__logo"
       >
         <span
           className="logo-wiki"
@@ -127,9 +141,14 @@ Array [
         >
           pedia
         </span>
+        <span
+          className="logo-icon"
+        >
+          W
+        </span>
       </div>
       <div
-        className="menu__right"
+        className="menu__search"
       >
         <div
           className="menu__search-icon"
@@ -155,6 +174,11 @@ Array [
           id="theme-switch"
         >
           LIGHT MODE
+        </button>
+        <button
+          className="menu__button menu__icon"
+        >
+          <test-file-stub />
         </button>
       </div>
     </div>
@@ -187,26 +211,30 @@ Array [
     </div>
   </div>,
   <div
-    className="navigation"
+    className="navigation-wrapper"
   >
     <div
-      className="navigation__content"
+      className="navigation"
     >
-      <button
-        className="navigation__button navigation__left-button"
-        onClick={[Function]}
-      >
-        <test-file-stub />
-      </button>
       <div
-        className="navigation__headings"
-      />
-      <button
-        className="navigation__button navigation__right-button"
-        onClick={[Function]}
+        className="navigation__content"
       >
-        <test-file-stub />
-      </button>
+        <button
+          className="navigation__button navigation__left-button"
+          onClick={[Function]}
+        >
+          <test-file-stub />
+        </button>
+        <div
+          className="navigation__headings"
+        />
+        <button
+          className="navigation__button navigation__right-button"
+          onClick={[Function]}
+        >
+          <test-file-stub />
+        </button>
+      </div>
     </div>
   </div>,
 ]
@@ -221,7 +249,7 @@ Array [
       className="menu"
     >
       <div
-        className="menu__left"
+        className="menu__logo"
       >
         <span
           className="logo-wiki"
@@ -233,9 +261,14 @@ Array [
         >
           pedia
         </span>
+        <span
+          className="logo-icon"
+        >
+          W
+        </span>
       </div>
       <div
-        className="menu__right"
+        className="menu__search"
       >
         <div
           className="menu__search-icon"
@@ -261,6 +294,11 @@ Array [
           id="theme-switch"
         >
           LIGHT MODE
+        </button>
+        <button
+          className="menu__button menu__icon"
+        >
+          <test-file-stub />
         </button>
       </div>
     </div>
@@ -293,26 +331,30 @@ Array [
     </div>
   </div>,
   <div
-    className="navigation"
+    className="navigation-wrapper"
   >
     <div
-      className="navigation__content"
+      className="navigation"
     >
-      <button
-        className="navigation__button navigation__left-button"
-        onClick={[Function]}
-      >
-        <test-file-stub />
-      </button>
       <div
-        className="navigation__headings"
-      />
-      <button
-        className="navigation__button navigation__right-button"
-        onClick={[Function]}
+        className="navigation__content"
       >
-        <test-file-stub />
-      </button>
+        <button
+          className="navigation__button navigation__left-button"
+          onClick={[Function]}
+        >
+          <test-file-stub />
+        </button>
+        <div
+          className="navigation__headings"
+        />
+        <button
+          className="navigation__button navigation__right-button"
+          onClick={[Function]}
+        >
+          <test-file-stub />
+        </button>
+      </div>
     </div>
   </div>,
 ]
@@ -327,7 +369,7 @@ Array [
       className="menu"
     >
       <div
-        className="menu__left"
+        className="menu__logo"
       >
         <span
           className="logo-wiki"
@@ -339,9 +381,14 @@ Array [
         >
           pedia
         </span>
+        <span
+          className="logo-icon"
+        >
+          W
+        </span>
       </div>
       <div
-        className="menu__right"
+        className="menu__search"
       >
         <div
           className="menu__search-icon"
@@ -367,6 +414,11 @@ Array [
           id="theme-switch"
         >
           LIGHT MODE
+        </button>
+        <button
+          className="menu__button menu__icon"
+        >
+          <test-file-stub />
         </button>
       </div>
     </div>
@@ -399,26 +451,30 @@ Array [
     </div>
   </div>,
   <div
-    className="navigation"
+    className="navigation-wrapper"
   >
     <div
-      className="navigation__content"
+      className="navigation"
     >
-      <button
-        className="navigation__button navigation__left-button"
-        onClick={[Function]}
-      >
-        <test-file-stub />
-      </button>
       <div
-        className="navigation__headings"
-      />
-      <button
-        className="navigation__button navigation__right-button"
-        onClick={[Function]}
+        className="navigation__content"
       >
-        <test-file-stub />
-      </button>
+        <button
+          className="navigation__button navigation__left-button"
+          onClick={[Function]}
+        >
+          <test-file-stub />
+        </button>
+        <div
+          className="navigation__headings"
+        />
+        <button
+          className="navigation__button navigation__right-button"
+          onClick={[Function]}
+        >
+          <test-file-stub />
+        </button>
+      </div>
     </div>
   </div>,
 ]
@@ -433,7 +489,7 @@ Array [
       className="menu"
     >
       <div
-        className="menu__left"
+        className="menu__logo"
       >
         <span
           className="logo-wiki"
@@ -445,9 +501,14 @@ Array [
         >
           pedia
         </span>
+        <span
+          className="logo-icon"
+        >
+          W
+        </span>
       </div>
       <div
-        className="menu__right"
+        className="menu__search"
       >
         <div
           className="menu__search-icon"
@@ -473,6 +534,11 @@ Array [
           id="theme-switch"
         >
           LIGHT MODE
+        </button>
+        <button
+          className="menu__button menu__icon"
+        >
+          <test-file-stub />
         </button>
       </div>
     </div>
@@ -505,26 +571,30 @@ Array [
     </div>
   </div>,
   <div
-    className="navigation"
+    className="navigation-wrapper"
   >
     <div
-      className="navigation__content"
+      className="navigation"
     >
-      <button
-        className="navigation__button navigation__left-button"
-        onClick={[Function]}
-      >
-        <test-file-stub />
-      </button>
       <div
-        className="navigation__headings"
-      />
-      <button
-        className="navigation__button navigation__right-button"
-        onClick={[Function]}
+        className="navigation__content"
       >
-        <test-file-stub />
-      </button>
+        <button
+          className="navigation__button navigation__left-button"
+          onClick={[Function]}
+        >
+          <test-file-stub />
+        </button>
+        <div
+          className="navigation__headings"
+        />
+        <button
+          className="navigation__button navigation__right-button"
+          onClick={[Function]}
+        >
+          <test-file-stub />
+        </button>
+      </div>
     </div>
   </div>,
 ]
@@ -539,7 +609,7 @@ Array [
       className="menu"
     >
       <div
-        className="menu__left"
+        className="menu__logo"
       >
         <span
           className="logo-wiki"
@@ -551,9 +621,14 @@ Array [
         >
           pedia
         </span>
+        <span
+          className="logo-icon"
+        >
+          W
+        </span>
       </div>
       <div
-        className="menu__right"
+        className="menu__search"
       >
         <div
           className="menu__search-icon"
@@ -579,6 +654,11 @@ Array [
           id="theme-switch"
         >
           LIGHT MODE
+        </button>
+        <button
+          className="menu__button menu__icon"
+        >
+          <test-file-stub />
         </button>
       </div>
     </div>
@@ -611,26 +691,30 @@ Array [
     </div>
   </div>,
   <div
-    className="navigation"
+    className="navigation-wrapper"
   >
     <div
-      className="navigation__content"
+      className="navigation"
     >
-      <button
-        className="navigation__button navigation__left-button"
-        onClick={[Function]}
-      >
-        <test-file-stub />
-      </button>
       <div
-        className="navigation__headings"
-      />
-      <button
-        className="navigation__button navigation__right-button"
-        onClick={[Function]}
+        className="navigation__content"
       >
-        <test-file-stub />
-      </button>
+        <button
+          className="navigation__button navigation__left-button"
+          onClick={[Function]}
+        >
+          <test-file-stub />
+        </button>
+        <div
+          className="navigation__headings"
+        />
+        <button
+          className="navigation__button navigation__right-button"
+          onClick={[Function]}
+        >
+          <test-file-stub />
+        </button>
+      </div>
     </div>
   </div>,
 ]

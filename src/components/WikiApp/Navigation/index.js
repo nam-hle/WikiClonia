@@ -57,33 +57,35 @@ const Navigation = ({ headings }) => {
       document.getElementsByClassName("menu")[0].clientHeight;
   };
   return (
-    <div className="navigation">
-      <div className="navigation__content">
-        <button
-          onClick={() => handle("left")}
-          className="navigation__button navigation__left-button"
-        >
-          <LeftButton />
-        </button>
-        <div ref={headingsRef} className="navigation__headings">
-          {headings?.childrenHeadings.map((heading, index) => {
-            return (
-              <button
-                key={index}
-                onClick={() => handle2(heading.id)}
-                id={heading.id + "__btn"}
-              >
-                {heading.text}
-              </button>
-            );
-          })}
+    <div className="navigation-wrapper">
+      <div className="navigation">
+        <div className="navigation__content">
+          <button
+            onClick={() => handle("left")}
+            className="navigation__button navigation__left-button"
+          >
+            <LeftButton />
+          </button>
+          <div ref={headingsRef} className="navigation__headings">
+            {headings?.childrenHeadings.map((heading, index) => {
+              return (
+                <button
+                  key={index}
+                  onClick={() => handle2(heading.id)}
+                  id={heading.id + "__btn"}
+                >
+                  {heading.text}
+                </button>
+              );
+            })}
+          </div>
+          <button
+            onClick={() => handle("right")}
+            className="navigation__button navigation__right-button"
+          >
+            <RightButton />
+          </button>
         </div>
-        <button
-          onClick={() => handle("right")}
-          className="navigation__button navigation__right-button"
-        >
-          <RightButton />
-        </button>
       </div>
     </div>
   );

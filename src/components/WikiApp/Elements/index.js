@@ -3,24 +3,7 @@ import { ImagesContext } from "./../Article";
 import Tooltip from "./../Tooltip";
 import { v4 as uuidv4 } from "uuid";
 
-export const Text = ({ text }) => {
-  // let [splitText, setSplitText] = useState("");
-  // useEffect(() => {
-  //   let paragraphs = text.split("\n\n"),
-  //     res = [];
-  //   for (let i = 0; i < paragraphs.length; i++) {
-  //     res.push(<span key={uuidv4()}>{paragraphs[i]}</span>);
-  //     if (i < paragraphs.length - 1) {
-  //       res.push(<br key={uuidv4()} />);
-  //     }
-  //   }
-  //   setSplitText(res);
-  // }, []);
-  {
-    /*return <Fragment>{splitText}</Fragment>;*/
-  }
-  return <span>{text.replace("\n\n", "\n")}</span>;
-};
+export const Text = ({ text }) => <span>{text.replace("\n\n", "\n")}</span>;
 
 const Heading = ({ className, id, text, level, indices }) => {
   const heading = React.useRef();
@@ -172,6 +155,7 @@ export const Element = ({ props }) => {
       const valueImages = React.useContext(ImagesContext);
 
       if (props && props.url && valueImages && valueImages.images[props.url]) {
+        // console.log(valueImages.images[props.url]);
         let float =
           !props.multipleImage && props?.options?.indexOf("left") > -1
             ? "fl-left"

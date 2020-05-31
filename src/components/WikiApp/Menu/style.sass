@@ -11,8 +11,9 @@
   display: grid
   grid-template-columns: 1fr 4fr 1fr
   grid-template-rows: 1fr
+  grid-template-areas: "logo search main"
 
-  margin: 0 $main-margin
+  padding: 0 $main-margin
   height: 100%
 
   font-family: "Menu", -apple-system, BlinkMacSystemFont
@@ -25,27 +26,31 @@
     > path
       fill: var(--disable-color)
 
-
 @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none)
   .menu
     -webkit-backdrop-filter: blur(10px)
     backdrop-filter: blur(10px)
 
 
-.menu__left
+.menu__logo
   display: flex
   justify-content: center
   align-items: center
-  .logo-wiki
+  grid-area: logo
+  .logo-wiki, .logo-icon
     font: 400 $size2 "Heading", -apple-system
   .logo-pedia
     font-size: $size1
     font-weight: 100
+  .logo-icon
+    display: none
 
 .menu__main
-  grid-column: 3
   margin-left: auto
   display: flex
+  justify-content: space-around
+  align-items: center
+  grid-area: main
   .menu__button
     width: max-content
     padding: 0
@@ -53,23 +58,58 @@
     color: var(--text-color)
     &:hover
       color: var(--primary-color)
+      path
+        fill: var(--primary-color)
 
-
-.menu__right
-  grid-column: 2
+.menu__search
   display: flex
   align-items: center
+  grid-area: search
+  .menu__search-icon
+    display: flex
+    justify-content: center
+    align-items: center
 
-.menu__search-icon
-  display: flex
-  justify-content: center
-  align-items: center
+  .menu__search-input
+    border: none
+    padding-left: $space2
+    background-color: transparent
+    &:placeholder
+      color: var(--disable-color)
 
-.menu__search-input
-  border: none
-  padding-left: $space2
-  background-color: transparent
-  &:placeholder
-    // font: 400 $size2 "Heading", -apple-system
-    color: var(--disable-color)
-    // font-size: $size1
+// LANDSCAPE VIEW
+
+@media all and (max-width: 1000px)
+  .menu
+    padding: 1%
+    grid-template-areas: "logo search main"
+
+  .menu__main
+    margin: 0
+    .menu__icon
+      padding: 0
+    .menu__button
+      display: none
+    .menu__icon
+      display: block
+
+// MOBILE VIEW
+
+@media all and (max-width: 376px)
+  .menu
+    grid-template-areas: "main logo search"
+
+  .menu__logo
+    .logo-wiki, .logo-pedia
+      display: none
+    .logo-icon
+      display: block
+      font-size: $size5
+
+
+  .menu__search
+    justify-content: center
+    &-input
+      display: none
+
+

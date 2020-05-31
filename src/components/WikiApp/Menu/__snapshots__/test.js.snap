@@ -8,7 +8,7 @@ exports[`renders correctly 1`] = `
     className="menu"
   >
     <div
-      className="menu__left"
+      className="menu__logo"
     >
       <span
         className="logo-wiki"
@@ -20,9 +20,14 @@ exports[`renders correctly 1`] = `
       >
         pedia
       </span>
+      <span
+        className="logo-icon"
+      >
+        W
+      </span>
     </div>
     <div
-      className="menu__right"
+      className="menu__search"
     >
       <div
         className="menu__search-icon"
@@ -48,6 +53,11 @@ exports[`renders correctly 1`] = `
         id="theme-switch"
       >
         LIGHT MODE
+      </button>
+      <button
+        className="menu__button menu__icon"
+      >
+        <test-file-stub />
       </button>
     </div>
   </div>

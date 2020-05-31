@@ -40,6 +40,7 @@ const CiteParser = plain => {
 };
 
 const ConvertParser = plain => {
+  // console.log(plain);
   const toMetric = fromUnit => {
     let res = null;
     try {
@@ -71,9 +72,9 @@ const ConvertParser = plain => {
 
   let tokens = plain.slice(2, -2).split`|`,
     numbers = null,
-    fromUnit,
     toUnit = null,
-    answer = null;
+    answer = null,
+    fromUnit;
 
   tokens.shift();
 
