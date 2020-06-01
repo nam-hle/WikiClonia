@@ -42,5 +42,16 @@
       grid-column: 3 / span 3
 
 @media all and (max-width: $mobile-brp)
+
   .hero
-    margin: 0
+    display: grid
+    grid-template-columns: 1fr
+    width: 100%
+    margin: 0 2%
+    &__title, &__credit
+      grid-column: 1 / span 1
+    .wiki-content
+      grid-column: 1 / span 1
+      *
+        grid-column: 1 / span 1
+

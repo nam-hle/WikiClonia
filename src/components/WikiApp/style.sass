@@ -6,11 +6,11 @@
 
 html
   font-size: 1px
-  width: 100%
+  width: 100vw
 
 body
   margin: 0
-  width: 100%
+  width: 100vw
   background-color: var(--bg-color)
   color: var(--text-color)
   font: normal 400 $size2/1.6 "Body", -apple-system, BlinkMacSystemFont
@@ -137,4 +137,22 @@ button
       object-fit: cover
       object-position: 50% 50%
 
+// MOBILE
+@media all and (max-width: $mobile-brp)
 
+  .wiki-img__container
+    display: flex
+    max-width: 40vw
+    margin: $space1 0
+
+    clear: both
+
+  .fl-left
+    margin-right: $space1
+  .fl-right
+    margin-left: $space1
+  .wiki-gallery
+    margin: 0
+    & > .wiki-img__container
+      flex: 1 0 100%
+    display: none
