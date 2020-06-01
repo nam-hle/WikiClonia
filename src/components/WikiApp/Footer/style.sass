@@ -1,0 +1,45 @@
+@import "./../variables"
+
+.footer
+  margin: 0 $main-margin
+  padding: 40rem 0 80rem
+  border-top: 1px solid var(--support-color)
+
+  display: grid
+  grid-template-columns: 1.5fr 1fr 1fr
+  grid-gap: 20rem
+
+  *
+    font-size: $size1
+    color: var(--support-color)
+  a:hover
+    color: var(--primary-color)
+
+.subfooter__title
+  margin-bottom: $space1
+  color: var(--primary-color)
+  font-weight: 500
+
+.subfooter__content
+  display: grid
+  grid-auto-flow: row
+  grid-auto-rows: minmax(30rem, auto)
+
+// MEDIUM WIDTH
+//
+@media all and (max-width: $desktop-brp)
+  .footer
+    grid-template-columns: 1fr 1fr
+
+  .subfooter__about-project
+    grid-column: 1 / span 2
+
+// MOBILE
+
+@media all and (max-width: $mobile-brp)
+  .footer
+    grid-template-columns: 1fr
+
+  .subfooter__about-project
+    grid-column: 1 / span 1
+

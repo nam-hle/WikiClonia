@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import Content from "./../Content";
 import Menu from "./../Menu";
 import Navigation from "./../Navigation";
+import Footer from "./../Footer";
 import { usePageContent, useImages } from "./../../../hooks/useWiki.js";
 import { SkeletonTheme } from "react-loading-skeleton";
 import "lazysizes";
@@ -19,7 +20,7 @@ export const ImagesContext = React.createContext(null);
 // ];
 
 const Article = ({ title }) => {
-  title = title || "New_York_City";
+  title = title || "Pet_door";
   const pageContent = usePageContent(title);
   const images = useImages(title);
 
@@ -55,6 +56,7 @@ const Article = ({ title }) => {
           </div>
         </SkeletonTheme>
         <Navigation headings={pageContent?.headings} />
+        <Footer />
       </Fragment>
     </ImagesContext.Provider>
   );
