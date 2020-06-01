@@ -1,5 +1,8 @@
 import React, { Fragment } from "react";
 import { ImagesContext } from "./../Article";
+// import { Link, Switch, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
+// import Article from "./../Article";
 import Tooltip from "./../Tooltip";
 import { v4 as uuidv4 } from "uuid";
 
@@ -32,11 +35,11 @@ const Heading = ({ className, id, text, level, indices }) => {
 const WikiLink = ({ url, displayText }) => {
   return (
     <Tooltip url={url}>
-      <a href={"https://en.wikipedia.org/wiki/" + url}>
+      <Link to={"/" + url}>
         {displayText.map(e => {
           return <Element key={uuidv4()} props={e} />;
         })}
-      </a>
+      </Link>
     </Tooltip>
   );
 };

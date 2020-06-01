@@ -13,7 +13,7 @@ const titles = [
 
 for (const title of titles) {
   it("renders correctly with " + title, () => {
-    const tree = renderer.create(<Article title={title} />).toJSON();
+    const tree = renderer.create(<Article force_title={title} />).toJSON();
     expect(tree).toMatchSnapshot();
   });
 }

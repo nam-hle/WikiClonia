@@ -1,26 +1,17 @@
 import React, { Fragment } from "react";
 import Content from "./../Content";
-import Menu from "./../Menu";
 import Navigation from "./../Navigation";
-import Footer from "./../Footer";
 import { usePageContent, useImages } from "./../../../hooks/useWiki.js";
 import { SkeletonTheme } from "react-loading-skeleton";
+import { useParams } from "react-router-dom";
 import "lazysizes";
 import "./style.sass";
 
 export const ImagesContext = React.createContext(null);
 
-// const titles = [
-//   // "Pet_door"
-//   "New_York_City",
-//   "The_Last_Supper_(Leonardo)",
-//   "Leonardo_da_Vinci",
-//   "Mona_Lisa",
-//   "Renaissance"
-// ];
-
-const Article = ({ title }) => {
-  title = title || "New_York_City";
+const Article = ({ force_title }) => {
+  let title;
+  title = force_title ? force_title : useParams();
   const pageContent = usePageContent(title);
   const images = useImages(title);
 
@@ -42,7 +33,6 @@ const Article = ({ title }) => {
   return (
     <ImagesContext.Provider value={{ images }}>
       <Fragment>
-        <Menu />
         <SkeletonTheme color="transparent">
           <div className="article">
             <div className="hero">
@@ -51,28 +41,13 @@ const Article = ({ title }) => {
                 From Wikipedia, the free encyclopedia
               </div>
               <Content content={pageContent?.children} />
-              {/*<Reference {...{ references }} />*/}
             </div>
           </div>
         </SkeletonTheme>
         <Navigation headings={pageContent?.headings} />
-        <Footer />
       </Fragment>
     </ImagesContext.Provider>
   );
 };
 
 export default Article;
-
-// get references
-// useEffect(() => {
-//   if (parsed.children) {
-//     let res = [];
-//     for (const element of parsed.children) {
-//       if (element.elementName == "Reference") {
-//         res.push(element);
-//       }
-//     }
-//     setReferences(res);
-//   }
-// }, [parsed]);

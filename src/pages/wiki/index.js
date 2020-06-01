@@ -5,5 +5,11 @@ import "./../../components/WikiApp/style.sass";
 import ReactDOM from "react-dom";
 import React from "react";
 import App from "./../../components/WikiApp";
+import { BrowserRouter } from "react-router-dom";
 
-ReactDOM.render(<App />, document.getElementById("wikiapp"));
+ReactDOM.render(
+  <BrowserRouter basename="/wiki">
+    <App />
+  </BrowserRouter>,
+  document.getElementById("wikiapp")
+);
