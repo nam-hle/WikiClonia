@@ -1,16 +1,19 @@
 @import "./_typography.css"
 @import "./_variables.sass"
 
+*
+  box-sizing: border-box
+
 *:focus
   outline: none
 
 html
   font-size: 1px
-  width: 100vw
+  width: 100%
 
 body
   margin: 0
-  width: 100vw
+  width: 100%
   background-color: var(--bg-color)
   color: var(--text-color)
   font: normal 400 $size2/1.6 "Body", -apple-system, BlinkMacSystemFont
@@ -85,7 +88,7 @@ button
     justify-content: center
 
     max-width: calc((#{$margin-left} + #{$space-left} + #{$main-left})/76*100)
-    margin: $space0 $space3
+    margin: $space4
     margin-bottom: 0 !important
     padding: 0
     clear: both
@@ -107,17 +110,15 @@ button
 
 .fl-left
   float: left
-  margin-left: calc((#{$margin-left} + #{$space-left})/-76*100)
+  margin-left: -20%
   padding-left: 0
 
 .fl-right
   float: right
-  right: 50%
-  margin-right: calc((#{$margin-right} + #{$space-right})/-76*100)
+  margin-right: -20%
   padding-right: 0
 
 .wiki-gallery
-  margin: $space2 calc((#{$margin-right} + #{$space-right})/-76*100) $space2 calc((#{$margin-left} + #{$space-left})/-76*100)
   clear: both
   display: flex
   align-items: flex-start
@@ -132,27 +133,43 @@ button
     max-width: initial
     border: none
     & > .wiki-img__image
-      height: 20vh
+      height: 40vh
       width: 100%
       object-fit: cover
       object-position: 50% 50%
 
 // MOBILE
-@media all and (max-width: $mobile-brp)
+@media all and (max-width: $desktop-brp)
 
   .wiki-img__container
     display: flex
-    max-width: 40vw
-    margin: $space1 0
-
+    max-width: 70%
+    margin: $space0 auto
     clear: both
 
-  .fl-left
-    margin-right: $space1
-  .fl-right
-    margin-left: $space1
+  .fl-left, .fl-right
+    float: none
+    margin: $space0 auto
+
   .wiki-gallery
-    margin: 0
-    & > .wiki-img__container
-      flex: 1 0 100%
+    margin: auto
+    clear: both
     display: none
+    & > .wiki-img__container
+      margin: 0
+      margin-left: $space-1
+      float: none
+      flex: 1 0 33%
+      display: block
+      max-width: initial
+      border: none
+      & > .wiki-img__image
+        width: 100%
+        object-fit: cover
+        object-position: 50% 50%
+
+
+  .wiki-heading-1
+    margin-left: 0
+    .heading__ones
+      margin-right: $space0

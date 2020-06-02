@@ -8,7 +8,6 @@ import {
 import useFetch from "./useFetch.js";
 
 const usePageContent = title => {
-  console.log("In usePageContent: " + title);
   const [pageContent, setPageContent] = useState(null);
   const pageContentFetcher = useFetch(buildURL(pageContentParams(title)));
   useEffect(() => {

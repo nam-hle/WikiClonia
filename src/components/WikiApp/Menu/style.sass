@@ -74,6 +74,26 @@
     &:placeholder
       color: var(--disable-color)
 
+// MOBILE VIEW
+
+@media all and (max-width: $mobile-brp)
+  .menu
+    grid-template-areas: "main logo search"
+
+  .menu__logo
+    .logo-wiki, .logo-pedia
+      display: none
+    .logo-icon
+      display: block
+      font-size: $size5
+
+  .menu__search
+    justify-content: center
+    &-input
+      display: none
+      padding: 0
+
+
 // LANDSCAPE VIEW
 
 @media all and (max-width: $desktop-brp)
@@ -89,25 +109,3 @@
       display: none
     .menu__icon
       display: block
-
-// MOBILE VIEW
-
-@media all and (max-width: $mobile-brp)
-  .menu
-    grid-template-areas: "main logo search"
-
-  .menu__logo
-    .logo-wiki, .logo-pedia
-      display: none
-    .logo-icon
-      display: block
-      font-size: $size5
-
-
-  .menu__search
-    justify-content: center
-    &-input
-      display: none
-      padding: 0
-
-

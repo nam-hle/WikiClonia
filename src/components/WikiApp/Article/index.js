@@ -10,8 +10,9 @@ import "./style.sass";
 export const ImagesContext = React.createContext(null);
 
 const Article = ({ force_title }) => {
-  let title;
-  title = force_title ? force_title : useParams();
+  // let { title } = useParams();
+  // let title = "New_York_City";
+  let title = force_title ? force_title : useParams()?.title;
   const pageContent = usePageContent(title);
   const images = useImages(title);
 
