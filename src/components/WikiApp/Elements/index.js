@@ -2,7 +2,6 @@ import React, { Fragment } from "react";
 import { ImagesContext } from "./../Article";
 // import { Link, Switch, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
-// import Article from "./../Article";
 import Tooltip from "./../Tooltip";
 import { v4 as uuidv4 } from "uuid";
 
@@ -76,13 +75,14 @@ export const Template = ({ props }) => {
     );
 
   if (props.type == "footnote") {
-    return (
-      <sup className="wiki-footnote">
-        {props.children.map(e => (
-          <Element key={uuidv4()} props={e} />
-        ))}
-      </sup>
-    );
+    return "";
+    // return (
+    //   <sup className="wiki-footnote">
+    //     {props?.children?.map(e => (
+    //       <Element key={uuidv4()} props={e} />
+    //     ))}
+    //   </sup>
+    // );
   }
 
   return "<--N/A" + JSON.stringify(props) + "-->";

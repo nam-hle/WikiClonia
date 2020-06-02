@@ -10,8 +10,6 @@ import "./style.sass";
 export const ImagesContext = React.createContext(null);
 
 const Article = ({ force_title }) => {
-  // let { title } = useParams();
-  // let title = "New_York_City";
   let title = force_title ? force_title : useParams()?.title;
   const pageContent = usePageContent(title);
   const images = useImages(title);
@@ -19,7 +17,7 @@ const Article = ({ force_title }) => {
   React.useEffect(() => {
     let toggle = document.getElementById("theme-switch");
 
-    toggle?.addEventListener("click", function(e) {
+    let switcher = function(e) {
       e.preventDefault();
       if (document.body.classList.contains("funky")) {
         toggle.innerText = "LIGHT MODE";
@@ -28,7 +26,10 @@ const Article = ({ force_title }) => {
         toggle.innerText = "DARK MODE";
         document.body.classList.add("funky");
       }
-    });
+    };
+    toggle?.addEventListener("click", switcher);
+
+    return () => toggle.removeEventListener("click", switcher);
   }, []);
 
   return (

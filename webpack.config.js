@@ -13,8 +13,7 @@ module.exports = (env, argv) => {
 
   return {
     entry: {
-      // index: "./src/pages/main/index.js",
-      wiki: "./src/pages/wiki/index.js"
+      index: "./src/pages/wiki/index.js"
     },
     output: {
       filename: "[name].bundle.js",
@@ -31,17 +30,8 @@ module.exports = (env, argv) => {
           exclude: /node_modules/,
           use: ["babel-loader", "eslint-loader"]
         },
-        // {
-        //   test: /\.css$/,
-        //   use: ["style-loader", "css-loader"]
-        // },
         {
-          // Apply rule for .sass, .scss or .css files
           test: /\.(sa|sc|c)ss$/i,
-
-          // Set loaders to transform files.
-          // Loaders are applying from right to left(!)
-          // The first loader will be applied after others
           use: [
             {
               loader: MiniCssExtractPlugin.loader,
@@ -51,7 +41,6 @@ module.exports = (env, argv) => {
               }
             },
             {
-              // This loader resolves url() and @imports inside CSS
               loader: "css-loader",
               options: {
                 importLoaders: 2,
@@ -62,7 +51,6 @@ module.exports = (env, argv) => {
               loader: "resolve-url-loader"
             },
             {
-              // First we transform SASS to standard CSS
               loader: "sass-loader",
               options: {
                 sourceMap: true
@@ -93,17 +81,17 @@ module.exports = (env, argv) => {
         children: false,
         maxModules: 0
       },
-      openPage: ["/", "/about"]
+      historyApiFallback: {
+        index: "/index.html/"
+      },
+      openPage: "/"
     },
     plugins: [
       new CleanWebpackPlugin({ root: path.join(__dirname, "dist") }),
       new HtmlWebpackPlugin({
-        filename: "wiki/index.html",
-        template: "./src/pages/wiki/wiki.pug",
-        chunks: ["wiki"]
+        filename: "index.html",
+        template: "./src/pages/wiki/wiki.pug"
       }),
-      new HtmlWebpackPugPlugin(),
-      require("tailwindcss"),
       require("autoprefixer"),
       new MiniCssExtractPlugin({
         filename: "[name].css",

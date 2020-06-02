@@ -125,6 +125,7 @@ const ConvertParser = plain => {
 };
 
 const ReferenceParser = plain => {
+  // console.log(plain);
   let refname,
     refgroup,
     children,
@@ -158,9 +159,11 @@ const ReferenceParser = plain => {
   }
 
   // 4.2. Firstuse Reference
+  // console.log(remain);
   const R_FIRSTUSE = /^>(?<children>[\s\S]+)<\/ref>$/gi;
   if ((match = R_FIRSTUSE.exec(remain)) === null) {
-    throw "Firstuse Reference Error " + remain;
+    console.warn("Firstuse Reference Error " + remain);
+    return { type: "firstuse", refname: "", refgroup: "", children: [] };
   }
 
   children = main(match.groups.children).children;

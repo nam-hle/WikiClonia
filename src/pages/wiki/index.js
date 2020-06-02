@@ -8,7 +8,7 @@ import App from "./../../components/WikiApp";
 import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.render(
-  <BrowserRouter basename="/wiki">
+  <BrowserRouter>
     <App />
   </BrowserRouter>,
   document.getElementById("wikiapp")

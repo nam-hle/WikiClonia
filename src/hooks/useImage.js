@@ -10,7 +10,6 @@ const useImage = (url, options = {}) => {
       setIsLoading(true);
       try {
         const res = await fetch(url, options);
-        // const json = await res.json();
         setResponse(res);
         setIsLoading(false);
       } catch (error) {

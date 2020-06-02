@@ -9,11 +9,11 @@ const App = () => {
     <React.Fragment>
       <Menu />
       <Switch>
+        <Route exact path="/">
+          <Redirect to="/home/" />
+        </Route>
         <Route path="/:title">
           <Article />
-        </Route>
-        <Route path="/">
-          <Redirect to="/wikipedia" />
         </Route>
       </Switch>
       <Footer />

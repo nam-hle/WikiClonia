@@ -7,11 +7,11 @@ import { css } from "@emotion/core";
 import "./style.sass";
 
 const extractSummary = (json, maxchar = 300) => {
-  let content = json.query?.pages,
+  let content = json?.query?.pages,
     extract = null,
-    title = json.query?.normalized?.[0]?.to;
+    title = json?.query?.normalized?.[0]?.to;
   for (const key in content) extract = content[key]?.extract;
-  extract = extract.substr(0, maxchar) + "...";
+  extract = extract?.substr(0, maxchar) + "...";
   return { extract, title };
 };
 
@@ -24,16 +24,20 @@ const override = css`
 
 const Tooltip = props => {
   const { url, children } = props;
-  const [show, setShow] = useState(false);
   const [summary, setSummary] = useState(null);
   const [title, setTitle] = useState(null);
   const handleMouseIn = () => setShow(true);
   const handleMouseOut = () => setShow(false);
+  let [show, setShow] = useState(false);
 
   React.useEffect(() => {
+    // let isSubcribed = true;
     if (show && !summary) {
       fetch(buildURL(summaryParams(url)))
         .then(response => response.json())
+        // .then(response => {
+        //   if (isSubcribed) return response.json();
+        // })
         .then(json => {
           let { extract, title } = extractSummary(json);
           setSummary(extract);
@@ -41,6 +45,7 @@ const Tooltip = props => {
         })
         .catch(error => console.error(error));
     }
+    // return () => (isSubcribed = false);
   }, [show]);
 
   return (
