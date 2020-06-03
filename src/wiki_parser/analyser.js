@@ -1,3 +1,11 @@
+const extractHeadingText = heading => {
+  let text = "";
+  for (const child of heading.children) {
+    if ("Text" === child.elementName) text += child.text;
+  }
+  return text;
+};
+
 const analyseHeadings = headings => {
   if (!headings.length) return null;
   let getLevel = heading => +/^Heading(\d)$/.exec(heading.elementName)[1];
@@ -8,8 +16,9 @@ const analyseHeadings = headings => {
   res.indices = [];
 
   for (const heading of headings) {
+    console.log(heading);
     let level = getLevel(heading),
-      headingText = heading.children[0].text.trim(),
+      headingText = extractHeadingText(heading).trim(),
       headingId = headingText.replace(/\s/, "") + "_" + level;
 
     // add metadata

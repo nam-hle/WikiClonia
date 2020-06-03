@@ -138,4 +138,14 @@ Reference.allowedChildren.push(Break, Template);
 Template.allowedChildren.push(Template, Reference, Link);
 PairPipe.allowedChildren = Global.allowedChildren;
 
+for (const heading of [
+  Heading6,
+  Heading5,
+  Heading4,
+  Heading3,
+  Heading2,
+  Heading1
+]) {
+  heading.allowedChildren.push(Template);
+}
 export { Global, PairPipe };

@@ -44166,9 +44166,9 @@ exports[`Should work with new york article 4132`] = `
 exports[`Should work with new york article 4133`] = `
 <div
   className="wiki-heading-3"
-  id="{{anchor|Bridges|Tunnels}}Rivercrossings_3"
+  id="Rivercrossings_3"
 >
-  {{anchor|Bridges|Tunnels}}River crossings
+  River crossings
 </div>
 `;
 
@@ -45245,7 +45245,7 @@ exports[`Should work with new york article 4232`] = `
 exports[`Should work with new york article 4233`] = `
 <div
   className="wiki-heading-1"
-  id="{{anchor|Environmentalperspectives}} Environment_1"
+  id="Environment_1"
 >
   <div
     className="heading__index heading__tens"
@@ -45260,7 +45260,7 @@ exports[`Should work with new york article 4233`] = `
   <div
     className="heading__text"
   >
-    {{anchor|Environmental perspectives}} Environment
+    Environment
   </div>
 </div>
 `;

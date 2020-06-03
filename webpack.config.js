@@ -81,9 +81,7 @@ module.exports = (env, argv) => {
         children: false,
         maxModules: 0
       },
-      historyApiFallback: {
-        index: "/index.html/"
-      },
+      historyApiFallback: true,
       openPage: "/"
     },
     plugins: [
