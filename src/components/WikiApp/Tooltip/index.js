@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { buildURL, summaryParams } from "./../../../WikiWrapper";
 // import Skeleton from "react-loading-skeleton";
-import { PulseLoader } from "react-spinners";
+import { BarLoader as Loader } from "react-spinners";
 import { css } from "@emotion/core";
 
 import "./style.sass";
@@ -16,10 +16,13 @@ const extractSummary = (json, maxchar = 300) => {
 };
 
 const override = css`
+  width: 50%;
   margin: 0 auto;
+  height: 10vh;
+  maxheight: 100px;
   display: flex;
-  justifycontent: center;
-  alignitems: center;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Tooltip = props => {
@@ -31,13 +34,9 @@ const Tooltip = props => {
   let [show, setShow] = useState(false);
 
   React.useEffect(() => {
-    // let isSubcribed = true;
     if (show && !summary) {
       fetch(buildURL(summaryParams(url)))
         .then(response => response.json())
-        // .then(response => {
-        //   if (isSubcribed) return response.json();
-        // })
         .then(json => {
           let { extract, title } = extractSummary(json);
           setSummary(extract);
@@ -45,7 +44,6 @@ const Tooltip = props => {
         })
         .catch(error => console.error(error));
     }
-    // return () => (isSubcribed = false);
   }, [show]);
 
   return (
@@ -64,7 +62,7 @@ const Tooltip = props => {
               {title}
             </h3>
           ) : (
-            <PulseLoader
+            <Loader
               css={override}
               color={getComputedStyle(
                 document.documentElement
