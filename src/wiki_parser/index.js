@@ -594,11 +594,20 @@ const parse = (
 
   if (buffer) content.push(createTextElement(buffer));
 
+  let wordCount;
+  if (targetElement.elementName === "Global") {
+    wordCount = content.reduce(
+      (acc, curr) =>
+        acc + (curr.elementName === "Text" ? curr.text.split` `.length : 0),
+      0
+    );
+  }
   let res = [
     index,
     clean({
       elementName,
       headings: opts.headings ? analyseHeadings(headings) : null,
+      wordCount,
       images,
       ...internalParse(targetElement, content, plain, options)
     }),

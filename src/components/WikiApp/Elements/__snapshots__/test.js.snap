@@ -3587,7 +3587,7 @@ exports[`Should work with new york article 351`] = `
 </span>
 `;
 
-exports[`Should work with new york article 352`] = `"{\\"elementName\\":\\"Link\\",\\"type\\":\\"media\\",\\"supType\\":\\"File\\",\\"url\\":\\"File:The Purchase of Manhattan Island.png\\",\\"options\\":[\\"thumb\\",{\\"key\\":\\"alt\\",\\"value\\":\\"A pen drawing of two men in 17th-century Dutch clothing presenting an open box of items to a group of Native Americans in feather headdresses stereotypical of plains tribes.\\"},\\"left\\"],\\"caption\\":[{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Peter_Minuit\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Peter Minuit\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" is credited with the purchase of the island of Manhattan in 1626.\\"}]}"`;
+exports[`Should work with new york article 352`] = `""`;
 
 exports[`Should work with new york article 353`] = `
 <span>
@@ -4560,7 +4560,7 @@ exports[`Should work with new york article 432`] = `
 </span>
 `;
 
-exports[`Should work with new york article 433`] = `"{\\"elementName\\":\\"Link\\",\\"type\\":\\"media\\",\\"supType\\":\\"File\\",\\"url\\":\\"File:GezichtOpNieuwAmsterdam.jpg\\",\\"options\\":[\\"thumb\\",\\"left\\",{\\"key\\":\\"alt\\",\\"value\\":\\"A painting of a coastline dotted with red roof houses and a windmill, with several masted ships sailing close to shore under blue sky.\\"}],\\"caption\\":[{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"New_Amsterdam\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"New Amsterdam\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\", centered in the eventual \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Lower_Manhattan\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Lower Manhattan\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\", in 1664, the year England took control and renamed it \\\\\\"New York\\\\\\".\\"}]}"`;
+exports[`Should work with new york article 433`] = `""`;
 
 exports[`Should work with new york article 434`] = `
 <span>
@@ -5153,7 +5153,7 @@ exports[`Should work with new york article 479`] = `
 </span>
 `;
 
-exports[`Should work with new york article 480`] = `"{\\"elementName\\":\\"Link\\",\\"type\\":\\"media\\",\\"supType\\":\\"File\\",\\"url\\":\\"File:A view of Fort George with the city of New York, from the SW.jpg\\",\\"options\\":[\\"thumb\\",{\\"key\\":\\"alt\\",\\"value\\":\\"A painting of a ship firing its cannons in a harbor.\\"}],\\"caption\\":[{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Fort_Amsterdam\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Fort George\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" and the city of New York c. 1731\\"}]}"`;
+exports[`Should work with new york article 480`] = `""`;
 
 exports[`Should work with new york article 481`] = `
 <span>
@@ -5861,7 +5861,7 @@ exports[`Should work with new york article 547`] = `
 </span>
 `;
 
-exports[`Should work with new york article 548`] = `"{\\"elementName\\":\\"Link\\",\\"type\\":\\"media\\",\\"supType\\":\\"File\\",\\"url\\":\\"File:BattleofLongisland.jpg\\",\\"options\\":[\\"thumb\\",{\\"key\\":\\"alt\\",\\"value\\":\\"Colonial era soldiers stand and kneel while firing muskets at and advancing enemy. Behind them is a mounted soldier with a bayonet and behind them is a large flag.\\"},\\"left\\"],\\"caption\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"The \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Battle_of_Long_Island\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Battle of Long Island\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\", the largest battle of the \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"American_Revolution\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"American Revolution\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\", took place in \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Brooklyn\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Brooklyn\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" in 1776.\\"}]}"`;
+exports[`Should work with new york article 548`] = `""`;
 
 exports[`Should work with new york article 549`] = `
 <span>
@@ -6343,9 +6343,9 @@ exports[`Should work with new york article 590`] = `
 </span>
 `;
 
-exports[`Should work with new york article 591`] = `"{\\"elementName\\":\\"Link\\",\\"type\\":\\"media\\",\\"supType\\":\\"File\\",\\"url\\":\\"File:Hippolyte Sebron - Rue De New-York En 1840.jpg\\",\\"options\\":[\\"thumb\\",{\\"key\\":\\"alt\\",\\"value\\":\\"A painting of a snowy city street with horse-drawn sleds and a 19th-century fire truck under blue sky\\"}],\\"caption\\":[{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Broadway_(Manhattan)\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Broadway\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" follows the Native American \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Wickquasgeck\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Wickquasgeck\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" Trail through Manhattan.\\"},{\\"elementName\\":\\"Reference\\",\\"type\\":\\"firstuse\\",\\"children\\":[{\\"elementName\\":\\"Template\\",\\"type\\":\\"cite\\",\\"subType\\":\\"news\\",\\"attribute\\":{\\"title\\":\\"The Streets Where History Lives\\",\\"first\\":\\"Russell\\",\\"last\\":\\"Shorto\\",\\"url\\":\\"https://query.nytimes.com/gst/fullpage.html?res=9B00E5DD1F3BF93AA35751C0A9629C8B63\\",\\"newspaper\\":\\"[[The New York Times]]\\",\\"date\\":\\"February 9, 2004\\",\\"accessdate\\":\\"June 19, 2013\\"}}],\\"referenceIndex\\":1}]}"`;
+exports[`Should work with new york article 591`] = `""`;
 
-exports[`Should work with new york article 592`] = `"{\\"elementName\\":\\"Link\\",\\"type\\":\\"media\\",\\"supType\\":\\"File\\",\\"url\\":\\"File:Mulberry Street NYC c1900 LOC 3g04637u edit.jpg\\",\\"options\\":[\\"thumb\\",{\\"key\\":\\"alt\\",\\"value\\":\\"Many people are seen at Manhattan's Little Italy, Lower East Side, circa 1900.\\"}],\\"caption\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Manhattan's \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Little_Italy,_Manhattan\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Little Italy\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\", \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Lower_East_Side\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Lower East Side\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\", circa 1900.\\"}]}"`;
+exports[`Should work with new york article 592`] = `""`;
 
 exports[`Should work with new york article 593`] = `
 <span>
@@ -6354,7 +6354,7 @@ exports[`Should work with new york article 593`] = `
 </span>
 `;
 
-exports[`Should work with new york article 594`] = `"{\\"elementName\\":\\"Link\\",\\"type\\":\\"media\\",\\"supType\\":\\"File\\",\\"url\\":\\"File:Old timer structural worker2.jpg\\",\\"options\\":[\\"thumb\\",{\\"key\\":\\"alt\\",\\"value\\":\\"A man working on a steel girder high about a city skyline.\\"}],\\"caption\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"A \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Construction_worker\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"construction worker\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" atop the \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Empire_State_Building\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Empire State Building\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" as it was being built in 1930. The \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Chrysler_Building\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Chrysler Building\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" is behind him.\\"}]}"`;
+exports[`Should work with new york article 594`] = `""`;
 
 exports[`Should work with new york article 595`] = `
 <span>
@@ -7748,7 +7748,7 @@ exports[`Should work with new york article 709`] = `
 </span>
 `;
 
-exports[`Should work with new york article 710`] = `"{\\"elementName\\":\\"Link\\",\\"type\\":\\"media\\",\\"supType\\":\\"File\\",\\"url\\":\\"File:Stonewall Inn 5 pride weekend 2016.jpg\\",\\"options\\":[\\"thumb\\",\\"left\\",{\\"key\\":\\"alt\\",\\"value\\":\\"A two-story building with brick on the first floor, with two arched doorways, and gray stucco on the second floor off of which hang numerous rainbow flags.\\"}],\\"caption\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"The \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Stonewall_Inn\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Stonewall Inn\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" in \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Greenwich_Village\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Greenwich Village\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\", a designated U.S. \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"National_Historic_Landmark\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"National Historic Landmark\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" and \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Stonewall_National_Monument\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"National Monument\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\", as the site of the June 1969 \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Stonewall_riots\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Stonewall riots\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" and the cradle of the modern \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Gay_rights\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"gay rights\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" movement.\\"},{\\"elementName\\":\\"Reference\\",\\"type\\":\\"reuse\\",\\"refname\\":\\"GayGreenwichVillage1\\",\\"referenceIndex\\":1},{\\"elementName\\":\\"Reference\\",\\"type\\":\\"firstuse\\",\\"children\\":[{\\"elementName\\":\\"Template\\",\\"type\\":\\"cite\\",\\"subType\\":\\"web\\",\\"attribute\\":{\\"url\\":\\"http://www.nps.gov/diversity/stonewall.htm\\",\\"title\\":\\"Workforce Diversity The Stonewall Inn, National Historic Landmark National Register Number: 99000562\\",\\"publisher\\":\\"National Park Service, U.S. Department of the Interior\\",\\"accessdate\\":\\"May 1, 2011\\"}}],\\"referenceIndex\\":2},{\\"elementName\\":\\"Reference\\",\\"type\\":\\"firstuse\\",\\"children\\":[{\\"elementName\\":\\"Template\\",\\"type\\":\\"cite\\",\\"subType\\":\\"news\\",\\"attribute\\":{\\"url\\":\\"https://www.nytimes.com/2016/06/25/nyregion/stonewall-inn-named-national-monument-a-first-for-gay-rights-movement.html\\",\\"title\\":\\"Stonewall Inn Named National Monument, a First for the Gay Rights Movement\\",\\"author\\":\\"Eli Rosenberg\\",\\"newspaper\\":\\"The New York Times\\",\\"date\\":\\"June 24, 2016\\",\\"accessdate\\":\\"June 25, 2016\\"}}],\\"referenceIndex\\":3}]}"`;
+exports[`Should work with new york article 710`] = `""`;
 
 exports[`Should work with new york article 711`] = `
 <span>
@@ -8004,7 +8004,7 @@ exports[`Should work with new york article 735`] = `
 </span>
 `;
 
-exports[`Should work with new york article 736`] = `"{\\"elementName\\":\\"Link\\",\\"type\\":\\"media\\",\\"supType\\":\\"File\\",\\"url\\":\\"File:Dag Hammarskjold outside the UN building.jpg\\",\\"options\\":[\\"thumb\\",\\"upright\\",{\\"key\\":\\"alt\\",\\"value\\":\\"A man stands infont of a modern curved roof building.\\"},\\"left\\"],\\"caption\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"UN Secretary General \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Dag_Hammarskjöld\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Dag Hammarskjöld\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" in front of the \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"United_Nations_Headquarters\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"United Nations Headquarters\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" building, completed in 1952\\"}]}"`;
+exports[`Should work with new york article 736`] = `""`;
 
 exports[`Should work with new york article 737`] = `
 <span>
@@ -9071,7 +9071,7 @@ exports[`Should work with new york article 835`] = `
 </span>
 `;
 
-exports[`Should work with new york article 836`] = `"{\\"elementName\\":\\"Link\\",\\"type\\":\\"media\\",\\"supType\\":\\"File\\",\\"url\\":\\"File:UA Flight 175 hits WTC south tower 9-11 edit.jpeg\\",\\"options\\":[\\"thumb\\",{\\"key\\":\\"alt\\",\\"value\\":\\"Two tall, gray, rectangular buildings spewing black smoke and flames, particularly from the left of the two.\\"}],\\"caption\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"United Airlines Flight 175 hits the South Tower of the original \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"World_Trade_Center_(1973–2001)\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"World Trade Center\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" on September 11, 2001.\\"}]}"`;
+exports[`Should work with new york article 836`] = `""`;
 
 exports[`Should work with new york article 837`] = `
 <span>
@@ -9834,7 +9834,7 @@ exports[`Should work with new york article 904`] = `
 </span>
 `;
 
-exports[`Should work with new york article 905`] = `"{\\"elementName\\":\\"Link\\",\\"type\\":\\"media\\",\\"supType\\":\\"File\\",\\"url\\":\\"File:Core of New York City by Sentinel-2.jpg\\",\\"options\\":[\\"thumb\\",\\"upright\\"],\\"caption\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"alt=|The core of the \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"New_York_metropolitan_area\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"New York City metropolitan area\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\", with \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Manhattan_Island\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Manhattan Island\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" at its center\\"}]}"`;
+exports[`Should work with new york article 905`] = `""`;
 
 exports[`Should work with new york article 906`] = `
 <span>
@@ -10907,7 +10907,7 @@ exports[`Should work with new york article 1003`] = `
 </span>
 `;
 
-exports[`Should work with new york article 1004`] = `"{\\"elementName\\":\\"Link\\",\\"type\\":\\"media\\",\\"supType\\":\\"File\\",\\"url\\":\\"File:5 Boroughs Labels New York City Map.svg\\",\\"options\\":[\\"thumb\\",\\"upright=1.1\\",{\\"key\\":\\"alt\\",\\"value\\":\\"A map showing five boroughs in different colors.\\"}],\\"caption\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"The five \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Borough_(New_York_City)\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"boroughs\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" of New York City:\\\\n\\"},{\\"elementName\\":\\"Template\\",\\"type\\":\\"N/A\\",\\"children\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"N/A\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\"\\\\n\\"},{\\"elementName\\":\\"Template\\",\\"type\\":\\"N/A\\",\\"children\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"N/A\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\"\\\\n\\"},{\\"elementName\\":\\"Template\\",\\"type\\":\\"N/A\\",\\"children\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"N/A\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\"\\\\n\\"},{\\"elementName\\":\\"Template\\",\\"type\\":\\"N/A\\",\\"children\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"N/A\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\"\\\\n\\"},{\\"elementName\\":\\"Template\\",\\"type\\":\\"N/A\\",\\"children\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"N/A\\"}]}]}"`;
+exports[`Should work with new york article 1004`] = `""`;
 
 exports[`Should work with new york article 1005`] = `
 <span>
@@ -12956,9 +12956,9 @@ exports[`Should work with new york article 1195`] = `
 <div
   className="wiki-gallery"
 >
-  {"elementName":"Link","type":"media","supType":"File","url":"File:Long Island City New York May 2015 panorama 3.jpg","caption":[{"elementName":"Text","text":"The growing skyline of "},{"elementName":"Link","type":"wikiLink","url":"Long_Island_City,_Queens","displayText":[{"elementName":"Text","text":"Long Island City"}]},{"elementName":"Text","text":", Queens,"},{"elementName":"Reference","type":"firstuse","children":[{"elementName":"Template","type":"cite","subType":"web","attribute":{"url":"https://www.bloomberg.com/news/articles/2018-10-30/nyc-s-fastest-growing-neighborhood-gets-180-million-investment","title":"NYC's Fastest-Growing Neighborhood Gets $180 Million Investment","author":"Henry Goldman","date":"October 30, 2018","publisher":"Bloomberg, L.P","accessdate":"October 30, 2018"}}],"referenceIndex":1},{"elementName":"Text","text":" facing the East River at "},{"elementName":"Link","type":"wikiLink","url":"Blue_hour","displayText":[{"elementName":"Text","text":"blue hour"}]},{"elementName":"Text","text":" in May 2015. At left is the "},{"elementName":"Link","type":"wikiLink","url":"Queensboro_Bridge","displayText":[{"elementName":"Text","text":"Queensboro Bridge"}]},{"elementName":"Text","text":", connecting Queens to Manhattan."}]}
-  {"elementName":"Link","type":"media","supType":"File","url":"File:1650 Grand Concourse.jpg","caption":[{"elementName":"Text","text":"The "},{"elementName":"Link","type":"wikiLink","url":"Grand_Concourse_(Bronx)","displayText":[{"elementName":"Text","text":"Grand Concourse"}]},{"elementName":"Text","text":" in "},{"elementName":"Link","type":"wikiLink","url":"The_Bronx","displayText":[{"elementName":"Text","text":"the Bronx"}]},{"elementName":"Text","text":", foreground, with Manhattan in the background in February 2018"}]}
-  {"elementName":"Link","type":"media","supType":"File","url":"File:Verrazano - Narrows Bridge4.jpg","caption":[{"elementName":"Text","text":"The "},{"elementName":"Link","type":"wikiLink","url":"Verrazzano-Narrows_Bridge","displayText":[{"elementName":"Text","text":"Verrazzano-Narrows Bridge"}]},{"elementName":"Text","text":", the longest "},{"elementName":"Link","type":"wikiLink","url":"Suspension_bridge","displayText":[{"elementName":"Text","text":"suspension bridge"}]},{"elementName":"Text","text":" in the "},{"elementName":"Link","type":"wikiLink","url":"Western_Hemisphere","displayText":[{"elementName":"Text","text":"Western Hemisphere"}]},{"elementName":"Text","text":", connecting "},{"elementName":"Link","type":"wikiLink","url":"Staten_Island","displayText":[{"elementName":"Text","text":"Staten Island"}]},{"elementName":"Text","text":" to "},{"elementName":"Link","type":"wikiLink","url":"Brooklyn","displayText":[{"elementName":"Text","text":"Brooklyn"}]},{"elementName":"Text","text":"&lt;nowiki/&gt; across "},{"elementName":"Link","type":"wikiLink","url":"The_Narrows","displayText":[{"elementName":"Text","text":"The Narrows"}]}]}
+  
+  
+  
 </div>
 `;
 
@@ -12998,10 +12998,10 @@ exports[`Should work with new york article 1201`] = `
 <div
   className="wiki-gallery"
 >
-  {"elementName":"Link","type":"media","supType":"File","url":"File:Empire State Building (HDR).jpg","multipleImage":true,"options":{"width":"550","height":"600"},"caption":[{"elementName":"Text","text":""}]}
-  {"elementName":"Link","type":"media","supType":"File","url":"File:Chrysler Building spire, Manhattan, by Carol Highsmith (LOC highsm.04444).jpg","multipleImage":true,"options":{"width":"550","height":"600"},"caption":[{"elementName":"Text","text":""}]}
-  {"elementName":"Link","type":"media","supType":"File","url":"File:Greenpoint Houses.JPG","multipleImage":true,"options":{"width":"550","height":"400"},"caption":[{"elementName":"Text","text":""}]}
-  {"elementName":"Link","type":"media","supType":"File","url":"File:Antiguo vs Moderno (4432379954).jpg","multipleImage":true,"options":{"width":"550","height":"400"},"caption":[{"elementName":"Text","text":""}]}
+  
+  
+  
+  
 </div>
 `;
 
@@ -13307,7 +13307,7 @@ exports[`Should work with new york article 1231`] = `
 </span>
 `;
 
-exports[`Should work with new york article 1232`] = `"{\\"elementName\\":\\"Link\\",\\"children\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"List of tallest buildings in New York City|skyscrapers taller than {{convert|656|ft|m|sp=us}}\\"}]}"`;
+exports[`Should work with new york article 1232`] = `""`;
 
 exports[`Should work with new york article 1233`] = `
 <span>
@@ -14340,7 +14340,7 @@ exports[`Should work with new york article 1321`] = `
 </span>
 `;
 
-exports[`Should work with new york article 1322`] = `"{\\"elementName\\":\\"Link\\",\\"type\\":\\"media\\",\\"supType\\":\\"File\\",\\"url\\":\\"File:DSC 4585 (8204033522).jpg\\",\\"options\\":[{\\"key\\":\\"alt\\",\\"value\\":\\"The Queens–Midtown Tunnel is seen flooded in the aftermath of Hurricane Sandy.\\"},\\"thumb\\"],\\"caption\\":[{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Queens–Midtown_Tunnel\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Queens–Midtown Tunnel\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" after flooding caused by \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Superstorm_Sandy\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Superstorm Sandy\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" on October 29, 2012\\"}]}"`;
+exports[`Should work with new york article 1322`] = `""`;
 
 exports[`Should work with new york article 1323`] = `
 <span>
@@ -14690,7 +14690,7 @@ exports[`Should work with new york article 1359`] = `
 </span>
 `;
 
-exports[`Should work with new york article 1360`] = `"{\\"elementName\\":\\"Link\\",\\"type\\":\\"media\\",\\"supType\\":\\"File\\",\\"url\\":\\"File:Central park Bench 02765.jpg\\",\\"options\\":[\\"thumb\\"],\\"caption\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"alt=|Central Park in 2011 during the winter.\\"}]}"`;
+exports[`Should work with new york article 1360`] = `""`;
 
 exports[`Should work with new york article 1361`] = `
 <span>
@@ -15699,7 +15699,7 @@ exports[`Should work with new york article 1479`] = `
 </span>
 `;
 
-exports[`Should work with new york article 1480`] = `"{\\"elementName\\":\\"Link\\",\\"type\\":\\"media\\",\\"supType\\":\\"File\\",\\"url\\":\\"File:New York World's Fair August 1964.jpeg\\",\\"options\\":[\\"thumb\\",\\"right\\",{\\"key\\":\\"alt\\",\\"value\\":\\"A spherical sculpture and several attractions line a park during a World's Fair.\\"}],\\"caption\\":[{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Flushing_Meadows–Corona_Park\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Flushing Meadows–Corona Park\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" was used in both the \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"1939_New_York_World's_Fair\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"1939\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" and \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"1964_New_York_World's_Fair\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"1964 New York World's Fair\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\", with the \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Unisphere\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Unisphere\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" as the centerpiece of the latter and which remains today.\\"}]}"`;
+exports[`Should work with new york article 1480`] = `""`;
 
 exports[`Should work with new york article 1481`] = `
 <span>
@@ -15843,7 +15843,7 @@ exports[`Should work with new york article 1495`] = `
 </span>
 `;
 
-exports[`Should work with new york article 1496`] = `"{\\"elementName\\":\\"Link\\",\\"type\\":\\"media\\",\\"supType\\":\\"File\\",\\"url\\":\\"File:Statue of Liberty, NY.jpg\\",\\"options\\":[\\"thumb\\"],\\"caption\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"The \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Statue_of_Liberty\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Statue of Liberty\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" on \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Liberty_Island\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Liberty Island\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" in \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"New_York_Harbor\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"New York Harbor\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" is a symbol of the United States and its ideals of freedom, democracy, and opportunity.\\"},{\\"elementName\\":\\"Reference\\",\\"type\\":\\"firstuse\\",\\"children\\":[{\\"elementName\\":\\"Template\\",\\"type\\":\\"cite\\",\\"subType\\":\\"web\\",\\"attribute\\":{\\"title\\":\\"Statue of Liberty\\",\\"work\\":\\"World Heritage\\",\\"publisher\\":\\"UNESCO\\",\\"url\\":\\"https://whc.unesco.org/en/list/307\\",\\"accessdate\\":\\"July 18, 2015\\"}}],\\"referenceIndex\\":1}]}"`;
+exports[`Should work with new york article 1496`] = `""`;
 
 exports[`Should work with new york article 1497`] = `
 <span>
@@ -16789,7 +16789,7 @@ exports[`Should work with new york article 1585`] = `
 </span>
 `;
 
-exports[`Should work with new york article 1586`] = `"{\\"elementName\\":\\"Link\\",\\"type\\":\\"media\\",\\"supType\\":\\"File\\",\\"url\\":\\"File:Central Park - The Pond (48377220157).jpg\\",\\"options\\":[\\"thumb\\"],\\"caption\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"View of \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"The_Pond_and_Hallett_Nature_Sanctuary\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"The Pond\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" and \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Midtown_Manhattan\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Midtown Manhattan\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" from the \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Gapstow_Bridge\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Gapstow Bridge\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" in \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Central_Park\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Central Park\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\", one of the world's most visited tourist attractions, in 2019.\\"}]}"`;
+exports[`Should work with new york article 1586`] = `""`;
 
 exports[`Should work with new york article 1587`] = `
 <span>
@@ -16798,7 +16798,7 @@ exports[`Should work with new york article 1587`] = `
 </span>
 `;
 
-exports[`Should work with new york article 1588`] = `"{\\"elementName\\":\\"Link\\",\\"type\\":\\"media\\",\\"supType\\":\\"File\\",\\"url\\":\\"File:Zalophus californianus at Bronx Zoo.JPG\\",\\"options\\":[\\"thumb\\"],\\"caption\\":[{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"California_Sea_Lion\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"California Sea Lions\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" play at the \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Bronx_Zoo\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Bronx Zoo\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\", the world's largest metropolitan zoo.\\"},{\\"elementName\\":\\"Reference\\",\\"type\\":\\"reuse\\",\\"refname\\":\\"BronxZoo\\",\\"referenceIndex\\":1}]}"`;
+exports[`Should work with new york article 1588`] = `""`;
 
 exports[`Should work with new york article 1589`] = `
 <span>
@@ -20242,12 +20242,12 @@ exports[`Should work with new york article 1877`] = `
 <div
   className="wiki-gallery"
 >
-  {"elementName":"Link","type":"media","supType":"File","url":"File:chinatown manhattan 2009.JPG","multipleImage":true,"options":{"width":"600","height":"400"},"caption":[{"elementName":"Text","text":""}]}
-  {"elementName":"Link","type":"media","supType":"File","url":"File:Little Italy NY Street.JPG","multipleImage":true,"options":{"width":"550","height":"350"},"caption":[{"elementName":"Text","text":""}]}
-  {"elementName":"Link","type":"media","supType":"File","url":"File:USA-NYC-Koreatown99.jpg","multipleImage":true,"options":{"width":"600","height":"400"},"caption":[{"elementName":"Text","text":""}]}
-  {"elementName":"Link","type":"media","supType":"File","url":"File:Elbarrio116thLex.jpg","multipleImage":true,"options":{"width":"550","height":"350"},"caption":[{"elementName":"Text","text":""}]}
-  {"elementName":"Link","type":"media","supType":"File","url":"File:Storefront of NY Central Pharmacy.jpg","multipleImage":true,"options":{"width":"600","height":"400"},"caption":[{"elementName":"Text","text":""}]}
-  {"elementName":"Link","type":"media","supType":"File","url":"File:74th St shopping Jax Hts jeh.jpg","multipleImage":true,"options":{"width":"550","height":"350"},"caption":[{"elementName":"Text","text":""}]}
+  
+  
+  
+  
+  
+  
 </div>
 `;
 
@@ -21302,7 +21302,7 @@ exports[`Should work with new york article 1973`] = `
 </span>
 `;
 
-exports[`Should work with new york article 1974`] = `"{\\"elementName\\":\\"Link\\",\\"type\\":\\"media\\",\\"supType\\":\\"File\\",\\"url\\":\\"File:Race and ethnicity 2010- New York City (5559914315).png\\",\\"options\\":[\\"thumb\\"],\\"caption\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"A map of racial distribution in New York, 2010 U.S. Census. Each dot is 25 people: <span style=\\\\\\"color:#f00;\\\\\\">\\"},{\\"elementName\\":\\"Bold\\",\\"children\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"White\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\"</span>, <span style=\\\\\\"color:#00f;\\\\\\">\\"},{\\"elementName\\":\\"Bold\\",\\"children\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Black\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\"</span>, <span style=\\\\\\"color:#00ff80\\\\\\">\\"},{\\"elementName\\":\\"Bold\\",\\"children\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Asian\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\"</span>, <span style=\\\\\\"color:#ff8000\\\\\\">\\"},{\\"elementName\\":\\"Bold\\",\\"children\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Hispanic\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\"</span> or \\"},{\\"elementName\\":\\"Bold\\",\\"children\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Other\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" (yellow)\\"}]}"`;
+exports[`Should work with new york article 1974`] = `""`;
 
 exports[`Should work with new york article 1975`] = `
 <span>
@@ -23334,10 +23334,10 @@ exports[`Should work with new york article 2160`] = `
 <div
   className="wiki-gallery"
 >
-  {"elementName":"Link","type":"media","supType":"File","url":"File:Model Geena Rocero Coming out Transgender (13563189244).jpg","multipleImage":true,"options":{"width":"600","height":"400"},"caption":[{"elementName":"Text","text":""}]}
-  {"elementName":"Link","type":"media","supType":"File","url":"File:QueensPrideParade2018Caribbeangroup.jpg","multipleImage":true,"options":{"width":"550","height":"350"},"caption":[{"elementName":"Text","text":""}]}
-  {"elementName":"Link","type":"media","supType":"File","url":"File:June 3, 2018 Queens Pride Parade.jpg","multipleImage":true,"options":{"width":"600","height":"400"},"caption":[{"elementName":"Text","text":""}]}
-  {"elementName":"Link","type":"media","supType":"File","url":"File:Pride Parade New York June 28, 2015 8.jpg","multipleImage":true,"options":{"width":"550","height":"350"},"caption":[{"elementName":"Text","text":""}]}
+  
+  
+  
+  
 </div>
 `;
 
@@ -24388,12 +24388,12 @@ exports[`Should work with new york article 2256`] = `
 <div
   className="wiki-gallery"
 >
-  {"elementName":"Link","type":"media","supType":"File","url":"File:StPatCathExt1.jpg","multipleImage":true,"options":{"width":"103"},"caption":[{"elementName":"Text","text":"The "},{"elementName":"Link","type":"wikiLink","url":"New_York_City_Landmarks","displayText":[{"elementName":"Text","text":"landmark"}]},{"elementName":"Text","text":" "},{"elementName":"Link","type":"wikiLink","url":"Gothic_revival_architecture","displayText":[{"elementName":"Text","text":"Neo-Gothic"}]},{"elementName":"Text","text":" Roman Catholic "},{"elementName":"Link","type":"wikiLink","url":"St._Patrick's_Cathedral_(Manhattan)","displayText":[{"elementName":"Text","text":"St. Patrick's Cathedral"}]},{"elementName":"Text","text":", Midtown Manhattan"}]}
-  {"elementName":"Link","type":"media","supType":"File","url":"File:Jueus ultraortodoxes satmar a brooklyn.jpg","multipleImage":true,"options":{"width":"200"},"caption":[{"elementName":"Link","type":"wikiLink","url":"Haredi_Jews","displayText":[{"elementName":"Text","text":"Ultra-Orthodox"}]},{"elementName":"Text","text":" "},{"elementName":"Link","type":"wikiLink","url":"Jews_in_New_York_City","displayText":[{"elementName":"Text","text":"Jewish"}]},{"elementName":"Text","text":" residents in Brooklyn. Brooklyn has the largest Jewish community in the United States, with approximately 600,000 individuals."},{"elementName":"Reference","type":"reuse","refname":"BrooklynJewish","referenceIndex":1}]}
-  {"elementName":"Link","type":"media","supType":"File","url":"File:Islamic Cultural Center E96 jeh.JPG","multipleImage":true,"options":{"width":"131"},"caption":[{"elementName":"Text","text":"The "},{"elementName":"Link","type":"wikiLink","url":"Islamic_Cultural_Center_of_New_York","displayText":[{"elementName":"Text","text":"Islamic Cultural Center of New York"}]},{"elementName":"Text","text":" in "},{"elementName":"Link","type":"wikiLink","url":"Upper_Manhattan","displayText":[{"elementName":"Text","text":"Upper Manhattan"}]},{"elementName":"Text","text":", the first mosque built in New York City."}]}
-  {"elementName":"Link","type":"media","supType":"File","url":"File:Exterior Hindu Temple.JPG","multipleImage":true,"options":{"width":"100"},"caption":[{"elementName":"Link","type":"wikiLink","url":"Hindu_Temple_Society_of_North_America","displayText":[{"elementName":"Text","text":"Ganesh Temple"}]},{"elementName":"Text","text":" in "},{"elementName":"Link","type":"wikiLink","url":"Flushing,_Queens","displayText":[{"elementName":"Text","text":"Flushing, Queens"}]},{"elementName":"Text","text":", the oldest "},{"elementName":"Link","type":"wikiLink","url":"Hindu_temple","displayText":[{"elementName":"Text","text":"Hindu temple"}]},{"elementName":"Text","text":" in the U.S."}]}
-  {"elementName":"Link","type":"media","supType":"File","url":"File:Buddhist Temple, Chinatown.jpg","multipleImage":true,"options":{"width":"112"},"caption":[{"elementName":"Link","type":"wikiLink","url":"New_York_Mahayana_Temple","displayText":[{"elementName":"Text","text":"Mahayana Buddhist Temple"}]},{"elementName":"Text","text":" in "},{"elementName":"Link","type":"wikiLink","url":"Chinatown,_Manhattan","displayText":[{"elementName":"Text","text":"Chinatown, Manhattan"}]}]}
-  {"elementName":"Link","type":"media","supType":"File","url":"File:Times Square after dark atheist.jpg","multipleImage":true,"options":{"width":"200","alt":"\\n"},"caption":[{"elementName":"Text","text":"A significant proportion of New Yorkers hold "},{"elementName":"Link","type":"wikiLink","url":"American_Atheists","displayText":[{"elementName":"Text","text":"atheistic"}]},{"elementName":"Text","text":" views, promoted on this "},{"elementName":"Link","type":"wikiLink","url":"Digital_billboard","displayText":[{"elementName":"Text","text":"electronic billboard"}]},{"elementName":"Text","text":" in "},{"elementName":"Link","type":"wikiLink","url":"Times_Square","displayText":[{"elementName":"Text","text":"Times Square"}]},{"elementName":"Text","text":"."}]}
+  
+  
+  
+  
+  
+  
 </div>
 `;
 
@@ -26275,7 +26275,7 @@ exports[`Should work with new york article 2420`] = `
 </span>
 `;
 
-exports[`Should work with new york article 2421`] = `"{\\"elementName\\":\\"Link\\",\\"type\\":\\"media\\",\\"supType\\":\\"File\\",\\"url\\":\\"File:美國紐約203.jpg\\",\\"options\\":[{\\"key\\":\\"alt\\",\\"value\\":\\"A large flag is stretched over Roman style columns on the front of a large building.\\"},\\"thumb\\"],\\"caption\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"The \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"New_York_Stock_Exchange\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"New York Stock Exchange\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" on \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Wall_Street\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Wall Street\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\", by a significant margin the \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"List_of_stock_exchanges\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"world's largest stock exchange\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" per \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Market_capitalization\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"market capitalization\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" of its listed companies,\\"},{\\"elementName\\":\\"Reference\\",\\"type\\":\\"firstuse\\",\\"children\\":[{\\"elementName\\":\\"Template\\",\\"type\\":\\"cite\\",\\"subType\\":\\"web\\",\\"attribute\\":{\\"url\\":\\"http://www.businessinsider.com/global-stock-market-capitalization-chart-2014-11?IR=T\\",\\"title\\":\\"The NYSE Makes Stock Exchanges Around The World Look Tiny\\",\\"accessdate\\":\\"March 26, 2017\\"}}],\\"referenceIndex\\":1},{\\"elementName\\":\\"Reference\\",\\"type\\":\\"firstuse\\",\\"children\\":[{\\"elementName\\":\\"Template\\",\\"type\\":\\"cite\\",\\"subType\\":\\"web\\",\\"attribute\\":{\\"url\\":\\"http://finance.zacks.com/new-york-stock-exchange-largest-stock-market-world-5426.html\\",\\"title\\":\\"Is the New York Stock Exchange the Largest Stock Market in the World?\\",\\"accessdate\\":\\"March 26, 2017\\"}}],\\"referenceIndex\\":2},{\\"elementName\\":\\"Text\\",\\"text\\":\\" at $23.1&nbsp;trillion as of April 2018.\\"},{\\"elementName\\":\\"Reference\\",\\"type\\":\\"firstuse\\",\\"refname\\":\\"Largest stock markets in the world\\",\\"children\\":[{\\"elementName\\":\\"Template\\",\\"type\\":\\"cite\\",\\"subType\\":\\"web\\",\\"attribute\\":{\\"title\\":\\"Largest stock exchange operators worldwide as of April 2018, by market capitalization of listed companies (in trillion U.S. dollars)\\",\\"url\\":\\"https://www.statista.com/statistics/270126/largest-stock-exchange-operators-by-market-capitalization-of-listed-companies/\\",\\"publisher\\":\\"Statista\\",\\"accessdate\\":\\"February 18, 2019\\"}}],\\"referenceIndex\\":3}]}"`;
+exports[`Should work with new york article 2421`] = `""`;
 
 exports[`Should work with new york article 2422`] = `
 <span>
@@ -27134,7 +27134,7 @@ exports[`Should work with new york article 2506`] = `
 </span>
 `;
 
-exports[`Should work with new york article 2507`] = `"{\\"elementName\\":\\"Link\\",\\"type\\":\\"media\\",\\"supType\\":\\"File\\",\\"url\\":\\"File:Flatiron District.jpg\\",\\"options\\":[\\"thumb\\",\\"right\\"],\\"caption\\":[{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Silicon_Alley\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Silicon Alley\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\", once centered around the \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Flatiron_District\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Flatiron District\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\", is now \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Metonymy\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"metonymous\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" for New York's \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"High_tech\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"high tech\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" sector, which has since expanded beyond the area.\\"},{\\"elementName\\":\\"Reference\\",\\"type\\":\\"firstuse\\",\\"children\\":[{\\"elementName\\":\\"Template\\",\\"type\\":\\"cite\\",\\"subType\\":\\"web\\",\\"attribute\\":{\\"last\\":\\"Lahlou\\",\\"first\\":\\"Karim\\",\\"url\\":\\"http://themidtowngazette.com/2013/10/startups-move-to-co-shared-offices-amid-high-real-estate-prices/\\",\\"title\\":\\"Startups move to co-shared offices amid high real estate prices\\",\\"work\\":\\"The Midtown Gazette\\",\\"accessdate\\":\\"August 20, 2014\\",\\"url-status\\":\\"dead\\",\\"archiveurl\\":\\"https://web.archive.org/web/20140821025234/http://themidtowngazette.com/2013/10/startups-move-to-co-shared-offices-amid-high-real-estate-prices/\\",\\"archivedate\\":\\"August 21, 2014\\"}}],\\"referenceIndex\\":1}]}"`;
+exports[`Should work with new york article 2507`] = `""`;
 
 exports[`Should work with new york article 2508`] = `
 <span>
@@ -28144,7 +28144,7 @@ exports[`Should work with new york article 2604`] = `
 </span>
 `;
 
-exports[`Should work with new york article 2605`] = `"{\\"elementName\\":\\"Link\\",\\"type\\":\\"media\\",\\"supType\\":\\"File\\",\\"url\\":\\"File:Time Warner Center May 2010.JPG\\",\\"options\\":[\\"thumb\\",\\"left\\",\\"upright\\"],\\"caption\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"The \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Time_Warner_Center\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Time Warner Center\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" as viewed from \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Central_Park_West\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Central Park West\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\".\\"}]}"`;
+exports[`Should work with new york article 2605`] = `""`;
 
 exports[`Should work with new york article 2606`] = `
 <span>
@@ -28637,7 +28637,7 @@ exports[`Should work with new york article 2648`] = `
 </span>
 `;
 
-exports[`Should work with new york article 2649`] = `"{\\"elementName\\":\\"Link\\",\\"type\\":\\"media\\",\\"supType\\":\\"File\\",\\"url\\":\\"File:1 times square night 2013.jpg\\",\\"options\\":[\\"thumb\\",\\"right\\"],\\"caption\\":[{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Times_Square\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Times Square\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" is the hub of the \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Broadway_theater\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Broadway theater\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Theater_District,_Manhattan\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"district\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" and a media center. It also has one of the highest annual attendance rates of any tourist attraction in the world, estimated at 50 million.\\"},{\\"elementName\\":\\"Reference\\",\\"type\\":\\"reuse\\",\\"refname\\":\\"Ann Shields\\",\\"referenceIndex\\":1}]}"`;
+exports[`Should work with new york article 2649`] = `""`;
 
 exports[`Should work with new york article 2650`] = `
 <span>
@@ -28646,7 +28646,7 @@ exports[`Should work with new york article 2650`] = `
 </span>
 `;
 
-exports[`Should work with new york article 2651`] = `"{\\"elementName\\":\\"Link\\",\\"type\\":\\"media\\",\\"supType\\":\\"File\\",\\"url\\":\\"File:I Love New York.svg\\",\\"options\\":[\\"thumb\\",\\"right\\"],\\"caption\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"The \\"},{\\"elementName\\":\\"Italic\\",\\"children\\":[{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"I_Love_New_York\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"I Love New York\\"}]}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" logo, designed by \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Milton_Glaser\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Milton Glaser\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" in 1977\\"}]}"`;
+exports[`Should work with new york article 2651`] = `""`;
 
 exports[`Should work with new york article 2652`] = `
 <span>
@@ -29644,7 +29644,7 @@ exports[`Should work with new york article 2742`] = `
 </span>
 `;
 
-exports[`Should work with new york article 2743`] = `"{\\"elementName\\":\\"Link\\",\\"type\\":\\"media\\",\\"supType\\":\\"File\\",\\"url\\":\\"File:Rockefeller Center (2006).JPG\\",\\"options\\":[\\"thumb\\",\\"left\\",{\\"key\\":\\"alt\\",\\"value\\":\\"Ice skaters on a rink below a golden sculpture and a row of national flags that fly in front of a stone tower.\\"}],\\"caption\\":[{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Rockefeller_Center\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Rockefeller Center\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" is home to \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"NBC_Studios_(New_York)\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"NBC Studios\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\".\\"}]}"`;
+exports[`Should work with new york article 2743`] = `""`;
 
 exports[`Should work with new york article 2744`] = `
 <span>
@@ -31575,7 +31575,7 @@ exports[`Should work with new york article 2917`] = `
 </span>
 `;
 
-exports[`Should work with new york article 2918`] = `"{\\"elementName\\":\\"Link\\",\\"type\\":\\"media\\",\\"supType\\":\\"File\\",\\"url\\":\\"File:Butler Library - 1000px - AC.jpg\\",\\"options\\":[\\"thumb\\",\\"right\\"],\\"caption\\":[{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Butler_Library\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Butler Library\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" at \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Columbia_University\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Columbia University\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\", described as one of the most beautiful college libraries in the United States.\\"},{\\"elementName\\":\\"Reference\\",\\"type\\":\\"firstuse\\",\\"children\\":[{\\"elementName\\":\\"Template\\",\\"type\\":\\"cite\\",\\"subType\\":\\"news\\",\\"attribute\\":{\\"url\\":\\"https://huffingtonpost.com/2010/11/09/the-most-beautiful-colleg_n_778614.html#s174271&title=Bapst_Art_Library\\",\\"title\\":\\"Most Beautiful College Libraries\\",\\"work\\":\\"HuffPost\\",\\"accessdate\\":\\"September 9, 2012\\",\\"date\\":\\"November 9, 2010\\",\\"first\\":\\"Danielle\\",\\"last\\":\\"Wienerbronner\\"}}],\\"referenceIndex\\":1}]}"`;
+exports[`Should work with new york article 2918`] = `""`;
 
 exports[`Should work with new york article 2919`] = `
 <span>
@@ -31584,7 +31584,7 @@ exports[`Should work with new york article 2919`] = `
 </span>
 `;
 
-exports[`Should work with new york article 2920`] = `"{\\"elementName\\":\\"Link\\",\\"type\\":\\"media\\",\\"supType\\":\\"File\\",\\"url\\":\\"File:NYC - Washington Square Park - Arch.jpg\\",\\"options\\":[\\"thumb\\"],\\"caption\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"The \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Washington_Square_Arch\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Washington Square Arch\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\", an unofficial icon of both \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"New_York_University\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"New York University\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" (NYU) and its \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Greenwich_Village\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Greenwich Village\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" neighborhood.\\"}]}"`;
+exports[`Should work with new york article 2920`] = `""`;
 
 exports[`Should work with new york article 2921`] = `
 <span>
@@ -32751,7 +32751,7 @@ exports[`Should work with new york article 3032`] = `
 </span>
 `;
 
-exports[`Should work with new york article 3033`] = `"{\\"elementName\\":\\"Link\\",\\"type\\":\\"media\\",\\"supType\\":\\"File\\",\\"url\\":\\"File:NewYorkPresbyterian-Cornell.jpg\\",\\"options\\":[\\"thumb\\",\\"right\\"],\\"caption\\":[{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"New_York-Presbyterian_Hospital\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"New York-Presbyterian Hospital\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\", white complex at center, the largest hospital and largest private employer in New York City\\"},{\\"elementName\\":\\"Reference\\",\\"type\\":\\"firstuse\\",\\"children\\":[{\\"elementName\\":\\"Template\\",\\"type\\":\\"cite\\",\\"subType\\":\\"web\\",\\"attribute\\":{\\"url\\":\\"http://careers.nyp.org/about-us/locations/\\",\\"title\\":\\"NewYork–Presbyterian\\",\\"accessdate\\":\\"August 12, 2014\\",\\"archive-url\\":\\"https://web.archive.org/web/20140812212715/http://careers.nyp.org/about-us/locations/\\",\\"archive-date\\":\\"August 12, 2014\\",\\"url-status\\":\\"dead\\"}}],\\"referenceIndex\\":1},{\\"elementName\\":\\"Text\\",\\"text\\":\\" and one of the world's busiest.\\"}]}"`;
+exports[`Should work with new york article 3033`] = `""`;
 
 exports[`Should work with new york article 3034`] = `
 <span>
@@ -33108,7 +33108,7 @@ exports[`Should work with new york article 3072`] = `
 </span>
 `;
 
-exports[`Should work with new york article 3073`] = `"{\\"elementName\\":\\"Link\\",\\"type\\":\\"media\\",\\"supType\\":\\"File\\",\\"url\\":\\"File:Ford NYPD.jpg\\",\\"options\\":[\\"thumb\\"],\\"caption\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"alt=|The \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"New_York_City_Police_Department\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"New York Police Department\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" (NYPD) is the largest police force in the United States.\\"}]}"`;
+exports[`Should work with new york article 3073`] = `""`;
 
 exports[`Should work with new york article 3074`] = `
 <span>
@@ -33173,7 +33173,7 @@ exports[`Should work with new york article 3080`] = `
 </span>
 `;
 
-exports[`Should work with new york article 3081`] = `"{\\"elementName\\":\\"Link\\",\\"type\\":\\"media\\",\\"supType\\":\\"File\\",\\"url\\":\\"File:My picture of NYPD officers.jpg\\",\\"options\\":[\\"thumb\\"],\\"caption\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Police officers of New York Police Department (NYPD).\\"}]}"`;
+exports[`Should work with new york article 3081`] = `""`;
 
 exports[`Should work with new york article 3082`] = `
 <span>
@@ -34105,7 +34105,7 @@ exports[`Should work with new york article 3159`] = `
 </span>
 `;
 
-exports[`Should work with new york article 3160`] = `"{\\"elementName\\":\\"Link\\",\\"type\\":\\"media\\",\\"supType\\":\\"File\\",\\"url\\":\\"File:FDNY Tower Ladder 1 (897367891).jpg\\",\\"options\\":[\\"thumb\\"],\\"caption\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"alt=|The \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"New_York_City_Fire_Department\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Fire Department of New York\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" (FDNY) is the largest municipal fire department in the United States.\\"}]}"`;
+exports[`Should work with new york article 3160`] = `""`;
 
 exports[`Should work with new york article 3161`] = `
 <span>
@@ -34526,7 +34526,7 @@ exports[`Should work with new york article 3199`] = `
 </span>
 `;
 
-exports[`Should work with new york article 3200`] = `"{\\"elementName\\":\\"Link\\",\\"type\\":\\"media\\",\\"supType\\":\\"File\\",\\"url\\":\\"File:New York Public Library May 2011.JPG\\",\\"options\\":[\\"thumb\\"],\\"caption\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"The Stephen A. Schwarzman Headquarters Building of the \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"New_York_Public_Library\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"New York Public Library\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\", at \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Fifth_Avenue\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"5th Avenue\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" and \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"42nd_Street_(Manhattan)\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"42nd Street\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\".|alt=\\"}]}"`;
+exports[`Should work with new york article 3200`] = `""`;
 
 exports[`Should work with new york article 3201`] = `
 <span>
@@ -35939,7 +35939,7 @@ exports[`Should work with new york article 3333`] = `
 </span>
 `;
 
-exports[`Should work with new york article 3334`] = `"{\\"elementName\\":\\"Link\\",\\"type\\":\\"media\\",\\"supType\\":\\"File\\",\\"url\\":\\"File:Lincoln Center Twilight.jpg\\",\\"options\\":[\\"thumb\\",\\"left\\",{\\"key\\":\\"alt\\",\\"value\\":\\"The corner of a lit up plaza with a fountain in the center and the ends of two brightly lit buildings with tall arches on the square.\\"}],\\"caption\\":[{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Lincoln_Center_for_the_Performing_Arts\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Lincoln Center for the Performing Arts\\"}]}]}"`;
+exports[`Should work with new york article 3334`] = `""`;
 
 exports[`Should work with new york article 3335`] = `
 <span>
@@ -36534,7 +36534,7 @@ exports[`Should work with new york article 3383`] = `
 </span>
 `;
 
-exports[`Should work with new york article 3384`] = `"{\\"elementName\\":\\"Link\\",\\"type\\":\\"media\\",\\"supType\\":\\"File\\",\\"url\\":\\"File:Metropolitan Museum 1 (4675714481).jpg\\",\\"options\\":[{\\"key\\":\\"alt\\",\\"value\\":\\"A very ornate multi-story stone façade rises over steps and a plaza at night.\\"},\\"thumb\\"],\\"caption\\":[{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"The_Metropolitan_Museum_of_Art\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"The Metropolitan Museum of Art\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\", part of \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Museum_Mile,_New_York_City\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Museum Mile\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\", is one of the largest museums in the world.\\"},{\\"elementName\\":\\"Reference\\",\\"type\\":\\"firstuse\\",\\"children\\":[{\\"elementName\\":\\"Template\\",\\"type\\":\\"cite\\",\\"subType\\":\\"web\\",\\"attribute\\":{\\"url\\":\\"http://www.metmuseum.org/en/about-the-museum/press-room/general-information?pg=1&rpp=50\\",\\"title\\":\\"The Metropolitan Museum of Art General Information\\",\\"publisher\\":\\"The Metropolitan Museum of Art\\",\\"accessdate\\":\\"September 10, 2012\\"}}],\\"referenceIndex\\":1}]}"`;
+exports[`Should work with new york article 3384`] = `""`;
 
 exports[`Should work with new york article 3385`] = `
 <span>
@@ -36861,7 +36861,7 @@ exports[`Should work with new york article 3420`] = `
 </span>
 `;
 
-exports[`Should work with new york article 3421`] = `"{\\"elementName\\":\\"Link\\",\\"type\\":\\"media\\",\\"supType\\":\\"File\\",\\"url\\":\\"File:Smorgasburg in Dumbo.jpg\\",\\"options\\":[\\"thumb\\",\\"left\\",{\\"key\\":\\"alt\\",\\"value\\":\\"People crowd around white tents in the foreground next to a red brick wall with arched windows. Above and to the left is a towering stone bridge.\\"}],\\"caption\\":[{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Smorgasburg\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Smorgasburg\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" opened in 2011 as an open-air food market and is part of the \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Brooklyn_Flea\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Brooklyn Flea\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\".\\"},{\\"elementName\\":\\"Reference\\",\\"type\\":\\"firstuse\\",\\"children\\":[{\\"elementName\\":\\"Template\\",\\"type\\":\\"cite\\",\\"subType\\":\\"news\\",\\"attribute\\":{\\"last\\":\\"Strand\\",\\"first\\":\\"Oliver\\",\\"title\\":\\"Brooklyn Market: Woodstock of Eating\\",\\"url\\":\\"https://www.nytimes.com/2011/07/06/dining/reviews/smorgasburg-in-williamsburg-brooklyn-for-food-lovers.html\\",\\"work\\":\\"The New York Times\\",\\"accessdate\\":\\"May 29, 2013\\",\\"date\\":\\"July 5, 2011\\"}}],\\"referenceIndex\\":1}]}"`;
+exports[`Should work with new york article 3421`] = `""`;
 
 exports[`Should work with new york article 3422`] = `
 <span>
@@ -37618,10 +37618,10 @@ exports[`Should work with new york article 3490`] = `
 <div
   className="wiki-gallery"
 >
-  {"elementName":"Link","type":"media","supType":"File","url":"File:The famous Macy's Turkey (3064244803).jpg","multipleImage":true,"options":{"width":"600","height":"400"},"caption":[{"elementName":"Text","text":""}]}
-  {"elementName":"Link","type":"media","supType":"File","url":"File:Greenwich Village Halloween Parade (6451249051).jpg","multipleImage":true,"options":{"width":"550","height":"350"},"caption":[{"elementName":"Text","text":""}]}
-  {"elementName":"Link","type":"media","supType":"File","url":"File:Apollo 11 ticker tape parade 2.jpg","multipleImage":true,"options":{"width":"600","height":"400"},"caption":[{"elementName":"Text","text":""}]}
-  {"elementName":"Link","type":"media","supType":"File","url":"File:Pinoydayparade2.JPG","multipleImage":true,"options":{"width":"550","height":"350"},"caption":[{"elementName":"Text","text":""}]}
+  
+  
+  
+  
 </div>
 `;
 
@@ -38748,9 +38748,9 @@ exports[`Should work with new york article 3612`] = `
 <div
   className="wiki-gallery"
 >
-  {"elementName":"Link","type":"media","supType":"File","url":"File:New York City Marathon 2014 (15082977714).jpg","multipleImage":true,"options":{"width":"225","alt":"Three runners in a race down a street where onlookers are cheering behind barriers."},"caption":[{"elementName":"Text","text":"The "},{"elementName":"Link","type":"wikiLink","url":"New_York_City_Marathon","displayText":[{"elementName":"Text","text":"New York Marathon"}]},{"elementName":"Text","text":" is the largest marathon in the world."},{"elementName":"Reference","type":"firstuse","refname":"NYCMarathonWorld'sLargest","children":[{"elementName":"Template","type":"cite","subType":"web","attribute":{"url":"http://www.runnersworld.com/new-york-city-marathon/2017-new-york-city-marathon-entrants-by-the-numbers","title":"2017 New York City Marathon Entrants By the Numbers—Applications for the world's largest race were at an all-time high for 2017","author":"Kit Fox","publisher":"Runner's World—Rodale Inc","date":"March 2, 2017","accessdate":"May 10, 2017"}}],"referenceIndex":1}]}
-  {"elementName":"Link","type":"media","supType":"File","url":"File:Arthur ashe stadium interior.jpg","multipleImage":true,"options":{"width":"225","alt":"A tennis stadium pack with fans watching a grass court."},"caption":[{"elementName":"Text","text":"The "},{"elementName":"Link","type":"wikiLink","url":"U.S._Open_(tennis)","displayText":[{"elementName":"Text","text":"U.S. Open Tennis Championships"}]},{"elementName":"Text","text":" are held every August and September in "},{"elementName":"Link","type":"wikiLink","url":"Flushing_Meadows-Corona_Park","displayText":[{"elementName":"Text","text":"Flushing Meadows-Corona Park"}]},{"elementName":"Text","text":", Queens."}]}
-  {"elementName":"Link","type":"media","supType":"File","url":"File:Citi Field 2011.JPG","multipleImage":true,"options":{"width":"225","alt":"A baseball stadium from behind home plate in the evening."},"caption":[{"elementName":"Link","type":"wikiLink","url":"Citi_Field","displayText":[{"elementName":"Text","text":"Citi Field"}]},{"elementName":"Text","text":", also in Flushing Meadows-Corona Park, has been home to the "},{"elementName":"Link","type":"wikiLink","url":"New_York_Mets","displayText":[{"elementName":"Text","text":"New York Mets"}]},{"elementName":"Text","text":" since 2009."}]}
+  
+  
+  
 </div>
 `;
 
@@ -41351,7 +41351,7 @@ exports[`Should work with new york article 3856`] = `
 </span>
 `;
 
-exports[`Should work with new york article 3857`] = `"{\\"elementName\\":\\"Link\\",\\"type\\":\\"media\\",\\"supType\\":\\"File\\",\\"url\\":\\"File:Image-Grand central Station Outside Night 2.jpg\\",\\"options\\":[\\"thumb\\",{\\"key\\":\\"alt\\",\\"value\\":\\"A row of yellow taxis in front of a multi-story ornate stone building with three huge arched windows.\\"}],\\"caption\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"New York City is home to the two busiest \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Train_station\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"train stations\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" in the U.S., including \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Grand_Central_Terminal\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Grand Central Terminal\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\".\\"}]}"`;
+exports[`Should work with new york article 3857`] = `""`;
 
 exports[`Should work with new york article 3858`] = `
 <span>
@@ -41751,7 +41751,7 @@ exports[`Should work with new york article 3897`] = `
 </span>
 `;
 
-exports[`Should work with new york article 3898`] = `"{\\"elementName\\":\\"Link\\",\\"type\\":\\"media\\",\\"supType\\":\\"File\\",\\"url\\":\\"File:R160 E enters 42nd Street.jpg\\",\\"options\\":[\\"thumb\\",{\\"key\\":\\"alt\\",\\"value\\":\\"The front end of a subway train, with a red E on a LED display on the top. To the right of the train is a platform with a group of people waiting for their train.\\"}],\\"caption\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"\\\\nleft|The \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"New_York_City_Subway\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"New York City Subway\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" is the world's largest \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Rapid_transit\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"rapid transit\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" system by length of routes and by number of \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Train_station\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"stations\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\".\\"}]}"`;
+exports[`Should work with new york article 3898`] = `""`;
 
 exports[`Should work with new york article 3899`] = `
 <span>
@@ -42662,7 +42662,7 @@ exports[`Should work with new york article 3984`] = `
 </span>
 `;
 
-exports[`Should work with new york article 3985`] = `"{\\"elementName\\":\\"Link\\",\\"type\\":\\"media\\",\\"supType\\":\\"File\\",\\"url\\":\\"File:Port-authority-terminal.jpg\\",\\"options\\":[\\"thumb\\"],\\"caption\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"The \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Port_Authority_Bus_Terminal\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Port Authority Bus Terminal\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\", the world's busiest bus station, at \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"8th_Avenue_(Manhattan)\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"8th Avenue\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" and \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"42nd_Street_(Manhattan)\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"42nd Street\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\".\\"},{\\"elementName\\":\\"Reference\\",\\"type\\":\\"reuse\\",\\"refname\\":\\"PABT\\",\\"referenceIndex\\":1}]}"`;
+exports[`Should work with new york article 3985`] = `""`;
 
 exports[`Should work with new york article 3986`] = `
 <span>
@@ -42968,7 +42968,7 @@ exports[`Should work with new york article 4016`] = `
 </span>
 `;
 
-exports[`Should work with new york article 4017`] = `"{\\"elementName\\":\\"Link\\",\\"type\\":\\"media\\",\\"supType\\":\\"File\\",\\"url\\":\\"File:JFK Plane Queue.jpg\\",\\"options\\":[\\"thumb\\",\\"left\\",{\\"key\\":\\"alt\\",\\"value\\":\\"Five jumbo airplanes wait in a line on a runway next to a small body of water. Behind them in the distance is the airport and control tower.\\"}],\\"caption\\":[{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"John_F._Kennedy_International_Airport\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"John F. Kennedy Airport\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" in Queens, the \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Busiest_airports_in_the_United_States_by_international_passenger_traffic\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"busiest international air passenger gateway\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" to the United States.\\"}]}"`;
+exports[`Should work with new york article 4017`] = `""`;
 
 exports[`Should work with new york article 4018`] = `
 <span>
@@ -43210,7 +43210,7 @@ exports[`Should work with new york article 4040`] = `
 </span>
 `;
 
-exports[`Should work with new york article 4041`] = `"{\\"elementName\\":\\"Link\\",\\"type\\":\\"media\\",\\"supType\\":\\"File\\",\\"url\\":\\"File:Spirit of America - Staten Island Ferry.jpg\\",\\"options\\":[\\"thumb\\"],\\"caption\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"The \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Staten_Island_Ferry\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Staten Island Ferry\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" shuttles \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Commuting\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"commuters\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" between Manhattan and Staten Island.\\"}]}"`;
+exports[`Should work with new york article 4041`] = `""`;
 
 exports[`Should work with new york article 4042`] = `
 <span>
@@ -43467,7 +43467,7 @@ exports[`Should work with new york article 4068`] = `
 </span>
 `;
 
-exports[`Should work with new york article 4069`] = `"{\\"elementName\\":\\"Link\\",\\"type\\":\\"media\\",\\"supType\\":\\"File\\",\\"url\\":\\"File:NYC Toyota Prius v.jpg\\",\\"options\\":[\\"thumb\\",\\"right\\"],\\"caption\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Yellow medallion taxicabs are widely recognized icons of the city\\"}]}"`;
+exports[`Should work with new york article 4069`] = `""`;
 
 exports[`Should work with new york article 4070`] = `
 <span>
@@ -43650,7 +43650,7 @@ exports[`Should work with new york article 4087`] = `
 </span>
 `;
 
-exports[`Should work with new york article 4088`] = `"{\\"elementName\\":\\"Link\\",\\"type\\":\\"media\\",\\"supType\\":\\"File\\",\\"url\\":\\"File:Storm at Manhattan.jpg\\",\\"options\\":[\\"thumb\\"],\\"caption\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"8th Avenue, looking northward (\\\\\\"uptown\\\\\\"). Most streets and avenues in \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Commissioners'_Plan_of_1811\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Manhattan's grid plan\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" incorporate a \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"One-way_traffic\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"one-way traffic\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" configuration.\\"}]}"`;
+exports[`Should work with new york article 4088`] = `""`;
 
 exports[`Should work with new york article 4089`] = `
 <span>
@@ -44179,7 +44179,7 @@ exports[`Should work with new york article 4134`] = `
 </span>
 `;
 
-exports[`Should work with new york article 4135`] = `"{\\"elementName\\":\\"Link\\",\\"type\\":\\"media\\",\\"supType\\":\\"File\\",\\"url\\":\\"File:George Washington Bridge from New Jersey-edit.jpg\\",\\"options\\":[\\"thumb\\",\\"left\\"],\\"caption\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"The \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"George_Washington_Bridge\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"George Washington Bridge\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\", connecting \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Upper_Manhattan\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Upper Manhattan\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" (background) from \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Fort_Lee,_New_Jersey\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Fort Lee\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\", New Jersey across the \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Hudson_River\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Hudson River\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\", is the world's busiest motor vehicle bridge.\\"},{\\"elementName\\":\\"Reference\\",\\"type\\":\\"firstuse\\",\\"refname\\":\\"panynj.gov\\",\\"children\\":[{\\"elementName\\":\\"Template\\",\\"type\\":\\"cite\\",\\"subType\\":\\"web\\",\\"attribute\\":{\\"url\\":\\"http://www.panynj.gov/bridges-tunnels/george-washington-bridge.html\\",\\"accessdate\\":\\"March 10, 2014\\",\\"title\\":\\"Port Authority of New York and New Jersey—George Washington Bridge\\",\\"publisher\\":\\"The Port Authority of New York & New Jersey\\"}}],\\"referenceIndex\\":1},{\\"elementName\\":\\"Reference\\",\\"type\\":\\"firstuse\\",\\"refname\\":\\"abcgwb\\",\\"children\\":[{\\"elementName\\":\\"Template\\",\\"type\\":\\"cite\\",\\"subType\\":\\"web\\",\\"attribute\\":{\\"url\\":\\"https://abcnews.go.com/US/george-washington-bridge-painters-dangerous-job-top-worlds/story?id=17771877\\",\\"title\\":\\"GW Bridge Painters: Dangerous Job on Top of the World's Busiest Bridge\\",\\"author1\\":\\"Bod Woodruff\\",\\"author2\\":\\"Lana Zak\\",\\"author3\\":\\"Stephanie Wash\\",\\"last-author-amp\\":\\"yes\\",\\"publisher\\":\\"ABC News\\",\\"date\\":\\"November 20, 2012\\",\\"accessdate\\":\\"April 20, 2016\\"}}],\\"referenceIndex\\":2}]}"`;
+exports[`Should work with new york article 4135`] = `""`;
 
 exports[`Should work with new york article 4136`] = `
 <span>
@@ -45281,7 +45281,7 @@ exports[`Should work with new york article 4236`] = `
 </span>
 `;
 
-exports[`Should work with new york article 4237`] = `"{\\"elementName\\":\\"Link\\",\\"type\\":\\"media\\",\\"supType\\":\\"File\\",\\"url\\":\\"File:NYC Hybrid Taxi.JPG\\",\\"options\\":[\\"thumb\\",{\\"key\\":\\"alt\\",\\"value\\":\\"Two yellow taxis on a narrow street lined with shops.\\"}],\\"caption\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"As of 2012, the city had about 6,000 \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Hybrid_taxi\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"hybrid taxi\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\"(show)s in service, the largest number of any city in North America.\\"},{\\"elementName\\":\\"Reference\\",\\"type\\":\\"firstuse\\",\\"refname\\":\\"WSJ091912\\",\\"children\\":[{\\"elementName\\":\\"Template\\",\\"type\\":\\"cite\\",\\"subType\\":\\"news\\",\\"attribute\\":{\\"url\\":\\"https://www.wsj.com/articles/SB10000872396390444165804578006723461956146\\",\\"title\\":\\"New Cab Plan Curbs Hybrids\\",\\"author\\":\\"Ted Mann\\",\\"work\\":\\"[[The Wall Street Journal]]\\",\\"date\\":\\"September 19, 2012\\",\\"accessdate\\":\\"September 23, 2012\\"}}],\\"referenceIndex\\":1}]}"`;
+exports[`Should work with new york article 4237`] = `""`;
 
 exports[`Should work with new york article 4238`] = `
 <span>
@@ -46684,7 +46684,7 @@ exports[`Should work with new york article 4384`] = `
 </span>
 `;
 
-exports[`Should work with new york article 4385`] = `"{\\"elementName\\":\\"Link\\",\\"type\\":\\"media\\",\\"supType\\":\\"File\\",\\"url\\":\\"File:New York City Hall.jpg\\",\\"options\\":[\\"thumb\\",\\"right\\",{\\"key\\":\\"alt\\",\\"value\\":\\"A wide white building in a colonial style with a cupola in the center.\\"}],\\"caption\\":[{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"New_York_City_Hall\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"New York City Hall\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" is the oldest City Hall in the United States that still houses its original governmental functions.\\"}]}"`;
+exports[`Should work with new york article 4385`] = `""`;
 
 exports[`Should work with new york article 4386`] = `
 <span>
@@ -46982,7 +46982,7 @@ exports[`Should work with new york article 4412`] = `
 </span>
 `;
 
-exports[`Should work with new york article 4413`] = `"{\\"elementName\\":\\"Link\\",\\"type\\":\\"media\\",\\"supType\\":\\"File\\",\\"url\\":\\"File:NYC - New York County Supreme Courthouse.jpg\\",\\"options\\":[\\"thumb\\",\\"left\\"],\\"caption\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"The \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"New_York_County_Courthouse\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"New York County Courthouse\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" houses the \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"New_York_Supreme_Court\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"New York Supreme Court\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" and other offices.\\"}]}"`;
+exports[`Should work with new york article 4413`] = `""`;
 
 exports[`Should work with new york article 4414`] = `
 <span>
@@ -47308,7 +47308,7 @@ exports[`Should work with new york article 4442`] = `
 </span>
 `;
 
-exports[`Should work with new york article 4443`] = `"{\\"elementName\\":\\"Link\\",\\"type\\":\\"media\\",\\"supType\\":\\"File\\",\\"url\\":\\"File:Bill de Blasio 11-2-2013.jpg\\",\\"options\\":[\\"thumb\\",\\"upright\\",{\\"key\\":\\"alt\\",\\"value\\":\\"Mayor Bill de Blasio is seen talking into a microphone.\\"}],\\"caption\\":[{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Bill_de_Blasio\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Bill de Blasio\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\", the current and \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"List_of_mayors_of_New_York_City\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"109th\\"}]},{\\"elementName\\":\\"Text\\",\\"text\\":\\" \\"},{\\"elementName\\":\\"Link\\",\\"type\\":\\"wikiLink\\",\\"url\\":\\"Mayor_of_New_York_City\\",\\"displayText\\":[{\\"elementName\\":\\"Text\\",\\"text\\":\\"Mayor of New York City\\"}]}]}"`;
+exports[`Should work with new york article 4443`] = `""`;
 
 exports[`Should work with new york article 4444`] = `
 <span>

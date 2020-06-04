@@ -1,20 +1,27 @@
 import React, { Fragment } from "react";
 import Content from "./../Content";
 import Navigation from "./../Navigation";
-import { usePageContent, useImages } from "./../../../hooks/useWiki.js";
+import {
+  usePageContent,
+  useImages,
+  useMetaData
+} from "./../../../hooks/useWiki.js";
 import { SkeletonTheme } from "react-loading-skeleton";
 import { useParams } from "react-router-dom";
 import "lazysizes";
 import "./style.sass";
 
+// import { buildURL, revisionParams } from "./../../../WikiWrapper";
+
 export const ImagesContext = React.createContext(null);
 
 const Article = ({ force_title }) => {
   let title = force_title ? force_title : useParams()?.title;
-  // title = "New_York_City";
   const pageContent = usePageContent(title);
   const images = useImages(title);
+  const metaData = useMetaData(title);
 
+  console.log(pageContent);
   React.useEffect(() => {
     let toggle = document.getElementById("theme-switch");
 
@@ -41,7 +48,10 @@ const Article = ({ force_title }) => {
             <div className="hero">
               <div className="hero__title">{title.replace(/_/g, " ")}</div>
               <div className="hero__credit">
-                From Wikipedia, the free encyclopedia
+                {/*From Wikipedia, the free encyclopedia*/}
+                {`Created on ${metaData.date} by ${metaData.creator} | ${(
+                  pageContent?.wordCount / 200
+                )?.toFixed(0)} min read`.toUpperCase()}
               </div>
               <Content content={pageContent?.children} />
             </div>

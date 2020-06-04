@@ -98,6 +98,10 @@ button
     -webkit-transition: -webkit-transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1)
     transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1)
     z-index: 1000
+    position: relative
+    box-shadow: 6px 6px 19px -3px var(--shadow-color)
+
+
     &:hover
       -webkit-transform: scale(1.05, 1.05)
       transform: scale(1.05, 1.05)
@@ -106,6 +110,9 @@ button
     margin-top: $space1
     margin-bottom: 0 !important
     font-size: $size0
+
+
+
 
 
 .fl-left
@@ -143,7 +150,7 @@ button
 
   .wiki-img__container
     display: flex
-    max-width: 70%
+    max-width: minmax(70%, 240px)
     margin: $space0 auto
     clear: both
 

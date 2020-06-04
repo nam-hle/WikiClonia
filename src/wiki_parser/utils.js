@@ -18,7 +18,7 @@ const clean = obj => {
     if (
       !value ||
       (Array.isArray(value) && !value.length) ||
-      !Object.keys(value).length
+      (typeof value === "object" && !Object.keys(value).length)
     )
       continue;
     res[key] = value;

@@ -88,6 +88,19 @@ export const Template = ({ props }) => {
   return "<--N/A" + JSON.stringify(props) + "-->";
 };
 
+const Image = ({ id, src, float, caption }) => {
+  return (
+    <Fragment>
+      <div className={`wiki-img__container ${float}`}>
+        <img id={id} className="lazyload wiki-img__image" data-src={src} />
+        <div className="wiki-img__caption">
+          {caption?.map(e => <Element key={uuidv4()} props={e} />) || ""}
+        </div>
+      </div>
+    </Fragment>
+  );
+};
+
 export const Element = ({ props }) => {
   if (props === null) throw new Error("Create element withou props");
   let { elementName, children } = props;
@@ -157,27 +170,18 @@ export const Element = ({ props }) => {
     if (type == "media") {
       const valueImages = React.useContext(ImagesContext);
 
-      if (props && props.url && valueImages && valueImages.images[props.url]) {
-        // console.log(valueImages.images[props.url]);
+      if (props?.url && valueImages?.images?.[props.url]) {
         let float =
           !props.multipleImage && props?.options?.indexOf("left") > -1
             ? "fl-left"
             : "fl-right";
         return (
-          <Fragment>
-            <div className={`wiki-img__container ${float}`}>
-              <img
-                id={props.url}
-                className="lazyload wiki-img__image"
-                data-src={valueImages.images[props.url].url}
-              />
-              <div className="wiki-img__caption">
-                {props.caption?.map(e => (
-                  <Element key={uuidv4()} props={e} />
-                )) || ""}
-              </div>
-            </div>
-          </Fragment>
+          <Image
+            id={props.url}
+            src={valueImages.images[props.url].url}
+            float={float}
+            caption={props.caption}
+          />
         );
       }
     }
@@ -195,5 +199,6 @@ export const Element = ({ props }) => {
       </sup>
     );
   }
-  return JSON.stringify(props);
+
+  return "";
 };

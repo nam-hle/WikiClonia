@@ -1,6 +1,6 @@
 import { main } from "./../wiki_parser";
 
-const parseWikiText = response => main(response?.parse?.wikitext?.["*"]);
+const parseWikiText = response => main(response);
 
 const buildURL = params =>
   "https://en.wikipedia.org/w/api.php?" +
@@ -32,10 +32,30 @@ const summaryParams = title => ({
   titles: title
 });
 
+const revisionParams = title => ({
+  action: "query",
+  prop: "revisions",
+  titles: title,
+  rvprop: "user|comment|content|tags|timestamp",
+  rvlimit: "5",
+  format: "json"
+});
+
+const metaDataParams = title => ({
+  action: "query",
+  prop: "revisions",
+  rvlimit: 1,
+  rvprop: "timestamp|user|userid",
+  rvdir: "newer",
+  titles: title
+});
+
 export {
   parseWikiText,
   buildURL,
   pageContentParams,
   imageParams,
-  summaryParams
+  summaryParams,
+  revisionParams,
+  metaDataParams
 };
