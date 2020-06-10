@@ -387,16 +387,15 @@ var useMetaData = function useMetaData(title) {
     var response = (_dateFetcher$response = dateFetcher.response) === null || _dateFetcher$response === void 0 ? void 0 : (_dateFetcher$response2 = _dateFetcher$response.query) === null || _dateFetcher$response2 === void 0 ? void 0 : _dateFetcher$response2.pages,
         dateResponse,
         creatorResponse;
-    console.log(response);
 
     if (response) {
       for (var _i = 0, _Object$keys = Object.keys(response); _i < _Object$keys.length; _i++) {
         var _response$pageID;
 
         var pageID = _Object$keys[_i];
-        var revisions = (_response$pageID = response[pageID]) === null || _response$pageID === void 0 ? void 0 : _response$pageID.revisions;
+        var revisions = response === null || response === void 0 ? void 0 : (_response$pageID = response[pageID]) === null || _response$pageID === void 0 ? void 0 : _response$pageID.revisions;
 
-        if (revisions.length) {
+        if (revisions === null || revisions === void 0 ? void 0 : revisions.length) {
           dateResponse = revisions[0].timestamp;
           creatorResponse = revisions[0].user;
         }

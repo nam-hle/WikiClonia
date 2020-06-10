@@ -43,11 +43,10 @@ const useMetaData = title => {
     let response = dateFetcher.response?.query?.pages,
       dateResponse,
       creatorResponse;
-    console.log(response);
     if (response) {
       for (const pageID of Object.keys(response)) {
-        let revisions = response[pageID]?.revisions;
-        if (revisions.length) {
+        let revisions = response?.[pageID]?.revisions;
+        if (revisions?.length) {
           dateResponse = revisions[0].timestamp;
           creatorResponse = revisions[0].user;
         }
