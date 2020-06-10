@@ -31,17 +31,15 @@ const Heading = ({ className, id, text, level, indices }) => {
   );
 };
 
-const WikiLink = ({ url, displayText }) => {
-  return (
-    <Tooltip url={url}>
-      <Link to={"/" + url}>
-        {displayText.map(e => {
-          return <Element key={uuidv4()} props={e} />;
-        })}
-      </Link>
-    </Tooltip>
-  );
-};
+const WikiLink = ({ url, displayText }) => (
+  <Tooltip url={url}>
+    <Link to={"/" + url} onClick={() => (document.body.scrollTop = 0)}>
+      {displayText.map(e => (
+        <Element key={uuidv4()} props={e} />
+      ))}
+    </Link>
+  </Tooltip>
+);
 
 export const Template = ({ props }) => {
   if (props.type == "N/A" || props.type == "Infobox") return "";

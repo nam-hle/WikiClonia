@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { buildURL, summaryParams } from "./../../../WikiWrapper";
-// import Skeleton from "react-loading-skeleton";
 import { BarLoader as Loader } from "react-spinners";
 import { css } from "@emotion/core";
 
