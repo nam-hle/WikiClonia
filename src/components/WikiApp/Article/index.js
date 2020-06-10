@@ -21,7 +21,6 @@ const Article = ({ force_title }) => {
   const images = useImages(title);
   const metaData = useMetaData(title);
 
-  console.log(pageContent);
   React.useEffect(() => {
     let toggle = document.getElementById("theme-switch");
 
