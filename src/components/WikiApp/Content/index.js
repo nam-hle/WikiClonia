@@ -6,7 +6,6 @@ const Content = ({ content }) => {
     <div className="wiki-content">
       {content
         ? content.map(element => {
-            // console.log(element);
             return <Element key={uuidv4()} props={element} />;
           })
         : "Loading..."}

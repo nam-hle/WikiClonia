@@ -13,7 +13,6 @@ const Navigation = ({ headings }) => {
     let maxPos = width - visibleWidth;
     let slideWidth = maxPos * 0.15;
 
-    console.log(document.querySelector(".navigation__headings:nth-child(1)"));
     headingsRef.current.scrollLeft =
       direction == "right"
         ? Math.min(maxPos, pos + slideWidth)

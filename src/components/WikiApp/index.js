@@ -10,7 +10,7 @@ const App = () => {
       <Menu />
       <Switch>
         <Route exact path="/">
-          <Redirect to="/home/" />
+          <Redirect to="/home" />
         </Route>
         <Route path="/:title">
           <Article />
