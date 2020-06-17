@@ -1,7 +1,6 @@
 import React from "react";
-import SearchIcon from "./../../../asset/images/search.svg";
 import MenuIcon from "./../../../asset/images/menu.svg";
-
+import SearchBar from "./../SearchBar";
 import "./style.sass";
 
 const Menu = () => {
@@ -14,16 +13,8 @@ const Menu = () => {
           <span className="logo-icon">W</span>
         </div>
 
-        <div className="menu__search">
-          <div className="menu__search-icon">
-            <SearchIcon />
-          </div>
-          <input
-            type="text"
-            placeholder="Search Wikipedia"
-            className="menu__search-input"
-          />
-        </div>
+        <SearchBar className="menu__search" />
+
         <div className="menu__main">
           <button className="menu__button">VIEW SOURCE</button>
           <button className="menu__button" id="theme-switch">

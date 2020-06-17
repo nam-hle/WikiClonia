@@ -1,0 +1,51 @@
+@import "./../variables"
+
+.menu__search
+  display: flex
+  align-items: center
+  padding-left: $space0
+
+.menu__searchbar
+  position: relative
+  width: 100%
+  .menu__search-input
+    width: 100%
+    border: none
+    padding-left: $space2
+    background-color: transparent
+    line-height: 1.7
+    &:focus
+      color: var(--text-color)
+
+.searchbar__results
+  top: calc(100% + #{$space2})
+  position: absolute
+  box-shadow: 6px 6px 25px -3px var(--shadow-color)
+  line-height: 1.7
+  max-height: 50vh
+  overflow-y: scroll
+
+.searchbar__item
+  padding: $space2
+  &:hover
+    cursor: pointer
+    background-color: var(--primary-color)
+    *
+      color: var(--bg-color)
+
+.searchbar__title
+  font-weight: 700
+  font-style: normal
+  color: var(--primary-color)
+
+@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none)
+  .searchbar__results
+    -webkit-backdrop-filter: blur(10px)
+    backdrop-filter: blur(10px)
+
+@media all and (max-width: $mobile-brp)
+  .menu__search
+    justify-content: center
+    &-input
+      display: none
+      padding: 0

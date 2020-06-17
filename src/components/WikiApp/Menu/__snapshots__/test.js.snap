@@ -34,11 +34,63 @@ exports[`renders correctly 1`] = `
       >
         <test-file-stub />
       </div>
-      <input
-        className="menu__search-input"
-        placeholder="Search Wikipedia"
-        type="text"
-      />
+      <div
+        className="menu__searchbar"
+      >
+        <input
+          className="menu__search-input"
+          onChange={[Function]}
+          placeholder="Search Wikipedia"
+          type="text"
+          value=""
+        />
+        <div
+          className="searchbar__results"
+        >
+          <div
+            className="searchbar__item"
+          >
+            <div
+              className="searchbar__title"
+            >
+              Titanic
+            </div>
+            <div
+              className="searchbar__overview"
+            >
+              101-year-old Rose DeWitt Bukater tells the story of her life aboard the Titanic, 84 years later. A young Rose boards the ship with he…
+            </div>
+          </div>
+          <div
+            className="searchbar__item"
+          >
+            <div
+              className="searchbar__title"
+            >
+              Aliens vs. Titanic
+            </div>
+            <div
+              className="searchbar__overview"
+            >
+              Offering only the finest amenities, the ‘TITAN 1C’ space-cruiser is considered the most luxurious star-liner ever built. Futur…
+            </div>
+          </div>
+          <div
+            className="searchbar__item"
+          >
+            <div
+              className="searchbar__title"
+            >
+              Aliens vs. Titanic
+            </div>
+            <div
+              className="searchbar__overview"
+            >
+              Offering only the finest amenities, the ‘TITAN 1C’ space-cruiser is considered the most luxurious star-liner ever built. Futur…
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div
       className="menu__main"
