@@ -18,12 +18,16 @@
       color: var(--text-color)
 
 .searchbar__results
+  display: none
   top: calc(100% + #{$space2})
   position: absolute
   box-shadow: 6px 6px 25px -3px var(--shadow-color)
   line-height: 1.7
   max-height: 50vh
   overflow-y: scroll
+
+.show
+  display: block
 
 .searchbar__item
   padding: $space2

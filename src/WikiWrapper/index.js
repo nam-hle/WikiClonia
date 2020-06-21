@@ -50,6 +50,14 @@ const metaDataParams = title => ({
   titles: title
 });
 
+const searchParams = string => ({
+  action: "query",
+  list: "search",
+  srsearch: string,
+  srprop: "size|wordcount|titlesnippet|categorysnippet|snippet",
+  utf8: ""
+});
+
 export {
   parseWikiText,
   buildURL,
@@ -57,5 +65,6 @@ export {
   imageParams,
   summaryParams,
   revisionParams,
-  metaDataParams
+  metaDataParams,
+  searchParams
 };
