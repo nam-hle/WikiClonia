@@ -8,16 +8,18 @@ import {
 } from "./../WikiWrapper";
 import useFetch from "./useFetch.js";
 
-const usePageContent = title => {
+const usePageContent = (title, articleLoading, setArticleLoading) => {
   const [pageContent, setPageContent] = useState(null);
   const pageContentFetcher = useFetch(buildURL(pageContentParams(title)));
   useEffect(() => {
+    setArticleLoading(true);
     let response = pageContentFetcher.response?.parse?.wikitext?.["*"];
     if (response) {
       setPageContent(parseWikiText(response));
     }
+    setArticleLoading(false);
   }, [pageContentFetcher.response, title]);
-  return pageContent;
+  return { pageContent };
 };
 
 const useImages = title => {

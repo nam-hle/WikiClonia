@@ -4,6 +4,24 @@ import SearchBar from "./../SearchBar";
 import "./style.sass";
 
 const Menu = () => {
+  React.useEffect(() => {
+    let toggle = document.getElementById("theme-switch");
+
+    let switcher = function(e) {
+      e.preventDefault();
+      if (document.body.classList.contains("funky")) {
+        toggle.innerText = "LIGHT MODE";
+        document.body.classList.remove("funky");
+      } else {
+        toggle.innerText = "DARK MODE";
+        document.body.classList.add("funky");
+      }
+    };
+    toggle?.addEventListener("click", switcher);
+
+    return () => toggle.removeEventListener("click", switcher);
+  }, []);
+
   return (
     <div className="menu-wrapper">
       <div className="menu">

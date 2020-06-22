@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 import { buildURL, searchParams } from "./../../../WikiWrapper";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
+import axios from "axios";
 
 const SearchItem = ({ title, description }) => {
   const history = useHistory();
@@ -13,15 +14,16 @@ const SearchItem = ({ title, description }) => {
     <div
       className="searchbar__item"
       onMouseDown={() => {
-        history.push("/" + title);
+        document.body.scrollTop = 0;
+        history.push("/" + encodeURIComponent(title));
       }}
     >
       <div className="searchbar__title">{title}</div>
       <Link
-        to={"/" + title}
+        to={"/" + encodeURIComponent(title)}
         className="searchbar__overview"
         dangerouslySetInnerHTML={{ __html: description }}
-      />
+      ></Link>
     </div>
   );
 };
@@ -52,48 +54,41 @@ const SeachBar = () => {
       searchResultsRef.current.classList.add("show");
     };
     const hidden = () => {
-      console.log("hidden");
       searchResultsRef.current.classList.remove("show");
     };
-    inputRef.current.addEventListener("focusin", reveal);
+    inputRef.current.addEventListener("focus", reveal);
     inputRef.current.addEventListener("blur", hidden);
 
     return () => {
-      inputRef.current.removeEventListener("focusin");
-      inputRef.current.removeEventListener("blur");
+      inputRef.current.removeEventListener("focus", reveal);
+      inputRef.current.removeEventListener("blur", hidden);
     };
   }, []);
 
   React.useEffect(() => {
-    // const search = async () => {
-    //   const response = await fetch(buildURL(searchParams(value)));
-    //   const json = await response.json();
-
-    //   if (json) {
-    //     let title = json?.query?.search?.map(movie => [movie.title]);
-    //     setMovies(title);
-    //   }
-    // };
-    // if (value) {
-    //   search();
-    // } else setMovies([]);
-
-    const controller = new AbortController();
-
+    let source = axios.CancelToken.source();
     if (!value) {
       setMovies([]);
     } else {
-      fetch(buildURL(searchParams(value)), { signal: controller.signal })
-        .then(response => response.json())
+      axios
+        .get(buildURL(searchParams(value)), { cancelToken: source.token })
+        .then(response => response.data)
         .then(json => {
           let title = json?.query?.search?.map(movie => ({
             title: movie.title,
             description: movie.snippet
           }));
           setMovies(title);
+        })
+        .catch(function(thrown) {
+          if (axios.isCancel(thrown)) {
+            console.log("Request canceled", thrown.message);
+          } else {
+            // handle error
+          }
         });
     }
-    return () => controller.abort();
+    return () => source.cancel("Canlling in cleanup");
   }, [value]);
 
   const onChangeHandler = e => setValue(e.target.value);

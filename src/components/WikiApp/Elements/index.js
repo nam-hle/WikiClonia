@@ -33,7 +33,12 @@ const Heading = ({ className, id, text, level, indices }) => {
 
 const WikiLink = ({ url, displayText }) => (
   <Tooltip url={url}>
-    <Link to={"/" + url} onClick={() => (document.body.scrollTop = 0)}>
+    <Link
+      to={"/" + url}
+      onClick={() => {
+        document.body.scrollTop = 0;
+      }}
+    >
       {displayText.map(e => (
         <Element key={uuidv4()} props={e} />
       ))}
@@ -128,6 +133,10 @@ export const Element = ({ props }) => {
   let renderChildren;
   if (Array.isArray(children)) {
     renderChildren = children.map(e => <Element key={uuidv4()} props={e} />);
+  }
+
+  if (elementName == "Code") {
+    return <code className="wiki-code">{renderChildren}</code>;
   }
 
   if (elementName == "Bold") {

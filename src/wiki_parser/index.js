@@ -241,11 +241,21 @@ const parsePairPipe = plain => {
     parsedPlain,
     match;
 
-  const R_KEY = /^[\|\s]*(?<key>\w+)\s*=(?<remain>[\s\S]*)$/;
+  const R_KEY = /^[\|\s]*(?<key>([\w \/]|\-)+)= *(?<remain>[\s\S]*)$/;
+  // const R_EMPTY_VALUE = /^[\|\s]*(?<key>[\w \-\/]+)=\s*(?<remain>[\s\S]*)$/;
 
   while (remain) {
-    if ((match = R_KEY.exec(remain)) === null)
-      throw "Key PairPipe Syntax Error " + remain;
+    if ((match = R_KEY.exec(remain)) === null) {
+      // if ((match = R_EMPTY_VALUE.exec(remain)) === null) {
+      // console.log(remain.replace(/\n/g, "@").replace(/ /g, "%"));
+      throw "@Key PairPipe Syntax Error," +
+        remain.replace(/\n/g, "@").replace(/ /g, "%");
+    }
+    // ({ remain } = match.groups);
+
+    // continue;
+    // }
+
     ({ key, remain } = match.groups);
     key = key.trim();
     [nextIndex, , parsedPlain] = parse(remain, null, 0, PairPipe);
@@ -474,12 +484,13 @@ const ExternalLinkParer = plain => {
     displayText,
     match = R_EXTERNAL.exec(plain);
 
-  if (match === null) throw new Error("ExternalLink Syntax Error");
+  if (match === null) throw new Error(`ExternalLink Syntax Error`);
   ({ url, displayText } = match.groups);
   return { url, displayText };
 };
 
 const internalParse = (element, content, plain) => {
+  console.log(plain);
   let { elementName } = element;
 
   if (elementName == "Reference") return ReferenceParser(plain);

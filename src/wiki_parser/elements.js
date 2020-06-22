@@ -4,6 +4,12 @@ const Comment = {
     endToken: ["-->"],
     allowedChildren: []
   },
+  Code = {
+    elementName: "Code",
+    startToken: "<code>",
+    endToken: ["</code>"],
+    allowedChildren: []
+  },
   Break = {
     elementName: "Break",
     startToken: "<br />",
@@ -112,6 +118,7 @@ const Comment = {
     startToken: null,
     endToken: null,
     allowedChildren: [
+      Code,
       Comment,
       Gallery,
       Break,

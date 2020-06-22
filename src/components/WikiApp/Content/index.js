@@ -6,10 +6,11 @@ import { css } from "@emotion/core";
 const override = css`
   margin: 20vh auto;
 `;
-const Content = ({ content }) => {
+const Content = ({ content, loading }) => {
+  console.log(loading);
   return (
     <div className="wiki-content">
-      {content ? (
+      {!loading && content ? (
         content.map(element => {
           return <Element key={uuidv4()} props={element} />;
         })
