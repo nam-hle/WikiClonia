@@ -25,6 +25,7 @@
   line-height: 1.7
   max-height: 50vh
   overflow-y: scroll
+  background-color: var(--bg-color)
 
 .show
   display: block
@@ -46,6 +47,7 @@
 
 @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none)
   .searchbar__results
+    background-color: transparent
     -webkit-backdrop-filter: blur(10px)
     backdrop-filter: blur(10px)
 

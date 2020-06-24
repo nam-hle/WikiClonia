@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 import Content from "./../Content";
 import Navigation from "./../Navigation";
 import {
@@ -8,21 +8,23 @@ import {
 } from "./../../../hooks/useWiki.js";
 import { SkeletonTheme } from "react-loading-skeleton";
 import { useParams } from "react-router-dom";
+// import { BarLoader as Loader } from "react-spinners";
+
 import "lazysizes";
 import "./style.sass";
-
 export const ImagesContext = React.createContext(null);
 
 const Article = ({ force_title }) => {
   let title = force_title ? force_title : useParams()?.title;
-  let [articleLoading, setArticleLoading] = useState(true);
-  let { pageContent } = usePageContent(
-    title,
-    articleLoading,
-    setArticleLoading
-  );
+
   const images = useImages(title);
   const metaData = useMetaData(title);
+  let [loading, setLoading] = React.useState(false);
+  const { pageContent } = usePageContent(title, setLoading);
+
+  React.useEffect(() => {
+    setLoading(true);
+  }, [title]);
 
   return (
     <ImagesContext.Provider value={{ images }}>
@@ -36,10 +38,7 @@ const Article = ({ force_title }) => {
                   pageContent?.wordCount / 300
                 )?.toFixed(0)} min read`.toUpperCase()}
               </div>
-              <Content
-                content={pageContent?.children}
-                loading={articleLoading}
-              />
+              <Content content={pageContent?.children} loading={loading} />
             </div>
           </div>
         </SkeletonTheme>

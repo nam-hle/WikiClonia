@@ -7,7 +7,6 @@ const override = css`
   margin: 20vh auto;
 `;
 const Content = ({ content, loading }) => {
-  console.log(loading);
   return (
     <div className="wiki-content">
       {!loading && content ? (

@@ -4,6 +4,8 @@ import { ImagesContext } from "./../Article";
 import { Link } from "react-router-dom";
 import Tooltip from "./../Tooltip";
 import { v4 as uuidv4 } from "uuid";
+import Prism from "prismjs";
+// import "prismjs/themes/prism-tomorrow.css";
 
 export const Text = ({ text }) => <span>{text.replace("\n\n", "\n")}</span>;
 
@@ -104,6 +106,23 @@ const Image = ({ id, src, float, caption }) => {
   );
 };
 
+const HightLight = ({ code, language }) => {
+  return (
+    <pre>
+      <code
+        className={language ? `language-${language}` : ""}
+        dangerouslySetInnerHTML={{
+          __html: Prism.highlight(
+            code.trim(),
+            Prism.languages[language] || Prism.languages.js,
+            language
+          )
+        }}
+      ></code>
+    </pre>
+  );
+};
+
 export const Element = ({ props }) => {
   if (props === null) throw new Error("Create element withou props");
   let { elementName, children } = props;
@@ -137,6 +156,20 @@ export const Element = ({ props }) => {
 
   if (elementName == "Code") {
     return <code className="wiki-code">{renderChildren}</code>;
+  }
+
+  if (elementName == "HightLight") {
+    // console.count();
+
+    return <HightLight code={props.code} language={props.language} />;
+
+    // return (
+    //   <PrismCode
+    //     code={props.code}
+    //     language={props.language}
+    //     plugins={["line-numbers"]}
+    //   />
+    // );
   }
 
   if (elementName == "Bold") {

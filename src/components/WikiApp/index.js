@@ -5,6 +5,7 @@ import Footer from "./Footer";
 import { Switch, Route, Redirect } from "react-router-dom";
 
 const App = () => {
+  console.log("[App] Render");
   return (
     <React.Fragment>
       <Menu />

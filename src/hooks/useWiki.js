@@ -8,23 +8,28 @@ import {
 } from "./../WikiWrapper";
 import useFetch from "./useFetch.js";
 
-const usePageContent = (title, articleLoading, setArticleLoading) => {
+const usePageContent = (title, setLoading) => {
   const [pageContent, setPageContent] = useState(null);
-  const pageContentFetcher = useFetch(buildURL(pageContentParams(title)));
+  const pageContentFetcher = useFetch(buildURL(pageContentParams(title)), {
+    location: "pageContent"
+  });
+
   useEffect(() => {
-    setArticleLoading(true);
     let response = pageContentFetcher.response?.parse?.wikitext?.["*"];
     if (response) {
       setPageContent(parseWikiText(response));
+      setLoading(false);
     }
-    setArticleLoading(false);
   }, [pageContentFetcher.response, title]);
+
   return { pageContent };
 };
 
 const useImages = title => {
   const [images, setImages] = useState(null);
-  const imageFetch = useFetch(buildURL(imageParams(title)));
+  const imageFetch = useFetch(buildURL(imageParams(title)), {
+    location: "useImages"
+  });
   useEffect(() => {
     let imgs = imageFetch.response?.query?.pages,
       res = {};
@@ -40,7 +45,9 @@ const useImages = title => {
 const useMetaData = title => {
   const [date, setDate] = useState(null);
   const [creator, setCreator] = useState(null);
-  const dateFetcher = useFetch(buildURL(metaDataParams(title)));
+  const dateFetcher = useFetch(buildURL(metaDataParams(title)), {
+    location: "useMetaData"
+  });
   useEffect(() => {
     let response = dateFetcher.response?.query?.pages,
       dateResponse,

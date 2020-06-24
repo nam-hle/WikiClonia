@@ -4,6 +4,12 @@ const Comment = {
     endToken: ["-->"],
     allowedChildren: []
   },
+  HightLight = {
+    elementName: "HightLight",
+    startToken: "<syntaxhighlight",
+    endToken: ["</syntaxhighlight>"],
+    allowedChildren: []
+  },
   Code = {
     elementName: "Code",
     startToken: "<code>",
@@ -119,6 +125,7 @@ const Comment = {
     endToken: null,
     allowedChildren: [
       Code,
+      HightLight,
       Comment,
       Gallery,
       Break,

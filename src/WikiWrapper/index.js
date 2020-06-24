@@ -1,6 +1,11 @@
 import { main } from "./../wiki_parser";
 
-const parseWikiText = response => main(response);
+const parseWikiText = response => {
+  console.log("[PARSE] Begin");
+  let res = main(response);
+  console.log("[PARSE] End");
+  return res;
+};
 
 const buildURL = params =>
   "https://en.wikipedia.org/w/api.php?" +

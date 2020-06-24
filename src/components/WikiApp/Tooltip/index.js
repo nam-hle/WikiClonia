@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { buildURL, summaryParams } from "./../../../WikiWrapper";
 import { BarLoader as Loader } from "react-spinners";
+import axios from "axios";
 import { css } from "@emotion/core";
 
 import "./style.sass";
@@ -33,16 +34,19 @@ const Tooltip = props => {
   let [show, setShow] = useState(false);
 
   React.useEffect(() => {
+    let source = axios.CancelToken.source();
     if (show && !summary) {
-      fetch(buildURL(summaryParams(url)))
-        .then(response => response.json())
+      axios
+        .get(buildURL(summaryParams(url)), { cancelToken: source.token })
+        .then(response => response.data)
         .then(json => {
           let { extract, title } = extractSummary(json);
           setSummary(extract);
           setTitle(title || url);
         })
-        .catch(error => console.error(error));
+        .catch(() => {});
     }
+    return () => source.cancel("");
   }, [show]);
 
   return (

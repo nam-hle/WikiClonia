@@ -241,7 +241,7 @@ const parsePairPipe = plain => {
     parsedPlain,
     match;
 
-  const R_KEY = /^[\|\s]*(?<key>([\w \/]|\-)+)= *(?<remain>[\s\S]*)$/;
+  const R_KEY = /^[\|\s]*(?<key>([\w \n\/]|\-)+)= *(?<remain>[\s\S]*)$/;
   // const R_EMPTY_VALUE = /^[\|\s]*(?<key>[\w \-\/]+)=\s*(?<remain>[\s\S]*)$/;
 
   while (remain) {
@@ -489,10 +489,24 @@ const ExternalLinkParer = plain => {
   return { url, displayText };
 };
 
+const HightLightParser = plain => {
+  const R = /^<syntaxhighlight(?<meta>[^>]*)>(?<code>[\s\S]*)<\/syntaxhighlight>$/;
+  let match;
+  if ((match = R.exec(plain)) === null) {
+    throw "HightLightParser error:" + plain;
+  }
+  let { meta, code } = match.groups,
+    language = null;
+  if ((match = /lang="(?<language>[^"]+)"/.exec(meta)) !== null)
+    ({ language } = match.groups);
+  // console.log({ meta, code });
+  return { language, code };
+};
+
 const internalParse = (element, content, plain) => {
-  console.log(plain);
   let { elementName } = element;
 
+  if (elementName == "HightLight") return HightLightParser(plain);
   if (elementName == "Reference") return ReferenceParser(plain);
 
   if (elementName == "Gallery") return GalleryParser(plain);

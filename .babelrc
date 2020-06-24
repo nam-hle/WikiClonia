@@ -4,9 +4,16 @@
     "@babel/preset-react"
   ],
   "plugins": [
+      "@babel/plugin-proposal-class-properties",
       "@babel/plugin-transform-react-jsx",
       "react-hot-loader/babel",
       "@babel/transform-runtime",
-      "emotion"
+      "emotion",
+      ["prismjs", {
+      "languages": ["javascript", "css", "html", "ruby", "java", "ada"],
+      "plugins": ["line-numbers", "show-language"],
+      "theme": "okaidia",
+      "css": true
+    }]
   ]
 }
