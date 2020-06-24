@@ -108,7 +108,7 @@ const Image = ({ id, src, float, caption }) => {
 
 const HightLight = ({ code, language }) => {
   return (
-    <pre>
+    <pre lang={language.toUpperCase()}>
       <code
         className={language ? `language-${language}` : ""}
         dangerouslySetInnerHTML={{

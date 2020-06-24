@@ -35,10 +35,23 @@ li
 
 pre
   background-color: #272822
-  padding: $space3 0
-  padding-left: $space6
+  padding: $space3 $space6
   overflow-x: auto
   font-size: 0.7em
+  position: relative
+  &:hover
+    &:before
+      padding: $space-2 $space0
+      margin: $space-1
+      border-radius: $space0
+      opacity: 0.9
+      background-color: slategray
+      position: absolute
+      content: attr(lang)
+      color: #f8f8f2
+      top: 0
+      right: 0
+
 
 button
   background-color: transparent
