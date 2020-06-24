@@ -23,6 +23,7 @@ const override = css`
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: transparent;
 `;
 
 const Tooltip = props => {
