@@ -481,7 +481,7 @@ var _default = useFetch;
 
 /***/ }),
 
-/***/ 198:
+/***/ 197:
 /***/ (function(module, exports, __webpack_require__) {
 
 // extracted by mini-css-extract-plugin
@@ -500,6 +500,24 @@ var _default = useFetch;
 /***/ }),
 
 /***/ 200:
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+    if(false) { var cssReload; }
+  
+
+/***/ }),
+
+/***/ 201:
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+    if(false) { var cssReload; }
+  
+
+/***/ }),
+
+/***/ 202:
 /***/ (function(module, exports, __webpack_require__) {
 
 // extracted by mini-css-extract-plugin
@@ -527,6 +545,8 @@ var _default = useFetch;
 /* harmony import */ var lazysizes__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(lazysizes__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var _style_sass__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(196);
 /* harmony import */ var _style_sass__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_style_sass__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(197);
+/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_style_css__WEBPACK_IMPORTED_MODULE_9__);
 
 
 (function () {
@@ -544,6 +564,7 @@ var __signature__ = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoader
 
 
  // import { BarLoader as Loader } from "react-spinners";
+
 
 
 
@@ -767,6 +788,7 @@ Italic.allowedChildren.push(Link);
 Reference.allowedChildren.push(Break, Template);
 Template.allowedChildren.push(Template, Reference, Link);
 PairPipe.allowedChildren = Global.allowedChildren;
+Code.allowedChildren.push(ExternalLink);
 
 for (var _i = 0, _arr = [Heading6, Heading5, Heading4, Heading3, Heading2, Heading1]; _i < _arr.length; _i++) {
   var heading = _arr[_i];
@@ -1117,7 +1139,8 @@ var Heading = function Heading(_ref2) {
     var indexLevel = "" + indices[0];
     if (indexLevel < 10) indexLevel = "0" + indexLevel;
     var tensIndexLevel = indexLevel[0],
-        onesIndexLvel = indexLevel[1];
+        onesIndexLvel = indexLevel[1]; // return null;
+
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       ref: heading,
       className: className,
@@ -2287,7 +2310,8 @@ var TemplateParser = function TemplateParser(plain) {
 
   if (/^{{IPAc?-\w+\|/gi.test(plain)) {
     var _text = /\|(.*)}}$/.exec(plain)[1];
-    return createTextElement("[" + _text + "]");
+    console.log(_text);
+    return createTextElement("[" + _text.replace(/\|/g, "") + "]");
   }
 
   return {
@@ -2308,6 +2332,9 @@ var ExternalLinkParer = function ExternalLinkParer(plain) {
   var url,
       displayText,
       match = R_EXTERNAL.exec(plain);
+  if (plain === "[]") return {
+    displayText: "[]"
+  };
   if (match === null) throw new Error("ExternalLink Syntax Error");
   var _match$groups12 = match.groups;
   url = _match$groups12.url;
@@ -2846,8 +2873,10 @@ function SvgRight(props) {
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _asset_images_menu_svg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(77);
 /* harmony import */ var _SearchBar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(78);
-/* harmony import */ var _style_sass__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(199);
+/* harmony import */ var _style_sass__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(200);
 /* harmony import */ var _style_sass__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_style_sass__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(201);
+/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_style_css__WEBPACK_IMPORTED_MODULE_4__);
 (function () {
   var enterModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.enterModule : undefined;
   enterModule && enterModule(module);
@@ -2856,6 +2885,7 @@ function SvgRight(props) {
 var __signature__ = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal["default"].signature : function (a) {
   return a;
 };
+
 
 
 
@@ -2969,7 +2999,7 @@ function SvgMenu(props) {
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(0);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _asset_images_search_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(79);
-/* harmony import */ var _style_sass__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(198);
+/* harmony import */ var _style_sass__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(199);
 /* harmony import */ var _style_sass__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_style_sass__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(18);
 /* harmony import */ var _WikiWrapper__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(8);
@@ -3324,7 +3354,7 @@ var searchParams = function searchParams(string) {
 "use strict";
 /* WEBPACK VAR INJECTION */(function(module) {/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _style_sass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(200);
+/* harmony import */ var _style_sass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(202);
 /* harmony import */ var _style_sass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_style_sass__WEBPACK_IMPORTED_MODULE_1__);
 (function () {
   var enterModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.enterModule : undefined;

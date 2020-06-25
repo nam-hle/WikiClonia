@@ -469,7 +469,8 @@ const TemplateParser = plain => {
 
   if (/^{{IPAc?-\w+\|/gi.test(plain)) {
     let text = /\|(.*)}}$/.exec(plain)[1];
-    return createTextElement("[" + text + "]");
+    console.log(text);
+    return createTextElement("[" + text.replace(/\|/g, "") + "]");
   }
 
   return {
@@ -483,7 +484,7 @@ const ExternalLinkParer = plain => {
   let url,
     displayText,
     match = R_EXTERNAL.exec(plain);
-
+  if (plain === "[]") return { displayText: "[]" };
   if (match === null) throw new Error(`ExternalLink Syntax Error`);
   ({ url, displayText } = match.groups);
   return { url, displayText };

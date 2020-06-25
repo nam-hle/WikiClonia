@@ -3,9 +3,11 @@
 
 .article
   display: grid
+  // display: none
   width: 100%
   margin: 0
-  padding: 50rem 0
+  // padding: max(30rem, 40px) 0
+
   background-color: var(--bg-color)
 
 .hero
@@ -13,9 +15,11 @@
   width: 100%
   display: grid
   grid-template-columns: 10% 15% 50% 15% 10%
-  padding-top: $space3
+  // padding-top: $space3
   position: relative
-
+  // display: none
+  // &:nth-child(1)
+  //   display: none
   * + *
     margin-bottom: 0.7em
   a
@@ -28,6 +32,7 @@
     font-size: $size-title
     text-align: center
 
+
   &__credit
     grid-column: 3 / span 1
     margin-top: 0.5rem
@@ -36,6 +41,7 @@
     text-align: center
     color: var(--support-color)
     font-weight: 600
+    // display: none
 
   .wiki-content
     grid-column: 3 / span 1

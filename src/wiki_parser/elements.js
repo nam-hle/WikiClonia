@@ -151,7 +151,7 @@ Italic.allowedChildren.push(Link);
 Reference.allowedChildren.push(Break, Template);
 Template.allowedChildren.push(Template, Reference, Link);
 PairPipe.allowedChildren = Global.allowedChildren;
-
+Code.allowedChildren.push(ExternalLink);
 for (const heading of [
   Heading6,
   Heading5,

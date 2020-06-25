@@ -1,7 +1,9 @@
 import React from "react";
 import MenuIcon from "./../../../asset/images/menu.svg";
 import SearchBar from "./../SearchBar";
+
 import "./style.sass";
+import "./style.css";
 
 const Menu = () => {
   React.useEffect(() => {

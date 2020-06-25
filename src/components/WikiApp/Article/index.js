@@ -12,6 +12,7 @@ import { useParams } from "react-router-dom";
 
 import "lazysizes";
 import "./style.sass";
+import "./style.css";
 export const ImagesContext = React.createContext(null);
 
 const Article = ({ force_title }) => {

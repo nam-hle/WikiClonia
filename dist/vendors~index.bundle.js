@@ -7744,7 +7744,7 @@ Object.defineProperty(exports, "SkeletonTheme", {
 
 var _skeleton = _interopRequireDefault(__webpack_require__(58));
 
-var _skeletonTheme = _interopRequireDefault(__webpack_require__(197));
+var _skeletonTheme = _interopRequireDefault(__webpack_require__(198));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -16186,7 +16186,8 @@ try {
 
 /***/ }),
 /* 196 */,
-/* 197 */
+/* 197 */,
+/* 198 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

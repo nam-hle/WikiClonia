@@ -32,13 +32,20 @@ sup
 li
   list-style-type: none
 
-
 pre
   background-color: #272822
-  padding: $space3 $space6
+  padding: $space2 $space4
+  display: block
   overflow-x: auto
   font-size: 0.7em
   position: relative
+  white-space: pre-wrap
+  & > code
+    display: block
+  span
+    white-space: pre-wrap
+    word-wrap: break-word
+    overflow-x: hidden
   &:hover
     &:before
       padding: $space-2 $space0
@@ -58,16 +65,18 @@ button
   border: none
   cursor: pointer
 
+@media all and (max-width: $desktop-brp)
+  html
+    font-size: 1.7px
+
+
 #wikiapp
   width: 100%
 
 .wiki-code
-  // display: inline-block
   border-radius: $space-3
   background-color: #808D8E
   padding: 0 $space-1
-
-
 
 .wiki-italic
   font-style: italic
@@ -111,6 +120,7 @@ button
   font-size: $size3
 
 .wiki-img
+
   &__container
     display: flex
     flex-direction: column
@@ -122,6 +132,7 @@ button
     margin-bottom: 0 !important
     padding: 0
     clear: both
+
 
   &__image
     max-width: 100%
@@ -140,6 +151,7 @@ button
     margin-top: $space1
     margin-bottom: 0 !important
     font-size: $size0
+
 
 .fl-left
   float: left
@@ -176,7 +188,7 @@ button
 
   .wiki-img__container
     display: flex
-    max-width: minmax(70%, 240px)
+    max-width: unset
     margin: $space0 auto
     clear: both
 
@@ -187,7 +199,6 @@ button
   .wiki-gallery
     margin: auto
     clear: both
-    display: none
     & > .wiki-img__container
       margin: 0
       margin-left: $space-1
@@ -201,8 +212,10 @@ button
         object-fit: cover
         object-position: 50% 50%
 
-
   .wiki-heading-1
     margin-left: 0
     .heading__ones
       margin-right: $space0
+
+
+
