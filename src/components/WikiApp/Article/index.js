@@ -15,6 +15,9 @@ import "./style.sass";
 import "./style.css";
 export const ImagesContext = React.createContext(null);
 
+const toCapitalize = word =>
+  word[0].toUpperCase() + word.slice(1).toLowerCase();
+
 const Article = ({ force_title }) => {
   let title = force_title ? force_title : useParams()?.title;
 
@@ -24,6 +27,9 @@ const Article = ({ force_title }) => {
   const { pageContent } = usePageContent(title, setLoading);
 
   React.useEffect(() => {
+    document.title = title
+      .replace(/_/g, " ")
+      .replace(/\w+/g, word => toCapitalize(word));
     setLoading(true);
   }, [title]);
 
@@ -33,7 +39,11 @@ const Article = ({ force_title }) => {
         <SkeletonTheme color="transparent">
           <div className="article">
             <div className="hero">
-              <div className="hero__title">{title.replace(/_/g, " ")}</div>
+              <div className="hero__title">
+                {title
+                  .replace(/_/g, " ")
+                  .replace(/\w+/g, word => toCapitalize(word))}
+              </div>
               <div className="hero__credit">
                 {`Created on ${metaData.date} by ${metaData.creator} | ${(
                   pageContent?.wordCount / 300
