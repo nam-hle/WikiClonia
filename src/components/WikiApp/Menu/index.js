@@ -29,7 +29,7 @@ const Menu = () => {
       <div className="menu">
         <div className="menu__logo">
           <span className="logo-wiki">Wiki</span>
-          <span className="logo-pedia">pedia</span>
+          <span className="logo-pedia">Clonia</span>
           <span className="logo-icon">W</span>
         </div>
 

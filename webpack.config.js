@@ -85,7 +85,6 @@ module.exports = (env, argv) => {
       openPage: "/"
     },
     plugins: [
-      new CleanWebpackPlugin({ root: path.join(__dirname, "dist") }),
       new HtmlWebpackPlugin({
         filename: "index.html",
         template: "./src/pages/wiki/wiki.pug"

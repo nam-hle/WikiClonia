@@ -104,7 +104,7 @@ const SeachBar = () => {
           onChange={e => onChangeHandler(e)}
           value={value}
           type="text"
-          placeholder="Search Wikipedia"
+          placeholder="Search in WikiClonia"
           className="menu__search-input"
         />
         <SearchResults _ref={searchResultsRef} results={movies} />

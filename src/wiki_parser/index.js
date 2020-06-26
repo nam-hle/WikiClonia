@@ -469,7 +469,6 @@ const TemplateParser = plain => {
 
   if (/^{{IPAc?-\w+\|/gi.test(plain)) {
     let text = /\|(.*)}}$/.exec(plain)[1];
-    console.log(text);
     return createTextElement("[" + text.replace(/\|/g, "") + "]");
   }
 

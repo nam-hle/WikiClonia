@@ -17,7 +17,6 @@ const Heading = ({ className, id, text, level, indices }) => {
     if (indexLevel < 10) indexLevel = "0" + indexLevel;
     let tensIndexLevel = indexLevel[0],
       onesIndexLvel = indexLevel[1];
-    // return null;
     return (
       <div ref={heading} className={className} id={id}>
         <div className="heading__index heading__tens">{tensIndexLevel}</div>

@@ -1,7 +1,7 @@
 {
-    "name": "bemit",
+    "name": "WikiClonia",
     "version": "1.0.0",
-    "description": "Template project with BEM and ITCSS methodology",
+    "description": "A Wikipedia-clone Single Page Application to improve reading experience",
     "main": "gulpfile.js",
     "scripts": {
         "build": "webpack --config ./webpack.config.js --mode production",

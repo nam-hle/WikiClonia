@@ -45,9 +45,10 @@ const Article = ({ force_title }) => {
                   .replace(/\w+/g, word => toCapitalize(word))}
               </div>
               <div className="hero__credit">
-                {`Created on ${metaData.date} by ${metaData.creator} | ${(
-                  pageContent?.wordCount / 300
-                )?.toFixed(0)} min read`.toUpperCase()}
+                {!loading &&
+                  `Created on ${metaData.date} by ${metaData.creator} | ${(
+                    pageContent?.wordCount / 300
+                  )?.toFixed(0)} min read`.toUpperCase()}
               </div>
               <Content content={pageContent?.children} loading={loading} />
             </div>
