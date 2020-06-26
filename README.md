@@ -69,7 +69,7 @@ To make it more readable and useful, I decided to redesign it completely with th
 $ git clone https://github.com/nam288/WikiClonia.git
 
 # Go into the repository
-$ cd electron-markdownify
+$ cd WikiClonia
 
 # Install dependencies
 $ npm install
@@ -86,7 +86,7 @@ $ npm start
 
 ## Roadmap
 
-See the [open issues](https://github.com/nam288/nam288.github.io/issues) for a list of proposed features (and known issues).
+See the [open issues](https://github.com/nam288/WikiClonia/issues) for a list of proposed features (and known issues).
 
 ## Contributing
 
