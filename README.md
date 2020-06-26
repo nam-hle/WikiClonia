@@ -66,7 +66,7 @@ To make it more readable and useful, I decided to redesign it completely with th
 
 ```bash
 # Clone this repository
-$ git clone https://github.com/nam288/nam288.github.io.git
+$ git clone https://github.com/nam288/WikiClonia.git
 
 # Go into the repository
 $ cd electron-markdownify
@@ -86,7 +86,7 @@ $ npm start
 
 ## Roadmap
 
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a list of proposed features (and known issues).
+See the [open issues](https://github.com/nam288/nam288.github.io/issues) for a list of proposed features (and known issues).
 
 ## Contributing
 
