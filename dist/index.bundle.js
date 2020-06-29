@@ -463,7 +463,7 @@ var _default = useFetch;
 
 /***/ }),
 
-/***/ 193:
+/***/ 189:
 /***/ (function(module, exports, __webpack_require__) {
 
 // extracted by mini-css-extract-plugin
@@ -472,7 +472,7 @@ var _default = useFetch;
 
 /***/ }),
 
-/***/ 196:
+/***/ 194:
 /***/ (function(module, exports, __webpack_require__) {
 
 // extracted by mini-css-extract-plugin
@@ -517,15 +517,6 @@ var _default = useFetch;
 
 /***/ }),
 
-/***/ 202:
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-    if(false) { var cssReload; }
-  
-
-/***/ }),
-
 /***/ 26:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -541,12 +532,10 @@ var _default = useFetch;
 /* harmony import */ var react_loading_skeleton__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(75);
 /* harmony import */ var react_loading_skeleton__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_loading_skeleton__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(7);
-/* harmony import */ var lazysizes__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(195);
+/* harmony import */ var lazysizes__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(196);
 /* harmony import */ var lazysizes__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(lazysizes__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _style_sass__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(196);
+/* harmony import */ var _style_sass__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(197);
 /* harmony import */ var _style_sass__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_style_sass__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(197);
-/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_style_css__WEBPACK_IMPORTED_MODULE_9__);
 
 
 (function () {
@@ -562,8 +551,6 @@ var __signature__ = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoader
 
 
 
-
- // import { BarLoader as Loader } from "react-spinners";
 
 
 
@@ -591,7 +578,7 @@ var Article = function Article(_ref) {
       pageContent = _usePageContent.pageContent;
 
   react__WEBPACK_IMPORTED_MODULE_1___default.a.useEffect(function () {
-    document.title = title.replace(/_/g, " ").replace(/\w+/g, function (word) {
+    document.title = "WikiClonia | " + title.replace(/_/g, " ").replace(/\w+/g, function (word) {
       return toCapitalize(word);
     });
     setLoading(true);
@@ -635,10 +622,10 @@ var _default = Article;
     return;
   }
 
-  reactHotLoader.register(ImagesContext, "ImagesContext", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/WikiApp/Article/index.js");
-  reactHotLoader.register(toCapitalize, "toCapitalize", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/WikiApp/Article/index.js");
-  reactHotLoader.register(Article, "Article", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/WikiApp/Article/index.js");
-  reactHotLoader.register(_default, "default", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/WikiApp/Article/index.js");
+  reactHotLoader.register(ImagesContext, "ImagesContext", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/Article/index.js");
+  reactHotLoader.register(toCapitalize, "toCapitalize", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/Article/index.js");
+  reactHotLoader.register(Article, "Article", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/Article/index.js");
+  reactHotLoader.register(_default, "default", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/Article/index.js");
 })();
 
 ;
@@ -815,27 +802,27 @@ for (var _i = 0, _arr = [Heading6, Heading5, Heading4, Heading3, Heading2, Headi
     return;
   }
 
-  reactHotLoader.register(Comment, "Comment", "/Users/hoangnam/Dev/Templates/ReactJS/src/wiki_parser/elements.js");
-  reactHotLoader.register(HightLight, "HightLight", "/Users/hoangnam/Dev/Templates/ReactJS/src/wiki_parser/elements.js");
-  reactHotLoader.register(Code, "Code", "/Users/hoangnam/Dev/Templates/ReactJS/src/wiki_parser/elements.js");
-  reactHotLoader.register(Break, "Break", "/Users/hoangnam/Dev/Templates/ReactJS/src/wiki_parser/elements.js");
-  reactHotLoader.register(BoldItalic, "BoldItalic", "/Users/hoangnam/Dev/Templates/ReactJS/src/wiki_parser/elements.js");
-  reactHotLoader.register(Bold, "Bold", "/Users/hoangnam/Dev/Templates/ReactJS/src/wiki_parser/elements.js");
-  reactHotLoader.register(Italic, "Italic", "/Users/hoangnam/Dev/Templates/ReactJS/src/wiki_parser/elements.js");
-  reactHotLoader.register(Gallery, "Gallery", "/Users/hoangnam/Dev/Templates/ReactJS/src/wiki_parser/elements.js");
-  reactHotLoader.register(Link, "Link", "/Users/hoangnam/Dev/Templates/ReactJS/src/wiki_parser/elements.js");
-  reactHotLoader.register(ExternalLink, "ExternalLink", "/Users/hoangnam/Dev/Templates/ReactJS/src/wiki_parser/elements.js");
-  reactHotLoader.register(Heading1, "Heading1", "/Users/hoangnam/Dev/Templates/ReactJS/src/wiki_parser/elements.js");
-  reactHotLoader.register(Heading2, "Heading2", "/Users/hoangnam/Dev/Templates/ReactJS/src/wiki_parser/elements.js");
-  reactHotLoader.register(Heading3, "Heading3", "/Users/hoangnam/Dev/Templates/ReactJS/src/wiki_parser/elements.js");
-  reactHotLoader.register(Heading4, "Heading4", "/Users/hoangnam/Dev/Templates/ReactJS/src/wiki_parser/elements.js");
-  reactHotLoader.register(Heading5, "Heading5", "/Users/hoangnam/Dev/Templates/ReactJS/src/wiki_parser/elements.js");
-  reactHotLoader.register(Heading6, "Heading6", "/Users/hoangnam/Dev/Templates/ReactJS/src/wiki_parser/elements.js");
-  reactHotLoader.register(Reference, "Reference", "/Users/hoangnam/Dev/Templates/ReactJS/src/wiki_parser/elements.js");
-  reactHotLoader.register(Template, "Template", "/Users/hoangnam/Dev/Templates/ReactJS/src/wiki_parser/elements.js");
-  reactHotLoader.register(BlockQuote, "BlockQuote", "/Users/hoangnam/Dev/Templates/ReactJS/src/wiki_parser/elements.js");
-  reactHotLoader.register(PairPipe, "PairPipe", "/Users/hoangnam/Dev/Templates/ReactJS/src/wiki_parser/elements.js");
-  reactHotLoader.register(Global, "Global", "/Users/hoangnam/Dev/Templates/ReactJS/src/wiki_parser/elements.js");
+  reactHotLoader.register(Comment, "Comment", "/Users/hoangnam/Dev/Templates/ReactJS/src/parser/elements.js");
+  reactHotLoader.register(HightLight, "HightLight", "/Users/hoangnam/Dev/Templates/ReactJS/src/parser/elements.js");
+  reactHotLoader.register(Code, "Code", "/Users/hoangnam/Dev/Templates/ReactJS/src/parser/elements.js");
+  reactHotLoader.register(Break, "Break", "/Users/hoangnam/Dev/Templates/ReactJS/src/parser/elements.js");
+  reactHotLoader.register(BoldItalic, "BoldItalic", "/Users/hoangnam/Dev/Templates/ReactJS/src/parser/elements.js");
+  reactHotLoader.register(Bold, "Bold", "/Users/hoangnam/Dev/Templates/ReactJS/src/parser/elements.js");
+  reactHotLoader.register(Italic, "Italic", "/Users/hoangnam/Dev/Templates/ReactJS/src/parser/elements.js");
+  reactHotLoader.register(Gallery, "Gallery", "/Users/hoangnam/Dev/Templates/ReactJS/src/parser/elements.js");
+  reactHotLoader.register(Link, "Link", "/Users/hoangnam/Dev/Templates/ReactJS/src/parser/elements.js");
+  reactHotLoader.register(ExternalLink, "ExternalLink", "/Users/hoangnam/Dev/Templates/ReactJS/src/parser/elements.js");
+  reactHotLoader.register(Heading1, "Heading1", "/Users/hoangnam/Dev/Templates/ReactJS/src/parser/elements.js");
+  reactHotLoader.register(Heading2, "Heading2", "/Users/hoangnam/Dev/Templates/ReactJS/src/parser/elements.js");
+  reactHotLoader.register(Heading3, "Heading3", "/Users/hoangnam/Dev/Templates/ReactJS/src/parser/elements.js");
+  reactHotLoader.register(Heading4, "Heading4", "/Users/hoangnam/Dev/Templates/ReactJS/src/parser/elements.js");
+  reactHotLoader.register(Heading5, "Heading5", "/Users/hoangnam/Dev/Templates/ReactJS/src/parser/elements.js");
+  reactHotLoader.register(Heading6, "Heading6", "/Users/hoangnam/Dev/Templates/ReactJS/src/parser/elements.js");
+  reactHotLoader.register(Reference, "Reference", "/Users/hoangnam/Dev/Templates/ReactJS/src/parser/elements.js");
+  reactHotLoader.register(Template, "Template", "/Users/hoangnam/Dev/Templates/ReactJS/src/parser/elements.js");
+  reactHotLoader.register(BlockQuote, "BlockQuote", "/Users/hoangnam/Dev/Templates/ReactJS/src/parser/elements.js");
+  reactHotLoader.register(PairPipe, "PairPipe", "/Users/hoangnam/Dev/Templates/ReactJS/src/parser/elements.js");
+  reactHotLoader.register(Global, "Global", "/Users/hoangnam/Dev/Templates/ReactJS/src/parser/elements.js");
 })();
 
 ;
@@ -908,11 +895,11 @@ var clean = function clean(obj) {
     return;
   }
 
-  reactHotLoader.register(tasteStr, "tasteStr", "/Users/hoangnam/Dev/Templates/ReactJS/src/wiki_parser/utils.js");
-  reactHotLoader.register(capitalizeFirst, "capitalizeFirst", "/Users/hoangnam/Dev/Templates/ReactJS/src/wiki_parser/utils.js");
-  reactHotLoader.register(capitalize, "capitalize", "/Users/hoangnam/Dev/Templates/ReactJS/src/wiki_parser/utils.js");
-  reactHotLoader.register(trimQuote, "trimQuote", "/Users/hoangnam/Dev/Templates/ReactJS/src/wiki_parser/utils.js");
-  reactHotLoader.register(clean, "clean", "/Users/hoangnam/Dev/Templates/ReactJS/src/wiki_parser/utils.js");
+  reactHotLoader.register(tasteStr, "tasteStr", "/Users/hoangnam/Dev/Templates/ReactJS/src/parser/utils.js");
+  reactHotLoader.register(capitalizeFirst, "capitalizeFirst", "/Users/hoangnam/Dev/Templates/ReactJS/src/parser/utils.js");
+  reactHotLoader.register(capitalize, "capitalize", "/Users/hoangnam/Dev/Templates/ReactJS/src/parser/utils.js");
+  reactHotLoader.register(trimQuote, "trimQuote", "/Users/hoangnam/Dev/Templates/ReactJS/src/parser/utils.js");
+  reactHotLoader.register(clean, "clean", "/Users/hoangnam/Dev/Templates/ReactJS/src/parser/utils.js");
 })();
 
 ;
@@ -951,7 +938,6 @@ var __signature__ = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoader
 
 
 var App = function App() {
-  console.log("[App] Render");
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Menu__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__[/* Switch */ "d"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__[/* Route */ "b"], {
     exact: true,
     path: "/"
@@ -973,8 +959,8 @@ var _default = App;
     return;
   }
 
-  reactHotLoader.register(App, "App", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/WikiApp/index.js");
-  reactHotLoader.register(_default, "default", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/WikiApp/index.js");
+  reactHotLoader.register(App, "App", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/App/index.js");
+  reactHotLoader.register(_default, "default", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/App/index.js");
 })();
 
 ;
@@ -1029,7 +1015,7 @@ var Content = function Content(_ref) {
       key: Object(uuid__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(),
       props: element
     });
-  }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_spinners__WEBPACK_IMPORTED_MODULE_3__["GridLoader"], {
+  }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_spinners__WEBPACK_IMPORTED_MODULE_3__["HashLoader"], {
     css: override,
     color: getComputedStyle(document.documentElement).getPropertyValue("--text-color")
   }));
@@ -1046,9 +1032,9 @@ var _default = Content;
     return;
   }
 
-  reactHotLoader.register(override, "override", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/WikiApp/Content/index.js");
-  reactHotLoader.register(Content, "Content", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/WikiApp/Content/index.js");
-  reactHotLoader.register(_default, "default", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/WikiApp/Content/index.js");
+  reactHotLoader.register(override, "override", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/Content/index.js");
+  reactHotLoader.register(Content, "Content", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/Content/index.js");
+  reactHotLoader.register(_default, "default", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/Content/index.js");
 })();
 
 ;
@@ -1102,6 +1088,8 @@ var _default = Content;
 /* harmony import */ var prismjs_plugins_show_language_prism_show_language__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(prismjs_plugins_show_language_prism_show_language__WEBPACK_IMPORTED_MODULE_17__);
 /* harmony import */ var prismjs_themes_prism_okaidia_css__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(188);
 /* harmony import */ var prismjs_themes_prism_okaidia_css__WEBPACK_IMPORTED_MODULE_18___default = /*#__PURE__*/__webpack_require__.n(prismjs_themes_prism_okaidia_css__WEBPACK_IMPORTED_MODULE_18__);
+/* harmony import */ var _style_sass__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(189);
+/* harmony import */ var _style_sass__WEBPACK_IMPORTED_MODULE_19___default = /*#__PURE__*/__webpack_require__.n(_style_sass__WEBPACK_IMPORTED_MODULE_19__);
 (function () {
   var enterModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.enterModule : undefined;
   enterModule && enterModule(module);
@@ -1117,7 +1105,7 @@ var __signature__ = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoader
 
 
 
- // import "prismjs/themes/prism-tomorrow.css";
+
 
 
 
@@ -1411,13 +1399,13 @@ __signature__(Element, "useContext{valueImages}");
     return;
   }
 
-  reactHotLoader.register(Text, "Text", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/WikiApp/Elements/index.js");
-  reactHotLoader.register(Heading, "Heading", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/WikiApp/Elements/index.js");
-  reactHotLoader.register(WikiLink, "WikiLink", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/WikiApp/Elements/index.js");
-  reactHotLoader.register(Template, "Template", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/WikiApp/Elements/index.js");
-  reactHotLoader.register(Image, "Image", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/WikiApp/Elements/index.js");
-  reactHotLoader.register(HightLight, "HightLight", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/WikiApp/Elements/index.js");
-  reactHotLoader.register(Element, "Element", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/WikiApp/Elements/index.js");
+  reactHotLoader.register(Text, "Text", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/Elements/index.js");
+  reactHotLoader.register(Heading, "Heading", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/Elements/index.js");
+  reactHotLoader.register(WikiLink, "WikiLink", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/Elements/index.js");
+  reactHotLoader.register(Template, "Template", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/Elements/index.js");
+  reactHotLoader.register(Image, "Image", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/Elements/index.js");
+  reactHotLoader.register(HightLight, "HightLight", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/Elements/index.js");
+  reactHotLoader.register(Element, "Element", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/Elements/index.js");
 })();
 
 ;
@@ -1574,10 +1562,10 @@ var _default = Tooltip;
     return;
   }
 
-  reactHotLoader.register(extractSummary, "extractSummary", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/WikiApp/Tooltip/index.js");
-  reactHotLoader.register(override, "override", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/WikiApp/Tooltip/index.js");
-  reactHotLoader.register(Tooltip, "Tooltip", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/WikiApp/Tooltip/index.js");
-  reactHotLoader.register(_default, "default", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/WikiApp/Tooltip/index.js");
+  reactHotLoader.register(extractSummary, "extractSummary", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/Tooltip/index.js");
+  reactHotLoader.register(override, "override", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/Tooltip/index.js");
+  reactHotLoader.register(Tooltip, "Tooltip", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/Tooltip/index.js");
+  reactHotLoader.register(_default, "default", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/Tooltip/index.js");
 })();
 
 ;
@@ -1684,11 +1672,6 @@ var __signature__ = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoader
 
  // var convert = require("convert-units");
 
-var UNITS = convert_units__WEBPACK_IMPORTED_MODULE_9___default()().list();
-var ABBR_UNITS = convert_units__WEBPACK_IMPORTED_MODULE_9___default()().list().map(function (unit) {
-  return unit.abbr;
-});
-
 var createTextElement = function createTextElement(text) {
   return {
     elementName: "Text",
@@ -1735,7 +1718,11 @@ var CiteParser = function CiteParser(plain) {
 };
 
 var ConvertParser = function ConvertParser(plain) {
-  // console.log(plain);
+  var UNITS = convert_units__WEBPACK_IMPORTED_MODULE_9___default()().list();
+  var ABBR_UNITS = convert_units__WEBPACK_IMPORTED_MODULE_9___default()().list().map(function (unit) {
+    return unit.abbr;
+  });
+
   var toMetric = function toMetric(fromUnit) {
     var res = null;
 
@@ -2550,24 +2537,22 @@ var main = function main(str, opts) {
     return;
   }
 
-  reactHotLoader.register(UNITS, "UNITS", "/Users/hoangnam/Dev/Templates/ReactJS/src/wiki_parser/index.js");
-  reactHotLoader.register(ABBR_UNITS, "ABBR_UNITS", "/Users/hoangnam/Dev/Templates/ReactJS/src/wiki_parser/index.js");
-  reactHotLoader.register(createTextElement, "createTextElement", "/Users/hoangnam/Dev/Templates/ReactJS/src/wiki_parser/index.js");
-  reactHotLoader.register(CiteParser, "CiteParser", "/Users/hoangnam/Dev/Templates/ReactJS/src/wiki_parser/index.js");
-  reactHotLoader.register(ConvertParser, "ConvertParser", "/Users/hoangnam/Dev/Templates/ReactJS/src/wiki_parser/index.js");
-  reactHotLoader.register(ReferenceParser, "ReferenceParser", "/Users/hoangnam/Dev/Templates/ReactJS/src/wiki_parser/index.js");
-  reactHotLoader.register(FootnoteParser, "FootnoteParser", "/Users/hoangnam/Dev/Templates/ReactJS/src/wiki_parser/index.js");
-  reactHotLoader.register(GalleryParser, "GalleryParser", "/Users/hoangnam/Dev/Templates/ReactJS/src/wiki_parser/index.js");
-  reactHotLoader.register(parsePairPipe, "parsePairPipe", "/Users/hoangnam/Dev/Templates/ReactJS/src/wiki_parser/index.js");
-  reactHotLoader.register(MultipleImageParser, "MultipleImageParser", "/Users/hoangnam/Dev/Templates/ReactJS/src/wiki_parser/index.js");
-  reactHotLoader.register(InfoboxParser, "InfoboxParser", "/Users/hoangnam/Dev/Templates/ReactJS/src/wiki_parser/index.js");
-  reactHotLoader.register(InternalLinkParser, "InternalLinkParser", "/Users/hoangnam/Dev/Templates/ReactJS/src/wiki_parser/index.js");
-  reactHotLoader.register(TemplateParser, "TemplateParser", "/Users/hoangnam/Dev/Templates/ReactJS/src/wiki_parser/index.js");
-  reactHotLoader.register(ExternalLinkParer, "ExternalLinkParer", "/Users/hoangnam/Dev/Templates/ReactJS/src/wiki_parser/index.js");
-  reactHotLoader.register(HightLightParser, "HightLightParser", "/Users/hoangnam/Dev/Templates/ReactJS/src/wiki_parser/index.js");
-  reactHotLoader.register(internalParse, "internalParse", "/Users/hoangnam/Dev/Templates/ReactJS/src/wiki_parser/index.js");
-  reactHotLoader.register(parse, "parse", "/Users/hoangnam/Dev/Templates/ReactJS/src/wiki_parser/index.js");
-  reactHotLoader.register(main, "main", "/Users/hoangnam/Dev/Templates/ReactJS/src/wiki_parser/index.js");
+  reactHotLoader.register(createTextElement, "createTextElement", "/Users/hoangnam/Dev/Templates/ReactJS/src/parser/index.js");
+  reactHotLoader.register(CiteParser, "CiteParser", "/Users/hoangnam/Dev/Templates/ReactJS/src/parser/index.js");
+  reactHotLoader.register(ConvertParser, "ConvertParser", "/Users/hoangnam/Dev/Templates/ReactJS/src/parser/index.js");
+  reactHotLoader.register(ReferenceParser, "ReferenceParser", "/Users/hoangnam/Dev/Templates/ReactJS/src/parser/index.js");
+  reactHotLoader.register(FootnoteParser, "FootnoteParser", "/Users/hoangnam/Dev/Templates/ReactJS/src/parser/index.js");
+  reactHotLoader.register(GalleryParser, "GalleryParser", "/Users/hoangnam/Dev/Templates/ReactJS/src/parser/index.js");
+  reactHotLoader.register(parsePairPipe, "parsePairPipe", "/Users/hoangnam/Dev/Templates/ReactJS/src/parser/index.js");
+  reactHotLoader.register(MultipleImageParser, "MultipleImageParser", "/Users/hoangnam/Dev/Templates/ReactJS/src/parser/index.js");
+  reactHotLoader.register(InfoboxParser, "InfoboxParser", "/Users/hoangnam/Dev/Templates/ReactJS/src/parser/index.js");
+  reactHotLoader.register(InternalLinkParser, "InternalLinkParser", "/Users/hoangnam/Dev/Templates/ReactJS/src/parser/index.js");
+  reactHotLoader.register(TemplateParser, "TemplateParser", "/Users/hoangnam/Dev/Templates/ReactJS/src/parser/index.js");
+  reactHotLoader.register(ExternalLinkParer, "ExternalLinkParer", "/Users/hoangnam/Dev/Templates/ReactJS/src/parser/index.js");
+  reactHotLoader.register(HightLightParser, "HightLightParser", "/Users/hoangnam/Dev/Templates/ReactJS/src/parser/index.js");
+  reactHotLoader.register(internalParse, "internalParse", "/Users/hoangnam/Dev/Templates/ReactJS/src/parser/index.js");
+  reactHotLoader.register(parse, "parse", "/Users/hoangnam/Dev/Templates/ReactJS/src/parser/index.js");
+  reactHotLoader.register(main, "main", "/Users/hoangnam/Dev/Templates/ReactJS/src/parser/index.js");
 })();
 
 ;
@@ -2674,8 +2659,8 @@ var analyseHeadings = function analyseHeadings(headings) {
     return;
   }
 
-  reactHotLoader.register(extractHeadingText, "extractHeadingText", "/Users/hoangnam/Dev/Templates/ReactJS/src/wiki_parser/analyser.js");
-  reactHotLoader.register(analyseHeadings, "analyseHeadings", "/Users/hoangnam/Dev/Templates/ReactJS/src/wiki_parser/analyser.js");
+  reactHotLoader.register(extractHeadingText, "extractHeadingText", "/Users/hoangnam/Dev/Templates/ReactJS/src/parser/analyser.js");
+  reactHotLoader.register(analyseHeadings, "analyseHeadings", "/Users/hoangnam/Dev/Templates/ReactJS/src/parser/analyser.js");
 })();
 
 ;
@@ -2696,7 +2681,7 @@ var analyseHeadings = function analyseHeadings(headings) {
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _asset_images_left_svg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(72);
 /* harmony import */ var _asset_images_right_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(73);
-/* harmony import */ var _style_sass__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(193);
+/* harmony import */ var _style_sass__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(194);
 /* harmony import */ var _style_sass__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_style_sass__WEBPACK_IMPORTED_MODULE_3__);
 (function () {
   var enterModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.enterModule : undefined;
@@ -2803,8 +2788,8 @@ var _default = Navigation;
     return;
   }
 
-  reactHotLoader.register(Navigation, "Navigation", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/WikiApp/Navigation/index.js");
-  reactHotLoader.register(_default, "default", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/WikiApp/Navigation/index.js");
+  reactHotLoader.register(Navigation, "Navigation", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/Navigation/index.js");
+  reactHotLoader.register(_default, "default", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/Navigation/index.js");
 })();
 
 ;
@@ -2885,8 +2870,6 @@ function SvgRight(props) {
 /* harmony import */ var _SearchBar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(78);
 /* harmony import */ var _style_sass__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(200);
 /* harmony import */ var _style_sass__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_style_sass__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(201);
-/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_style_css__WEBPACK_IMPORTED_MODULE_4__);
 (function () {
   var enterModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.enterModule : undefined;
   enterModule && enterModule(module);
@@ -2895,7 +2878,6 @@ function SvgRight(props) {
 var __signature__ = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal["default"].signature : function (a) {
   return a;
 };
-
 
 
 
@@ -2962,8 +2944,8 @@ var _default = Menu;
     return;
   }
 
-  reactHotLoader.register(Menu, "Menu", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/WikiApp/Menu/index.js");
-  reactHotLoader.register(_default, "default", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/WikiApp/Menu/index.js");
+  reactHotLoader.register(Menu, "Menu", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/Menu/index.js");
+  reactHotLoader.register(_default, "default", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/Menu/index.js");
 })();
 
 ;
@@ -3177,10 +3159,10 @@ var _default = SeachBar;
     return;
   }
 
-  reactHotLoader.register(SearchItem, "SearchItem", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/WikiApp/SearchBar/index.js");
-  reactHotLoader.register(SearchResults, "SearchResults", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/WikiApp/SearchBar/index.js");
-  reactHotLoader.register(SeachBar, "SeachBar", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/WikiApp/SearchBar/index.js");
-  reactHotLoader.register(_default, "default", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/WikiApp/SearchBar/index.js");
+  reactHotLoader.register(SearchItem, "SearchItem", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/SearchBar/index.js");
+  reactHotLoader.register(SearchResults, "SearchResults", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/SearchBar/index.js");
+  reactHotLoader.register(SeachBar, "SeachBar", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/SearchBar/index.js");
+  reactHotLoader.register(_default, "default", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/SearchBar/index.js");
 })();
 
 ;
@@ -3231,7 +3213,7 @@ function SvgSearch(props) {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return searchParams; });
 /* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(27);
 /* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wiki_parser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(64);
+/* harmony import */ var _parser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(64);
 
 
 (function () {
@@ -3251,7 +3233,7 @@ var __signature__ = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoader
 
 var parseWikiText = function parseWikiText(response) {
   console.log("[PARSE] Begin");
-  var res = Object(_wiki_parser__WEBPACK_IMPORTED_MODULE_1__[/* main */ "a"])(response);
+  var res = Object(_parser__WEBPACK_IMPORTED_MODULE_1__[/* main */ "a"])(response);
   console.log("[PARSE] End");
   return res;
 };
@@ -3364,7 +3346,7 @@ var searchParams = function searchParams(string) {
 "use strict";
 /* WEBPACK VAR INJECTION */(function(module) {/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _style_sass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(202);
+/* harmony import */ var _style_sass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(201);
 /* harmony import */ var _style_sass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_style_sass__WEBPACK_IMPORTED_MODULE_1__);
 (function () {
   var enterModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.enterModule : undefined;
@@ -3427,8 +3409,8 @@ var _default = Footer;
     return;
   }
 
-  reactHotLoader.register(Footer, "Footer", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/WikiApp/Footer/index.js");
-  reactHotLoader.register(_default, "default", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/WikiApp/Footer/index.js");
+  reactHotLoader.register(Footer, "Footer", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/Footer/index.js");
+  reactHotLoader.register(_default, "default", "/Users/hoangnam/Dev/Templates/ReactJS/src/components/Footer/index.js");
 })();
 
 ;
@@ -3446,17 +3428,17 @@ var _default = Footer;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_WikiApp_normalize_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(82);
-/* harmony import */ var _components_WikiApp_normalize_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_components_WikiApp_normalize_css__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _components_WikiApp_theme_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(83);
-/* harmony import */ var _components_WikiApp_theme_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_components_WikiApp_theme_scss__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _components_WikiApp_style_sass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(84);
-/* harmony import */ var _components_WikiApp_style_sass__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_components_WikiApp_style_sass__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _styles_normalize_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(82);
+/* harmony import */ var _styles_normalize_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_styles_normalize_css__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _styles_theme_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(83);
+/* harmony import */ var _styles_theme_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_styles_theme_scss__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _styles_style_sass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(84);
+/* harmony import */ var _styles_style_sass__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_styles_style_sass__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(59);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(0);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _components_WikiApp__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(60);
+/* harmony import */ var _components_App__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(60);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(13);
 var __signature__ = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal["default"].signature : function (a) {
   return a;
@@ -3469,7 +3451,7 @@ var __signature__ = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoader
 
 
 
-react_dom__WEBPACK_IMPORTED_MODULE_3___default.a.render(react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__[/* BrowserRouter */ "a"], null, react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(_components_WikiApp__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"], null)), document.getElementById("wikiapp"));
+react_dom__WEBPACK_IMPORTED_MODULE_3___default.a.render(react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__[/* BrowserRouter */ "a"], null, react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(_components_App__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"], null)), document.getElementById("wikiapp"));
 
 /***/ }),
 

@@ -8,11 +8,9 @@ import {
 } from "./../../hooks/useWiki.js";
 import { SkeletonTheme } from "react-loading-skeleton";
 import { useParams } from "react-router-dom";
-// import { BarLoader as Loader } from "react-spinners";
-
 import "lazysizes";
 import "./style.sass";
-import "./style.css";
+
 export const ImagesContext = React.createContext(null);
 
 const toCapitalize = word =>
@@ -27,9 +25,9 @@ const Article = ({ force_title }) => {
   const { pageContent } = usePageContent(title, setLoading);
 
   React.useEffect(() => {
-    document.title = title
-      .replace(/_/g, " ")
-      .replace(/\w+/g, word => toCapitalize(word));
+    document.title =
+      "WikiClonia | " +
+      title.replace(/_/g, " ").replace(/\w+/g, word => toCapitalize(word));
     setLoading(true);
   }, [title]);
 

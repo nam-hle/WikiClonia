@@ -1,10 +1,5 @@
-// import { main, Global } from "./index.js";
 import { main, clean } from "./";
 import { new_york, supper } from "./test_input";
-// let m = require("./index.js");
-
-// let main = m.main;
-// let clean = m.clean;
 
 const simpleTest = (description, input, expected) => {
   let actual = main(input).children;

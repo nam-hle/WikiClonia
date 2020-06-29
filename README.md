@@ -7,7 +7,7 @@
   <a href="https://coveralls.io/github/nam288/nam288.github.io">
     <img src="https://coveralls.io/repos/github/nam288/nam288.github.io/badge.svg" alt="Coverage Status"/>
   </a>
-  <img src="https://user-images.githubusercontent.com/28835226/85874170-6a394080-b7fc-11ea-86c7-f82ee6868609.png" alt="Powered by React" />
+  <img src="https://img.shields.io/badge/made%20with-React-62DAFB.svg" alt="Made with React"/>
   <a href="https://github.com/prettier/prettier">
     <img src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=round-square" alt="code style: prettier"/>
   </a>
@@ -27,13 +27,11 @@
 
 ---
 
-
-
 <!-- ABOUT THE PROJECT -->
 
 ## About The Project
 
-> ***Wikipedia*** is a multilingual online encyclopedia created and maintained as an open collaboration project by a community of volunteer editors using a wiki-based editing system. It is the largest and most popular general reference work on the World Wide Web. - Wikipedia
+> **_Wikipedia_** is a multilingual online encyclopedia created and maintained as an open collaboration project by a community of volunteer editors using a wiki-based editing system. It is the largest and most popular general reference work on the World Wide Web. - Wikipedia
 
 To make it more readable and useful, I decided to redesign it completely with the knowledge I learned when use React.
 
@@ -57,7 +55,7 @@ To make it more readable and useful, I decided to redesign it completely with th
 ## How it works
 
 1. Fetch [Wikitext](https://en.wikipedia.org/wiki/Help:Wikitext) format (unparsed) from [MediaWiki API](https://www.mediawiki.org/wiki/API:Main_page).
-2. Feed content into self-implemented [Parser](https://develop).
+2. Feed content into self-implemented [Wikitext Parser](https://develop).
 3. Use awesome [React](https://reactjs.org) library to render real web pages.
 
 ## Installation & Usage

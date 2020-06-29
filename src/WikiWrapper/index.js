@@ -1,4 +1,4 @@
-import { main } from "./../wiki_parser";
+import { main } from "./../parser";
 
 const parseWikiText = response => {
   console.log("[PARSE] Begin");

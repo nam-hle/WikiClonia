@@ -1,7 +1,7 @@
 import React from "react";
 import { Element } from "./../Elements";
 import { v4 as uuidv4 } from "uuid";
-import { GridLoader as Loader } from "react-spinners";
+import { HashLoader as Loader } from "react-spinners";
 import { css } from "@emotion/core";
 const override = css`
   margin: 20vh auto;

@@ -1,11 +1,10 @@
 import React, { Fragment } from "react";
 import { ImagesContext } from "./../Article";
-// import { Link, Switch, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Tooltip from "./../Tooltip";
 import { v4 as uuidv4 } from "uuid";
 import Prism from "prismjs";
-// import "prismjs/themes/prism-tomorrow.css";
+import "./style.sass";
 
 export const Text = ({ text }) => <span>{text.replace("\n\n", "\n")}</span>;
 

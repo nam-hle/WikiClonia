@@ -1,5 +1,5 @@
-import { main } from "./../../wiki_parser";
-import { new_york } from "./../../wiki_parser/test_input";
+import { main } from "./../../parser";
+import { new_york } from "./../../parser/test_input";
 import renderer from "react-test-renderer";
 import { Element } from "./";
 import React from "react";

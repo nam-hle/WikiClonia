@@ -9,12 +9,6 @@ import {
   clean
 } from "./utils";
 
-// var convert = require("convert-units");
-const UNITS = convert().list();
-const ABBR_UNITS = convert()
-  .list()
-  .map(unit => unit.abbr);
-
 const createTextElement = text => ({ elementName: "Text", text });
 
 const CiteParser = plain => {
@@ -40,7 +34,10 @@ const CiteParser = plain => {
 };
 
 const ConvertParser = plain => {
-  // console.log(plain);
+  const UNITS = convert().list();
+  const ABBR_UNITS = convert()
+    .list()
+    .map(unit => unit.abbr);
   const toMetric = fromUnit => {
     let res = null;
     try {
