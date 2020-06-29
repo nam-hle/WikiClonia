@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import SearchIcon from "./../../../asset/images/search.svg";
+import SearchIcon from "./../../asset/images/search.svg";
 import "./style.sass";
 import { v4 as uuidv4 } from "uuid";
-import { buildURL, searchParams } from "./../../../WikiWrapper";
+import { buildURL, searchParams } from "./../../WikiWrapper";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import axios from "axios";

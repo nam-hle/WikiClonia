@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
-import LeftButton from "./../../../asset/images/left.svg";
-import RightButton from "./../../../asset/images/right.svg";
+import LeftButton from "./../../asset/images/left.svg";
+import RightButton from "./../../asset/images/right.svg";
 import "./style.sass";
 
 const Navigation = ({ headings }) => {

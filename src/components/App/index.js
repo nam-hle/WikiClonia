@@ -1,11 +1,10 @@
 import React from "react";
-import Article from "./Article";
-import Menu from "./Menu";
-import Footer from "./Footer";
+import Article from "./../Article";
+import Menu from "./../Menu";
+import Footer from "./../Footer";
 import { Switch, Route, Redirect } from "react-router-dom";
 
 const App = () => {
-  console.log("[App] Render");
   return (
     <React.Fragment>
       <Menu />

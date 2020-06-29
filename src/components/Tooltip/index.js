@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { buildURL, summaryParams } from "./../../../WikiWrapper";
+import { buildURL, summaryParams } from "./../../WikiWrapper";
 import { BarLoader as Loader } from "react-spinners";
 import axios from "axios";
 import { css } from "@emotion/core";

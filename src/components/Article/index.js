@@ -5,7 +5,7 @@ import {
   usePageContent,
   useImages,
   useMetaData
-} from "./../../../hooks/useWiki.js";
+} from "./../../hooks/useWiki.js";
 import { SkeletonTheme } from "react-loading-skeleton";
 import { useParams } from "react-router-dom";
 // import { BarLoader as Loader } from "react-spinners";

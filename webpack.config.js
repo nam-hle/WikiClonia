@@ -13,7 +13,7 @@ module.exports = (env, argv) => {
 
   return {
     entry: {
-      index: "./src/pages/wiki/index.js"
+      index: "./src/pages/articles/index.js"
     },
     output: {
       filename: "[name].bundle.js",
@@ -87,7 +87,7 @@ module.exports = (env, argv) => {
     plugins: [
       new HtmlWebpackPlugin({
         filename: "index.html",
-        template: "./src/pages/wiki/wiki.pug"
+        template: "./src/pages/articles/index.pug"
       }),
       require("autoprefixer"),
       new MiniCssExtractPlugin({
