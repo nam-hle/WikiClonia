@@ -1100,7 +1100,6 @@ var __signature__ = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoader
 };
 
 
- // import { Link, Switch, Route } from "react-router-dom";
 
 
 
@@ -1670,7 +1669,7 @@ var __signature__ = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoader
 
 
 
- // var convert = require("convert-units");
+
 
 var createTextElement = function createTextElement(text) {
   return {
