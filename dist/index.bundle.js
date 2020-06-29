@@ -1493,6 +1493,7 @@ var override =  true ? {
 } : undefined;
 
 var Tooltip = function Tooltip(props) {
+  var ref = react__WEBPACK_IMPORTED_MODULE_1___default.a.useRef(null);
   var url = props.url,
       children = props.children;
 
@@ -1507,7 +1508,7 @@ var Tooltip = function Tooltip(props) {
       setTitle = _useState4[1];
 
   var handleMouseIn = function handleMouseIn() {
-    return setShow(true);
+    setShow(true);
   };
 
   var handleMouseOut = function handleMouseOut() {
@@ -1546,6 +1547,7 @@ var Tooltip = function Tooltip(props) {
     onMouseOver: handleMouseIn,
     onMouseLeave: handleMouseOut
   }, show && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    ref: ref,
     className: "tooltip-content top"
   }, title ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", {
     style: {
@@ -1559,7 +1561,7 @@ var Tooltip = function Tooltip(props) {
   }), summary), react__WEBPACK_IMPORTED_MODULE_1___default.a.Children.toArray(children));
 };
 
-__signature__(Tooltip, "useState{[summary, setSummary](null)}\nuseState{[title, setTitle](null)}\nuseState{[show, setShow](false)}\nuseEffect{}");
+__signature__(Tooltip, "useRef{ref}\nuseState{[summary, setSummary](null)}\nuseState{[title, setTitle](null)}\nuseState{[show, setShow](false)}\nuseEffect{}");
 
 var _default = Tooltip;
 /* harmony default export */ __webpack_exports__["a"] = (_default);
