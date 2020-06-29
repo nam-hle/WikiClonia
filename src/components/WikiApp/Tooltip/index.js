@@ -27,10 +27,13 @@ const override = css`
 `;
 
 const Tooltip = props => {
+  const ref = React.useRef(null);
   const { url, children } = props;
   const [summary, setSummary] = useState(null);
   const [title, setTitle] = useState(null);
-  const handleMouseIn = () => setShow(true);
+  const handleMouseIn = () => {
+    setShow(true);
+  };
   const handleMouseOut = () => setShow(false);
   let [show, setShow] = useState(false);
 
@@ -57,7 +60,7 @@ const Tooltip = props => {
       onMouseLeave={handleMouseOut}
     >
       {show && (
-        <div className="tooltip-content top">
+        <div ref={ref} className="tooltip-content top">
           {title ? (
             <h3
               style={{ marginTop: 0, marginBottom: "5rem" }}
