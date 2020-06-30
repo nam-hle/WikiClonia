@@ -45,10 +45,8 @@
   font-style: normal
   color: var(--primary-color)
 
-@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none)
+@supports  (backdrop-filter: none)
   .searchbar__results
-    background-color: transparent
-    -webkit-backdrop-filter: blur(10px)
     backdrop-filter: blur(10px)
 
 @media all and (max-width: $mobile-brp)

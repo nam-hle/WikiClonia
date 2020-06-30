@@ -33,30 +33,35 @@ li
 
 pre
   background-color: #272822
-  padding: $space2 $space4
-  display: block
-  overflow-x: auto
+  clear: both
+  width: fit-content(100%)
   font-size: 0.7em
   position: relative
-  white-space: pre-wrap
-  & > code
+  word-break: normal
+  hyphens: none
+  overflow: hidden
+  code
+    padding: $space0 $space1 $space-1 $space2
+    white-space: pre
+    overflow-x: scroll
     display: block
+    word-break: normal
   span
-    white-space: pre-wrap
-    word-wrap: break-word
-    overflow-x: hidden
+    white-space: pre
+    word-break: normal
+    hyphens: none
+    overflow-wrap: break-word
   &:hover
     &:before
-      padding: $space-2 $space0
-      margin: $space-1
+      margin: $space-5
       border-radius: $space0
-      opacity: 0.9
-      background-color: slategray
       position: absolute
       content: attr(lang)
-      color: #f8f8f2
+      color: #ff8a00 !important
       top: 0
       right: 0
+      font-size: $size0
+      font-weight: 600
 
 
 button
