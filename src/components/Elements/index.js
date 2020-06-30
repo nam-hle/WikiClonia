@@ -20,7 +20,9 @@ const Heading = ({ className, id, text, level, indices }) => {
       <div ref={heading} className={className} id={id}>
         <div className="heading__index heading__tens">{tensIndexLevel}</div>
         <div className="heading__index heading__ones">{onesIndexLvel}</div>
-        <div className="heading__text">{text}</div>
+        <div className="heading__text" level={indexLevel}>
+          {text}
+        </div>
       </div>
     );
   }

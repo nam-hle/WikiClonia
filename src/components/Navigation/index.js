@@ -50,10 +50,7 @@ const Navigation = ({ headings }) => {
       }
     }
 
-    let body = document.body;
-    body.scrollTop =
-      heading.offsetTop -
-      document.getElementsByClassName("menu")[0].clientHeight;
+    document.body.scrollTop = heading.offsetTop;
   };
   return (
     <div className="navigation-wrapper">

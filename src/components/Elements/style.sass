@@ -40,6 +40,14 @@
   .heading__ones
     margin-right: $space5
 
+@media all and (max-width: $mobile-brp)
+  .heading__ones, .heading__tens
+    display: none
+  .heading__text::before
+    content: attr(level)
+    color: var(--primary-color)
+    margin-right: $space0
+
 .wiki-heading-2
   margin-top: 0.7em
   padding-left: $size1
@@ -110,13 +118,15 @@
       object-position: 50% 50%
 
 // MOBILE
-@media all and (max-width: $desktop-brp)
+@media all and (max-width: $mobile-brp)
 
   .wiki-img__container
-    display: flex
+    align-items: center
     max-width: unset
-    margin: $space0 auto
     clear: both
+  .wiki-img__caption
+    margin-top: $space0
+    text-align: center
 
   .fl-left, .fl-right
     float: none
