@@ -94,7 +94,7 @@ const SeachBar = () => {
   const onChangeHandler = e => setValue(e.target.value);
 
   return (
-    <div className="menu__search">
+    <div className="menu__search mobile-hidden">
       <div className="menu__search-icon">
         <SearchIcon />
       </div>

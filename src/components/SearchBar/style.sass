@@ -2,8 +2,8 @@
 
 .menu__search
   display: flex
+  width: 100%
   align-items: center
-  padding-left: $space0
 
 .menu__searchbar
   position: relative
@@ -26,9 +26,6 @@
   max-height: 50vh
   overflow-y: scroll
   background-color: var(--bg-color)
-
-.show
-  display: block
 
 .searchbar__item
   padding: $space2
@@ -53,7 +50,27 @@
 
 @media all and (max-width: $mobile-brp)
   .menu__search
-    justify-content: center
+    position: relative
     padding-left: 0
-  .menu__searchbar .menu__search-input
-    padding-left: $space0
+
+    .menu__search-icon
+      position: absolute
+      right: 0
+      top: 0
+      transform: translateY(-20%)
+  .menu__searchbar
+
+    position: initial
+    .menu__search-input
+      padding-left: 0
+    .searchbar__results
+      // background-color: var(--bg-color) !important
+      backdrop-filter: none
+      margin-top: $space-2
+      display: block
+      max-height: 30vh
+      position: initial
+      box-shadow: none
+      .searchbar__item
+        padding: 0
+        padding-bottom: $space-2
