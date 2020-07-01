@@ -21,7 +21,7 @@
   display: none
   top: calc(100% + #{$space2})
   position: absolute
-  box-shadow: 6px 6px 25px -3px var(--shadow-color)
+  box-shadow: 6px 6px 25px -3px var(--text-color)
   line-height: 1.7
   max-height: 50vh
   overflow-y: scroll
@@ -45,9 +45,11 @@
   font-style: normal
   color: var(--primary-color)
 
-@supports  (backdrop-filter: none)
+@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none)
   .searchbar__results
-    backdrop-filter: blur(10px)
+    -webkit-backdrop-filter: blur(10px)
+    backdrop-filter: blur(5px)
+
 
 @media all and (max-width: $mobile-brp)
   .menu__search
