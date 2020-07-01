@@ -635,7 +635,6 @@ const parse = (
     }),
     plain
   ];
-
   return res;
 };
 

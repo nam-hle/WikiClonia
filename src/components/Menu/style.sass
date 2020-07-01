@@ -64,6 +64,7 @@
   grid-area: source
 
 .menu__switch-theme-button
+  margin-left: $space2
   grid-area: switch
 
 .menu__sandwich-button
@@ -71,12 +72,14 @@
   display: none
 
 
-.mobile-hidden
-  display: none !important
+
 
 // MOBILE VIEW
 
 @media all and (max-width: $mobile-brp)
+  .mobile-hidden
+    display: none !important
+
   .menu
     grid-template-areas: "logo sandwich" "source source" "switch switch" "search search"
     grid-template-columns: 1fr 1fr
