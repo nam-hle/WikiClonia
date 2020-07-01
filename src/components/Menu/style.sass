@@ -8,12 +8,13 @@
 
 .menu
   display: grid
-  grid-template-columns: 1fr 4fr 1fr
+  grid-template-columns: 1fr 4fr max-content max-content
   grid-template-rows: 1fr
-  grid-template-areas: "logo search main"
+  grid-template-areas: "logo search source switch"
+  justify-items: center
   padding: 0 $main-margin
   min-height: 40px
-  // height: 100%
+  column-gap: $space2
   width: 100%
   font-family: "Menu", -apple-system, BlinkMacSystemFont
   color: var(--text-color)
@@ -30,70 +31,106 @@
     -webkit-backdrop-filter: blur(10px)
     backdrop-filter: blur(5px)
 
+.menu__button
+  width: max-content
+  padding: 0
+  color: var(--text-color)
+  &:hover
+    color: var(--primary-color)
+    path
+      fill: var(--primary-color)
+
 .menu__logo
   display: flex
   justify-content: center
   align-items: center
   grid-area: logo
-  .logo-wiki, .logo-icon
-    font-weight: 400
-    font-size: $size4
-    font-family: "Heading", -apple-system
-  .logo-pedia
-    font-size: $size3
-    font-weight: 100
-  .logo-icon
-    display: none
-
-.menu__main
-  margin-left: auto
-  display: flex
-  justify-content: space-around
-  align-items: center
-  grid-area: main
-  .menu__icon
-    display: none
-  .menu__button
-    width: max-content
-    padding: 0
-    padding-left: $space1
-    color: var(--text-color)
-    &:hover
-      color: var(--primary-color)
-      path
-        fill: var(--primary-color)
+.logo-wiki, .logo-W
+  font-weight: 400
+  font-size: $size4
+  font-family: "Heading", -apple-system
+.logo-clonia
+  font-family: monospace, monospace
+  font-size: $size4
+  font-weight: 100
+.logo-W
+  display: none
 
 .menu__search
   grid-area: search
+  justify-self: left
+
+.menu__view-source-button
+  grid-area: source
+
+.menu__switch-theme-button
+  grid-area: switch
+
+.menu__sandwich-button
+  grid-area: sandwich
+  display: none
+
+
+.mobile-hidden
+  display: none !important
 
 // MOBILE VIEW
 
 @media all and (max-width: $mobile-brp)
   .menu
-    grid-template-areas: "main logo search"
+    grid-template-areas: "logo sandwich" "source source" "switch switch" "search search"
+    grid-template-columns: 1fr 1fr
+    grid-template-rows: repeat(4, min-content)
+    padding: 0 5%
+    background-color: var(--bg-color)
+    align-items: center
+    justify-content: center
+    justify-items: left
+    // row-gap: $space1
 
-  .menu__logo
-    .logo-wiki, .logo-pedia
-      display: none
-    .logo-icon
-      display: block
-      font-size: $size3
-  .menu
     svg
       transform: scale(0.5)
 
+  .logo-wiki, .logo-clonia
+    display: none
+
+
+  .logo-W, .menu__sandwich-button
+    display: block
+    margin: 0
+
+  .menu__sandwich-button
+    justify-self: right
+    margin-right: $space-1
+
+  .logo-W
+    justify-self: left
+    margin-left: $space-2
+
+  .menu__view-source-button, .menu__switch-theme-button, .menu__search
+    justify-self: left
+    margin-top: $space1
+
+  .menu__switch-theme-button, .menu__search
+    // margin-top: $space-1
+
+  .menu__search
+    padding: 0
+
+
+
 // LANDSCAPE VIEW
 
-@media all and (max-width: $desktop-brp)
-  .menu
-    padding: 0 1%
-    grid-template-areas: "logo search main"
+// @media all and (max-width: $desktop-brp)
+//   .menu
+//     padding: 0 1%
+//     grid-template-areas: "logo search main"
 
-  .menu__main
-    margin: 0
-    .menu__icon
-      padding: 0
-    .menu__button
-      display: none
-    .menu__icon
-      display: block
+//   .menu__main
+//     margin: 0
+//     .menu__icon
+//       padding: 0
+//     .menu__button
+//       display: none
+//     .menu__icon
+//       display: block

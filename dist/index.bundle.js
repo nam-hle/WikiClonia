@@ -2927,8 +2927,22 @@ var Menu = function Menu() {
     };
 
     toggle === null || toggle === void 0 ? void 0 : toggle.addEventListener("click", switcher);
+
+    var reveal = function reveal() {
+      var classes = ["menu__search", "menu__view-source-button", "menu__switch-theme-button"];
+
+      for (var _i = 0, _classes = classes; _i < _classes.length; _i++) {
+        var className = _classes[_i];
+        var el = document.getElementsByClassName(className)[0];
+        el.classList.toggle("mobile-hidden");
+      }
+    };
+
+    var sandwich = document.getElementsByClassName("menu__sandwich-button")[0];
+    sandwich.addEventListener("click", reveal);
     return function () {
-      return toggle.removeEventListener("click", switcher);
+      toggle.removeEventListener("click", switcher);
+      sandwich.removeEventListener("click", reveal);
     };
   }, []);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2938,23 +2952,19 @@ var Menu = function Menu() {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "menu__logo"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "logo-wiki"
+    className: "menu__logo--large logo-wiki"
   }, "Wiki"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "logo-pedia"
+    className: "menu__logo--large logo-clonia"
   }, "Clonia"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "logo-icon"
-  }, "W")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SearchBar__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"], {
-    className: "menu__search"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "menu__main"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    className: "menu__button"
+    className: "menu__logo--small logo-W"
+  }, "W")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SearchBar__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "menu__button menu__view-source-button mobile-hidden"
   }, "VIEW SOURCE"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    className: "menu__button",
+    className: "menu__button menu__switch-theme-button mobile-hidden",
     id: "theme-switch"
   }, "LIGHT MODE"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    className: "menu__button menu__icon"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_asset_images_menu_svg__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"], null)))));
+    className: "menu__button  menu__sandwich-button"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_asset_images_menu_svg__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"], null))));
 };
 
 __signature__(Menu, "useEffect{}");
@@ -3152,7 +3162,7 @@ var SeachBar = function SeachBar() {
   };
 
   return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "menu__search"
+    className: "menu__search mobile-hidden"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "menu__search-icon"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_asset_images_search_svg__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"], null)), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {

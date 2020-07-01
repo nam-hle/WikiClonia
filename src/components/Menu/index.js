@@ -20,29 +20,51 @@ const Menu = () => {
     };
     toggle?.addEventListener("click", switcher);
 
-    return () => toggle.removeEventListener("click", switcher);
+    const reveal = () => {
+      const classes = [
+        "menu__search",
+        "menu__view-source-button",
+        "menu__switch-theme-button"
+      ];
+      for (const className of classes) {
+        let el = document.getElementsByClassName(className)[0];
+        el.classList.toggle("mobile-hidden");
+      }
+    };
+
+    let sandwich = document.getElementsByClassName("menu__sandwich-button")[0];
+    sandwich.addEventListener("click", reveal);
+    return () => {
+      toggle.removeEventListener("click", switcher);
+      sandwich.removeEventListener("click", reveal);
+    };
   }, []);
 
   return (
     <div className="menu-wrapper">
       <div className="menu">
         <div className="menu__logo">
-          <span className="logo-wiki">Wiki</span>
-          <span className="logo-pedia">Clonia</span>
-          <span className="logo-icon">W</span>
+          <span className="menu__logo--large logo-wiki">Wiki</span>
+          <span className="menu__logo--large logo-clonia">Clonia</span>
+          <span className="menu__logo--small logo-W">W</span>
         </div>
 
-        <SearchBar className="menu__search" />
+        <SearchBar />
 
-        <div className="menu__main">
-          <button className="menu__button">VIEW SOURCE</button>
-          <button className="menu__button" id="theme-switch">
-            LIGHT MODE
-          </button>
-          <button className="menu__button menu__icon">
-            <MenuIcon />
-          </button>
-        </div>
+        <button className="menu__button menu__view-source-button mobile-hidden">
+          VIEW SOURCE
+        </button>
+
+        <button
+          className="menu__button menu__switch-theme-button mobile-hidden"
+          id="theme-switch"
+        >
+          LIGHT MODE
+        </button>
+
+        <button className="menu__button  menu__sandwich-button">
+          <MenuIcon />
+        </button>
       </div>
     </div>
   );
