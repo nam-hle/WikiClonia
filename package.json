@@ -59,7 +59,7 @@
         "babel-preset-react": "^6.24.1",
         "browser-sync": "^2.26.7",
         "clean-webpack-plugin": "^3.0.0",
-        "codecov": "^3.6.5",
+        "codecov": "^3.8.3",
         "codecov.io": "^0.1.6",
         "coveralls": "^3.1.0",
         "cross-env": "^7.0.2",
